@@ -50,6 +50,7 @@ function Index() {
         <Process />
         <CaseStudies />
         <About />
+        <WhyWorkWithMe />
         <Contact />
       </main>
       <Footer />
