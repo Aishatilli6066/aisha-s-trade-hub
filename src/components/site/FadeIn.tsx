@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export function FadeIn({
@@ -7,7 +8,7 @@ export function FadeIn({
   delay = 0,
 }: {
   children: ReactNode;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
   className?: string;
   delay?: number;
 }) {
