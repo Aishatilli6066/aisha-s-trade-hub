@@ -37,8 +37,11 @@ export function Hero() {
           International Trade Consultant &amp; Global Sourcing Specialist
         </p>
 
-        <h1 className="mt-10 font-display text-4xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">
-          Where Global Trade <span className="text-accent">Gets Done.</span>
+        <p className="mt-10 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          Where global trade gets done
+        </p>
+        <h1 className="mt-3 font-display text-4xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">
+          Source, verify, and ship — <span className="text-accent">without getting burned.</span>
         </h1>
 
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-text/85 sm:text-lg">

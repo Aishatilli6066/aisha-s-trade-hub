@@ -1,10 +1,10 @@
 import { FadeIn } from "./FadeIn";
 
 const stats = [
+  { value: "$2M+", label: "Trade Opportunities Structured" },
   { value: "68+", label: "Clients Served" },
   { value: "200+", label: "Verified Suppliers" },
   { value: "4+", label: "Years in Trade" },
-  { value: "8", label: "Services Offered" },
   { value: "CAC + NEPC", label: "Registered & Compliant" },
 ];
 
