@@ -103,11 +103,40 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        href:
+          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A0A0F'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%23C8963E'%3EAU%3C/text%3E%3C/svg%3E",
+      },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "ASMAN Prime Hub",
+          founder: {
+            "@type": "Person",
+            name: "Aisha Usman",
+            jobTitle: "International Trade Consultant & Global Sourcing Specialist",
+          },
+          description:
+            "International trade consulting and global sourcing — supplier verification, commodity export, OEM/ODM coordination, and import/export business consulting.",
+          areaServed: ["Africa", "Asia", "Middle East", "Europe"],
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Kano",
+            addressCountry: "NG",
+          },
+        }),
       },
     ],
   }),
