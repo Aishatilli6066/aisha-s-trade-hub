@@ -6,6 +6,7 @@ import { Services } from "@/components/site/Services";
 import { Process } from "@/components/site/Process";
 import { CaseStudies } from "@/components/site/CaseStudies";
 import { About } from "@/components/site/About";
+import { WhyWorkWithMe } from "@/components/site/WhyWorkWithMe";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
