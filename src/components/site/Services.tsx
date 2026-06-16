@@ -93,6 +93,16 @@ const services = [
     ),
   },
   {
+    title: "Private Label Product Development",
+    desc: "Launch and scale your own branded product line through trusted private-label manufacturing partners. Services include product selection, manufacturer sourcing, packaging coordination, branding guidance, compliance support, cost analysis, and production planning across skincare, cosmetics, wellness, consumer goods, and other product categories. Whether you're launching your first product or expanding an existing brand, I help turn concepts into market-ready products.",
+    icon: (
+      <Icon>
+        <path d="M20 7L12 3 4 7v10l8 4 8-4V7z" />
+        <path d="M4 7l8 4 8-4M12 11v10" />
+      </Icon>
+    ),
+  },
+  {
     title: "Import & Export Business Plan Development",
     desc: "Professional business plans built around actual budget, trade goals, target markets, supplier strategy, regulatory requirements, and realistic execution.",
     icon: (
