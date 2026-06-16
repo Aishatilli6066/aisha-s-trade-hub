@@ -6,18 +6,19 @@ export function About() {
     <section id="about" aria-labelledby="about-title" className="bg-surface border-b border-white/5">
       <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
-          <div className="grid gap-10 md:grid-cols-[1fr,2fr] md:items-start">
-            <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-center gap-10 md:flex-row md:items-start">
+            <div className="shrink-0">
               <div className="w-56 h-56 overflow-hidden rounded-lg border border-white/10 sm:w-64 sm:h-64">
                 <img
                   src={aishaPhoto.url}
                   alt="Aisha Usman"
                   className="h-full w-full object-cover"
-                  loading="lazy"
+                  width={256}
+                  height={256}
                 />
               </div>
             </div>
-            <div>
+            <div className="flex-1">
               <h2 id="about-title" className="font-display text-3xl font-bold text-text sm:text-5xl">
                 About Aisha Usman
               </h2>
@@ -40,3 +41,4 @@ export function About() {
     </section>
   );
 }
+
