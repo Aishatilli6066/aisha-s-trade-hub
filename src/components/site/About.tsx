@@ -15,6 +15,11 @@ export function About() {
             verified information, and long-term business relationships that create value for
             all parties involved.
           </p>
+          <p className="mt-6 text-base leading-relaxed text-text/85 sm:text-lg">
+            My experience spans global product sourcing, OEM/ODM manufacturing, custom-made
+            machinery procurement, agricultural commodity exports, supplier verification, and
+            private-label brand development for entrepreneurs and growing businesses.
+          </p>
         </FadeIn>
       </div>
     </section>
