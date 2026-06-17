@@ -3,10 +3,12 @@ import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { ProofStrip } from "@/components/site/ProofStrip";
 import { Services } from "@/components/site/Services";
+import { Pricing } from "@/components/site/Pricing";
 import { Process } from "@/components/site/Process";
 import { CaseStudies } from "@/components/site/CaseStudies";
 import { About } from "@/components/site/About";
 import { WhyWorkWithMe } from "@/components/site/WhyWorkWithMe";
+import { ServiceRequestForm } from "@/components/site/ServiceRequestForm";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
@@ -47,10 +49,12 @@ function Index() {
         <Hero />
         <ProofStrip />
         <Services />
+        <Pricing />
         <Process />
         <CaseStudies />
         <About />
         <WhyWorkWithMe />
+        <ServiceRequestForm />
         <Contact />
       </main>
       <Footer />

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import logo from "@/assets/asman-prime-hub-logo.png.asset.json";
 
 const WHATSAPP = "https://wa.me/2347042322970";
 
 const links = [
   { href: "#services", label: "Services" },
+  { href: "#pricing", label: "Pricing" },
   { href: "#about", label: "About" },
-  { href: "#why", label: "Why Work With Me" },
   { href: "#work", label: "Work" },
+  { href: "#service-request", label: "Request" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -26,9 +28,19 @@ export function Nav() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <a
           href="#top"
-          className="font-display text-lg font-bold tracking-wide text-[#A8851C] outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+          aria-label="ASMAN Prime Hub — Home"
+          className="flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
         >
-          Aisha Usman
+          <img
+            src={logo.url}
+            alt=""
+            width={36}
+            height={36}
+            className="h-9 w-9 object-contain"
+          />
+          <span className="font-display text-base font-bold leading-tight tracking-wide text-[#6B1026] sm:text-lg">
+            ASMAN <span className="text-[#A8851C]">Prime Hub</span>
+          </span>
         </a>
 
         <nav aria-label="Primary" className="hidden md:block">

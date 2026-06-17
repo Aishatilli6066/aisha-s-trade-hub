@@ -36,8 +36,9 @@ export function Hero() {
             <div className="overflow-hidden rounded-full border-2 border-accent/40 shadow-2xl shadow-black/30">
               <img
                 src={aishaPhoto.url}
-                alt="Aisha Usman"
-                className="aspect-square h-full w-full object-cover object-center"
+                alt="Aisha Usman, Founder of ASMAN Prime Hub"
+                className="aspect-square h-full w-full object-cover"
+                style={{ objectPosition: "50% 22%" }}
                 width={400}
                 height={400}
                 loading="eager"
