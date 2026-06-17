@@ -26,7 +26,7 @@ export function Nav() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <a
           href="#top"
-          className="font-display text-lg font-semibold tracking-wide text-accent outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+          className="font-display text-lg font-bold tracking-wide text-[#A8851C] outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
         >
           Aisha Usman
         </a>
