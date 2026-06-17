@@ -136,15 +136,6 @@ export function Services() {
                   <div className="mb-4">{s.icon}</div>
                   <h3 className="font-display text-lg font-semibold text-text">{s.title}</h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-text/75">{s.desc}</p>
-                  <a
-                    href={`${WHATSAPP}?text=${encodeURIComponent(`Hi Aisha, I'd like to ask about ${s.title}.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
-                    aria-label={`Inquire about ${s.title} on WhatsApp`}
-                  >
-                    Inquire on WhatsApp <span aria-hidden="true">→</span>
-                  </a>
                 </article>
               </FadeIn>
             </li>
