@@ -18,7 +18,7 @@ const SocialLink = ({ href, label, brandClass, children }: SocialProps) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    className={`inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 text-text transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${brandClass}`}
+    className={`inline-flex h-10 w-10 items-center justify-center rounded-md border border-text/15 text-text transition-colors hover:bg-text/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${brandClass}`}
   >
     {children}
   </a>
@@ -58,7 +58,7 @@ export function Footer() {
               <path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.87.24-1.46 1.49-1.46H17V4.4c-.27-.04-1.2-.12-2.28-.12-2.26 0-3.81 1.38-3.81 3.91V10.5H8.5v3h2.41V21z" />
             </svg>
           </SocialLink>
-          <SocialLink href={X_URL} label="Aisha on X" brandClass="hover:border-white hover:text-white">
+          <SocialLink href={X_URL} label="Aisha on X" brandClass="hover:border-text hover:text-text">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.83l-5.34-6.98L4.7 22H1.44l8.03-9.18L1 2h7l4.83 6.39zM17.07 20.13h1.8L7.03 3.77H5.1z" />
             </svg>

@@ -50,7 +50,7 @@ function Row({ label, text }: { label: string; text: string }) {
 
 export function CaseStudies() {
   return (
-    <section id="work" aria-labelledby="work-title" className="border-b border-white/5">
+    <section id="work" aria-labelledby="work-title" className="border-b border-text/10">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
           <h2 id="work-title" className="font-display text-3xl font-bold text-text sm:text-5xl">
@@ -64,7 +64,7 @@ export function CaseStudies() {
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {cases.map((c) => (
             <FadeIn key={c.title}>
-              <article className="h-full rounded-lg border border-white/5 border-l-4 border-l-accent bg-surface p-6">
+              <article className="h-full rounded-lg border border-text/10 border-l-4 border-l-accent bg-surface p-6">
                 <h3 className="font-display text-xl font-semibold text-text">{c.title}</h3>
                 <Row label="Need" text={c.need} />
                 <Row label="Action" text={c.action} />
