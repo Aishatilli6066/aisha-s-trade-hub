@@ -3,11 +3,12 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-bg: #0A0A0F;
-  --color-surface: #14141C;
-  --color-accent: #C8963E;
-  --color-text: #E8E2D5;
-  --color-muted: #7A7A8A;
+  --color-bg: #FFFFFF;
+  --color-surface: #FBF6E9;
+  --color-accent: #D4AF37;
+  --color-maroon: #6B1026;
+  --color-text: #6B1026;
+  --color-muted: #6B5E4A;
   --font-display: "Playfair Display", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
