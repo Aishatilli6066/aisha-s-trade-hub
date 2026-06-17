@@ -26,7 +26,7 @@ export function Contact() {
               rel="noopener noreferrer"
               className="block rounded-lg border border-text/15 bg-surface p-6 transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
-              <div className="text-xs font-semibold uppercase tracking-wider text-accent">
+              <div className="text-xs font-semibold uppercase tracking-wider text-text">
                 WhatsApp
               </div>
               <div className="mt-2 font-display text-2xl text-text">+234-7042-322970</div>
@@ -38,7 +38,7 @@ export function Contact() {
               href={`mailto:${EMAIL}`}
               className="block rounded-lg border border-text/15 bg-surface p-6 transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
-              <div className="text-xs font-semibold uppercase tracking-wider text-accent">
+              <div className="text-xs font-semibold uppercase tracking-wider text-text">
                 Email
               </div>
               <div className="mt-2 font-display text-2xl break-all text-text">{EMAIL}</div>
