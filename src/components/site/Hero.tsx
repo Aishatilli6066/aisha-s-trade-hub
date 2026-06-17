@@ -30,8 +30,21 @@ export function Hero() {
         <circle cx="980" cy="220" r="2.5" fill="#C8963E" />
       </svg>
 
-      <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
-        <div className="flex flex-col items-center gap-10 md:flex-row md:items-start">
+      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
+        <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:justify-between lg:gap-16">
+          <figure className="order-1 w-full max-w-[18rem] shrink-0 md:order-2 md:max-w-[22rem] lg:max-w-[24rem]">
+            <div className="aspect-[4/5] overflow-hidden rounded-lg border border-white/10 bg-surface shadow-2xl shadow-black/20">
+              <img
+                src={aishaPhoto.url}
+                alt="Aisha Usman"
+                className="h-full w-full object-cover object-center"
+                width={384}
+                height={480}
+                loading="eager"
+              />
+            </div>
+          </figure>
+
           <div className="order-2 flex-1 md:order-1">
             <p className="font-display text-2xl text-text sm:text-3xl">Aisha Usman</p>
             <p className="mt-2 text-sm text-muted sm:text-base">
@@ -75,17 +88,6 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="order-1 shrink-0 md:order-2">
-            <div className="w-48 h-48 overflow-hidden rounded-lg border border-white/10 sm:w-56 sm:h-56 md:w-64 md:h-64">
-              <img
-                src={aishaPhoto.url}
-                alt="Aisha Usman"
-                className="h-full w-full object-cover"
-                width={256}
-                height={256}
-              />
-            </div>
-          </div>
         </div>
       </div>
     </section>
