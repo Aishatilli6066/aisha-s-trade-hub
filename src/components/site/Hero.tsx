@@ -58,7 +58,7 @@ export function Hero() {
               Where global trade gets done
             </p>
             <h1 className="mt-3 font-display text-4xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">
-              Source, verify, and ship — <span className="text-accent">without getting burned.</span>
+              Source, verify, and ship — <span className="text-gold-deep italic">without getting burned.</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-text/85 sm:text-lg">
