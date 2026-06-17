@@ -54,7 +54,7 @@ export function Hero() {
               International Trade Consultant &amp; Global Sourcing Specialist
             </p>
 
-            <p className="mt-10 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            <p className="mt-10 text-xs font-semibold uppercase tracking-[0.2em] text-text">
               Where global trade gets done
             </p>
             <h1 className="mt-3 font-display text-4xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">

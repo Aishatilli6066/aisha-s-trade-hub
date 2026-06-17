@@ -31,7 +31,7 @@ export function Process() {
           {steps.map((s) => (
             <li key={s.n}>
               <FadeIn>
-                <div className="font-display text-sm tracking-widest text-accent">{s.n}</div>
+                <div className="font-display text-sm tracking-widest text-text">{s.n}</div>
                 <h3 className="mt-3 font-display text-xl font-semibold text-text">{s.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-text/80">{s.desc}</p>
               </FadeIn>

@@ -42,7 +42,7 @@ const cases = [
 function Row({ label, text }: { label: string; text: string }) {
   return (
     <div className="mt-4">
-      <div className="text-xs font-semibold uppercase tracking-wider text-accent">{label}</div>
+      <div className="text-xs font-semibold uppercase tracking-wider text-text">{label}</div>
       <p className="mt-1 text-sm leading-relaxed text-text/85">{text}</p>
     </div>
   );
