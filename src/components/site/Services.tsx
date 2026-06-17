@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { FadeIn } from "./FadeIn";
 
-const WHATSAPP = "https://wa.me/2347042322970";
 
 const Icon = ({ children }: { children: ReactNode }) => (
   <svg
