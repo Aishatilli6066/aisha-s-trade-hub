@@ -1,3 +1,5 @@
+import aishaPhoto from "@/assets/aisha-usman.png.asset.json";
+
 const WHATSAPP = "https://wa.me/2347042322970";
 
 export function Hero() {
@@ -29,47 +31,64 @@ export function Hero() {
       </svg>
 
       <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
-        <p className="font-display text-2xl text-text sm:text-3xl">Aisha Usman</p>
-        <p className="mt-2 text-sm text-muted sm:text-base">
-          Founder, ASMAN Prime Hub
-        </p>
-        <p className="text-sm text-muted sm:text-base">
-          International Trade Consultant &amp; Global Sourcing Specialist
-        </p>
+        <div className="flex flex-col items-center gap-10 md:flex-row md:items-start">
+          <div className="flex-1">
+            <p className="font-display text-2xl text-text sm:text-3xl">Aisha Usman</p>
+            <p className="mt-2 text-sm text-muted sm:text-base">
+              Founder, ASMAN Prime Hub
+            </p>
+            <p className="text-sm text-muted sm:text-base">
+              International Trade Consultant &amp; Global Sourcing Specialist
+            </p>
 
-        <p className="mt-10 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-          Where global trade gets done
-        </p>
-        <h1 className="mt-3 font-display text-4xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">
-          Source, verify, and ship — <span className="text-accent">without getting burned.</span>
-        </h1>
+            <p className="mt-10 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Where global trade gets done
+            </p>
+            <h1 className="mt-3 font-display text-4xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">
+              Source, verify, and ship — <span className="text-accent">without getting burned.</span>
+            </h1>
 
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-text/85 sm:text-lg">
-          International trade consulting and global sourcing for importers, exporters, and
-          commodity buyers who need expertise they can trust — not promises they can't verify.
-        </p>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-text/85 sm:text-lg">
+              International trade consulting and global sourcing for importers, exporters, and
+              commodity buyers who need expertise they can trust — not promises they can't verify.
+            </p>
 
-        <p className="mt-4 text-sm text-muted">
-          Based in Kano, Nigeria. Operating across Asia · Africa · Middle East · Europe.
-        </p>
+            <p className="mt-4 text-sm text-muted">
+              Based in Kano, Nigeria. Operating across Asia · Africa · Middle East · Europe.
+            </p>
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-bg transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-          >
-            Start a Conversation
-          </a>
-          <a
-            href="#services"
-            className="inline-flex items-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-          >
-            Explore My Services
-          </a>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-bg transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              >
+                Start a Conversation
+              </a>
+              <a
+                href="#services"
+                className="inline-flex items-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              >
+                Explore My Services
+              </a>
+            </div>
+          </div>
+
+          <div className="shrink-0">
+            <div className="w-48 h-48 overflow-hidden rounded-lg border border-white/10 sm:w-56 sm:h-56 md:w-64 md:h-64">
+              <img
+                src={aishaPhoto.url}
+                alt="Aisha Usman"
+                className="h-full w-full object-cover"
+                width={256}
+                height={256}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
