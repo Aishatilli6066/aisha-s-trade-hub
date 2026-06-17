@@ -32,14 +32,14 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
         <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:justify-between lg:gap-16">
-          <figure className="order-1 w-full max-w-[18rem] shrink-0 md:order-2 md:max-w-[22rem] lg:max-w-[24rem]">
-            <div className="aspect-[4/5] overflow-hidden rounded-lg border border-white/10 bg-surface shadow-2xl shadow-black/20">
+          <figure className="order-1 w-full max-w-[14rem] shrink-0 sm:max-w-[16rem] md:order-2 md:max-w-[18rem] lg:max-w-[20rem]">
+            <div className="overflow-hidden rounded-full border-2 border-accent/40 shadow-2xl shadow-black/30">
               <img
                 src={aishaPhoto.url}
                 alt="Aisha Usman"
-                className="h-full w-full object-cover object-center"
-                width={384}
-                height={480}
+                className="aspect-square h-full w-full object-cover object-center"
+                width={400}
+                height={400}
                 loading="eager"
               />
             </div>
