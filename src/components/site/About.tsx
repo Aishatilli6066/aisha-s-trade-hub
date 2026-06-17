@@ -2,7 +2,7 @@ import { FadeIn } from "./FadeIn";
 
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-title" className="bg-surface border-b border-white/5">
+    <section id="about" aria-labelledby="about-title" className="bg-surface border-b border-text/10">
       <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
           <div>

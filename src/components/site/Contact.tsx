@@ -5,7 +5,7 @@ const EMAIL = "aishau6066@gmail.com";
 
 export function Contact() {
   return (
-    <section id="contact" aria-labelledby="contact-title" className="border-b border-white/5">
+    <section id="contact" aria-labelledby="contact-title" className="border-b border-text/10">
       <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
           <h2 id="contact-title" className="font-display text-3xl font-bold text-text sm:text-5xl">
@@ -24,7 +24,7 @@ export function Contact() {
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-lg border border-white/10 bg-surface p-6 transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="block rounded-lg border border-text/15 bg-surface p-6 transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               <div className="text-xs font-semibold uppercase tracking-wider text-accent">
                 WhatsApp
@@ -36,7 +36,7 @@ export function Contact() {
           <FadeIn>
             <a
               href={`mailto:${EMAIL}`}
-              className="block rounded-lg border border-white/10 bg-surface p-6 transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="block rounded-lg border border-text/15 bg-surface p-6 transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               <div className="text-xs font-semibold uppercase tracking-wider text-accent">
                 Email

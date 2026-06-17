@@ -25,7 +25,7 @@ const points = [
 
 export function WhyWorkWithMe() {
   return (
-    <section id="why" aria-labelledby="why-title" className="bg-bg border-b border-white/5">
+    <section id="why" aria-labelledby="why-title" className="bg-bg border-b border-text/10">
       <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
           <h2
@@ -38,7 +38,7 @@ export function WhyWorkWithMe() {
             {points.map((p) => (
               <div
                 key={p.title}
-                className="rounded-lg border border-white/10 bg-surface p-6 transition-colors hover:border-accent/40"
+                className="rounded-lg border border-text/15 bg-surface p-6 transition-colors hover:border-accent/40"
               >
                 <h3 className="font-display text-lg font-semibold text-accent">
                   {p.title}

@@ -4,7 +4,7 @@ const WHATSAPP = "https://wa.me/2347042322970";
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden border-b border-white/5">
+    <section id="top" className="relative overflow-hidden border-b border-text/10">
       <svg
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full opacity-60"
@@ -13,9 +13,9 @@ export function Hero() {
       >
         <defs>
           <linearGradient id="arcGrad" x1="0" x2="1">
-            <stop offset="0%" stopColor="#C8963E" stopOpacity="0.1" />
-            <stop offset="50%" stopColor="#C8963E" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#C8963E" stopOpacity="0.1" />
+            <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.1" />
+            <stop offset="50%" stopColor="#D4AF37" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.1" />
           </linearGradient>
         </defs>
         <path
@@ -25,9 +25,9 @@ export function Hero() {
           strokeWidth="1.2"
           className="arc-draw"
         />
-        <circle cx="180" cy="380" r="2.5" fill="#C8963E" />
-        <circle cx="600" cy="280" r="2.5" fill="#C8963E" />
-        <circle cx="980" cy="220" r="2.5" fill="#C8963E" />
+        <circle cx="180" cy="380" r="2.5" fill="#D4AF37" />
+        <circle cx="600" cy="280" r="2.5" fill="#D4AF37" />
+        <circle cx="980" cy="220" r="2.5" fill="#D4AF37" />
       </svg>
 
       <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
@@ -75,7 +75,7 @@ export function Hero() {
                 href={WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-bg transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="inline-flex items-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 Start a Conversation
               </a>

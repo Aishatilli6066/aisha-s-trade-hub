@@ -22,11 +22,11 @@ export function Nav() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/5 bg-bg/85 backdrop-blur supports-[backdrop-filter]:bg-bg/70">
+    <header className="sticky top-0 z-40 border-b border-text/10 bg-bg/85 backdrop-blur supports-[backdrop-filter]:bg-bg/70">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <a
           href="#top"
-          className="font-display text-lg font-semibold tracking-wide text-text outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+          className="font-display text-lg font-semibold tracking-wide text-accent outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
         >
           Aisha Usman
         </a>
@@ -51,7 +51,7 @@ export function Nav() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-bg transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            className="inline-flex items-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
             WhatsApp
           </a>
@@ -77,7 +77,7 @@ export function Nav() {
 
       <div
         id="mobile-menu"
-        className={`md:hidden overflow-hidden border-t border-white/5 transition-[max-height] duration-300 ${open ? "max-h-96" : "max-h-0"}`}
+        className={`md:hidden overflow-hidden border-t border-text/10 transition-[max-height] duration-300 ${open ? "max-h-96" : "max-h-0"}`}
       >
         <nav aria-label="Mobile" className="px-4 py-3">
           <ul className="flex flex-col gap-1">
@@ -98,7 +98,7 @@ export function Nav() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="mt-2 inline-flex w-full items-center justify-center rounded-md bg-accent px-4 py-3 text-sm font-semibold text-bg"
+                className="mt-2 inline-flex w-full items-center justify-center rounded-md bg-accent px-4 py-3 text-sm font-semibold text-text"
               >
                 WhatsApp
               </a>

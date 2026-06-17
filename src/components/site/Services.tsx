@@ -115,7 +115,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" aria-labelledby="services-title" className="border-b border-white/5">
+    <section id="services" aria-labelledby="services-title" className="border-b border-text/10">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
           <h2 id="services-title" className="font-display text-3xl font-bold text-text sm:text-5xl">
@@ -131,7 +131,7 @@ export function Services() {
           {services.map((s) => (
             <li key={s.title}>
               <FadeIn>
-                <article className="flex h-full flex-col rounded-lg border border-white/5 bg-surface p-6 transition-colors hover:border-accent/40">
+                <article className="flex h-full flex-col rounded-lg border border-text/10 bg-surface p-6 transition-colors hover:border-accent/40">
                   <div className="mb-4">{s.icon}</div>
                   <h3 className="font-display text-lg font-semibold text-text">{s.title}</h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-text/75">{s.desc}</p>
