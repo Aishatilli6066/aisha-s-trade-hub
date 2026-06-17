@@ -9,7 +9,7 @@ const links = [
   { href: "#about", label: "About" },
   { href: "#work", label: "Work" },
   { href: "#service-request", label: "Request" },
-  { href: "#contact", label: "Contact" },
+  
 ];
 
 export function Nav() {
@@ -38,9 +38,6 @@ export function Nav() {
             height={36}
             className="h-9 w-9 object-contain"
           />
-          <span className="font-display text-base font-bold leading-tight tracking-wide text-[#6B1026] sm:text-lg">
-            ASMAN <span className="text-[#A8851C]">Prime Hub</span>
-          </span>
         </a>
 
         <nav aria-label="Primary" className="hidden md:block">
