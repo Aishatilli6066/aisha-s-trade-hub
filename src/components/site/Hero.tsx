@@ -32,7 +32,7 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
         <div className="flex flex-col items-center gap-10 md:flex-row md:items-start">
-          <div className="flex-1">
+          <div className="order-2 flex-1 md:order-1">
             <p className="font-display text-2xl text-text sm:text-3xl">Aisha Usman</p>
             <p className="mt-2 text-sm text-muted sm:text-base">
               Founder, ASMAN Prime Hub
@@ -75,7 +75,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="shrink-0">
+          <div className="order-1 shrink-0 md:order-2">
             <div className="w-48 h-48 overflow-hidden rounded-lg border border-white/10 sm:w-56 sm:h-56 md:w-64 md:h-64">
               <img
                 src={aishaPhoto.url}
