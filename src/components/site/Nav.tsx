@@ -4,12 +4,12 @@ import logo from "@/assets/asman-prime-hub-logo.png.asset.json";
 const WHATSAPP = "https://wa.me/2347042322970";
 
 const links = [
-  { href: "#services", label: "Services" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#about", label: "About" },
-  { href: "#work", label: "Work" },
-  { href: "#service-request", label: "Request" },
-  
+  { href: "/#services", label: "Services" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/#about", label: "About" },
+  { href: "/#work", label: "Work" },
+  { href: "/blog", label: "Blog" },
+  { href: "/#service-request", label: "Request" },
 ];
 
 export function Nav() {
