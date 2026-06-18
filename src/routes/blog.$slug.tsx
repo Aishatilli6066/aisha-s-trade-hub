@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getPostBySlug, getRelatedPosts, formatDate } from "@/lib/blog";
+import { getPostBySlug, getRelatedPosts, formatDate, type Post } from "@/lib/blog";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -95,7 +95,7 @@ function PostPage() {
         <aside className="mt-16 border-t border-text/10 pt-10">
           <h2 className="font-serif text-2xl font-semibold text-text">Related articles</h2>
           <ul className="mt-6 grid gap-6 sm:grid-cols-2">
-            {related.map((r) => (
+            {related.map((r: Post) => (
               <li key={r.slug} className="rounded-lg border border-text/10 bg-text/[0.02] p-4">
                 <p className="text-xs font-medium uppercase tracking-wider text-accent">
                   {String(r.category)}
