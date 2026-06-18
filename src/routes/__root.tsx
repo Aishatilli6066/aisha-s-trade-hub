@@ -121,21 +121,67 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: "ASMAN Prime Hub",
-          founder: {
-            "@type": "Person",
-            name: "Aisha Usman",
-            jobTitle: "International Trade Consultant & Global Sourcing Specialist",
-          },
-          description:
-            "International trade consulting and global sourcing — supplier verification, commodity export, OEM/ODM coordination, and import/export business consulting.",
-          areaServed: ["Africa", "Asia", "Middle East", "Europe"],
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Kano",
-            addressCountry: "NG",
-          },
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": "https://asmanprimehub.com/#aisha-usman",
+              name: "Aisha Usman",
+              jobTitle: "International Trade Consultant & Global Sourcing Specialist",
+              email: "mailto:aishau6066@gmail.com",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Kano",
+                addressCountry: "NG",
+              },
+              worksFor: { "@id": "https://asmanprimehub.com/#organization" },
+              sameAs: [
+                "https://www.upwork.com/freelancers/~01fa3cf6e886a40e02",
+              ],
+              knowsAbout: [
+                "International Trade",
+                "Global Sourcing",
+                "Supplier Verification",
+                "Commodity Export",
+                "OEM/ODM Manufacturing Coordination",
+                "Private Label Product Development",
+                "Import/Export Business Strategy",
+              ],
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://asmanprimehub.com/#organization",
+              name: "ASMAN Prime Hub",
+              founder: { "@id": "https://asmanprimehub.com/#aisha-usman" },
+              email: "mailto:aishau6066@gmail.com",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Kano",
+                addressCountry: "NG",
+              },
+              areaServed: ["Africa", "Asia", "Middle East", "Europe"],
+            },
+            {
+              "@type": "ProfessionalService",
+              "@id": "https://asmanprimehub.com/#service",
+              name: "ASMAN Prime Hub — International Trade Consulting",
+              provider: { "@id": "https://asmanprimehub.com/#organization" },
+              description:
+                "International trade consulting and global sourcing — supplier verification, commodity export, OEM/ODM coordination, private label development, and import/export business strategy.",
+              areaServed: ["Africa", "Asia", "Middle East", "Europe"],
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Kano",
+                addressCountry: "NG",
+              },
+              priceRange: "From USD $250",
+              offers: {
+                "@type": "Offer",
+                price: "250",
+                priceCurrency: "USD",
+                description: "Engagements begin from USD $250; custom proposals for larger projects.",
+              },
+            },
+          ],
         }),
       },
     ],
