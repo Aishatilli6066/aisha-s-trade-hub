@@ -86,6 +86,14 @@ export function Hero() {
               >
                 Explore My Services
               </a>
+              <a
+                href="https://www.upwork.com/freelancers/~01fa3cf6e886a40e02"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-md border border-[#14A800]/60 px-6 py-3 text-sm font-semibold text-[#14A800] transition-colors hover:bg-[#14A800]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14A800] focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              >
+                Hire on Upwork
+              </a>
             </div>
           </div>
 
