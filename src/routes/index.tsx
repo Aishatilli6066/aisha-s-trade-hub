@@ -9,6 +9,7 @@ import { CaseStudies } from "@/components/site/CaseStudies";
 import { About } from "@/components/site/About";
 import { WhyWorkWithMe } from "@/components/site/WhyWorkWithMe";
 import { ServiceRequestForm } from "@/components/site/ServiceRequestForm";
+import { Upwork } from "@/components/site/Upwork";
 
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
@@ -55,6 +56,7 @@ function Index() {
         <About />
         <WhyWorkWithMe />
         <ServiceRequestForm />
+        <Upwork />
       </main>
       <Footer />
       <MobileCta />
