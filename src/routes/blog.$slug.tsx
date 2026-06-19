@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getPostBySlug, getRelatedPosts, formatDate, type Post } from "@/lib/blog";
+import { AuthorBio } from "@/components/site/AuthorBio";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -90,6 +91,8 @@ function PostPage() {
         className="prose-blog mt-10"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
+
+      <AuthorBio />
 
       {related.length > 0 && (
         <aside className="mt-16 border-t border-text/10 pt-10">

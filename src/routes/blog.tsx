@@ -17,7 +17,10 @@ export const Route = createFileRoute("/blog")({
       { property: "og:description", content: "Practical articles on international trade and global sourcing." },
       { property: "og:url", content: "/blog" },
     ],
-    links: [{ rel: "canonical", href: "/blog" }],
+    links: [
+      { rel: "canonical", href: "/blog" },
+      { rel: "alternate", type: "application/rss+xml", title: "Aisha Usman — Blog RSS", href: "/rss.xml" },
+    ],
   }),
   component: BlogLayout,
 });
