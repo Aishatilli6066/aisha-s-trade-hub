@@ -47,20 +47,15 @@ export function Hero() {
           </figure>
 
           <div className="order-2 flex-1 md:order-1">
-            <p className="font-display text-2xl text-text sm:text-3xl">Aisha Usman</p>
-            <p className="mt-2 text-sm text-muted sm:text-base">
-              Founder, ASMAN Prime Hub
-            </p>
-            <p className="text-sm text-muted sm:text-base">
-              International Trade Consultant &amp; Global Sourcing Specialist
-            </p>
-
-            <p className="mt-10 text-xs font-semibold uppercase tracking-[0.2em] text-text">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text">
               Trusted Advisor in Global Trade
             </p>
-            <h1 className="mt-3 font-display text-4xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">
-              International Trade Consultant <span className="text-gold-deep italic">| Global Sourcing Specialist | Export Strategist</span>
+            <h1 className="mt-3 font-display text-5xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">
+              Aisha Usman
             </h1>
+            <p className="mt-4 font-display text-lg text-gold-deep sm:text-2xl">
+              International Trade Consultant <span className="text-text/40">|</span> Global Sourcing Specialist <span className="text-text/40">|</span> Export Strategist
+            </p>
 
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-text/85 sm:text-lg">
               Helping businesses source products, verify suppliers, reduce procurement risks,
@@ -70,6 +65,7 @@ export function Hero() {
             <p className="mt-4 text-sm text-muted">
               Based in Kano, Nigeria. Advising clients across Asia · Africa · Middle East · Europe.
             </p>
+
 
             <div className="mt-10 flex flex-wrap gap-3">
               <a
