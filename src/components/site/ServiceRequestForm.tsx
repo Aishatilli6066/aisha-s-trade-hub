@@ -121,19 +121,20 @@ export function ServiceRequestForm() {
       <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-            Request a Proposal
+            Service Request
           </p>
           <h2
             id="service-request-title"
             className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl"
           >
-            Tell me about your project
+            Let&rsquo;s Discuss Your Trade Opportunity
           </h2>
           <p className="mt-4 max-w-2xl text-base text-text/80 sm:text-lg">
-            Share your sourcing or trade requirements and you&rsquo;ll receive a tailored proposal
-            following a short consultation.
+            Share your sourcing, procurement, or export requirements and you&rsquo;ll receive a
+            tailored proposal following a short consultation.
           </p>
         </FadeIn>
+
 
         <FadeIn>
           <form

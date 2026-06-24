@@ -47,50 +47,52 @@ export function Hero() {
           </figure>
 
           <div className="order-2 flex-1 md:order-1">
-            <p className="font-display text-2xl text-text sm:text-3xl">Aisha Usman</p>
-            <p className="mt-2 text-sm text-muted sm:text-base">
-              Founder, ASMAN Prime Hub
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text">
+              Trusted Advisor in Global Trade
             </p>
-            <p className="text-sm text-muted sm:text-base">
-              International Trade Consultant &amp; Global Sourcing Specialist
-            </p>
-
-            <p className="mt-10 text-xs font-semibold uppercase tracking-[0.2em] text-text">
-              Where global trade gets done
-            </p>
-            <h1 className="mt-3 font-display text-4xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">
-              Source, verify, and ship — <span className="text-gold-deep italic">without getting burned.</span>
+            <h1 className="mt-3 font-display text-5xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">
+              Aisha Usman
             </h1>
+            <p className="mt-4 font-display text-lg text-gold-deep sm:text-2xl">
+              International Trade Consultant <span className="text-text/40">|</span> Global Sourcing Specialist <span className="text-text/40">|</span> Export Strategist
+            </p>
 
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-text/85 sm:text-lg">
-              International trade consulting and global sourcing for importers, exporters, and
-              commodity buyers who need expertise they can trust — not promises they can't verify.
+              Helping businesses source products, verify suppliers, reduce procurement risks,
+              structure export opportunities, and navigate international trade with confidence.
             </p>
 
             <p className="mt-4 text-sm text-muted">
-              Based in Kano, Nigeria. Operating across Asia · Africa · Middle East · Europe.
+              Based in Kano, Nigeria. Advising clients across Asia · Africa · Middle East · Europe.
             </p>
 
+
             <div className="mt-10 flex flex-wrap gap-3">
+              <a
+                href="#pricing"
+                className="inline-flex items-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              >
+                Book a Consultation
+              </a>
+              <a
+                href="#service-request"
+                className="inline-flex items-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              >
+                Work With Me
+              </a>
               <a
                 href={WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="inline-flex items-center rounded-md border border-text/20 px-6 py-3 text-sm font-semibold text-text/80 transition-colors hover:bg-text/5"
               >
-                Start a Conversation
-              </a>
-              <a
-                href="#services"
-                className="inline-flex items-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-              >
-                Explore My Services
+                WhatsApp
               </a>
               <a
                 href="https://www.upwork.com/freelancers/~01fa3cf6e886a40e02"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border border-[#14A800]/60 px-6 py-3 text-sm font-semibold text-[#14A800] transition-colors hover:bg-[#14A800]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14A800] focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="inline-flex items-center gap-2 rounded-md border border-[#14A800]/60 px-6 py-3 text-sm font-semibold text-[#14A800] transition-colors hover:bg-[#14A800]/10"
               >
                 Hire on Upwork
               </a>
@@ -102,4 +104,5 @@ export function Hero() {
     </section>
   );
 }
+
 
