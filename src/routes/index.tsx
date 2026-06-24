@@ -8,6 +8,7 @@ import { Process } from "@/components/site/Process";
 import { CaseStudies } from "@/components/site/CaseStudies";
 import { About } from "@/components/site/About";
 import { WhyWorkWithMe } from "@/components/site/WhyWorkWithMe";
+import { WhoIWorkWith } from "@/components/site/WhoIWorkWith";
 import { ServiceRequestForm } from "@/components/site/ServiceRequestForm";
 import { Upwork } from "@/components/site/Upwork";
 
@@ -17,17 +18,17 @@ import { MobileCta } from "@/components/site/MobileCta";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Aisha Usman — International Trade Consultant | Kano, Nigeria" },
+      { title: "Aisha Usman — International Trade Consultant | Global Sourcing Specialist" },
       {
         name: "description",
         content:
-          "International Trade Consultant and Global Sourcing Specialist based in Kano, Nigeria. Supplier verification, commodity export, landed cost analysis, OEM coordination, and import/export business consulting across Asia, Africa, the Middle East, and Europe.",
+          "Aisha Usman — International Trade Consultant, Global Sourcing Specialist, and Export Strategist helping businesses source products, verify suppliers, reduce procurement risk, and structure export opportunities across Asia, Africa, the Middle East, and Europe.",
       },
       { property: "og:title", content: "Aisha Usman — International Trade Consultant" },
       {
         property: "og:description",
         content:
-          "Global sourcing, supplier verification, commodity export, and import/export business consulting from Kano, Nigeria.",
+          "Trusted advisor for importers, exporters, manufacturers, and procurement teams entering international markets.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -49,12 +50,13 @@ function Index() {
       <main id="main">
         <Hero />
         <ProofStrip />
-        <Services />
-        <Pricing />
-        <Process />
         <CaseStudies />
-        <About />
+        <Services />
+        <WhoIWorkWith />
         <WhyWorkWithMe />
+        <Process />
+        <Pricing />
+        <About />
         <ServiceRequestForm />
         <Upwork />
       </main>

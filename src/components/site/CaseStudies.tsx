@@ -2,40 +2,43 @@ import { FadeIn } from "./FadeIn";
 
 const cases = [
   {
-    title: "Sesame Export to China",
-    need: "Verified Chinese buyer for bulk sesame.",
-    action:
-      "Structured a 300 MT sesame export deal to Dalian, China with documentation and MoU drafting.",
-    outcome: "Deal formally initiated with signed MoU.",
-  },
-  {
-    title: "CFR Export Offer to India",
-    need: "Competitive offer for Sortex White Sesame.",
-    action: "Prepared USD 2,050/MT CFR offer with verified supplier backing.",
-    outcome: "Professional export offer delivered within 48 hours.",
-  },
-  {
-    title: "OEM Fabric Sourcing",
-    need: "Custom-logo African wax print fabric.",
-    action: "Sourced verified OEM manufacturer and coordinated sampling.",
-    outcome:
-      "Client connected to qualified manufacturer with approved sample process underway.",
-  },
-  {
     title: "Custom-Made Industrial Machine Sourcing",
-    need: "A client required a custom-built industrial machine manufactured to specific operational and production requirements that could not be sourced off-the-shelf locally.",
+    need: "Client required a custom-built industrial machine to exact operational specifications unavailable locally.",
     action:
-      "Identified qualified overseas manufacturers, coordinated technical specifications, evaluated production capabilities, negotiated commercial terms, and managed communication between the client and manufacturer throughout the sourcing process.",
+      "Identified and vetted overseas manufacturers, coordinated technical specifications, negotiated commercial terms, and managed the supplier selection process.",
     outcome:
-      "Client was connected with a verified manufacturer capable of producing the machine according to the required specifications, with a clear production roadmap, pricing structure, and export logistics plan established.",
+      "Verified manufacturer secured at 50% below initial cost estimates, with a confirmed production timeline and export logistics plan.",
   },
   {
     title: "Private Label Product Development",
-    need: "A client wanted to develop and launch a branded product line under their own label with reliable manufacturing support and a scalable growth strategy.",
+    need: "Client wanted to launch a branded product line with reliable manufacturing and scalable growth potential.",
     action:
-      "Identified qualified private-label manufacturers, evaluated production capabilities, coordinated product and packaging options, and structured a sourcing and launch roadmap aligned with the client's business objectives.",
+      "Sourced and evaluated private-label manufacturers, structured packaging options, and developed a launch roadmap.",
     outcome:
-      "Client received access to verified manufacturing partners, product development options, branding support recommendations, and a clear pathway from concept to market-ready product.",
+      "Manufacturing partnership secured supporting a projected 200–500% ROI model with a clear concept-to-market pathway.",
+  },
+  {
+    title: "Agro-Commodity Sourcing for Egypt Herbal Buyer",
+    need: "Egypt-based herbal company required consistent agro-commodity supply at competitive landed costs.",
+    action:
+      "Sourced and verified Nigerian suppliers and structured pricing and logistics terms.",
+    outcome:
+      "Product secured at 30% below prevailing market prices with a repeatable sourcing framework established.",
+  },
+  {
+    title: "Sesame Export to China — 300MT",
+    need: "Verified Chinese buyer seeking bulk Sortex White Sesame.",
+    action:
+      "Structured a 300MT export opportunity, drafted MoU documentation, and coordinated transaction preparation.",
+    outcome:
+      "MoU signed and transaction progressed from inquiry stage to active execution.",
+  },
+  {
+    title: "CFR Export Offer to India",
+    need: "Buyer required a competitive CFR offer for Sortex White Sesame.",
+    action: "Prepared a complete export offer backed by a verified supplier.",
+    outcome:
+      "Full export proposal delivered within 48 hours, maintaining buyer engagement and transaction momentum.",
   },
 ];
 
@@ -53,15 +56,18 @@ export function CaseStudies() {
     <section id="work" aria-labelledby="work-title" className="border-b border-text/10">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
-          <h2 id="work-title" className="font-display text-3xl font-bold text-text sm:text-5xl">
-            Deals I've Structured
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            Selected Engagements
+          </p>
+          <h2 id="work-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
+            Trade Outcomes I&rsquo;ve Delivered
           </h2>
           <p className="mt-4 text-base text-text/80 sm:text-lg">
-            Real engagements. Real outcomes.
+            Real client engagements. Measurable results.
           </p>
         </FadeIn>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {cases.map((c) => (
             <FadeIn key={c.title}>
               <article className="h-full rounded-lg border border-text/10 border-l-4 border-l-accent bg-surface p-6">
