@@ -1,5 +1,36 @@
-import matter from "gray-matter";
 import { marked } from "marked";
+
+// Lightweight browser-safe frontmatter parser (avoids gray-matter's Node Buffer dep).
+function parseFrontmatter(raw: string): { data: Record<string, any>; content: string } {
+  const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/.exec(raw);
+  if (!match) return { data: {}, content: raw };
+  const [, fm, content] = match;
+  const data: Record<string, any> = {};
+  let currentKey: string | null = null;
+  for (const line of fm.split(/\r?\n/)) {
+    if (!line.trim()) continue;
+    const listItem = /^\s*-\s*(.*)$/.exec(line);
+    if (listItem && currentKey) {
+      (data[currentKey] ||= []).push(stripQuotes(listItem[1]));
+      continue;
+    }
+    const kv = /^([A-Za-z0-9_]+)\s*:\s*(.*)$/.exec(line);
+    if (kv) {
+      const [, key, value] = kv;
+      currentKey = key;
+      if (value.trim() === "") {
+        data[key] = [];
+      } else {
+        data[key] = stripQuotes(value.trim());
+      }
+    }
+  }
+  return { data, content };
+}
+function stripQuotes(s: string): string {
+  return s.replace(/^["'](.*)["']$/, "$1");
+}
+const matter = (raw: string) => parseFrontmatter(raw);
 
 export type BlogCategory =
   | "Global Sourcing"
