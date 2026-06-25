@@ -1,6 +1,19 @@
 import { FadeIn } from "./FadeIn";
 
-const CONSULT_PAYMENT_URL = "https://wa.me/2347042322970?text=I%27d%20like%20to%20book%20a%20Trade%20Strategy%20Consultation%20(%24150).";
+// ============================================================================
+// PAYMENT LINK CONFIGURATION
+// ----------------------------------------------------------------------------
+// Paste the hosted payment-link URLs you create in Stripe (or Paystack) here.
+// In your payment-link dashboard, set the AFTER-PAYMENT REDIRECT URL to:
+//   https://YOUR-DOMAIN.com/booking
+// Once the client pays, they'll land on /booking and pick a time on Calendly.
+// ============================================================================
+
+const CONSULTATION_PAYMENT_URL =
+  "https://YOUR-PAYMENT-LINK-FOR-250-USD"; // $250 — replace with your Stripe/Paystack link
+
+const ENGAGEMENT_PAYMENT_URL =
+  "https://YOUR-PAYMENT-LINK-FOR-500-USD"; // $500 — replace with your Stripe/Paystack link
 
 const consultationIncludes = [
   "Product sourcing strategy",
@@ -42,13 +55,12 @@ export function Pricing() {
             Work With Me
           </h2>
           <p className="mt-4 max-w-3xl text-base text-text/80 sm:text-lg">
-            Choose the level of support that best fits your sourcing, procurement, export, or
-            international trade objectives.
+            Pay securely online, then pick a date and time that works for you on the next page.
           </p>
         </FadeIn>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          {/* Card 1 */}
+          {/* Card 1 — $250 */}
           <FadeIn>
             <article className="flex h-full flex-col rounded-2xl border border-text/15 bg-surface p-8 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text/70">
@@ -58,7 +70,7 @@ export function Pricing() {
                 Trade Strategy Consultation
               </h3>
               <p className="mt-4 font-display text-5xl font-bold text-text">
-                $150<span className="ml-1 text-base font-medium text-muted">USD</span>
+                $250<span className="ml-1 text-base font-medium text-muted">USD</span>
               </p>
               <p className="mt-3 text-sm leading-relaxed text-text/85">
                 A focused one-on-one consultation for importers, exporters, entrepreneurs,
@@ -84,17 +96,21 @@ export function Pricing() {
               </p>
 
               <a
-                href={CONSULT_PAYMENT_URL}
+                href={CONSULTATION_PAYMENT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
               >
-                Book &amp; Pay Now
+                Pay $250 &amp; Book
               </a>
+              <p className="mt-3 text-xs text-muted">
+                Secure card checkout. You&rsquo;ll be redirected to schedule your session
+                immediately after payment.
+              </p>
             </article>
           </FadeIn>
 
-          {/* Card 2 */}
+          {/* Card 2 — $500 */}
           <FadeIn>
             <article className="flex h-full flex-col rounded-2xl border-2 border-accent/50 bg-surface p-8 shadow-md">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
@@ -104,13 +120,13 @@ export function Pricing() {
                 Trade Engagement
               </h3>
               <p className="mt-4 font-display text-5xl font-bold text-text">
-                <span className="text-2xl font-medium text-muted">Starting from </span>$500
-                <span className="ml-1 text-base font-medium text-muted">USD</span>
+                $500<span className="ml-1 text-base font-medium text-muted">USD</span>
               </p>
               <p className="mt-3 text-sm leading-relaxed text-text/85">
                 Comprehensive support for sourcing projects, supplier verification, commodity
                 exports, procurement coordination, OEM/ODM manufacturing, and international
-                trade execution.
+                trade execution. The $500 secures your engagement and kicks off a structured
+                discovery and scoping call.
               </p>
 
               <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-text">
@@ -131,15 +147,25 @@ export function Pricing() {
               </p>
 
               <a
-                href="#service-request"
+                href={ENGAGEMENT_PAYMENT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
               >
-                Request Proposal
+                Pay $500 &amp; Book
               </a>
+              <p className="mt-3 text-xs text-muted">
+                Final project pricing is determined after the discovery call based on scope,
+                transaction value, sourcing complexity, destination market, and level of
+                support required.
+              </p>
 
               <p className="mt-4 text-xs leading-relaxed text-muted">
-                Final pricing is determined by project scope, transaction value, sourcing
-                complexity, destination market, and level of support required.
+                Prefer a tailored proposal first?{" "}
+                <a href="#service-request" className="font-semibold text-accent underline-offset-2 hover:underline">
+                  Request a written proposal
+                </a>
+                .
               </p>
             </article>
           </FadeIn>
