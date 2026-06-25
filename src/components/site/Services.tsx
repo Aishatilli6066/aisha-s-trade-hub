@@ -2,12 +2,12 @@ import { FadeIn } from "./FadeIn";
 
 const primary = [
   {
-    title: "Agricultural Commodity Export Structuring",
-    desc: "Support for sesame, ginger, hibiscus, moringa, groundnuts, and related commodities — including supplier sourcing, documentation guidance, export readiness, and transaction support.",
-  },
-  {
     title: "Global Sourcing & Supplier Verification",
     desc: "Supplier identification, manufacturer sourcing, due diligence, independent verification, factory assessment support, procurement coordination, and supplier risk reduction.",
+  },
+  {
+    title: "Agricultural Commodity Export Structuring",
+    desc: "Support for sesame, ginger, hibiscus, moringa, groundnuts, and related commodities — including supplier sourcing, documentation guidance, export readiness, and transaction support.",
   },
 ];
 
