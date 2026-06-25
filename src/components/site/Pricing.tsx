@@ -167,6 +167,12 @@ export function Pricing() {
                 </a>
                 .
               </p>
+
+              <p className="mt-4 text-xs italic leading-relaxed text-muted">
+                Projects are individually scoped. The $500 payment covers project initiation and
+                strategic engagement. Additional fees may apply depending on project scope,
+                transaction value, and complexity.
+              </p>
             </article>
           </FadeIn>
         </div>
