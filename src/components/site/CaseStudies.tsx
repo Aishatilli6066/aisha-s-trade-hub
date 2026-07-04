@@ -1,51 +1,110 @@
 import { FadeIn } from "./FadeIn";
 
-const cases = [
+type Metric = { value: string; label: string };
+type CaseStudy = {
+  title: string;
+  sector: string;
+  challenge: string;
+  actions: string;
+  execution: string;
+  outcome: string;
+  metrics: Metric[];
+};
+
+const cases: CaseStudy[] = [
   {
-    title: "Custom-Made Industrial Machine Sourcing",
-    need: "Client required a custom-built industrial machine to exact operational specifications unavailable locally.",
-    action:
-      "Identified and vetted overseas manufacturers, coordinated technical specifications, negotiated commercial terms, and managed the supplier selection process.",
+    title: "300 MT Sesame Export to China",
+    sector: "Agricultural Commodity Export",
+    challenge:
+      "A verified Chinese buyer required bulk Sortex-grade white sesame at export scale from Nigeria, with a structured, bankable transaction path.",
+    actions:
+      "Structured the 300 MT opportunity end-to-end, matched a qualified Nigerian supplier, and drafted the MoU governing the commercial terms.",
+    execution:
+      "Prepared the transaction package, coordinated supplier alignment, and shepherded the deal from inquiry through MoU signature into active execution.",
     outcome:
-      "Verified manufacturer secured at 50% below initial cost estimates, with a confirmed production timeline and export logistics plan.",
+      "MoU signed and the transaction progressed from inquiry stage into live execution with both counterparties committed.",
+    metrics: [
+      { value: "300 MT", label: "Contracted volume" },
+      { value: "Signed", label: "MoU status" },
+      { value: "2", label: "Verified counterparties" },
+    ],
   },
   {
-    title: "Private Label Product Development",
-    need: "Client wanted to launch a branded product line with reliable manufacturing and scalable growth potential.",
-    action:
-      "Sourced and evaluated private-label manufacturers, structured packaging options, and developed a launch roadmap.",
+    title: "CFR White Sesame Offer to India",
+    sector: "Commodity Export Structuring",
+    challenge:
+      "An Indian buyer required a competitive CFR offer for Sortex white sesame from a credible Nigerian supplier — under a tight response window.",
+    actions:
+      "Prepared a complete export offer, quality specification, and commercial terms backed by a verified supplier.",
+    execution:
+      "Delivered the full CFR proposal within 48 hours, maintaining buyer engagement and preserving deal momentum through the evaluation window.",
     outcome:
-      "Manufacturing partnership secured supporting a projected 200–500% ROI model with a clear concept-to-market pathway.",
+      "Deliverable, defensible offer submitted on schedule — the buyer stayed engaged and the transaction remained live rather than dropped.",
+    metrics: [
+      { value: "48h", label: "Offer turnaround" },
+      { value: "CFR", label: "Incoterm structured" },
+      { value: "1", label: "Verified supplier attached" },
+    ],
   },
   {
-    title: "Agro-Commodity Sourcing for Egypt Herbal Buyer",
-    need: "Egypt-based herbal company required consistent agro-commodity supply at competitive landed costs.",
-    action:
-      "Sourced and verified Nigerian suppliers and structured pricing and logistics terms.",
+    title: "OEM Fabric Sourcing for a Brand Buyer",
+    sector: "OEM Manufacturing",
+    challenge:
+      "A brand client needed reliable OEM fabric supply meeting a specific technical specification, at commercially viable MOQs and lead times.",
+    actions:
+      "Sourced overseas OEM manufacturers, evaluated technical capability, and negotiated commercial terms.",
+    execution:
+      "Ran the supplier shortlist through specification match, factory qualification, and pricing negotiation before recommending a manufacturing partner.",
     outcome:
-      "Product secured at 30% below prevailing market prices with a repeatable sourcing framework established.",
+      "Manufacturing partnership secured against spec, unlocking a repeatable OEM sourcing channel for the client's brand pipeline.",
+    metrics: [
+      { value: "OEM", label: "Manufacturing model" },
+      { value: "Spec-matched", label: "Technical fit" },
+      { value: "—", label: "Unit-cost reduction" },
+    ],
   },
   {
-    title: "Sesame Export to China — 300MT",
-    need: "Verified Chinese buyer seeking bulk Sortex White Sesame.",
-    action:
-      "Structured a 300MT export opportunity, drafted MoU documentation, and coordinated transaction preparation.",
+    title: "Custom Industrial Machine Sourcing",
+    sector: "Industrial Procurement",
+    challenge:
+      "The client required a custom-built industrial machine to exact operational specifications that could not be met locally.",
+    actions:
+      "Identified and vetted overseas manufacturers, coordinated technical specifications, negotiated commercial terms, and managed supplier selection.",
+    execution:
+      "Ran a full procurement cycle — from spec through supplier shortlist, price negotiation, production timeline confirmation, and export logistics planning.",
     outcome:
-      "MoU signed and transaction progressed from inquiry stage to active execution.",
+      "Verified manufacturer secured with a confirmed production timeline and export logistics plan — at a materially reduced procurement cost.",
+    metrics: [
+      { value: "−50%", label: "vs. initial cost estimates" },
+      { value: "1", label: "Verified manufacturer" },
+      { value: "Confirmed", label: "Production timeline" },
+    ],
   },
   {
-    title: "CFR Export Offer to India",
-    need: "Buyer required a competitive CFR offer for Sortex White Sesame.",
-    action: "Prepared a complete export offer backed by a verified supplier.",
+    title: "Private Label Product Line Development",
+    sector: "Private Label Development",
+    challenge:
+      "A client wanted to launch a branded product line with reliable manufacturing and a credible scale-up path — not a hobby project.",
+    actions:
+      "Sourced and evaluated private-label manufacturers, structured packaging options, and built a launch roadmap from concept to market.",
+    execution:
+      "Qualified the manufacturing partner against spec, negotiated packaging and MOQ, and defined the go-to-market runway.",
     outcome:
-      "Full export proposal delivered within 48 hours, maintaining buyer engagement and transaction momentum.",
+      "Manufacturing partnership secured supporting a projected 200–500% ROI model, with a documented concept-to-market pathway.",
+    metrics: [
+      { value: "200–500%", label: "Projected ROI model" },
+      { value: "1", label: "Qualified manufacturer" },
+      { value: "Documented", label: "Launch roadmap" },
+    ],
   },
 ];
 
 function Row({ label, text }: { label: string; text: string }) {
   return (
     <div className="mt-4">
-      <div className="text-xs font-semibold uppercase tracking-wider text-text">{label}</div>
+      <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent">
+        {label}
+      </div>
       <p className="mt-1 text-sm leading-relaxed text-text/85">{text}</p>
     </div>
   );
@@ -53,28 +112,49 @@ function Row({ label, text }: { label: string; text: string }) {
 
 export function CaseStudies() {
   return (
-    <section id="work" aria-labelledby="work-title" className="border-b border-text/10">
+    <section id="work" aria-labelledby="work-title" className="border-b border-text/10 bg-bg">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
             Selected Engagements
           </p>
           <h2 id="work-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            Trade Outcomes I&rsquo;ve Delivered
+            Trade outcomes delivered
           </h2>
-          <p className="mt-4 text-base text-text/80 sm:text-lg">
-            Real client engagements. Measurable results.
+          <p className="mt-4 max-w-3xl text-base text-text/80 sm:text-lg">
+            Real client engagements across commodity export, OEM manufacturing, and industrial
+            procurement — with measurable commercial results.
           </p>
         </FadeIn>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
           {cases.map((c) => (
             <FadeIn key={c.title}>
-              <article className="h-full rounded-lg border border-text/10 border-l-4 border-l-accent bg-surface p-6">
-                <h3 className="font-display text-xl font-semibold text-text">{c.title}</h3>
-                <Row label="Need" text={c.need} />
-                <Row label="Action" text={c.action} />
-                <Row label="Outcome" text={c.outcome} />
+              <article className="flex h-full flex-col rounded-xl border border-text/10 border-l-4 border-l-accent bg-surface p-6 sm:p-8">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+                  {c.sector}
+                </p>
+                <h3 className="mt-2 font-display text-xl font-semibold text-text sm:text-2xl">
+                  {c.title}
+                </h3>
+
+                <Row label="Business challenge" text={c.challenge} />
+                <Row label="Actions" text={c.actions} />
+                <Row label="Execution" text={c.execution} />
+                <Row label="Business outcome" text={c.outcome} />
+
+                <dl className="mt-6 grid grid-cols-3 gap-3 rounded-lg border border-text/10 bg-bg p-4">
+                  {c.metrics.map((m) => (
+                    <div key={m.label} className="min-w-0">
+                      <dt className="text-[10px] font-semibold uppercase tracking-wider text-text/60">
+                        {m.label}
+                      </dt>
+                      <dd className="mt-1 font-display text-lg font-bold leading-tight text-accent sm:text-xl">
+                        {m.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
               </article>
             </FadeIn>
           ))}
