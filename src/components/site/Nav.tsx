@@ -46,19 +46,22 @@ export function Nav() {
 
         <nav aria-label="Primary" className="hidden md:block">
           <ul className="flex items-center gap-7 text-sm">
-            {links.map((l) => (
-              <li key={l.label}>
-                <Link
-                  to={l.to}
-                  hash={l.hash}
-                  activeOptions={{ exact: l.to === "/" && !l.hash }}
-                  activeProps={{ className: "text-accent" }}
-                  className="text-text/80 transition-colors hover:text-accent focus-visible:text-accent outline-none focus-visible:ring-2 focus-visible:ring-accent rounded data-[status=active]:text-accent"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+            {links.map((l) => {
+              const useActive = !l.hash;
+              return (
+                <li key={l.label}>
+                  <Link
+                    to={l.to}
+                    hash={l.hash}
+                    activeOptions={useActive ? { exact: l.to === "/" } : undefined}
+                    activeProps={useActive ? { className: "text-accent" } : undefined}
+                    className="text-text/80 transition-colors hover:text-accent focus-visible:text-accent outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
