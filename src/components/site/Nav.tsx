@@ -100,20 +100,23 @@ export function Nav() {
       >
         <nav aria-label="Mobile" className="px-4 py-3">
           <ul className="flex flex-col gap-1">
-            {links.map((l) => (
-              <li key={l.label}>
-                <Link
-                  to={l.to}
-                  hash={l.hash}
-                  onClick={() => setOpen(false)}
-                  activeOptions={{ exact: l.to === "/" && !l.hash }}
-                  activeProps={{ className: "text-accent" }}
-                  className="block min-h-11 rounded px-2 py-3 text-base text-text/90 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+            {links.map((l) => {
+              const useActive = !l.hash;
+              return (
+                <li key={l.label}>
+                  <Link
+                    to={l.to}
+                    hash={l.hash}
+                    onClick={() => setOpen(false)}
+                    activeOptions={useActive ? { exact: (l.to as string) === "/" } : undefined}
+                    activeProps={useActive ? { className: "text-accent" } : undefined}
+                    className="block min-h-11 rounded px-2 py-3 text-base text-text/90 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              );
+            })}
             <li>
               <a
                 href={WHATSAPP}
