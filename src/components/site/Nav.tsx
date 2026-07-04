@@ -53,7 +53,7 @@ export function Nav() {
                   <Link
                     to={l.to}
                     hash={l.hash}
-                    activeOptions={useActive ? { exact: l.to === "/" } : undefined}
+                    activeOptions={useActive ? { exact: (l.to as string) === "/" } : undefined}
                     activeProps={useActive ? { className: "text-accent" } : undefined}
                     className="text-text/80 transition-colors hover:text-accent focus-visible:text-accent outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
                   >
