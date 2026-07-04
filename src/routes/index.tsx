@@ -7,10 +7,8 @@ import { Pricing } from "@/components/site/Pricing";
 import { Process } from "@/components/site/Process";
 import { CaseStudies } from "@/components/site/CaseStudies";
 import { About } from "@/components/site/About";
-import { WhyWorkWithMe } from "@/components/site/WhyWorkWithMe";
-import { WhoIWorkWith } from "@/components/site/WhoIWorkWith";
+import { FieldNotes } from "@/components/site/FieldNotes";
 import { ServiceRequestForm } from "@/components/site/ServiceRequestForm";
-import { Upwork } from "@/components/site/Upwork";
 
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
@@ -18,18 +16,26 @@ import { MobileCta } from "@/components/site/MobileCta";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Aisha Usman — International Trade Consultant | Global Sourcing Specialist" },
+      {
+        title:
+          "Aisha Usman — International Trade Consultant | Global Sourcing & Supplier Verification",
+      },
       {
         name: "description",
         content:
-          "Aisha Usman — International Trade Consultant, Global Sourcing Specialist, and Export Strategist helping businesses source products, verify suppliers, reduce procurement risk, and structure export opportunities across Asia, Africa, the Middle East, and Europe.",
+          "Aisha Usman is an International Trade Consultant advising importers, exporters, and manufacturers on global sourcing, supplier verification, OEM manufacturing, cross-border trade, and international procurement across Asia, Africa, the Middle East, and Europe.",
       },
-      { property: "og:title", content: "Aisha Usman — International Trade Consultant" },
+      {
+        property: "og:title",
+        content:
+          "Aisha Usman — International Trade Consultant & Global Sourcing Strategist",
+      },
       {
         property: "og:description",
         content:
-          "Trusted advisor for importers, exporters, manufacturers, and procurement teams entering international markets.",
+          "Global sourcing, supplier verification, OEM manufacturing, and cross-border trade advisory — executed as a trusted advisor, not a middleman.",
       },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -50,15 +56,13 @@ function Index() {
       <main id="main">
         <Hero />
         <ProofStrip />
-        <CaseStudies />
         <Services />
-        <WhoIWorkWith />
-        <WhyWorkWithMe />
         <Process />
+        <CaseStudies />
         <Pricing />
         <About />
+        <FieldNotes />
         <ServiceRequestForm />
-        <Upwork />
       </main>
       <Footer />
       <MobileCta />
