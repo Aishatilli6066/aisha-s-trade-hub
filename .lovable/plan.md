@@ -1,58 +1,72 @@
-# Aisha Usman — Personal Brand Site
 
-A single-page, fully static personal brand site for Aisha Usman (International Trade Consultant, Kano, Nigeria). All content, links, colors, and copy come from your spec verbatim — no placeholders.
+# Website Optimization Plan — Aisha Usman
 
-## Scope & portability
+This is a large multi-section refactor. Below is the exact scope I will execute. Confirm or edit before I start so we don't spend cycles on the wrong direction.
 
-The project's shell is React + Tailwind + TanStack Router (file-based routing). I'll keep everything client-side and static: no loaders, no server functions, no env vars, no API calls, no DB, no auth. The output is a standard SPA that builds to static assets and runs anywhere (Vercel, Netlify, Cloudflare Pages, GitHub Pages). No Next.js APIs are used.
+## 1. Brand identity (site-wide)
+- Primary identity: **Aisha Usman — International Trade Consultant**. ASMAN Prime Hub becomes "the firm I founded", mentioned in About + footer only.
+- Update: Nav logo/wordmark, `__root.tsx` title/site_name, per-route SEO titles/descriptions, OG tags, footer, ARIA labels, JSON-LD (`Person` schema at root, `ProfessionalService` referencing ASMAN Prime Hub on About).
 
-Note on "pure React": the existing template uses TanStack Router for the route shell. Removing it would mean rebuilding the bootstrap. The page itself will be plain React + Tailwind components rendered inside the existing `/` route — functionally identical to a pure React app for your purposes and equally portable.
+## 2. Hero (`Hero.tsx`)
+- Rewrite headline + subhead around: global sourcing, supplier verification, trade execution, OEM, risk reduction, cross-border procurement.
+- Reduce CTAs to two only: **Primary — Chat on WhatsApp**, **Secondary — Request a Proposal** (scrolls to `#service-request`). Remove Book Consultation and Upwork from hero.
 
-## File changes
+## 3. Navigation (`Nav.tsx`)
+- Personal wordmark + logo. Active-link highlight via `activeProps`/`data-status`. Tighten spacing, larger mobile tap targets (min 44×44), improved focus rings. WhatsApp remains the header CTA.
 
-- `src/routes/__root.tsx` — add Google Fonts `<link>` tags (Playfair Display + Inter) and update root `head()` meta (title, description, keywords, og:*, geo.*, ICBM) per your SEO block.
-- `src/routes/index.tsx` — replace placeholder with the full landing page (composed of section components below).
-- `src/styles.css` — register `--font-display: "Playfair Display"`, `--font-sans: "Inter"`, and brand color tokens (`--color-bg #0A0A0F`, `--color-surface #14141C`, `--color-accent #C8963E`, `--color-text #E8E2D5`, `--color-muted #7A7A8A`) inside `@theme` so utilities like `bg-bg`, `text-accent`, `font-display` work.
-- `src/components/site/` — new folder with one file per section for clarity:
-  - `Nav.tsx` — sticky header, desktop links, hamburger sheet on mobile, WhatsApp CTA, smooth scroll.
-  - `Hero.tsx` — name + role block, headline, subheadline, body, two CTAs, decorative SVG trade-route arc (animated once, static after; respects `prefers-reduced-motion`).
-  - `ProofStrip.tsx` — five stat blocks on `#14141C`.
-  - `Services.tsx` — 8-card responsive grid, each with inline SVG icon, title, description, WhatsApp inquiry link.
-  - `Process.tsx` — three-step "How We Work Together".
-  - `CaseStudies.tsx` — three cards with gold left border and Need / Action / Outcome.
-  - `About.tsx` — bio block.
-  - `Contact.tsx` — WhatsApp + Email displayed prominently (no form, no scheduler).
-  - `Footer.tsx` — copyright + inline SVG WhatsApp/Email icon links, 1px gold top border.
-  - `MobileCta.tsx` — fixed bottom bar (mobile only), gold background, 48px min height.
-  - `FadeIn.tsx` — small wrapper using IntersectionObserver for subtle fade-in; no-op when `prefers-reduced-motion: reduce`.
+## 4. Services (`Services.tsx`)
+- Rewrite each service card with four labeled blocks: **Who it's for · Problem solved · How I execute · Business outcome**. Each card ends with a WhatsApp CTA link.
 
-## Accessibility
+## 5. Replace generic sections with the Trade Execution Framework
+- Repurpose `Process.tsx` as **The Trade Execution Framework** (5 numbered steps as specified). Premium consulting layout — numbered rail, generous whitespace, subtle divider lines, no motion beyond existing FadeIn.
+- Retire `WhyWorkWithMe.tsx` from the homepage (kept in repo but not rendered) and replace with a compact **Trust** strip (8 short authority chips: International sourcing expertise, Verified supplier network, Cross-border transaction support, Commercial negotiation, OEM manufacturing, Supplier verification, Documentation guidance, Professional trade advisory).
 
-- Skip-to-main-content link as the first focusable element.
-- Semantic landmarks: `<header>`, `<nav>`, `<main id="main">`, `<section>`, `<article>`, `<footer>`.
-- Single `<h1>` in Hero; logical heading order.
-- All icon-only links/buttons get `aria-label`; decorative SVGs get `aria-hidden`.
-- Visible focus rings using gold accent.
-- Mobile menu is a keyboard-accessible disclosure (Esc to close, focus management).
-- Color pairs verified for ≥4.5:1: text `#E8E2D5` on `#0A0A0F` and `#14141C`; gold `#C8963E` used for headings/accents (large text) and as background with `#0A0A0F` foreground on the mobile CTA.
-- All anchor links scroll smoothly via `scroll-behavior: smooth` on `html`, disabled under reduced motion.
+## 6. Case Studies (`CaseStudies.tsx`)
+- Rewrite the 5 engagements (300MT Sesame → China, CFR White Sesame → India, OEM Fabric Sourcing, Industrial Machine Sourcing, Private Label Product Development) as executive case studies: **Challenge · Actions · Execution · Outcome · Metrics**. Metrics rendered as large numeric callouts; placeholders (e.g. `—`) where a number is missing so they can be filled later.
 
-## Motion
+## 7. New "Field Notes" homepage section
+- New component `FieldNotes.tsx` sourcing latest 3 posts from `src/lib/blog.ts`. Card = image, title, excerpt, "Read article". Section CTA: **View All Articles → /blog**.
 
-- Single `FadeIn` IntersectionObserver wrapper, 400ms opacity+translate, runs once per element.
-- Hero arc: CSS `stroke-dasharray` draw-in on mount, then static. Under reduced motion, render the final state immediately.
-- No parallax, no autoplay, no bounce.
+## 8. Pricing block
+- Keep existing $250 / $500 payment links + Calendly booking flow untouched (per prior turns). Only copy/spacing polish for consistency.
 
-## Links (used verbatim)
+## 9. Footer + Upwork
+- Move Upwork link from Hero into Footer (and About page). Footer identity switches to Aisha Usman with "Founder, ASMAN Prime Hub" beneath.
 
-- WhatsApp: `https://wa.me/2347042322970`
-- Email: `mailto:aishau6066@gmail.com`
-- Anchors: `#services`, `#work`, `#contact`, plus `#about`.
+## 10. SEO
+- Per-route `head()` on `/`, `/blog`, `/blog/$slug`, `/booking` with unique title, description, og:title, og:description, og:type, canonical. Target keywords woven naturally: International Trade Consultant, Import Export Consultant, Global Sourcing Consultant, Supplier Verification, OEM Manufacturing, International Procurement, Trade Advisory, Cross-border Trade.
+- Root JSON-LD: `Person` (Aisha Usman) + `ProfessionalService` (ASMAN Prime Hub, founder = Aisha). Article JSON-LD stays on blog posts.
+- Image `alt` audit; internal linking from Field Notes → posts and About → services.
 
-## Out of scope
+## 11. Accessibility + mobile
+- One `<main>` per route (already true). Add `aria-current="page"` via active link. Ensure icon-only buttons have `aria-label`. Bump mobile tap targets. Verify heading order (single H1 per page). Replace any low-contrast utilities with theme tokens.
 
-No backend, no Lovable Cloud, no analytics, no form handling, no calendar/scheduler, no og:image generation (none specified; safer to omit than ship a generic one).
+## 12. Performance
+- Preload hero image on `/` via `head().links`. Ensure below-the-fold images use `loading="lazy"`. No new heavy deps.
 
-## Verification
+## 13. Copy tone
+- Executive, confident, restrained. Strip marketing hype across Hero, Services, Framework, Case Studies, Trust, Footer.
 
-After build I'll open the preview at mobile (390×844) and a desktop width to confirm layout, sticky nav, mobile CTA bar, and reduced-motion fallback render correctly.
+## Files touched (create/edit)
+```
+src/routes/__root.tsx                (SEO defaults + JSON-LD + site_name)
+src/routes/index.tsx                 (section order, Field Notes, drop WhyWorkWithMe)
+src/routes/blog.tsx, blog.$slug.tsx  (SEO titles/desc/canonical)
+src/routes/booking.tsx               (SEO noindex + polish)
+src/components/site/Nav.tsx          (personal brand + active state + a11y)
+src/components/site/Hero.tsx         (rewrite + CTA reduction)
+src/components/site/Services.tsx     (rewrite cards)
+src/components/site/Process.tsx      (Trade Execution Framework)
+src/components/site/CaseStudies.tsx  (executive rewrite + metrics)
+src/components/site/ProofStrip.tsx   (Trust chips replacement)
+src/components/site/About.tsx        (personal-first, ASMAN as founded firm, Upwork link)
+src/components/site/Footer.tsx       (rebrand + Upwork)
+src/components/site/FieldNotes.tsx   (NEW)
+```
+
+## Out of scope (unless you say otherwise)
+- No visual redesign, color/theme change, or font swap — keep existing design language.
+- No new dependencies, no backend changes, no Stripe/Calendly rework.
+- No blog post content rewrites.
+
+Reply **"go"** to execute all of the above, or tell me which sections to skip or change first.
