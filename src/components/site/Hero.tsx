@@ -80,19 +80,23 @@ export function Hero() {
               >
                 Work With Me
               </a>
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
               <a
                 href={WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-md border border-text/20 px-6 py-3 text-sm font-semibold text-text/80 transition-colors hover:bg-text/5"
+                className="inline-flex items-center gap-2 text-text/70 transition-colors hover:text-text"
               >
-                WhatsApp
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
+                Chat on WhatsApp
               </a>
               <a
                 href="https://www.upwork.com/freelancers/~01fa3cf6e886a40e02"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border border-[#14A800]/60 px-6 py-3 text-sm font-semibold text-[#14A800] transition-colors hover:bg-[#14A800]/10"
+                className="inline-flex items-center gap-2 font-medium text-[#14A800] transition-colors hover:text-[#14A800]/80"
               >
                 Hire on Upwork
               </a>
