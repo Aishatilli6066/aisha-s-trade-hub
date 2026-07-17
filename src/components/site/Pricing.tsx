@@ -72,6 +72,9 @@ export function Pricing() {
               <p className="mt-4 font-display text-5xl font-bold text-text">
                 $250<span className="ml-1 text-base font-medium text-muted">USD</span>
               </p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
+                60-minute one-on-one session
+              </p>
               <p className="mt-3 text-sm leading-relaxed text-text/85">
                 A focused one-on-one consultation for importers, exporters, entrepreneurs,
                 procurement teams, and businesses seeking expert guidance before making critical

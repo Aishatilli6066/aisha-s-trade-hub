@@ -63,7 +63,7 @@ function BlogIndex() {
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
       <header className="mb-10 max-w-3xl">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Insights & field notes</p>
-        <h1 className="mt-3 font-serif text-4xl font-bold tracking-tight text-text sm:text-5xl">
+        <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-text sm:text-5xl">
           Articles on international trade & sourcing
         </h1>
         <p className="mt-4 text-base text-text/75">
@@ -108,7 +108,7 @@ function BlogIndex() {
                 </Link>
               )}
               <p className="text-xs font-medium uppercase tracking-wider text-accent">{p.category}</p>
-              <h2 className="mt-2 font-serif text-xl font-semibold leading-snug">
+              <h2 className="mt-2 font-display text-xl font-semibold leading-snug">
                 <Link
                   to="/blog/$slug"
                   params={{ slug: p.slug }}

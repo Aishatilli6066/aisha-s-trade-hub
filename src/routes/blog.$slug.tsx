@@ -47,7 +47,7 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-4 py-24 text-center">
-      <h1 className="font-serif text-3xl font-bold text-text">Post not found</h1>
+      <h1 className="font-display text-3xl font-bold text-text">Post not found</h1>
       <p className="mt-3 text-text/70">This article doesn't exist or has been moved.</p>
       <Link
         to="/blog"
@@ -72,7 +72,7 @@ function PostPage() {
       </nav>
 
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{String(post.category)}</p>
-      <h1 className="mt-3 font-serif text-4xl font-bold leading-tight tracking-tight text-text sm:text-5xl">
+      <h1 className="mt-3 font-display text-4xl font-bold leading-tight tracking-tight text-text sm:text-5xl">
         {post.title}
       </h1>
       <p className="mt-4 text-sm text-text/60">
@@ -96,14 +96,14 @@ function PostPage() {
 
       {related.length > 0 && (
         <aside className="mt-16 border-t border-text/10 pt-10">
-          <h2 className="font-serif text-2xl font-semibold text-text">Related articles</h2>
+          <h2 className="font-display text-2xl font-semibold text-text">Related articles</h2>
           <ul className="mt-6 grid gap-6 sm:grid-cols-2">
             {related.map((r: Post) => (
               <li key={r.slug} className="rounded-lg border border-text/10 bg-text/[0.02] p-4">
                 <p className="text-xs font-medium uppercase tracking-wider text-accent">
                   {String(r.category)}
                 </p>
-                <h3 className="mt-2 font-serif text-lg font-semibold leading-snug">
+                <h3 className="mt-2 font-display text-lg font-semibold leading-snug">
                   <Link
                     to="/blog/$slug"
                     params={{ slug: r.slug }}
@@ -120,7 +120,7 @@ function PostPage() {
       )}
 
       <div className="mt-16 rounded-lg border border-text/10 bg-text/[0.02] p-6 text-center">
-        <h2 className="font-serif text-xl font-semibold text-text">Have a sourcing or export project?</h2>
+        <h2 className="font-display text-xl font-semibold text-text">Have a sourcing or export project?</h2>
         <p className="mt-2 text-sm text-text/70">
           Engagements begin from USD 250. Custom proposals for larger transactions.
         </p>

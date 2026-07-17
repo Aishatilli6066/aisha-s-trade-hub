@@ -9,7 +9,7 @@ export function AuthorBio() {
       <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
         <div
           aria-hidden="true"
-          className="flex h-16 w-16 flex-none items-center justify-center rounded-full bg-accent/15 font-serif text-xl font-bold text-accent"
+          className="flex h-16 w-16 flex-none items-center justify-center rounded-full bg-accent/15 font-display text-xl font-bold text-accent"
         >
           AU
         </div>
@@ -17,7 +17,7 @@ export function AuthorBio() {
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
             About the author
           </p>
-          <h2 className="mt-1 font-serif text-xl font-semibold text-text">Aisha Usman</h2>
+          <h2 className="mt-1 font-display text-xl font-semibold text-text">Aisha Usman</h2>
           <p className="mt-3 text-sm leading-relaxed text-text/80">
             Aisha Usman is an International Trade Consultant and Global Sourcing
             Specialist helping importers, exporters, manufacturers, and commodity
