@@ -28,7 +28,7 @@ export function Footer() {
   return (
     <footer className="border-t border-accent pb-20 md:pb-0">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row sm:px-6">
-        <p className="text-sm text-muted">© 2025 Aisha Usman. All rights reserved.</p>
+        <p className="text-sm text-muted">© 2026 Aisha Usman. All rights reserved.</p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <SocialLink href={WHATSAPP} label="Message Aisha on WhatsApp" brandClass="hover:border-[#25D366] hover:text-[#25D366]">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

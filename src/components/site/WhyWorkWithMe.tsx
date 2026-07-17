@@ -30,6 +30,14 @@ const points = [
     description: "Hands-on experience across Asia, Africa, the Middle East, and Europe.",
   },
   {
+    title: "CAC & NEPC Compliant",
+    description: "Fully registered in Nigeria with the CAC and NEPC — a legitimate advisor for cross-border trade and export transactions.",
+  },
+  {
+    title: "Transparent Communication",
+    description: "Clear scope, honest recommendations, and direct updates — no hidden markups, no runaround.",
+  },
+  {
     title: "Practical Trade Execution",
     description: "Decision-grade advice from someone who has structured live transactions, not theory.",
   },

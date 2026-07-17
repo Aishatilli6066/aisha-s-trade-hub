@@ -37,7 +37,7 @@ export function Process() {
             Engagement Process
           </p>
           <h2 id="process-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            How We Work
+            How I Work
           </h2>
         </FadeIn>
         <ol className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-5">
