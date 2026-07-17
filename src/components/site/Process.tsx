@@ -3,28 +3,28 @@ import { FadeIn } from "./FadeIn";
 const steps = [
   {
     n: "01",
-    title: "Trade Opportunity Assessment",
-    desc: "Define the product, target market, technical specifications, budget, and commercial objectives — before a single supplier is contacted.",
+    title: "Discovery & Opportunity Assessment",
+    desc: "Understand your trade objective, product, target market, and constraints to define a realistic engagement scope.",
   },
   {
     n: "02",
-    title: "Supplier Intelligence & Verification",
-    desc: "Identify, verify, audit, and qualify suppliers or buyers. Independent due diligence protects capital before any commitment is made.",
+    title: "Supplier Search & Verification",
+    desc: "Identify qualified suppliers or buyers and conduct independent verification before any commercial commitment.",
   },
   {
     n: "03",
-    title: "Commercial Structuring",
-    desc: "Negotiate pricing, Incoterms, payment terms, production timelines, and risk controls that hold up in a real cross-border transaction.",
+    title: "Commercial Evaluation & Negotiation",
+    desc: "Evaluate pricing, terms, Incoterms, and total landed cost — then negotiate to protect margins and reduce risk.",
   },
   {
     n: "04",
-    title: "Documentation & Logistics",
-    desc: "Coordinate export documentation, inspection, compliance, shipping, and delivery — the operational detail that determines whether the deal closes.",
+    title: "Trade Structuring & Documentation",
+    desc: "Structure the transaction and coordinate the required trade and compliance documentation.",
   },
   {
     n: "05",
-    title: "Ongoing Trade Advisory",
-    desc: "Stay engaged through execution, supplier relationships, and future procurement rounds — so gains compound rather than reset.",
+    title: "Execution & Delivery Support",
+    desc: "Stay engaged through production, shipment, and delivery to keep the transaction on track.",
   },
 ];
 
@@ -34,34 +34,20 @@ export function Process() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-            Proprietary Method
+            Engagement Process
           </p>
           <h2 id="process-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            The Trade Execution Framework
+            How We Work
           </h2>
-          <p className="mt-4 max-w-3xl text-base text-text/80 sm:text-lg">
-            A five-stage framework I use on every engagement — from opportunity assessment
-            through supplier verification, commercial structuring, documentation, and ongoing
-            advisory.
-          </p>
         </FadeIn>
-
-        <ol className="mt-16 space-y-10 md:space-y-0 md:grid md:grid-cols-5 md:gap-8">
-          {steps.map((s, i) => (
-            <li key={s.n} className="relative md:pt-8">
+        <ol className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+          {steps.map((s) => (
+            <li key={s.n}>
               <FadeIn>
-                <div className="hidden md:block absolute left-0 right-0 top-0 h-px bg-accent/30" />
-                <div className="font-display text-xs tracking-[0.25em] text-accent">
-                  STAGE {s.n}
-                </div>
-                <h3 className="mt-3 font-display text-lg font-semibold text-text">
-                  {s.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text/75">{s.desc}</p>
+                <div className="font-display text-sm tracking-widest text-accent">{s.n}</div>
+                <h3 className="mt-3 font-display text-lg font-semibold text-text">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-text/80">{s.desc}</p>
               </FadeIn>
-              {i < steps.length - 1 && (
-                <div className="md:hidden mt-8 h-px w-12 bg-accent/30" />
-              )}
             </li>
           ))}
         </ol>
