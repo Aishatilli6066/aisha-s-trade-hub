@@ -181,6 +181,11 @@ export function Pricing() {
                     {t.duration}
                   </p>
                 )}
+                {t.title === "International Trade Strategy Consultation" && (
+                  <p className="mt-3 inline-flex items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-text">
+                    Includes pre-consultation questionnaire
+                  </p>
+                )}
                 <p className="mt-3 text-sm leading-relaxed text-text/85">{t.description}</p>
 
                 <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-text">
