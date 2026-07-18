@@ -7,9 +7,9 @@ import { FadeIn } from "./FadeIn";
 // In Calendly: create the event → Payments → connect your provider →
 // set the price → enable "Require payment before booking is confirmed".
 //
-// For the Consultation event, add these custom questions in Calendly
-// (Event → Invitee Questions) so the completed questionnaire is emailed
-// to you with every booking:
+// QUESTIONNAIRE — ONLY for the $250 International Trade Strategy Consultation.
+// Add these custom questions in the $250 Calendly event (Event → Invitee Questions)
+// so the completed questionnaire is emailed to you with every 60-minute booking:
 //   • Full Name (default)
 //   • Company Name (Optional)
 //   • Email Address (default)
@@ -52,8 +52,9 @@ const tiers: Tier[] = [
     price: "$250",
     duration: "60-minute one-on-one session",
     description:
-      "A personalized one-on-one consultation for importers, exporters, entrepreneurs, and businesses seeking expert guidance on international trade.",
+      "A personalized one-on-one consultation for importers, exporters, entrepreneurs, and businesses seeking expert guidance on international trade. After booking, you’ll complete a short pre-consultation questionnaire so the call is tailored to your needs.",
     includes: [
+      "Short pre-consultation questionnaire to focus the session",
       "Product selection guidance",
       "Supplier sourcing & verification",
       "Import and export procedures",
