@@ -3,11 +3,24 @@ import { FadeIn } from "./FadeIn";
 // ============================================================================
 // CALENDLY BOOKING LINKS
 // ----------------------------------------------------------------------------
-// Each service uses its own Calendly event with PayPal payment enabled.
-// In Calendly: create the event → Event Details → set duration & description →
-// Payments → connect PayPal → set the price (USD 250 / 500 / 750) →
-// enable "Require payment before booking is confirmed".
-// Then paste the event's public URL below.
+// Each service uses its own Calendly event with payment enabled.
+// In Calendly: create the event → Payments → connect your provider →
+// set the price → enable "Require payment before booking is confirmed".
+//
+// For the Consultation event, add these custom questions in Calendly
+// (Event → Invitee Questions) so the completed questionnaire is emailed
+// to you with every booking:
+//   • Full Name (default)
+//   • Company Name (Optional)
+//   • Email Address (default)
+//   • Phone Number
+//   • Country
+//   • Industry or Business Type
+//   • What would you like to discuss during the consultation?
+//   • What are your primary goals for this session?
+//   • Any specific products, suppliers, or markets to discuss?
+//   • What challenges are you currently facing?
+//   • Additional information or relevant documents
 // ============================================================================
 
 const CONSULTATION_CALENDLY_URL =
@@ -199,10 +212,6 @@ export function Pricing() {
                   >
                     Book &amp; Pay {t.price}
                   </a>
-                  <p className="mt-3 text-xs text-muted">
-                    Secure PayPal checkout. Pick your meeting date and time immediately
-                    after payment.
-                  </p>
                   {t.disclaimer && (
                     <p className="mt-4 text-xs italic leading-relaxed text-muted">
                       {t.disclaimer}
