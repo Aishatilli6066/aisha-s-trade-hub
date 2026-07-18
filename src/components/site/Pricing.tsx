@@ -23,14 +23,20 @@ import { FadeIn } from "./FadeIn";
 //   • Additional information or relevant documents
 // ============================================================================
 
+const CALENDLY_HANDLE = "aishausman-international";
+
+// NOTE: Your connected Calendly account currently has one active paid event:
+// "30 Minute Meeting" (60 min) at /30min. All three service tiers route to this
+// event until you create dedicated $500 and $750 events in Calendly with their
+// own payment settings. Update the URLs below once those events exist.
 const CONSULTATION_CALENDLY_URL =
-  "https://calendly.com/YOUR-HANDLE/international-trade-strategy-consultation";
+  `https://calendly.com/${CALENDLY_HANDLE}/30min`;
 
 const SOURCING_CALENDLY_URL =
-  "https://calendly.com/YOUR-HANDLE/global-sourcing-procurement-service";
+  `https://calendly.com/${CALENDLY_HANDLE}/30min`;
 
 const COMMODITY_CALENDLY_URL =
-  "https://calendly.com/YOUR-HANDLE/agricultural-commodity-buyer-representation";
+  `https://calendly.com/${CALENDLY_HANDLE}/30min`;
 
 type Tier = {
   eyebrow: string;
