@@ -27,12 +27,12 @@ const CALENDLY_HANDLE = "aishausman-international";
 
 // Verified against the connected Calendly account (Aisha Usman) on 2026-07-18.
 // Active paid events:
-//   • "International Trade Strategy Consultation" — /30min (60 min) → $250
-//   • "Global Sourcing & Procurement"             — /new-meeting (120 min) → $500
-//   • "New Meeting"                               — /new-meeting-1 (120 min) → $750
-//     ACTION: rename this event in Calendly to
+//   • "International Trade Strategy Consultation" — /30min (60 min) → $250 ✅
+//   • "Global Sourcing & Procurement"             — /new-meeting (120 min) → $500 ✅
+//   • "End-to-End Agricultural Commodity Sourcing " — /new-meeting-1 (120 min) → $750
+//     NOTE: Calendly event name is missing "& Buyer Representation" and has a trailing space.
+//     ACTION: rename this event in Calendly to exactly
 //     "End-to-End Agricultural Commodity Sourcing & Buyer Representation"
-//     so the booking page title matches the pricing card.
 const CONSULTATION_CALENDLY_URL =
   `https://calendly.com/${CALENDLY_HANDLE}/30min`;
 
