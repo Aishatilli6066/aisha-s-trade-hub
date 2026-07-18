@@ -148,8 +148,7 @@ export function Pricing() {
           <p className="mt-4 max-w-3xl text-base text-text/80 sm:text-lg">
             Each service has its own dedicated booking page. Pay securely, then
             immediately select a date and time for your kickoff meeting — you&rsquo;ll get
-            a confirmation, calendar invite, and reminders automatically. The pre-consultation
-            questionnaire applies only to the 60-minute $250 consultation.
+            a confirmation, calendar invite, and reminders automatically.
           </p>
         </FadeIn>
 
@@ -180,6 +179,11 @@ export function Pricing() {
                 {t.duration && (
                   <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
                     {t.duration}
+                  </p>
+                )}
+                {t.title === "International Trade Strategy Consultation" && (
+                  <p className="mt-3 inline-flex items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-text">
+                    Includes pre-consultation questionnaire
                   </p>
                 )}
                 <p className="mt-3 text-sm leading-relaxed text-text/85">{t.description}</p>
