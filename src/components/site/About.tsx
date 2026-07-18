@@ -17,26 +17,26 @@ export function About() {
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">About</p>
           <h2 id="about-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            Why Businesses Work With Aisha Usman
+            Why Businesses Work With Me
           </h2>
           <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-text/70">
             International Trade Consultant · Global Sourcing Specialist · Export Strategist
           </p>
 
           <p className="mt-8 text-base leading-relaxed text-text/85 sm:text-lg">
-            Clients work with Aisha when the stakes are real: capital is on the line, suppliers
-            are unverified, paperwork is unforgiving, and the wrong decision is expensive. Her
-            role is to reduce that risk — bringing independent verification, commercial judgment,
-            and practical trade execution to importers, exporters, manufacturers, and
-            procurement teams operating across borders.
+            I work with businesses when the stakes are real: capital is on the line, suppliers are
+            unverified, paperwork is unforgiving, and the wrong decision is expensive. My role is to
+            reduce that risk — bringing independent verification, commercial judgment, and practical
+            trade execution to importers, exporters, manufacturers, and procurement teams operating
+            across borders.
           </p>
 
           <p className="mt-6 text-base leading-relaxed text-text/85 sm:text-lg">
-            Based in Kano, Nigeria and advising businesses across Asia, Africa, the Middle East,
-            and Europe, Aisha founded ASMAN Prime Hub to give international trade clients a
-            trusted advisor — not a middleman. The work is grounded in live transactions:
-            commodity exports, OEM and private-label manufacturing, custom machinery
-            procurement, and the supplier verification that holds it all together.
+            Based in Kano, Nigeria, I advise businesses across Asia, Africa, the Middle East, and
+            Europe. I founded ASMAN Prime Hub to give international trade clients a trusted advisor
+            — not a middleman. My work is grounded in live transactions: commodity exports, OEM and
+            private-label manufacturing, custom machinery procurement, and the supplier verification
+            that holds it all together.
           </p>
 
           <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
