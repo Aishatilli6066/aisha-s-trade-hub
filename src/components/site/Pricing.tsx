@@ -199,10 +199,6 @@ export function Pricing() {
                   >
                     Book &amp; Pay {t.price}
                   </a>
-                  <p className="mt-3 text-xs text-muted">
-                    Secure PayPal checkout. Pick your meeting date and time immediately
-                    after payment.
-                  </p>
                   {t.disclaimer && (
                     <p className="mt-4 text-xs italic leading-relaxed text-muted">
                       {t.disclaimer}
