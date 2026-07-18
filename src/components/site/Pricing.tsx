@@ -25,18 +25,22 @@ import { FadeIn } from "./FadeIn";
 
 const CALENDLY_HANDLE = "aishausman-international";
 
-// NOTE: Your connected Calendly account currently has one active paid event:
-// "30 Minute Meeting" (60 min) at /30min. All three service tiers route to this
-// event until you create dedicated $500 and $750 events in Calendly with their
-// own payment settings. Update the URLs below once those events exist.
+// Verified against the connected Calendly account (Aisha Usman) on 2026-07-18.
+// Active paid events:
+//   • "International Trade Strategy Consultation" — /30min (60 min) → $250
+//   • "Global Sourcing & Procurement"             — /new-meeting (120 min) → $500
+//   • "New Meeting"                               — /new-meeting-1 (120 min) → $750
+//     ACTION: rename this event in Calendly to
+//     "End-to-End Agricultural Commodity Sourcing & Buyer Representation"
+//     so the booking page title matches the pricing card.
 const CONSULTATION_CALENDLY_URL =
   `https://calendly.com/${CALENDLY_HANDLE}/30min`;
 
 const SOURCING_CALENDLY_URL =
-  `https://calendly.com/${CALENDLY_HANDLE}/30min`;
+  `https://calendly.com/${CALENDLY_HANDLE}/new-meeting`;
 
 const COMMODITY_CALENDLY_URL =
-  `https://calendly.com/${CALENDLY_HANDLE}/30min`;
+  `https://calendly.com/${CALENDLY_HANDLE}/new-meeting-1`;
 
 type Tier = {
   eyebrow: string;
