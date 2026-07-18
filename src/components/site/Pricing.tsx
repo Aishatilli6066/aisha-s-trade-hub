@@ -148,8 +148,7 @@ export function Pricing() {
           <p className="mt-4 max-w-3xl text-base text-text/80 sm:text-lg">
             Each service has its own dedicated booking page. Pay securely, then
             immediately select a date and time for your kickoff meeting — you&rsquo;ll get
-            a confirmation, calendar invite, and reminders automatically. The pre-consultation
-            questionnaire applies only to the 60-minute $250 consultation.
+            a confirmation, calendar invite, and reminders automatically.
           </p>
         </FadeIn>
 
