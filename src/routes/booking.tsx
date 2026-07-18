@@ -6,9 +6,7 @@ import { FadeIn } from "@/components/site/FadeIn";
 // ============================================================================
 // CALENDLY CONFIGURATION
 // ----------------------------------------------------------------------------
-// Replace with your Calendly event URL (e.g. https://calendly.com/aisha-usman/consultation)
-// ============================================================================
-const CALENDLY_URL = "https://calendly.com/YOUR-HANDLE/consultation";
+const CALENDLY_URL = "https://calendly.com/aishausman-international/30min";
 
 export const Route = createFileRoute("/booking")({
   head: () => ({
