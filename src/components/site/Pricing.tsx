@@ -8,11 +8,12 @@ import { FadeIn } from "./FadeIn";
 // set the price → enable "Require payment before booking is confirmed".
 //
 // QUESTIONNAIRE — ONLY for the $250 International Trade Strategy Consultation.
-// Add these custom questions in the $250 Calendly event (Event → Invitee Questions)
-// so the completed questionnaire is emailed to you with every 60-minute booking:
-//   • Full Name (default)
+// Calendly's public API does not expose writing custom invitee questions, so the
+// questions below must be added manually in the Calendly UI for the /30min event.
+// (Event → Invitee Questions). They will be emailed to you with each booking.
+//   • Full Name (default Calendly field)
+//   • Email Address (default Calendly field)
 //   • Company Name (Optional)
-//   • Email Address (default)
 //   • Phone Number
 //   • Country
 //   • Industry or Business Type
