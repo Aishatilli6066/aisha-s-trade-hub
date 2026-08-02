@@ -189,14 +189,39 @@ export function Pricing() {
                 terms or market entry.
               </p>
 
+              <ol className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-wider text-text/75">
+                {CONSULTATION_STEPS.map((step, i) => (
+                  <li key={step} className="flex items-center gap-3">
+                    <span className="rounded-full border border-text/15 bg-bg px-4 py-2">
+                      {step}
+                    </span>
+                    {i < CONSULTATION_STEPS.length - 1 && (
+                      <span aria-hidden="true" className="text-accent">
+                        →
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+
+              <p className="mt-4 text-sm leading-relaxed text-text/85">
+                You pay the $250 fee first. Immediately after successful payment you complete the
+                consultation questionnaire — including links or details for any relevant documents
+                — and only then choose the date and time for your 60-minute session.
+              </p>
+
               <a
                 href={CONSULTATION_CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 sm:w-auto"
               >
-                Book &amp; Pay $250
+                Pay $250 &amp; Continue to Questionnaire
               </a>
+              <p className="mt-2 text-xs text-muted">
+                Pay → Complete Questionnaire → Schedule Session
+              </p>
+
             </div>
 
             <div>
