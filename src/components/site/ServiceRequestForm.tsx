@@ -358,19 +358,48 @@ export function ServiceRequestForm() {
                 type="submit"
                 className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
-                Submit Request via WhatsApp
+                {track ? "Submit Requirements" : "Submit Request via WhatsApp"}
               </button>
             </div>
 
             {sent && (
               <div
                 role="status"
-                className="rounded-md border border-accent/50 bg-accent/15 px-4 py-3 text-sm text-text"
+                className="rounded-lg border border-accent/50 bg-accent/15 px-5 py-4 text-sm text-text"
               >
-                Thanks! Your request opened in WhatsApp. If it didn&rsquo;t, use the email link
-                above.
+                {track ? (
+                  <>
+                    <p className="font-display text-base font-bold">
+                      Step 2 — Pay the {DISCOVERY_TRACKS[track].fee} Project Discovery Fee
+                    </p>
+                    <p className="mt-2 leading-relaxed">
+                      Your requirements for{" "}
+                      <strong>{DISCOVERY_TRACKS[track].label}</strong> have been sent. A secure
+                      payment link for the non-refundable {DISCOVERY_TRACKS[track].fee} Project
+                      Discovery Fee will be shared with you on WhatsApp or email. Project review
+                      begins once the fee is received, and the amount is credited toward your final
+                      professional service fee if you proceed.
+                    </p>
+                    <a
+                      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                        `Hello, I have submitted my requirements for ${DISCOVERY_TRACKS[track].label}. Please send the payment link for the ${DISCOVERY_TRACKS[track].fee} Project Discovery Fee.`,
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center justify-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
+                    >
+                      Request Discovery Fee Payment Link
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    Thanks! Your request opened in WhatsApp. If it didn&rsquo;t, use the email link
+                    above.
+                  </>
+                )}
               </div>
             )}
+
           </form>
         </FadeIn>
       </div>
