@@ -33,11 +33,27 @@ export function About() {
 
           <p className="mt-6 text-base leading-relaxed text-text/85 sm:text-lg">
             Based in Kano, Nigeria, I advise businesses across Asia, Africa, the Middle East, and
-            Europe. I founded ASMAN Prime Hub to give international trade clients a trusted advisor
-            — not a middleman. My work is grounded in live transactions: commodity exports, OEM and
+            Europe. My work is grounded in live transactions: commodity exports, OEM and
             private-label manufacturing, custom machinery procurement, and the supplier verification
             that holds it all together.
           </p>
+
+          <div className="mt-8 rounded-xl border border-accent/30 bg-bg p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Aisha Usman &amp; ASMAN Prime Hub
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-text/90">
+              Aisha Usman is the founder and lead trade strategist at ASMAN Prime Hub Global
+              Services Limited.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-text/85">
+              The Aisha Usman name represents advisory, personal expertise, and thought leadership —
+              strategy sessions, independent judgment, and published insight. ASMAN Prime Hub Global
+              Services Limited handles corporate execution: sourcing, exports, logistics, and buyer
+              representation delivered under a registered company structure.
+            </p>
+          </div>
+
 
           <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
             Areas of Expertise
