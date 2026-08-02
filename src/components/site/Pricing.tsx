@@ -80,7 +80,7 @@ const services: Service[] = [
       "Businesses requiring hands-on support for sourcing, procurement, and manufacturing coordination.",
     disclaimer:
       "This professional service fee covers sourcing and procurement support only. It does not include the cost of goods, shipping, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
-    ctaLabel: "Start Project Discovery",
+    ctaLabel: "Complete Requirements — Sourcing",
     track: "sourcing",
   },
   {
@@ -107,7 +107,7 @@ const services: Service[] = [
       "Importers, distributors, manufacturers, wholesalers, and procurement teams sourcing Nigerian agricultural commodities — sesame seeds, hibiscus flowers, dry ginger, gum arabic, cashew kernels, coconut shell charcoal, soybeans, shea products, and other export-ready commodities.",
     disclaimer:
       "This professional service fee covers buyer representation and sourcing support only. It does not include the cost of goods, freight, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
-    ctaLabel: "Start Commodity Discovery",
+    ctaLabel: "Complete Requirements — Commodity",
     track: "commodity",
   },
 ];
