@@ -1,5 +1,6 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { FadeIn } from "./FadeIn";
+import { DISCOVERY_TRACKS, TRACK_EVENT, type DiscoveryTrack } from "@/lib/discovery";
 
 const WHATSAPP_NUMBER = "2347042322970";
 const EMAIL = "aishau6066@gmail.com";
@@ -53,9 +54,10 @@ const INITIAL: FormState = {
   details: "",
 };
 
-function buildMessage(d: FormState) {
+function buildMessage(d: FormState, track: DiscoveryTrack | null) {
+  const t = track ? DISCOVERY_TRACKS[track] : null;
   return `New Service Request — ASMAN Prime Hub
-
+${t ? `\nEngagement track: ${t.label}\nProject Discovery Fee due: ${t.fee} USD\n` : ""}
 Name: ${d.name}
 Email: ${d.email}
 Company: ${d.company || "—"}
@@ -87,6 +89,16 @@ export function ServiceRequestForm() {
   const [form, setForm] = useState<FormState>(INITIAL);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [sent, setSent] = useState(false);
+  const [track, setTrack] = useState<DiscoveryTrack | null>(null);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<DiscoveryTrack>).detail;
+      if (detail === "sourcing" || detail === "commodity") setTrack(detail);
+    };
+    window.addEventListener(TRACK_EVENT, handler);
+    return () => window.removeEventListener(TRACK_EVENT, handler);
+  }, []);
 
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
@@ -97,7 +109,7 @@ export function ServiceRequestForm() {
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
-    const message = buildMessage(form);
+    const message = buildMessage(form, track);
     const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(waUrl, "_blank", "noopener,noreferrer");
     setSent(true);
@@ -105,7 +117,7 @@ export function ServiceRequestForm() {
 
   const mailtoFallback = `mailto:${EMAIL}?subject=${encodeURIComponent(
     `Service Request: ${form.service || "Inquiry"}`,
-  )}&body=${encodeURIComponent(buildMessage(form))}`;
+  )}&body=${encodeURIComponent(buildMessage(form, track))}`;
 
   const inputCls =
     "w-full rounded-md border border-text/20 bg-bg px-3 py-2.5 text-sm text-text placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
@@ -130,10 +142,46 @@ export function ServiceRequestForm() {
             Let&rsquo;s Discuss Your Trade Opportunity
           </h2>
           <p className="mt-4 max-w-2xl text-base text-text/80 sm:text-lg">
-            Share your sourcing, procurement, or export requirements and you&rsquo;ll receive a
-            tailored proposal following a short consultation.
+            Choose the engagement you need, submit your requirements, then pay the Project
+            Discovery Fee. It is credited toward your final professional service fee if you
+            proceed.
           </p>
         </FadeIn>
+
+        <FadeIn>
+          <div className="mt-10">
+            <p className="text-xs font-semibold uppercase tracking-wider text-text">
+              Step 1 — Choose your engagement
+            </p>
+            <div className="mt-3 grid gap-4 sm:grid-cols-2">
+              {(Object.keys(DISCOVERY_TRACKS) as DiscoveryTrack[]).map((key) => {
+                const t = DISCOVERY_TRACKS[key];
+                const active = track === key;
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setTrack(key)}
+                    aria-pressed={active}
+                    className={`rounded-xl border p-5 text-left transition-colors ${
+                      active
+                        ? "border-accent bg-accent/10"
+                        : "border-text/15 bg-surface hover:border-accent/50"
+                    }`}
+                  >
+                    <p className="font-display text-base font-bold text-text">{t.label}</p>
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
+                      Project Discovery Fee: {t.fee}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-text/80">{t.blurb}</p>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </FadeIn>
+
+
 
 
         <FadeIn>
@@ -310,19 +358,48 @@ export function ServiceRequestForm() {
                 type="submit"
                 className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
-                Submit Request via WhatsApp
+                {track ? "Submit Requirements" : "Submit Request via WhatsApp"}
               </button>
             </div>
 
             {sent && (
               <div
                 role="status"
-                className="rounded-md border border-accent/50 bg-accent/15 px-4 py-3 text-sm text-text"
+                className="rounded-lg border border-accent/50 bg-accent/15 px-5 py-4 text-sm text-text"
               >
-                Thanks! Your request opened in WhatsApp. If it didn&rsquo;t, use the email link
-                above.
+                {track ? (
+                  <>
+                    <p className="font-display text-base font-bold">
+                      Step 2 — Pay the {DISCOVERY_TRACKS[track].fee} Project Discovery Fee
+                    </p>
+                    <p className="mt-2 leading-relaxed">
+                      Your requirements for{" "}
+                      <strong>{DISCOVERY_TRACKS[track].label}</strong> have been sent. A secure
+                      payment link for the non-refundable {DISCOVERY_TRACKS[track].fee} Project
+                      Discovery Fee will be shared with you on WhatsApp or email. Project review
+                      begins once the fee is received, and the amount is credited toward your final
+                      professional service fee if you proceed.
+                    </p>
+                    <a
+                      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                        `Hello, I have submitted my requirements for ${DISCOVERY_TRACKS[track].label}. Please send the payment link for the ${DISCOVERY_TRACKS[track].fee} Project Discovery Fee.`,
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center justify-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
+                    >
+                      Request Discovery Fee Payment Link
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    Thanks! Your request opened in WhatsApp. If it didn&rsquo;t, use the email link
+                    above.
+                  </>
+                )}
               </div>
             )}
+
           </form>
         </FadeIn>
       </div>
