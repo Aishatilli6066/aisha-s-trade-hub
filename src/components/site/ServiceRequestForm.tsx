@@ -142,10 +142,46 @@ export function ServiceRequestForm() {
             Let&rsquo;s Discuss Your Trade Opportunity
           </h2>
           <p className="mt-4 max-w-2xl text-base text-text/80 sm:text-lg">
-            Share your sourcing, procurement, or export requirements and you&rsquo;ll receive a
-            tailored proposal following a short consultation.
+            Choose the engagement you need, submit your requirements, then pay the Project
+            Discovery Fee. It is credited toward your final professional service fee if you
+            proceed.
           </p>
         </FadeIn>
+
+        <FadeIn>
+          <div className="mt-10">
+            <p className="text-xs font-semibold uppercase tracking-wider text-text">
+              Step 1 — Choose your engagement
+            </p>
+            <div className="mt-3 grid gap-4 sm:grid-cols-2">
+              {(Object.keys(DISCOVERY_TRACKS) as DiscoveryTrack[]).map((key) => {
+                const t = DISCOVERY_TRACKS[key];
+                const active = track === key;
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setTrack(key)}
+                    aria-pressed={active}
+                    className={`rounded-xl border p-5 text-left transition-colors ${
+                      active
+                        ? "border-accent bg-accent/10"
+                        : "border-text/15 bg-surface hover:border-accent/50"
+                    }`}
+                  >
+                    <p className="font-display text-base font-bold text-text">{t.label}</p>
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
+                      Project Discovery Fee: {t.fee}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-text/80">{t.blurb}</p>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </FadeIn>
+
+
 
 
         <FadeIn>
