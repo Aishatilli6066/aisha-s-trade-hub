@@ -1,16 +1,15 @@
 import { FadeIn } from "./FadeIn";
 
 // ============================================================================
-// CALENDLY BOOKING LINKS
+// CALENDLY BOOKING LINK — ADVISORY ONLY
 // ----------------------------------------------------------------------------
-// Each service uses its own Calendly event with payment enabled.
-// In Calendly: create the event → Payments → connect your provider →
-// set the price → enable "Require payment before booking is confirmed".
+// Only the $250 International Trade Strategy Consultation is booked and paid
+// directly through Calendly. Done-for-you services are scoped and quoted first
+// via the service request form, so they intentionally have no booking link.
 //
-// QUESTIONNAIRE — ONLY for the $250 International Trade Strategy Consultation.
-// Calendly's public API does not expose writing custom invitee questions, so the
-// questions below must be added manually in the Calendly UI for the /30min event.
-// (Event → Invitee Questions). They will be emailed to you with each booking.
+// QUESTIONNAIRE — added manually in the Calendly UI for the /30min event
+// (Event → Invitee Questions). Calendly's public API does not expose writing
+// custom invitee questions.
 //   • Full Name (default Calendly field)
 //   • Email Address (default Calendly field)
 //   • Company Name (Optional)
@@ -26,65 +25,35 @@ import { FadeIn } from "./FadeIn";
 
 const CALENDLY_HANDLE = "aishausman-international";
 
-// Verified against the connected Calendly account (Aisha Usman) on 2026-07-18.
-// Active paid events:
-//   • "International Trade Strategy Consultation" — /30min (60 min) → $250 ✅
-//   • "Global Sourcing & Procurement"             — /new-meeting (120 min) → $500 ✅
-//   • "End-to-End Agricultural Commodity Sourcing " — /new-meeting-1 (120 min) → $750
-//     NOTE: Calendly event name is missing "& Buyer Representation" and has a trailing space.
-//     ACTION: rename this event in Calendly to exactly
-//     "End-to-End Agricultural Commodity Sourcing & Buyer Representation"
-const CONSULTATION_CALENDLY_URL =
-  `https://calendly.com/${CALENDLY_HANDLE}/30min`;
+const CONSULTATION_CALENDLY_URL = `https://calendly.com/${CALENDLY_HANDLE}/30min`;
 
-const SOURCING_CALENDLY_URL =
-  `https://calendly.com/${CALENDLY_HANDLE}/new-meeting`;
+const FEE_NOTE =
+  "Final professional fee depends on product complexity, supplier location, quantity, verification requirements and project scope.";
 
-const COMMODITY_CALENDLY_URL =
-  `https://calendly.com/${CALENDLY_HANDLE}/new-meeting-1`;
+const PROCESS_STEPS = [
+  "Submit Requirements",
+  "Scope Review",
+  "Written Proposal",
+  "Payment",
+  "Kickoff",
+];
 
-type Tier = {
-  eyebrow: string;
+type Service = {
   title: string;
   price: string;
-  duration?: string;
   description: string;
   includes: string[];
   bestFor?: string;
   disclaimer?: string;
-  bookingUrl: string;
-  featured?: boolean;
+  ctaLabel: string;
 };
 
-const tiers: Tier[] = [
+const services: Service[] = [
   {
-    eyebrow: "Advisory",
-    title: "International Trade Strategy Consultation",
-    price: "$250",
-    duration: "60-minute one-on-one session",
+    title: "Global Sourcing and Procurement",
+    price: "Starting from $500",
     description:
-      "A personalized one-on-one consultation for importers, exporters, entrepreneurs, and businesses seeking expert guidance on international trade. After booking, you’ll complete a short pre-consultation questionnaire so the call is tailored to your needs.",
-    includes: [
-      "Short pre-consultation questionnaire to focus the session",
-      "Product selection guidance",
-      "Supplier sourcing & verification",
-      "Import and export procedures",
-      "Pricing strategies",
-      "Shipping and logistics",
-      "Market opportunities & risk assessment",
-      "Payment methods & documentation",
-      "Practical recommendations and action plan",
-    ],
-    bestFor:
-      "Businesses seeking clarity, direction, and expert recommendations before engaging suppliers or entering new markets.",
-    bookingUrl: CONSULTATION_CALENDLY_URL,
-  },
-  {
-    eyebrow: "Engagement",
-    title: "Global Sourcing & Procurement Service",
-    price: "$500",
-    description:
-      "A comprehensive sourcing and procurement service for businesses ready to purchase products internationally. After payment, you'll schedule a kickoff meeting to discuss product requirements, specifications, quantity, quality standards, budget, destination market, timeline, and sourcing objectives before work begins.",
+      "A comprehensive sourcing and procurement engagement for businesses ready to purchase products internationally — covering product requirements, specifications, quality standards, budget, destination market and timeline before work begins.",
     includes: [
       "Product sourcing",
       "Supplier identification",
@@ -99,15 +68,13 @@ const tiers: Tier[] = [
       "Businesses requiring hands-on support for sourcing, procurement, and manufacturing coordination.",
     disclaimer:
       "This professional service fee covers sourcing and procurement support only. It does not include the cost of goods, shipping, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
-    bookingUrl: SOURCING_CALENDLY_URL,
-    featured: true,
+    ctaLabel: "Submit Requirements",
   },
   {
-    eyebrow: "Premium",
-    title: "End-to-End Agricultural Commodity Sourcing & Buyer Representation",
-    price: "$750",
+    title: "Agricultural Commodity Buyer Representation",
+    price: "Starting from $750",
     description:
-      "A comprehensive buyer representation service for international companies sourcing agricultural commodities from Nigeria. I act as your trusted sourcing partner throughout the procurement process, ensuring you work with credible suppliers, secure competitive pricing, and meet your quality, documentation, and logistics requirements. Following payment, you will schedule a kickoff strategy session to define your product specifications, quality standards, required quantity, destination, packaging requirements, delivery schedule, commercial terms, and sourcing objectives before procurement begins.",
+      "End-to-end buyer representation for international companies sourcing agricultural commodities from Nigeria. I act as your sourcing partner throughout procurement — ensuring credible suppliers, competitive pricing, and compliance with your quality, documentation and logistics requirements.",
     includes: [
       "Dedicated buyer representation",
       "End-to-end agricultural commodity sourcing",
@@ -120,11 +87,19 @@ const tiers: Tier[] = [
       "Ongoing transaction support and communication",
     ],
     bestFor:
-      "Importers, distributors, manufacturers, wholesalers, and procurement teams seeking reliable sourcing of Nigerian agricultural commodities, including sesame seeds, hibiscus flowers, dry ginger, gum arabic, cashew kernels, coconut shell charcoal, soybeans, shea products, and other export-ready commodities.",
+      "Importers, distributors, manufacturers, wholesalers, and procurement teams sourcing Nigerian agricultural commodities — sesame seeds, hibiscus flowers, dry ginger, gum arabic, cashew kernels, coconut shell charcoal, soybeans, shea products, and other export-ready commodities.",
     disclaimer:
       "This professional service fee covers buyer representation and sourcing support only. It does not include the cost of goods, freight, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
-    bookingUrl: COMMODITY_CALENDLY_URL,
+    ctaLabel: "Request a Proposal",
   },
+];
+
+const consultationIncludes = [
+  "Pre-consultation questionnaire",
+  "Review of relevant information submitted in advance",
+  "60-minute private video strategy session",
+  "Written recommendations and next-step action plan",
+  "Three business days of limited WhatsApp follow-up for clarification",
 ];
 
 function Check() {
@@ -152,59 +127,135 @@ export function Pricing() {
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-            Book &amp; Pay
+            Engagements
           </p>
           <h2 id="pricing-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
             Work With Me
           </h2>
           <p className="mt-4 max-w-3xl text-base text-text/80 sm:text-lg">
-            Each service has its own dedicated booking page. Pay securely, then
-            immediately select a date and time for your kickoff meeting — you&rsquo;ll get
-            a confirmation, calendar invite, and reminders automatically.
+            Advisory is booked and paid directly. Done-for-you services are scoped first, then
+            quoted in a written proposal before any payment is made.
           </p>
         </FadeIn>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {tiers.map((t) => (
-            <FadeIn key={t.title}>
-              <article
-                className={`flex h-full flex-col rounded-2xl bg-surface p-8 shadow-sm ${
-                  t.featured
-                    ? "border-2 border-accent/50 shadow-md"
-                    : "border border-text/15"
-                }`}
+        {/* ---------------------------------------------------------------- */}
+        {/* ADVISORY                                                          */}
+        {/* ---------------------------------------------------------------- */}
+        <FadeIn>
+          <div className="mt-14 flex items-center gap-4">
+            <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-accent">
+              Advisory
+            </h3>
+            <span aria-hidden="true" className="h-px flex-1 bg-text/15" />
+          </div>
+        </FadeIn>
+
+        <FadeIn>
+          <article className="mt-6 grid gap-8 rounded-2xl border-2 border-accent/50 bg-surface p-8 shadow-md lg:grid-cols-[1.1fr_1fr] lg:p-10">
+            <div>
+              <h4 className="font-display text-2xl font-bold text-text sm:text-3xl">
+                International Trade Strategy Consultation
+              </h4>
+              <p className="mt-4 font-display text-5xl font-bold text-text">
+                $250
+                <span className="ml-1 text-base font-medium text-muted">USD</span>
+              </p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
+                60-minute private video session
+              </p>
+              <p className="mt-5 text-sm leading-relaxed text-text/85 sm:text-base">
+                A private advisory engagement for businesses requiring expert direction on sourcing,
+                importation, export strategy, supplier verification, pricing, logistics, payment
+                terms or market entry.
+              </p>
+
+              <a
+                href={CONSULTATION_CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 sm:w-auto"
               >
-                <p
-                  className={`text-xs font-semibold uppercase tracking-[0.2em] ${
-                    t.featured ? "text-accent" : "text-text/70"
-                  }`}
-                >
-                  {t.eyebrow}
+                Book &amp; Pay $250
+              </a>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-text">Includes</p>
+              <ul className="mt-3 space-y-2 text-sm text-text/85">
+                {consultationIncludes.map((i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <Check />
+                    <span>{i}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-6 rounded-lg border border-accent/40 bg-accent/10 p-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-text">
+                  Follow-up support
                 </p>
-                <h3 className="mt-3 font-display text-xl font-bold text-text sm:text-2xl">
-                  {t.title}
-                </h3>
-                <p className="mt-4 font-display text-5xl font-bold text-text">
-                  {t.price}
+                <p className="mt-2 text-sm leading-relaxed text-text/90">
+                  Includes three business days of WhatsApp follow-up for brief clarification on
+                  recommendations discussed during the consultation. New research, document
+                  preparation, supplier sourcing, costing, negotiation or transaction management is
+                  billed separately.
+                </p>
+              </div>
+
+              <p className="mt-4 text-xs italic leading-relaxed text-muted">
+                This consultation does not include supplier sourcing, extensive market research,
+                document preparation, negotiation, costing development or transaction management.
+                These services are quoted separately.
+              </p>
+            </div>
+          </article>
+        </FadeIn>
+
+        {/* ---------------------------------------------------------------- */}
+        {/* DONE-FOR-YOU SERVICES                                             */}
+        {/* ---------------------------------------------------------------- */}
+        <FadeIn>
+          <div className="mt-20 flex items-center gap-4">
+            <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-accent">
+              Done-For-You Services
+            </h3>
+            <span aria-hidden="true" className="h-px flex-1 bg-text/15" />
+          </div>
+        </FadeIn>
+
+        <FadeIn>
+          <ol className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-wider text-text/75">
+            {PROCESS_STEPS.map((step, i) => (
+              <li key={step} className="flex items-center gap-3">
+                <span className="rounded-full border border-text/15 bg-surface px-4 py-2">
+                  {step}
+                </span>
+                {i < PROCESS_STEPS.length - 1 && (
+                  <span aria-hidden="true" className="text-accent">
+                    →
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </FadeIn>
+
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          {services.map((s) => (
+            <FadeIn key={s.title}>
+              <article className="flex h-full flex-col rounded-2xl border border-text/15 bg-surface p-8 shadow-sm">
+                <h4 className="font-display text-xl font-bold text-text sm:text-2xl">{s.title}</h4>
+                <p className="mt-4 font-display text-3xl font-bold text-text sm:text-4xl">
+                  {s.price}
                   <span className="ml-1 text-base font-medium text-muted">USD</span>
                 </p>
-                {t.duration && (
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
-                    {t.duration}
-                  </p>
-                )}
-                {t.title === "International Trade Strategy Consultation" && (
-                  <p className="mt-3 inline-flex items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-text">
-                    Includes pre-consultation questionnaire
-                  </p>
-                )}
-                <p className="mt-3 text-sm leading-relaxed text-text/85">{t.description}</p>
+                <p className="mt-3 text-sm leading-relaxed text-text/85">{s.description}</p>
 
                 <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-text">
                   Includes
                 </p>
                 <ul className="mt-3 space-y-2 text-sm text-text/85">
-                  {t.includes.map((i) => (
+                  {s.includes.map((i) => (
                     <li key={i} className="flex items-start gap-2">
                       <Check />
                       <span>{i}</span>
@@ -212,28 +263,25 @@ export function Pricing() {
                   ))}
                 </ul>
 
-                {t.bestFor && (
+                {s.bestFor && (
                   <>
                     <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-text">
                       Best For
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-text/85">{t.bestFor}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-text/85">{s.bestFor}</p>
                   </>
                 )}
 
                 <div className="mt-auto">
                   <a
-                    href={t.bookingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#service-request"
                     className="mt-8 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
                   >
-                    Book &amp; Pay {t.price}
+                    {s.ctaLabel}
                   </a>
-                  {t.disclaimer && (
-                    <p className="mt-4 text-xs italic leading-relaxed text-muted">
-                      {t.disclaimer}
-                    </p>
+                  <p className="mt-4 text-xs leading-relaxed text-text/70">{FEE_NOTE}</p>
+                  {s.disclaimer && (
+                    <p className="mt-3 text-xs italic leading-relaxed text-muted">{s.disclaimer}</p>
                   )}
                 </div>
               </article>
