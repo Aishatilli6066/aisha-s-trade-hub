@@ -1,5 +1,6 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { FadeIn } from "./FadeIn";
+import { DISCOVERY_TRACKS, TRACK_EVENT, type DiscoveryTrack } from "@/lib/discovery";
 
 const WHATSAPP_NUMBER = "2347042322970";
 const EMAIL = "aishau6066@gmail.com";
