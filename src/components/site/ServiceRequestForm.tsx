@@ -54,9 +54,10 @@ const INITIAL: FormState = {
   details: "",
 };
 
-function buildMessage(d: FormState) {
+function buildMessage(d: FormState, track: DiscoveryTrack | null) {
+  const t = track ? DISCOVERY_TRACKS[track] : null;
   return `New Service Request — ASMAN Prime Hub
-
+${t ? `\nEngagement track: ${t.label}\nProject Discovery Fee due: ${t.fee} USD\n` : ""}
 Name: ${d.name}
 Email: ${d.email}
 Company: ${d.company || "—"}
@@ -88,6 +89,16 @@ export function ServiceRequestForm() {
   const [form, setForm] = useState<FormState>(INITIAL);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [sent, setSent] = useState(false);
+  const [track, setTrack] = useState<DiscoveryTrack | null>(null);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<DiscoveryTrack>).detail;
+      if (detail === "sourcing" || detail === "commodity") setTrack(detail);
+    };
+    window.addEventListener(TRACK_EVENT, handler);
+    return () => window.removeEventListener(TRACK_EVENT, handler);
+  }, []);
 
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
@@ -98,7 +109,7 @@ export function ServiceRequestForm() {
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
-    const message = buildMessage(form);
+    const message = buildMessage(form, track);
     const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(waUrl, "_blank", "noopener,noreferrer");
     setSent(true);
@@ -106,7 +117,7 @@ export function ServiceRequestForm() {
 
   const mailtoFallback = `mailto:${EMAIL}?subject=${encodeURIComponent(
     `Service Request: ${form.service || "Inquiry"}`,
-  )}&body=${encodeURIComponent(buildMessage(form))}`;
+  )}&body=${encodeURIComponent(buildMessage(form, track))}`;
 
   const inputCls =
     "w-full rounded-md border border-text/20 bg-bg px-3 py-2.5 text-sm text-text placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
