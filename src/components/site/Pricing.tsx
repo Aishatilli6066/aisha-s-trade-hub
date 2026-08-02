@@ -88,7 +88,8 @@ const services: Service[] = [
     price: "Starting from $750",
     discoveryFee: "$150",
     discoveryIntro:
-      "You begin by submitting your commodity requirements and paying the non-refundable $150 Project Discovery Fee. The $150 is credited toward your final professional service fee if you proceed with the engagement.",
+      "You complete your commodity requirements, then pay the non-refundable $150 Project Discovery Fee. Your request is submitted only after payment succeeds. The $150 is credited toward your final professional service fee if you proceed with the engagement.",
+
     description:
       "End-to-end buyer representation for international companies sourcing agricultural commodities from Nigeria. I act as your sourcing partner throughout procurement — ensuring credible suppliers, competitive pricing, and compliance with your quality, documentation and logistics requirements.",
     includes: [
