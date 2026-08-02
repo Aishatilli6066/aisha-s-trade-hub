@@ -47,42 +47,43 @@ export function Hero() {
           </figure>
 
           <div className="order-2 flex-1 md:order-1">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text">
-              Trusted Advisor in Global Trade
-            </p>
-            <h1 className="mt-3 font-display text-5xl font-bold leading-[1.05] text-text sm:text-6xl lg:text-7xl">
+            <p className="font-display text-2xl font-bold tracking-tight text-text sm:text-3xl">
               Aisha Usman
-            </h1>
-            <p className="mt-4 font-display text-lg text-gold-deep sm:text-2xl">
+            </p>
+            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
               International Trade Consultant <span className="text-text/40">|</span> Global Sourcing Specialist <span className="text-text/40">|</span> Export Strategist
             </p>
 
+            <h1 className="mt-6 font-display text-4xl font-bold leading-[1.08] text-text sm:text-5xl lg:text-6xl">
+              Helping Businesses Source, Trade and Expand Across International Markets
+            </h1>
+
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-text/85 sm:text-lg">
-              Helping businesses source products, verify suppliers, reduce procurement risks,
-              structure export opportunities, and navigate international trade with confidence.
+              I help importers, exporters and growing businesses verify suppliers, control
+              procurement risk, structure commodity transactions and execute international trade
+              opportunities with greater confidence.
             </p>
 
             <p className="mt-4 text-sm text-muted">
               Based in Kano, Nigeria. Advising clients across Asia · Africa · Middle East · Europe.
             </p>
 
-
             <div className="mt-10 flex flex-wrap gap-3">
               <a
                 href="#pricing"
                 className="inline-flex items-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
-                Book a Consultation
+                Book a Strategy Consultation
               </a>
               <a
                 href="#service-request"
                 className="inline-flex items-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
-                Work With Me
+                Submit a Service Request
               </a>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+            <div className="mt-6 text-sm">
               <a
                 href={WHATSAPP}
                 target="_blank"
@@ -90,18 +91,11 @@ export function Hero() {
                 className="inline-flex items-center gap-2 text-text/70 transition-colors hover:text-text"
               >
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
-                Chat on WhatsApp
-              </a>
-              <a
-                href="https://www.upwork.com/freelancers/~01fa3cf6e886a40e02"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-medium text-[#14A800] transition-colors hover:text-[#14A800]/80"
-              >
-                Hire on Upwork
+                Connect on WhatsApp
               </a>
             </div>
           </div>
+
 
         </div>
       </div>
