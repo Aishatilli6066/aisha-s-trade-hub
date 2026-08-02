@@ -62,7 +62,8 @@ const services: Service[] = [
     price: "Starting from $500",
     discoveryFee: "$100",
     discoveryIntro:
-      "You begin by submitting your project requirements and paying the non-refundable $100 Project Discovery Fee. The $100 is credited toward your final professional service fee if you proceed with the engagement.",
+      "You complete your project requirements, then pay the non-refundable $100 Project Discovery Fee. Your request is submitted only after payment succeeds. The $100 is credited toward your final professional service fee if you proceed with the engagement.",
+
     description:
       "A comprehensive sourcing and procurement engagement for businesses ready to purchase products internationally — covering product requirements, specifications, quality standards, budget, destination market and timeline before work begins.",
     includes: [
