@@ -1,4 +1,6 @@
 import { FadeIn } from "./FadeIn";
+import { selectTrack } from "@/lib/discovery";
+
 
 // ============================================================================
 // CALENDLY BOOKING LINK — ADVISORY ONLY
