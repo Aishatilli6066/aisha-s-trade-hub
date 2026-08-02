@@ -55,7 +55,7 @@ type Service = {
   bestFor?: string;
   disclaimer?: string;
   ctaLabel: string;
-  ctaHref: string;
+  track: "sourcing" | "commodity";
 };
 
 const services: Service[] = [
@@ -82,7 +82,7 @@ const services: Service[] = [
     disclaimer:
       "This professional service fee covers sourcing and procurement support only. It does not include the cost of goods, shipping, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
     ctaLabel: "Start Project Discovery",
-    ctaHref: "#service-request?track=sourcing",
+    track: "sourcing",
   },
   {
     title: "Agricultural Commodity Buyer Representation",
@@ -108,7 +108,7 @@ const services: Service[] = [
     disclaimer:
       "This professional service fee covers buyer representation and sourcing support only. It does not include the cost of goods, freight, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
     ctaLabel: "Start Commodity Discovery",
-    ctaHref: "#service-request?track=commodity",
+    track: "commodity",
   },
 ];
 
