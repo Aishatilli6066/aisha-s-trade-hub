@@ -1,16 +1,18 @@
 import { FadeIn } from "./FadeIn";
-import { selectTrack } from "@/lib/discovery";
+import { selectTrack, CONSULTATION_STEPS, DONE_FOR_YOU_STEPS } from "@/lib/discovery";
 
 
 // ============================================================================
 // CALENDLY BOOKING LINK — ADVISORY ONLY
 // ----------------------------------------------------------------------------
-// Only the $250 International Trade Strategy Consultation is booked and paid
-// directly through Calendly. Done-for-you services are scoped and quoted first
-// via the service request form, so they intentionally have no booking link.
+// The $250 International Trade Strategy Consultation is paid first through
+// Calendly's payment step, then the invitee questionnaire is completed, then
+// the client picks a time slot. Done-for-you services are scoped and quoted
+// separately via the service request form, so they have no booking link.
 //
 // QUESTIONNAIRE — added manually in the Calendly UI for the /30min event
-// (Event → Invitee Questions). Calendly's public API does not expose writing
+// (Event → Invitee Questions), which Calendly shows AFTER payment and BEFORE
+// the booking is confirmed. Calendly's public API does not expose writing
 // custom invitee questions.
 //   • Full Name (default Calendly field)
 //   • Email Address (default Calendly field)
@@ -22,7 +24,7 @@ import { selectTrack } from "@/lib/discovery";
 //   • What are your primary goals for this session?
 //   • Any specific products, suppliers, or markets to discuss?
 //   • What challenges are you currently facing?
-//   • Additional information or relevant documents
+//   • Links to relevant documents (specs, quotations, certificates)
 // ============================================================================
 
 const CALENDLY_HANDLE = "aishausman-international";
@@ -32,20 +34,14 @@ const CONSULTATION_CALENDLY_URL = `https://calendly.com/${CALENDLY_HANDLE}/30min
 const FEE_NOTE =
   "Final professional fee depends on product complexity, supplier location, quantity, verification requirements and project scope.";
 
-const PROCESS_STEPS = [
-  "Submit Requirements",
-  "Pay Discovery Fee",
-  "Project Review",
-  "Written Proposal",
-  "Accept Proposal & Pay Balance",
-  "Kickoff",
-];
+const PROCESS_STEPS = DONE_FOR_YOU_STEPS;
 
 const DISCOVERY_COVERS =
   "The Project Discovery Fee covers initial project review, feasibility assessment, scope definition, risk identification, and preparation of a tailored written proposal.";
 
 const DISCOVERY_EXCLUDES =
   "It does not include supplier sourcing, market research, negotiations, document preparation, logistics coordination, or transaction execution.";
+
 
 type Service = {
   title: string;
