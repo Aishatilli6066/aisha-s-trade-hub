@@ -32,26 +32,39 @@ const FEE_NOTE =
 
 const PROCESS_STEPS = [
   "Submit Requirements",
-  "Scope Review",
+  "Pay Discovery Fee",
+  "Project Review",
   "Written Proposal",
-  "Payment",
+  "Accept Proposal & Pay Balance",
   "Kickoff",
 ];
+
+const DISCOVERY_COVERS =
+  "The Project Discovery Fee covers initial project review, feasibility assessment, scope definition, risk identification, and preparation of a tailored written proposal.";
+
+const DISCOVERY_EXCLUDES =
+  "It does not include supplier sourcing, market research, negotiations, document preparation, logistics coordination, or transaction execution.";
 
 type Service = {
   title: string;
   price: string;
+  discoveryFee: string;
+  discoveryIntro: string;
   description: string;
   includes: string[];
   bestFor?: string;
   disclaimer?: string;
   ctaLabel: string;
+  ctaHref: string;
 };
 
 const services: Service[] = [
   {
     title: "Global Sourcing and Procurement",
     price: "Starting from $500",
+    discoveryFee: "$100",
+    discoveryIntro:
+      "You begin by submitting your project requirements and paying the non-refundable $100 Project Discovery Fee. The $100 is credited toward your final professional service fee if you proceed with the engagement.",
     description:
       "A comprehensive sourcing and procurement engagement for businesses ready to purchase products internationally — covering product requirements, specifications, quality standards, budget, destination market and timeline before work begins.",
     includes: [
@@ -68,11 +81,15 @@ const services: Service[] = [
       "Businesses requiring hands-on support for sourcing, procurement, and manufacturing coordination.",
     disclaimer:
       "This professional service fee covers sourcing and procurement support only. It does not include the cost of goods, shipping, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
-    ctaLabel: "Submit Requirements",
+    ctaLabel: "Start Project Discovery",
+    ctaHref: "#service-request?track=sourcing",
   },
   {
     title: "Agricultural Commodity Buyer Representation",
     price: "Starting from $750",
+    discoveryFee: "$150",
+    discoveryIntro:
+      "You begin by submitting your commodity requirements and paying the non-refundable $150 Project Discovery Fee. The $150 is credited toward your final professional service fee if you proceed with the engagement.",
     description:
       "End-to-end buyer representation for international companies sourcing agricultural commodities from Nigeria. I act as your sourcing partner throughout procurement — ensuring credible suppliers, competitive pricing, and compliance with your quality, documentation and logistics requirements.",
     includes: [
@@ -90,9 +107,11 @@ const services: Service[] = [
       "Importers, distributors, manufacturers, wholesalers, and procurement teams sourcing Nigerian agricultural commodities — sesame seeds, hibiscus flowers, dry ginger, gum arabic, cashew kernels, coconut shell charcoal, soybeans, shea products, and other export-ready commodities.",
     disclaimer:
       "This professional service fee covers buyer representation and sourcing support only. It does not include the cost of goods, freight, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
-    ctaLabel: "Request a Proposal",
+    ctaLabel: "Start Commodity Discovery",
+    ctaHref: "#service-request?track=commodity",
   },
 ];
+
 
 const consultationIncludes = [
   "Pre-consultation questionnaire",
