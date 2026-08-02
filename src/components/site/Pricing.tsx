@@ -114,12 +114,13 @@ const services: Service[] = [
 
 
 const consultationIncludes = [
-  "Pre-consultation questionnaire",
-  "Review of relevant information submitted in advance",
-  "60-minute private video strategy session",
+  "Consultation questionnaire completed after payment, before scheduling",
+  "Review of the information and document links you submit in the questionnaire",
+  "60-minute private video strategy session at a time you choose",
   "Written recommendations and next-step action plan",
   "Three business days of limited WhatsApp follow-up for clarification",
 ];
+
 
 function Check() {
   return (
