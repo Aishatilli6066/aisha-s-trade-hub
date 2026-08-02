@@ -7,7 +7,7 @@ const cases = [
     action:
       "Identified and vetted overseas manufacturers, coordinated technical specifications, negotiated commercial terms, and managed the supplier selection process.",
     outcome:
-      "Verified manufacturer secured at 50% below initial cost estimates, with a confirmed production timeline and export logistics plan.",
+      "A suitable manufacturer was secured at approximately 50% below the client\u2019s initial sourcing estimate, while meeting the required technical specifications.",
   },
   {
     title: "Private Label Product Development",
@@ -15,7 +15,7 @@ const cases = [
     action:
       "Sourced and evaluated private-label manufacturers, structured packaging options, and developed a launch roadmap.",
     outcome:
-      "Manufacturing partnership secured supporting a projected 200–500% ROI model with a clear concept-to-market pathway.",
+      "A suitable manufacturing partner, packaging direction, and practical concept-to-market roadmap were established, giving the client a clearer basis for production and commercial launch.",
   },
   {
     title: "Agro-Commodity Sourcing for Egypt Herbal Buyer",
@@ -23,15 +23,15 @@ const cases = [
     action:
       "Sourced and verified Nigerian suppliers and structured pricing and logistics terms.",
     outcome:
-      "Product secured at 30% below prevailing market prices with a repeatable sourcing framework established.",
+      "Qualified Nigerian supply options were identified at pricing below several comparable market quotations, with logistics and commercial terms structured for the buyer\u2019s review.",
   },
   {
-    title: "Sesame Export to China — 300MT",
+    title: "Structuring a 300 MT Sesame Export Opportunity",
     need: "Verified Chinese buyer seeking bulk Sortex White Sesame.",
     action:
       "Structured a 300MT export opportunity, drafted MoU documentation, and coordinated transaction preparation.",
     outcome:
-      "MoU signed and transaction progressed from inquiry stage to active execution.",
+      "The opportunity progressed from an initial buyer inquiry to documented commercial discussions, including transaction structuring and MoU preparation.",
   },
   {
     title: "CFR Export Offer to India",
@@ -60,10 +60,10 @@ export function CaseStudies() {
             Selected Engagements
           </p>
           <h2 id="work-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            Trade Outcomes I&rsquo;ve Delivered
+            Selected Trade and Sourcing Engagements
           </h2>
           <p className="mt-4 text-base text-text/80 sm:text-lg">
-            Real client engagements. Measurable results.
+            Real assignments demonstrating how I research, structure, negotiate, and support international trade opportunities.
           </p>
         </FadeIn>
 
