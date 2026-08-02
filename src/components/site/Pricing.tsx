@@ -1,16 +1,18 @@
 import { FadeIn } from "./FadeIn";
-import { selectTrack } from "@/lib/discovery";
+import { selectTrack, CONSULTATION_STEPS, DONE_FOR_YOU_STEPS } from "@/lib/discovery";
 
 
 // ============================================================================
 // CALENDLY BOOKING LINK — ADVISORY ONLY
 // ----------------------------------------------------------------------------
-// Only the $250 International Trade Strategy Consultation is booked and paid
-// directly through Calendly. Done-for-you services are scoped and quoted first
-// via the service request form, so they intentionally have no booking link.
+// The $250 International Trade Strategy Consultation is paid first through
+// Calendly's payment step, then the invitee questionnaire is completed, then
+// the client picks a time slot. Done-for-you services are scoped and quoted
+// separately via the service request form, so they have no booking link.
 //
 // QUESTIONNAIRE — added manually in the Calendly UI for the /30min event
-// (Event → Invitee Questions). Calendly's public API does not expose writing
+// (Event → Invitee Questions), which Calendly shows AFTER payment and BEFORE
+// the booking is confirmed. Calendly's public API does not expose writing
 // custom invitee questions.
 //   • Full Name (default Calendly field)
 //   • Email Address (default Calendly field)
@@ -22,7 +24,7 @@ import { selectTrack } from "@/lib/discovery";
 //   • What are your primary goals for this session?
 //   • Any specific products, suppliers, or markets to discuss?
 //   • What challenges are you currently facing?
-//   • Additional information or relevant documents
+//   • Links to relevant documents (specs, quotations, certificates)
 // ============================================================================
 
 const CALENDLY_HANDLE = "aishausman-international";
@@ -32,20 +34,14 @@ const CONSULTATION_CALENDLY_URL = `https://calendly.com/${CALENDLY_HANDLE}/30min
 const FEE_NOTE =
   "Final professional fee depends on product complexity, supplier location, quantity, verification requirements and project scope.";
 
-const PROCESS_STEPS = [
-  "Submit Requirements",
-  "Pay Discovery Fee",
-  "Project Review",
-  "Written Proposal",
-  "Accept Proposal & Pay Balance",
-  "Kickoff",
-];
+const PROCESS_STEPS = DONE_FOR_YOU_STEPS;
 
 const DISCOVERY_COVERS =
   "The Project Discovery Fee covers initial project review, feasibility assessment, scope definition, risk identification, and preparation of a tailored written proposal.";
 
 const DISCOVERY_EXCLUDES =
   "It does not include supplier sourcing, market research, negotiations, document preparation, logistics coordination, or transaction execution.";
+
 
 type Service = {
   title: string;
@@ -66,7 +62,8 @@ const services: Service[] = [
     price: "Starting from $500",
     discoveryFee: "$100",
     discoveryIntro:
-      "You begin by submitting your project requirements and paying the non-refundable $100 Project Discovery Fee. The $100 is credited toward your final professional service fee if you proceed with the engagement.",
+      "You complete your project requirements, then pay the non-refundable $100 Project Discovery Fee. Your request is submitted only after payment succeeds. The $100 is credited toward your final professional service fee if you proceed with the engagement.",
+
     description:
       "A comprehensive sourcing and procurement engagement for businesses ready to purchase products internationally — covering product requirements, specifications, quality standards, budget, destination market and timeline before work begins.",
     includes: [
@@ -83,7 +80,7 @@ const services: Service[] = [
       "Businesses requiring hands-on support for sourcing, procurement, and manufacturing coordination.",
     disclaimer:
       "This professional service fee covers sourcing and procurement support only. It does not include the cost of goods, shipping, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
-    ctaLabel: "Start Project Discovery",
+    ctaLabel: "Complete Requirements — Sourcing",
     track: "sourcing",
   },
   {
@@ -91,7 +88,8 @@ const services: Service[] = [
     price: "Starting from $750",
     discoveryFee: "$150",
     discoveryIntro:
-      "You begin by submitting your commodity requirements and paying the non-refundable $150 Project Discovery Fee. The $150 is credited toward your final professional service fee if you proceed with the engagement.",
+      "You complete your commodity requirements, then pay the non-refundable $150 Project Discovery Fee. Your request is submitted only after payment succeeds. The $150 is credited toward your final professional service fee if you proceed with the engagement.",
+
     description:
       "End-to-end buyer representation for international companies sourcing agricultural commodities from Nigeria. I act as your sourcing partner throughout procurement — ensuring credible suppliers, competitive pricing, and compliance with your quality, documentation and logistics requirements.",
     includes: [
@@ -109,19 +107,20 @@ const services: Service[] = [
       "Importers, distributors, manufacturers, wholesalers, and procurement teams sourcing Nigerian agricultural commodities — sesame seeds, hibiscus flowers, dry ginger, gum arabic, cashew kernels, coconut shell charcoal, soybeans, shea products, and other export-ready commodities.",
     disclaimer:
       "This professional service fee covers buyer representation and sourcing support only. It does not include the cost of goods, freight, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
-    ctaLabel: "Start Commodity Discovery",
+    ctaLabel: "Complete Requirements — Commodity",
     track: "commodity",
   },
 ];
 
 
 const consultationIncludes = [
-  "Pre-consultation questionnaire",
-  "Review of relevant information submitted in advance",
-  "60-minute private video strategy session",
+  "Consultation questionnaire completed after payment, before scheduling",
+  "Review of the information and document links you submit in the questionnaire",
+  "60-minute private video strategy session at a time you choose",
   "Written recommendations and next-step action plan",
   "Three business days of limited WhatsApp follow-up for clarification",
 ];
+
 
 function Check() {
   return (
@@ -190,14 +189,39 @@ export function Pricing() {
                 terms or market entry.
               </p>
 
+              <ol className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-wider text-text/75">
+                {CONSULTATION_STEPS.map((step, i) => (
+                  <li key={step} className="flex items-center gap-3">
+                    <span className="rounded-full border border-text/15 bg-bg px-4 py-2">
+                      {step}
+                    </span>
+                    {i < CONSULTATION_STEPS.length - 1 && (
+                      <span aria-hidden="true" className="text-accent">
+                        →
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+
+              <p className="mt-4 text-sm leading-relaxed text-text/85">
+                You pay the $250 fee first. Immediately after successful payment you complete the
+                consultation questionnaire — including links or details for any relevant documents
+                — and only then choose the date and time for your 60-minute session.
+              </p>
+
               <a
                 href={CONSULTATION_CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 sm:w-auto"
               >
-                Book &amp; Pay $250
+                Pay $250 &amp; Continue to Questionnaire
               </a>
+              <p className="mt-2 text-xs text-muted">
+                Pay → Complete Questionnaire → Schedule Session
+              </p>
+
             </div>
 
             <div>

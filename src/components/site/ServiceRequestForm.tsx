@@ -1,6 +1,14 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { FadeIn } from "./FadeIn";
-import { DISCOVERY_TRACKS, TRACK_EVENT, type DiscoveryTrack } from "@/lib/discovery";
+import {
+  DISCOVERY_TRACKS,
+  DISCOVERY_PAYMENT_LINKS,
+  DONE_FOR_YOU_STEPS,
+  DRAFT_STORAGE_KEY,
+  TRACK_EVENT,
+  isPaymentConfigured,
+  type DiscoveryTrack,
+} from "@/lib/discovery";
 
 const WHATSAPP_NUMBER = "2347042322970";
 const EMAIL = "aishau6066@gmail.com";
@@ -54,10 +62,15 @@ const INITIAL: FormState = {
   details: "",
 };
 
-function buildMessage(d: FormState, track: DiscoveryTrack | null) {
-  const t = track ? DISCOVERY_TRACKS[track] : null;
-  return `New Service Request — ASMAN Prime Hub
-${t ? `\nEngagement track: ${t.label}\nProject Discovery Fee due: ${t.fee} USD\n` : ""}
+function buildMessage(d: FormState, track: DiscoveryTrack, paymentRef: string) {
+  const t = DISCOVERY_TRACKS[track];
+  return `PAID Service Request — ASMAN Prime Hub
+
+Engagement track: ${t.label}
+Project Discovery Fee: ${t.fee} USD
+Payment status: PAID
+Payment reference: ${paymentRef}
+
 Name: ${d.name}
 Email: ${d.email}
 Company: ${d.company || "—"}
@@ -85,44 +98,89 @@ function validate(d: FormState) {
   return errors;
 }
 
+type Step = "requirements" | "payment" | "done";
+
 export function ServiceRequestForm() {
   const [form, setForm] = useState<FormState>(INITIAL);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
-  const [sent, setSent] = useState(false);
   const [track, setTrack] = useState<DiscoveryTrack | null>(null);
+  const [step, setStep] = useState<Step>("requirements");
+  const [paymentRef, setPaymentRef] = useState("");
+  const [refError, setRefError] = useState("");
 
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent<DiscoveryTrack>).detail;
-      if (detail === "sourcing" || detail === "commodity") setTrack(detail);
+      if (detail === "sourcing" || detail === "commodity") {
+        setTrack(detail);
+        setStep("requirements");
+      }
     };
     window.addEventListener(TRACK_EVENT, handler);
     return () => window.removeEventListener(TRACK_EVENT, handler);
   }, []);
 
+  // Restore any draft kept in the browser while the client was on the
+  // payment provider's page.
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(DRAFT_STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as { form?: FormState; track?: DiscoveryTrack };
+      if (parsed.form) setForm({ ...INITIAL, ...parsed.form });
+      if (parsed.track === "sourcing" || parsed.track === "commodity") setTrack(parsed.track);
+    } catch {
+      /* ignore malformed drafts */
+    }
+  }, []);
+
+  useEffect(() => {
+    if (step === "done") return;
+    try {
+      window.localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({ form, track }));
+    } catch {
+      /* storage unavailable */
+    }
+  }, [form, track, step]);
+
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
 
-  function onSubmit(e: FormEvent) {
+  function onContinueToPayment(e: FormEvent) {
     e.preventDefault();
     const errs = validate(form);
     setErrors(errs);
-    if (Object.keys(errs).length) return;
-
-    const message = buildMessage(form, track);
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(waUrl, "_blank", "noopener,noreferrer");
-    setSent(true);
+    if (Object.keys(errs).length || !track) return;
+    setStep("payment");
+    document.getElementById("service-request")?.scrollIntoView({ behavior: "smooth" });
   }
 
-  const mailtoFallback = `mailto:${EMAIL}?subject=${encodeURIComponent(
-    `Service Request: ${form.service || "Inquiry"}`,
-  )}&body=${encodeURIComponent(buildMessage(form, track))}`;
+  function onSubmitPaidRequest() {
+    if (!track) return;
+    if (!isPaymentConfigured(track)) return;
+    if (paymentRef.trim().length < 4) {
+      setRefError("Enter the payment reference from your receipt");
+      return;
+    }
+    setRefError("");
+    const message = buildMessage(form, track, paymentRef.trim());
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, "_blank", "noopener,noreferrer");
+    try {
+      window.localStorage.removeItem(DRAFT_STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
+    setStep("done");
+  }
 
   const inputCls =
     "w-full rounded-md border border-text/20 bg-bg px-3 py-2.5 text-sm text-text placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
   const labelCls = "block text-xs font-semibold uppercase tracking-wider text-text";
   const errCls = "mt-1 text-xs text-[#6B1026]";
+
+  const t = track ? DISCOVERY_TRACKS[track] : null;
+  const paymentReady = track ? isPaymentConfigured(track) : false;
 
   return (
     <section
@@ -142,10 +200,25 @@ export function ServiceRequestForm() {
             Let&rsquo;s Discuss Your Trade Opportunity
           </h2>
           <p className="mt-4 max-w-2xl text-base text-text/80 sm:text-lg">
-            Choose the engagement you need, submit your requirements, then pay the Project
-            Discovery Fee. It is credited toward your final professional service fee if you
-            proceed.
+            Choose your engagement, complete the required project details, then pay the Project
+            Discovery Fee. Your request is submitted only after payment succeeds. The fee is
+            non-refundable and credited toward your final professional service fee if you proceed.
           </p>
+        </FadeIn>
+
+        <FadeIn>
+          <ol className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-wider text-text/75">
+            {DONE_FOR_YOU_STEPS.map((s, i) => (
+              <li key={s} className="flex items-center gap-3">
+                <span className="rounded-full border border-text/15 bg-surface px-4 py-2">{s}</span>
+                {i < DONE_FOR_YOU_STEPS.length - 1 && (
+                  <span aria-hidden="true" className="text-accent">
+                    →
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
         </FadeIn>
 
         <FadeIn>
@@ -155,13 +228,16 @@ export function ServiceRequestForm() {
             </p>
             <div className="mt-3 grid gap-4 sm:grid-cols-2">
               {(Object.keys(DISCOVERY_TRACKS) as DiscoveryTrack[]).map((key) => {
-                const t = DISCOVERY_TRACKS[key];
+                const item = DISCOVERY_TRACKS[key];
                 const active = track === key;
                 return (
                   <button
                     key={key}
                     type="button"
-                    onClick={() => setTrack(key)}
+                    onClick={() => {
+                      setTrack(key);
+                      setStep("requirements");
+                    }}
                     aria-pressed={active}
                     className={`rounded-xl border p-5 text-left transition-colors ${
                       active
@@ -169,11 +245,11 @@ export function ServiceRequestForm() {
                         : "border-text/15 bg-surface hover:border-accent/50"
                     }`}
                   >
-                    <p className="font-display text-base font-bold text-text">{t.label}</p>
+                    <p className="font-display text-base font-bold text-text">{item.label}</p>
                     <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
-                      Project Discovery Fee: {t.fee}
+                      Project Discovery Fee: {item.fee}
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-text/80">{t.blurb}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-text/80">{item.blurb}</p>
                   </button>
                 );
               })}
@@ -181,227 +257,294 @@ export function ServiceRequestForm() {
           </div>
         </FadeIn>
 
-
-
-
-        <FadeIn>
-          <form
-            onSubmit={onSubmit}
-            noValidate
-            className="mt-10 grid gap-5 rounded-xl border border-text/10 bg-surface p-6 sm:p-8"
-          >
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div>
-                <label htmlFor="sr-name" className={labelCls}>
-                  Full name *
-                </label>
-                <input
-                  id="sr-name"
-                  type="text"
-                  required
-                  maxLength={100}
-                  value={form.name}
-                  onChange={(e) => set("name", e.target.value)}
-                  className={`mt-2 ${inputCls}`}
-                  aria-invalid={!!errors.name}
-                />
-                {errors.name && <p className={errCls}>{errors.name}</p>}
-              </div>
-              <div>
-                <label htmlFor="sr-email" className={labelCls}>
-                  Email *
-                </label>
-                <input
-                  id="sr-email"
-                  type="email"
-                  required
-                  maxLength={255}
-                  value={form.email}
-                  onChange={(e) => set("email", e.target.value)}
-                  className={`mt-2 ${inputCls}`}
-                  aria-invalid={!!errors.email}
-                />
-                {errors.email && <p className={errCls}>{errors.email}</p>}
-              </div>
-              <div>
-                <label htmlFor="sr-company" className={labelCls}>
-                  Company
-                </label>
-                <input
-                  id="sr-company"
-                  type="text"
-                  maxLength={100}
-                  value={form.company}
-                  onChange={(e) => set("company", e.target.value)}
-                  className={`mt-2 ${inputCls}`}
-                />
-              </div>
-              <div>
-                <label htmlFor="sr-whatsapp" className={labelCls}>
-                  WhatsApp / Phone
-                </label>
-                <input
-                  id="sr-whatsapp"
-                  type="tel"
-                  maxLength={30}
-                  value={form.whatsapp}
-                  onChange={(e) => set("whatsapp", e.target.value)}
-                  className={`mt-2 ${inputCls}`}
-                  placeholder="+234..."
-                />
-              </div>
-              <div>
-                <label htmlFor="sr-country" className={labelCls}>
-                  Country
-                </label>
-                <input
-                  id="sr-country"
-                  type="text"
-                  maxLength={60}
-                  value={form.country}
-                  onChange={(e) => set("country", e.target.value)}
-                  className={`mt-2 ${inputCls}`}
-                />
-              </div>
-              <div>
-                <label htmlFor="sr-service" className={labelCls}>
-                  Service *
-                </label>
-                <select
-                  id="sr-service"
-                  required
-                  value={form.service}
-                  onChange={(e) => set("service", e.target.value)}
-                  className={`mt-2 ${inputCls}`}
-                  aria-invalid={!!errors.service}
-                >
-                  <option value="">Select a service…</option>
-                  {SERVICES.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </select>
-                {errors.service && <p className={errCls}>{errors.service}</p>}
-              </div>
-              <div>
-                <label htmlFor="sr-budget" className={labelCls}>
-                  Estimated budget
-                </label>
-                <select
-                  id="sr-budget"
-                  value={form.budget}
-                  onChange={(e) => set("budget", e.target.value)}
-                  className={`mt-2 ${inputCls}`}
-                >
-                  <option value="">Select…</option>
-                  {BUDGETS.map((b) => (
-                    <option key={b} value={b}>
-                      {b}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label htmlFor="sr-timeline" className={labelCls}>
-                  Timeline
-                </label>
-                <select
-                  id="sr-timeline"
-                  value={form.timeline}
-                  onChange={(e) => set("timeline", e.target.value)}
-                  className={`mt-2 ${inputCls}`}
-                >
-                  <option value="">Select…</option>
-                  {TIMELINES.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="sr-details" className={labelCls}>
-                Project details *
-              </label>
-              <textarea
-                id="sr-details"
-                required
-                rows={5}
-                maxLength={2000}
-                value={form.details}
-                onChange={(e) => set("details", e.target.value)}
-                className={`mt-2 ${inputCls} resize-y`}
-                placeholder="Product, supplier country, quantities, destination market, current challenges…"
-                aria-invalid={!!errors.details}
-              />
-              {errors.details && <p className={errCls}>{errors.details}</p>}
-              <p className="mt-1 text-xs text-muted">
-                {form.details.length}/2000 characters
+        {step === "done" ? (
+          <FadeIn>
+            <div
+              role="status"
+              className="mt-10 rounded-xl border border-accent/50 bg-accent/15 p-6 sm:p-8"
+            >
+              <p className="font-display text-xl font-bold text-text">
+                Payment received — request submitted
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-text/90">
+                Your paid request for <strong>{t?.label}</strong> has been submitted with your
+                payment reference <strong>{paymentRef}</strong>. Project review begins now, and you
+                will receive a written proposal by email. The {t?.fee} Project Discovery Fee is
+                non-refundable and credited toward your final professional service fee if you
+                proceed.
               </p>
             </div>
+          </FadeIn>
+        ) : (
+          <FadeIn>
+            <form
+              onSubmit={onContinueToPayment}
+              noValidate
+              className="mt-10 grid gap-5 rounded-xl border border-text/10 bg-surface p-6 sm:p-8"
+            >
+              <p className="text-xs font-semibold uppercase tracking-wider text-text">
+                Step 2 — Complete your project requirements
+              </p>
+              <fieldset disabled={step === "payment"} className="grid gap-5">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="sr-name" className={labelCls}>
+                      Full name *
+                    </label>
+                    <input
+                      id="sr-name"
+                      type="text"
+                      required
+                      maxLength={100}
+                      value={form.name}
+                      onChange={(e) => set("name", e.target.value)}
+                      className={`mt-2 ${inputCls}`}
+                      aria-invalid={!!errors.name}
+                    />
+                    {errors.name && <p className={errCls}>{errors.name}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="sr-email" className={labelCls}>
+                      Email *
+                    </label>
+                    <input
+                      id="sr-email"
+                      type="email"
+                      required
+                      maxLength={255}
+                      value={form.email}
+                      onChange={(e) => set("email", e.target.value)}
+                      className={`mt-2 ${inputCls}`}
+                      aria-invalid={!!errors.email}
+                    />
+                    {errors.email && <p className={errCls}>{errors.email}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="sr-company" className={labelCls}>
+                      Company
+                    </label>
+                    <input
+                      id="sr-company"
+                      type="text"
+                      maxLength={100}
+                      value={form.company}
+                      onChange={(e) => set("company", e.target.value)}
+                      className={`mt-2 ${inputCls}`}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="sr-whatsapp" className={labelCls}>
+                      WhatsApp / Phone
+                    </label>
+                    <input
+                      id="sr-whatsapp"
+                      type="tel"
+                      maxLength={30}
+                      value={form.whatsapp}
+                      onChange={(e) => set("whatsapp", e.target.value)}
+                      className={`mt-2 ${inputCls}`}
+                      placeholder="+234..."
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="sr-country" className={labelCls}>
+                      Country
+                    </label>
+                    <input
+                      id="sr-country"
+                      type="text"
+                      maxLength={60}
+                      value={form.country}
+                      onChange={(e) => set("country", e.target.value)}
+                      className={`mt-2 ${inputCls}`}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="sr-service" className={labelCls}>
+                      Service *
+                    </label>
+                    <select
+                      id="sr-service"
+                      required
+                      value={form.service}
+                      onChange={(e) => set("service", e.target.value)}
+                      className={`mt-2 ${inputCls}`}
+                      aria-invalid={!!errors.service}
+                    >
+                      <option value="">Select a service…</option>
+                      {SERVICES.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.service && <p className={errCls}>{errors.service}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="sr-budget" className={labelCls}>
+                      Estimated budget
+                    </label>
+                    <select
+                      id="sr-budget"
+                      value={form.budget}
+                      onChange={(e) => set("budget", e.target.value)}
+                      className={`mt-2 ${inputCls}`}
+                    >
+                      <option value="">Select…</option>
+                      {BUDGETS.map((b) => (
+                        <option key={b} value={b}>
+                          {b}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="sr-timeline" className={labelCls}>
+                      Timeline
+                    </label>
+                    <select
+                      id="sr-timeline"
+                      value={form.timeline}
+                      onChange={(e) => set("timeline", e.target.value)}
+                      className={`mt-2 ${inputCls}`}
+                    >
+                      <option value="">Select…</option>
+                      {TIMELINES.map((tl) => (
+                        <option key={tl} value={tl}>
+                          {tl}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <label htmlFor="sr-details" className={labelCls}>
+                    Project details *
+                  </label>
+                  <textarea
+                    id="sr-details"
+                    required
+                    rows={5}
+                    maxLength={2000}
+                    value={form.details}
+                    onChange={(e) => set("details", e.target.value)}
+                    className={`mt-2 ${inputCls} resize-y`}
+                    placeholder="Product, supplier country, quantities, destination market, current challenges…"
+                    aria-invalid={!!errors.details}
+                  />
+                  {errors.details && <p className={errCls}>{errors.details}</p>}
+                  <p className="mt-1 text-xs text-muted">{form.details.length}/2000 characters</p>
+                </div>
+              </fieldset>
+
+              {step === "requirements" && (
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="text-xs text-muted">
+                    Nothing is sent yet. Your request is submitted only after the Project Discovery
+                    Fee is paid.
+                  </p>
+                  <button
+                    type="submit"
+                    disabled={!track}
+                    className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                  >
+                    {t ? `Continue to Payment — ${t.fee}` : "Choose an engagement first"}
+                  </button>
+                </div>
+              )}
+
+              {step === "payment" && t && track && (
+                <div className="rounded-xl border border-accent/50 bg-accent/10 p-6">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-text">
+                    Step 3 — Pay the Project Discovery Fee
+                  </p>
+                  <p className="mt-2 font-display text-xl font-bold text-text">
+                    {t.label} — {t.fee} USD
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-text/90">
+                    Your requirements are saved in this browser and have not been sent. Complete
+                    payment to submit your request. The fee is non-refundable and credited toward
+                    your final professional service fee if you proceed.
+                  </p>
+
+                  {paymentReady ? (
+                    <>
+                      <a
+                        href={DISCOVERY_PAYMENT_LINKS[track]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-5 inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
+                      >
+                        Continue to Payment — {t.fee}
+                      </a>
+                      <div className="mt-5">
+                        <label htmlFor="sr-payref" className={labelCls}>
+                          Payment reference *
+                        </label>
+                        <input
+                          id="sr-payref"
+                          type="text"
+                          maxLength={80}
+                          value={paymentRef}
+                          onChange={(e) => setPaymentRef(e.target.value)}
+                          className={`mt-2 ${inputCls}`}
+                          placeholder="From your payment receipt"
+                        />
+                        {refError && <p className={errCls}>{refError}</p>}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={onSubmitPaidRequest}
+                        className="mt-4 inline-flex items-center justify-center rounded-md border-2 border-accent px-6 py-3 text-sm font-semibold text-text transition-colors hover:bg-accent/20"
+                      >
+                        Submit Paid Request
+                      </button>
+                    </>
+                  ) : (
+                    <div className="mt-5 rounded-lg border border-[#6B1026]/40 bg-bg p-4">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-[#6B1026]">
+                        Payment provider not connected
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-text/90">
+                        Online payment for the {t.fee} Project Discovery Fee is not live yet. A
+                        secure payment link (Paystack, Flutterwave, Stripe or similar) must be
+                        connected before requests can be submitted. Your details remain saved in
+                        this browser and nothing has been sent.
+                      </p>
+                      <button
+                        type="button"
+                        disabled
+                        className="mt-4 inline-flex cursor-not-allowed items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text opacity-50"
+                      >
+                        Continue to Payment — {t.fee}
+                      </button>
+                    </div>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => setStep("requirements")}
+                    className="mt-4 block text-xs font-semibold text-accent underline-offset-2 hover:underline"
+                  >
+                    ← Edit my requirements
+                  </button>
+                </div>
+              )}
+
               <p className="text-xs text-muted">
-                Submitting opens WhatsApp with your request pre-filled. Prefer email?{" "}
+                Questions before paying?{" "}
                 <a
-                  href={mailtoFallback}
+                  href={`mailto:${EMAIL}`}
                   className="font-semibold text-accent underline-offset-2 hover:underline"
                 >
-                  Send via email
+                  Email me
                 </a>
                 .
               </p>
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-              >
-                {track ? "Submit Requirements" : "Submit Request via WhatsApp"}
-              </button>
-            </div>
-
-            {sent && (
-              <div
-                role="status"
-                className="rounded-lg border border-accent/50 bg-accent/15 px-5 py-4 text-sm text-text"
-              >
-                {track ? (
-                  <>
-                    <p className="font-display text-base font-bold">
-                      Step 2 — Pay the {DISCOVERY_TRACKS[track].fee} Project Discovery Fee
-                    </p>
-                    <p className="mt-2 leading-relaxed">
-                      Your requirements for{" "}
-                      <strong>{DISCOVERY_TRACKS[track].label}</strong> have been sent. A secure
-                      payment link for the non-refundable {DISCOVERY_TRACKS[track].fee} Project
-                      Discovery Fee will be shared with you on WhatsApp or email. Project review
-                      begins once the fee is received, and the amount is credited toward your final
-                      professional service fee if you proceed.
-                    </p>
-                    <a
-                      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                        `Hello, I have submitted my requirements for ${DISCOVERY_TRACKS[track].label}. Please send the payment link for the ${DISCOVERY_TRACKS[track].fee} Project Discovery Fee.`,
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center justify-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
-                    >
-                      Request Discovery Fee Payment Link
-                    </a>
-                  </>
-                ) : (
-                  <>
-                    Thanks! Your request opened in WhatsApp. If it didn&rsquo;t, use the email link
-                    above.
-                  </>
-                )}
-              </div>
-            )}
-
-          </form>
-        </FadeIn>
+            </form>
+          </FadeIn>
+        )}
       </div>
     </section>
   );
