@@ -259,16 +259,38 @@ export function Pricing() {
           </ol>
         </FadeIn>
 
+        <FadeIn>
+          <div className="mt-6 rounded-xl border border-text/15 bg-surface p-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+              What the Project Discovery Fee covers
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-text/85">{DISCOVERY_COVERS}</p>
+            <p className="mt-3 text-sm italic leading-relaxed text-muted">{DISCOVERY_EXCLUDES}</p>
+          </div>
+        </FadeIn>
+
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           {services.map((s) => (
             <FadeIn key={s.title}>
               <article className="flex h-full flex-col rounded-2xl border border-text/15 bg-surface p-8 shadow-sm">
                 <h4 className="font-display text-xl font-bold text-text sm:text-2xl">{s.title}</h4>
-                <p className="mt-4 font-display text-3xl font-bold text-text sm:text-4xl">
+                <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-muted">
+                  Professional service fee
+                </p>
+                <p className="mt-1 font-display text-3xl font-bold text-text sm:text-4xl">
                   {s.price}
                   <span className="ml-1 text-base font-medium text-muted">USD</span>
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-text/85">{s.description}</p>
+
+                <div className="mt-4 rounded-lg border border-accent/40 bg-accent/10 p-4">
+                  <p className="font-display text-lg font-bold text-text">
+                    Project Discovery Fee: {s.discoveryFee}
+                    <span className="ml-1 text-xs font-medium text-muted">USD</span>
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-text/90">{s.discoveryIntro}</p>
+                </div>
+
+                <p className="mt-4 text-sm leading-relaxed text-text/85">{s.description}</p>
 
                 <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-text">
                   Includes
@@ -294,6 +316,7 @@ export function Pricing() {
                 <div className="mt-auto">
                   <a
                     href="#service-request"
+                    onClick={() => selectTrack(s.track)}
                     className="mt-8 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
                   >
                     {s.ctaLabel}
@@ -307,6 +330,7 @@ export function Pricing() {
             </FadeIn>
           ))}
         </div>
+
 
         <FadeIn>
           <p className="mt-10 text-sm text-muted">
