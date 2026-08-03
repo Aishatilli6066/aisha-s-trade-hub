@@ -167,13 +167,19 @@ export function ServiceRequestForm() {
     if (!track) return;
     if (!isPaymentConfigured(track)) return;
     if (paymentRef.trim().length < 4) {
-      setRefError("Enter the payment reference from your receipt");
+      setRefError("Enter the Flutterwave payment reference from your receipt");
+      return;
+    }
+    if (!receipt) {
+      setRefError("Upload your payment receipt");
       return;
     }
     setRefError("");
-    const message = buildMessage(form, track, paymentRef.trim());
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(waUrl, "_blank", "noopener,noreferrer");
+    const message = buildMessage(form, track, paymentRef.trim(), receipt.name);
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
+      `Paid Service Request — ${DISCOVERY_TRACKS[track].label} — Ref ${paymentRef.trim()}`,
+    )}&body=${encodeURIComponent(message)}`;
+    setSubmittedMessage(message);
     try {
       window.localStorage.removeItem(DRAFT_STORAGE_KEY);
     } catch {
@@ -181,6 +187,7 @@ export function ServiceRequestForm() {
     }
     setStep("done");
   }
+
 
   const inputCls =
     "w-full rounded-md border border-text/20 bg-bg px-3 py-2.5 text-sm text-text placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
