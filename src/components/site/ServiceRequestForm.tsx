@@ -497,9 +497,11 @@ export function ServiceRequestForm() {
                     {t.label} — {t.fee} USD
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-text/90">
-                    Your requirements are saved in this browser and have not been sent. Complete
-                    payment to submit your request. The fee is non-refundable and credited toward
-                    your final professional service fee if you proceed.
+                    Your requirements are saved in this browser and have not been sent. Pay the fee
+                    on Flutterwave, then enter your payment reference and upload your receipt to
+                    submit. Payments are <strong>verified manually</strong>. The fee is
+                    non-refundable and credited toward your final professional service fee if you
+                    proceed.
                   </p>
 
                   {paymentReady ? (
@@ -514,7 +516,7 @@ export function ServiceRequestForm() {
                       </a>
                       <div className="mt-5">
                         <label htmlFor="sr-payref" className={labelCls}>
-                          Payment reference *
+                          Flutterwave payment reference *
                         </label>
                         <input
                           id="sr-payref"
@@ -525,17 +527,34 @@ export function ServiceRequestForm() {
                           className={`mt-2 ${inputCls}`}
                           placeholder="From your payment receipt"
                         />
-                        {refError && <p className={errCls}>{refError}</p>}
                       </div>
+                      <div className="mt-4">
+                        <label htmlFor="sr-receipt" className={labelCls}>
+                          Payment receipt *
+                        </label>
+                        <input
+                          id="sr-receipt"
+                          type="file"
+                          accept="image/*,application/pdf"
+                          onChange={(e) => setReceipt(e.target.files?.[0] ?? null)}
+                          className={`mt-2 ${inputCls} file:mr-3 file:rounded file:border-0 file:bg-accent file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-text`}
+                        />
+                        <p className="mt-1 text-xs text-muted">
+                          Attach the receipt file to the email or WhatsApp message that opens after
+                          you submit.
+                        </p>
+                      </div>
+                      {refError && <p className={errCls}>{refError}</p>}
                       <button
                         type="button"
                         onClick={onSubmitPaidRequest}
                         className="mt-4 inline-flex items-center justify-center rounded-md border-2 border-accent px-6 py-3 text-sm font-semibold text-text transition-colors hover:bg-accent/20"
                       >
-                        Submit Paid Request
+                        Submit Paid Request for Verification
                       </button>
                     </>
                   ) : (
+
                     <div className="mt-5 rounded-lg border border-[#6B1026]/40 bg-bg p-4">
                       <p className="text-xs font-semibold uppercase tracking-wider text-[#6B1026]">
                         Payment provider not connected
