@@ -322,7 +322,7 @@ export function Pricing() {
           </div>
         </FadeIn>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {services.map((s) => (
             <FadeIn key={s.title}>
               <article className="flex h-full flex-col rounded-2xl border border-text/15 bg-surface p-8 shadow-sm">
