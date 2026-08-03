@@ -114,12 +114,15 @@ export function ServiceRequestForm() {
   const [track, setTrack] = useState<DiscoveryTrack | null>(null);
   const [step, setStep] = useState<Step>("requirements");
   const [paymentRef, setPaymentRef] = useState("");
+  const [receipt, setReceipt] = useState<File | null>(null);
+  const [submittedMessage, setSubmittedMessage] = useState("");
   const [refError, setRefError] = useState("");
 
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent<DiscoveryTrack>).detail;
-      if (detail === "sourcing" || detail === "commodity") {
+      if (detail in DISCOVERY_TRACKS) {
+
         setTrack(detail);
         setStep("requirements");
       }
