@@ -1,35 +1,21 @@
 import { FadeIn } from "./FadeIn";
-import { selectTrack, CONSULTATION_STEPS, DONE_FOR_YOU_STEPS } from "@/lib/discovery";
-
+import {
+  selectTrack,
+  CONSULTATION_STEPS,
+  DONE_FOR_YOU_STEPS,
+  CONSULTATION_PAYMENT_LINK,
+} from "@/lib/discovery";
 
 // ============================================================================
-// CALENDLY BOOKING LINK — ADVISORY ONLY
+// PAYMENTS — FLUTTERWAVE, MANUAL VERIFICATION
 // ----------------------------------------------------------------------------
-// The $250 International Trade Strategy Consultation is paid first through
-// Calendly's payment step, then the invitee questionnaire is completed, then
-// the client picks a time slot. Done-for-you services are scoped and quoted
-// separately via the service request form, so they have no booking link.
-//
-// QUESTIONNAIRE — added manually in the Calendly UI for the /30min event
-// (Event → Invitee Questions), which Calendly shows AFTER payment and BEFORE
-// the booking is confirmed. Calendly's public API does not expose writing
-// custom invitee questions.
-//   • Full Name (default Calendly field)
-//   • Email Address (default Calendly field)
-//   • Company Name (Optional)
-//   • Phone Number
-//   • Country
-//   • Industry or Business Type
-//   • What would you like to discuss during the consultation?
-//   • What are your primary goals for this session?
-//   • Any specific products, suppliers, or markets to discuss?
-//   • What challenges are you currently facing?
-//   • Links to relevant documents (specs, quotations, certificates)
+// Every payment on this site is verified BY HAND. After paying through the
+// Flutterwave link, the client completes the relevant form on the site,
+// enters the Flutterwave payment reference and uploads the receipt.
+// Nothing is auto-verified and nothing is auto-scheduled: the Cal.com
+// scheduling link for the consultation is sent by email/WhatsApp only after
+// the payment has been verified manually.
 // ============================================================================
-
-const CALENDLY_HANDLE = "aishausman-international";
-
-const CONSULTATION_CALENDLY_URL = `https://calendly.com/${CALENDLY_HANDLE}/30min`;
 
 const FEE_NOTE =
   "Final professional fee depends on product complexity, supplier location, quantity, verification requirements and project scope.";
@@ -41,6 +27,8 @@ const DISCOVERY_COVERS =
 
 const DISCOVERY_EXCLUDES =
   "It does not include supplier sourcing, market research, negotiations, document preparation, logistics coordination, or transaction execution.";
+
+
 
 
 type Service = {
