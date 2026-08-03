@@ -282,15 +282,31 @@ export function ServiceRequestForm() {
               className="mt-10 rounded-xl border border-accent/50 bg-accent/15 p-6 sm:p-8"
             >
               <p className="font-display text-xl font-bold text-text">
-                Payment received — request submitted
+                Request submitted — payment under manual review
               </p>
               <p className="mt-3 text-sm leading-relaxed text-text/90">
-                Your paid request for <strong>{t?.label}</strong> has been submitted with your
-                payment reference <strong>{paymentRef}</strong>. Project review begins now, and you
+                Your request for <strong>{t?.label}</strong> has been sent with your Flutterwave
+                payment reference <strong>{paymentRef}</strong> and receipt{" "}
+                <strong>{receipt?.name}</strong>. Your payment will be{" "}
+                <strong>verified manually</strong>. Once verified, project review begins and you
                 will receive a written proposal by email. The {t?.fee} Project Discovery Fee is
                 non-refundable and credited toward your final professional service fee if you
                 proceed.
               </p>
+              <p className="mt-3 text-sm leading-relaxed text-text/90">
+                Remember to attach your receipt to the email that opened. If it did not open, you
+                can{" "}
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(submittedMessage)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-accent underline-offset-2 hover:underline"
+                >
+                  send the same details on WhatsApp
+                </a>
+                .
+              </p>
+
             </div>
           </FadeIn>
         ) : (
