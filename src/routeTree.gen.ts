@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
+import { Route as ConsultationRouteImport } from './routes/consultation'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
@@ -24,6 +25,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const RssDotxmlRoute = RssDotxmlRouteImport.update({
   id: '/rss.xml',
   path: '/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultationRoute = ConsultationRouteImport.update({
+  id: '/consultation',
+  path: '/consultation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingRoute = BookingRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
   '/booking': typeof BookingRoute
+  '/consultation': typeof ConsultationRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
   '/booking': typeof BookingRoute
+  '/consultation': typeof ConsultationRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
   '/booking': typeof BookingRoute
+  '/consultation': typeof ConsultationRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -78,16 +87,25 @@ export interface FileRouteTypes {
     | '/'
     | '/blog'
     | '/booking'
+    | '/consultation'
     | '/rss.xml'
     | '/sitemap.xml'
     | '/blog/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog' | '/booking' | '/rss.xml' | '/sitemap.xml' | '/blog/$slug'
+  to:
+    | '/'
+    | '/blog'
+    | '/booking'
+    | '/consultation'
+    | '/rss.xml'
+    | '/sitemap.xml'
+    | '/blog/$slug'
   id:
     | '__root__'
     | '/'
     | '/blog'
     | '/booking'
+    | '/consultation'
     | '/rss.xml'
     | '/sitemap.xml'
     | '/blog/$slug'
@@ -97,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRouteWithChildren
   BookingRoute: typeof BookingRoute
+  ConsultationRoute: typeof ConsultationRoute
   RssDotxmlRoute: typeof RssDotxmlRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
@@ -115,6 +134,13 @@ declare module '@tanstack/react-router' {
       path: '/rss.xml'
       fullPath: '/rss.xml'
       preLoaderRoute: typeof RssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultation': {
+      id: '/consultation'
+      path: '/consultation'
+      fullPath: '/consultation'
+      preLoaderRoute: typeof ConsultationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/booking': {
@@ -162,6 +188,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
   BookingRoute: BookingRoute,
+  ConsultationRoute: ConsultationRoute,
   RssDotxmlRoute: RssDotxmlRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
