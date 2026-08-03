@@ -193,22 +193,33 @@ export function Pricing() {
               </ol>
 
               <p className="mt-4 text-sm leading-relaxed text-text/85">
-                You pay the $250 fee first. Immediately after successful payment you complete the
-                consultation questionnaire — including links or details for any relevant documents
-                — and only then choose the date and time for your 60-minute session.
+                You pay the $250 fee first through Flutterwave. You then complete the consultation
+                questionnaire on this site, enter your Flutterwave payment reference and upload your
+                receipt. Payments are verified manually — once verified, the Cal.com scheduling link
+                for your 60-minute session is sent to you by email or WhatsApp.
               </p>
 
-              <a
-                href={CONSULTATION_CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 sm:w-auto"
-              >
-                Pay $250 &amp; Continue to Questionnaire
-              </a>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={CONSULTATION_PAYMENT_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 sm:w-auto"
+                >
+                  Pay $250 Securely
+                </a>
+                <a
+                  href="/consultation"
+                  className="inline-flex w-full items-center justify-center rounded-md border border-text/20 px-6 py-3 text-sm font-semibold text-text transition-colors hover:border-accent sm:w-auto"
+                >
+                  Already Paid — Complete Questionnaire
+                </a>
+              </div>
               <p className="mt-2 text-xs text-muted">
-                Pay → Complete Questionnaire → Schedule Session
+                Pay → Questionnaire → Payment reference &amp; receipt → Manual verification →
+                Scheduling link sent
               </p>
+
 
             </div>
 
