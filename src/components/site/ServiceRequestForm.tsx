@@ -62,14 +62,19 @@ const INITIAL: FormState = {
   details: "",
 };
 
-function buildMessage(d: FormState, track: DiscoveryTrack, paymentRef: string) {
+function buildMessage(
+  d: FormState,
+  track: DiscoveryTrack,
+  paymentRef: string,
+  receiptName: string,
+) {
   const t = DISCOVERY_TRACKS[track];
-  return `PAID Service Request — ASMAN Prime Hub
+  return `PAID Service Request — AWAITING MANUAL PAYMENT VERIFICATION
 
 Engagement track: ${t.label}
 Project Discovery Fee: ${t.fee} USD
-Payment status: PAID
-Payment reference: ${paymentRef}
+Flutterwave payment reference: ${paymentRef}
+Payment receipt file: ${receiptName || "— not attached —"}
 
 Name: ${d.name}
 Email: ${d.email}
@@ -81,9 +86,12 @@ Service requested: ${d.service}
 Budget: ${d.budget || "—"}
 Timeline: ${d.timeline || "—"}
 
-Project details:
-${d.details}`;
+Project requirements:
+${d.details}
+
+Please attach the payment receipt to this message before sending.`;
 }
+
 
 function validate(d: FormState) {
   const errors: Partial<Record<keyof FormState, string>> = {};
