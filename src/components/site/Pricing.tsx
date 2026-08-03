@@ -4,7 +4,9 @@ import {
   CONSULTATION_STEPS,
   DONE_FOR_YOU_STEPS,
   CONSULTATION_PAYMENT_LINK,
+  type DiscoveryTrack,
 } from "@/lib/discovery";
+
 
 // ============================================================================
 // PAYMENTS — FLUTTERWAVE, MANUAL VERIFICATION
