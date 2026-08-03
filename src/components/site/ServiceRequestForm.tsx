@@ -139,7 +139,7 @@ export function ServiceRequestForm() {
       if (!raw) return;
       const parsed = JSON.parse(raw) as { form?: FormState; track?: DiscoveryTrack };
       if (parsed.form) setForm({ ...INITIAL, ...parsed.form });
-      if (parsed.track === "sourcing" || parsed.track === "commodity") setTrack(parsed.track);
+      if (parsed.track && parsed.track in DISCOVERY_TRACKS) setTrack(parsed.track);
     } catch {
       /* ignore malformed drafts */
     }
