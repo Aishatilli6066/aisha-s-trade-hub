@@ -98,16 +98,42 @@ const services: Service[] = [
     ctaLabel: "Complete Requirements — Commodity",
     track: "commodity",
   },
+  {
+    title: "Import & Export Business Plan Development",
+    price: "Starting from $500",
+    discoveryFee: "$100",
+    discoveryIntro:
+      "You complete your business plan requirements, then pay the non-refundable $100 Project Discovery Fee and submit your Flutterwave payment reference and receipt. Payment is verified manually before project review begins. The $100 is credited toward your final professional service fee if you proceed with the engagement.",
+    description:
+      "A structured, investor-ready import and export business plan built around your target products, markets and capital position — covering market selection, sourcing and supply strategy, costing, compliance requirements, logistics model and financial projections.",
+    includes: [
+      "Import/export business model definition",
+      "Target market and product selection analysis",
+      "Sourcing and supply chain strategy",
+      "Costing, pricing and landed cost modelling",
+      "Regulatory, licensing and compliance requirements",
+      "Logistics and shipping approach",
+      "Financial projections and capital requirements",
+      "Implementation roadmap and next steps",
+    ],
+    bestFor:
+      "Entrepreneurs, startups and established businesses formalising an import or export operation, or preparing a plan for funding, licensing or internal approval.",
+    disclaimer:
+      "This professional service fee covers business plan development only. It does not include company registration, licensing fees, the cost of goods, shipping, inspections, customs duties, taxes, certifications, or any other third-party expenses.",
+    ctaLabel: "Complete Requirements — Business Plan",
+    track: "businessplan",
+  },
 ];
 
 
 const consultationIncludes = [
-  "Consultation questionnaire completed after payment, before scheduling",
-  "Review of the information and document links you submit in the questionnaire",
-  "60-minute private video strategy session at a time you choose",
+  "Consultation questionnaire completed after payment, before verification",
+  "Review of the information and documents you submit in the questionnaire",
+  "60-minute private video strategy session, scheduled after manual payment verification",
   "Written recommendations and next-step action plan",
   "Three business days of limited WhatsApp follow-up for clarification",
 ];
+
 
 
 function Check() {
