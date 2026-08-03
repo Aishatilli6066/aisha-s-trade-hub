@@ -1,35 +1,23 @@
 import { FadeIn } from "./FadeIn";
-import { selectTrack, CONSULTATION_STEPS, DONE_FOR_YOU_STEPS } from "@/lib/discovery";
+import {
+  selectTrack,
+  CONSULTATION_STEPS,
+  DONE_FOR_YOU_STEPS,
+  CONSULTATION_PAYMENT_LINK,
+  type DiscoveryTrack,
+} from "@/lib/discovery";
 
 
 // ============================================================================
-// CALENDLY BOOKING LINK — ADVISORY ONLY
+// PAYMENTS — FLUTTERWAVE, MANUAL VERIFICATION
 // ----------------------------------------------------------------------------
-// The $250 International Trade Strategy Consultation is paid first through
-// Calendly's payment step, then the invitee questionnaire is completed, then
-// the client picks a time slot. Done-for-you services are scoped and quoted
-// separately via the service request form, so they have no booking link.
-//
-// QUESTIONNAIRE — added manually in the Calendly UI for the /30min event
-// (Event → Invitee Questions), which Calendly shows AFTER payment and BEFORE
-// the booking is confirmed. Calendly's public API does not expose writing
-// custom invitee questions.
-//   • Full Name (default Calendly field)
-//   • Email Address (default Calendly field)
-//   • Company Name (Optional)
-//   • Phone Number
-//   • Country
-//   • Industry or Business Type
-//   • What would you like to discuss during the consultation?
-//   • What are your primary goals for this session?
-//   • Any specific products, suppliers, or markets to discuss?
-//   • What challenges are you currently facing?
-//   • Links to relevant documents (specs, quotations, certificates)
+// Every payment on this site is verified BY HAND. After paying through the
+// Flutterwave link, the client completes the relevant form on the site,
+// enters the Flutterwave payment reference and uploads the receipt.
+// Nothing is auto-verified and nothing is auto-scheduled: the Cal.com
+// scheduling link for the consultation is sent by email/WhatsApp only after
+// the payment has been verified manually.
 // ============================================================================
-
-const CALENDLY_HANDLE = "aishausman-international";
-
-const CONSULTATION_CALENDLY_URL = `https://calendly.com/${CALENDLY_HANDLE}/30min`;
 
 const FEE_NOTE =
   "Final professional fee depends on product complexity, supplier location, quantity, verification requirements and project scope.";
@@ -43,6 +31,8 @@ const DISCOVERY_EXCLUDES =
   "It does not include supplier sourcing, market research, negotiations, document preparation, logistics coordination, or transaction execution.";
 
 
+
+
 type Service = {
   title: string;
   price: string;
@@ -53,7 +43,7 @@ type Service = {
   bestFor?: string;
   disclaimer?: string;
   ctaLabel: string;
-  track: "sourcing" | "commodity";
+  track: DiscoveryTrack;
 };
 
 const services: Service[] = [
@@ -110,16 +100,42 @@ const services: Service[] = [
     ctaLabel: "Complete Requirements — Commodity",
     track: "commodity",
   },
+  {
+    title: "Import & Export Business Plan Development",
+    price: "Starting from $500",
+    discoveryFee: "$100",
+    discoveryIntro:
+      "You complete your business plan requirements, then pay the non-refundable $100 Project Discovery Fee and submit your Flutterwave payment reference and receipt. Payment is verified manually before project review begins. The $100 is credited toward your final professional service fee if you proceed with the engagement.",
+    description:
+      "A structured, investor-ready import and export business plan built around your target products, markets and capital position — covering market selection, sourcing and supply strategy, costing, compliance requirements, logistics model and financial projections.",
+    includes: [
+      "Import/export business model definition",
+      "Target market and product selection analysis",
+      "Sourcing and supply chain strategy",
+      "Costing, pricing and landed cost modelling",
+      "Regulatory, licensing and compliance requirements",
+      "Logistics and shipping approach",
+      "Financial projections and capital requirements",
+      "Implementation roadmap and next steps",
+    ],
+    bestFor:
+      "Entrepreneurs, startups and established businesses formalising an import or export operation, or preparing a plan for funding, licensing or internal approval.",
+    disclaimer:
+      "This professional service fee covers business plan development only. It does not include company registration, licensing fees, the cost of goods, shipping, inspections, customs duties, taxes, certifications, or any other third-party expenses.",
+    ctaLabel: "Complete Requirements — Business Plan",
+    track: "businessplan",
+  },
 ];
 
 
 const consultationIncludes = [
-  "Consultation questionnaire completed after payment, before scheduling",
-  "Review of the information and document links you submit in the questionnaire",
-  "60-minute private video strategy session at a time you choose",
+  "Consultation questionnaire completed after payment, before verification",
+  "Review of the information and documents you submit in the questionnaire",
+  "60-minute private video strategy session, scheduled after manual payment verification",
   "Written recommendations and next-step action plan",
   "Three business days of limited WhatsApp follow-up for clarification",
 ];
+
 
 
 function Check() {
@@ -205,22 +221,33 @@ export function Pricing() {
               </ol>
 
               <p className="mt-4 text-sm leading-relaxed text-text/85">
-                You pay the $250 fee first. Immediately after successful payment you complete the
-                consultation questionnaire — including links or details for any relevant documents
-                — and only then choose the date and time for your 60-minute session.
+                You pay the $250 fee first through Flutterwave. You then complete the consultation
+                questionnaire on this site, enter your Flutterwave payment reference and upload your
+                receipt. Payments are verified manually — once verified, the Cal.com scheduling link
+                for your 60-minute session is sent to you by email or WhatsApp.
               </p>
 
-              <a
-                href={CONSULTATION_CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 sm:w-auto"
-              >
-                Pay $250 &amp; Continue to Questionnaire
-              </a>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={CONSULTATION_PAYMENT_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 sm:w-auto"
+                >
+                  Pay $250 Securely
+                </a>
+                <a
+                  href="/consultation"
+                  className="inline-flex w-full items-center justify-center rounded-md border border-text/20 px-6 py-3 text-sm font-semibold text-text transition-colors hover:border-accent sm:w-auto"
+                >
+                  Already Paid — Complete Questionnaire
+                </a>
+              </div>
               <p className="mt-2 text-xs text-muted">
-                Pay → Complete Questionnaire → Schedule Session
+                Pay → Questionnaire → Payment reference &amp; receipt → Manual verification →
+                Scheduling link sent
               </p>
+
 
             </div>
 
@@ -295,7 +322,7 @@ export function Pricing() {
           </div>
         </FadeIn>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {services.map((s) => (
             <FadeIn key={s.title}>
               <article className="flex h-full flex-col rounded-2xl border border-text/15 bg-surface p-8 shadow-sm">

@@ -62,14 +62,19 @@ const INITIAL: FormState = {
   details: "",
 };
 
-function buildMessage(d: FormState, track: DiscoveryTrack, paymentRef: string) {
+function buildMessage(
+  d: FormState,
+  track: DiscoveryTrack,
+  paymentRef: string,
+  receiptName: string,
+) {
   const t = DISCOVERY_TRACKS[track];
-  return `PAID Service Request — ASMAN Prime Hub
+  return `PAID Service Request — AWAITING MANUAL PAYMENT VERIFICATION
 
 Engagement track: ${t.label}
 Project Discovery Fee: ${t.fee} USD
-Payment status: PAID
-Payment reference: ${paymentRef}
+Flutterwave payment reference: ${paymentRef}
+Payment receipt file: ${receiptName || "— not attached —"}
 
 Name: ${d.name}
 Email: ${d.email}
@@ -81,9 +86,12 @@ Service requested: ${d.service}
 Budget: ${d.budget || "—"}
 Timeline: ${d.timeline || "—"}
 
-Project details:
-${d.details}`;
+Project requirements:
+${d.details}
+
+Please attach the payment receipt to this message before sending.`;
 }
+
 
 function validate(d: FormState) {
   const errors: Partial<Record<keyof FormState, string>> = {};
@@ -106,12 +114,15 @@ export function ServiceRequestForm() {
   const [track, setTrack] = useState<DiscoveryTrack | null>(null);
   const [step, setStep] = useState<Step>("requirements");
   const [paymentRef, setPaymentRef] = useState("");
+  const [receipt, setReceipt] = useState<File | null>(null);
+  const [submittedMessage, setSubmittedMessage] = useState("");
   const [refError, setRefError] = useState("");
 
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent<DiscoveryTrack>).detail;
-      if (detail === "sourcing" || detail === "commodity") {
+      if (detail in DISCOVERY_TRACKS) {
+
         setTrack(detail);
         setStep("requirements");
       }
@@ -128,7 +139,7 @@ export function ServiceRequestForm() {
       if (!raw) return;
       const parsed = JSON.parse(raw) as { form?: FormState; track?: DiscoveryTrack };
       if (parsed.form) setForm({ ...INITIAL, ...parsed.form });
-      if (parsed.track === "sourcing" || parsed.track === "commodity") setTrack(parsed.track);
+      if (parsed.track && parsed.track in DISCOVERY_TRACKS) setTrack(parsed.track);
     } catch {
       /* ignore malformed drafts */
     }
@@ -159,13 +170,19 @@ export function ServiceRequestForm() {
     if (!track) return;
     if (!isPaymentConfigured(track)) return;
     if (paymentRef.trim().length < 4) {
-      setRefError("Enter the payment reference from your receipt");
+      setRefError("Enter the Flutterwave payment reference from your receipt");
+      return;
+    }
+    if (!receipt) {
+      setRefError("Upload your payment receipt");
       return;
     }
     setRefError("");
-    const message = buildMessage(form, track, paymentRef.trim());
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(waUrl, "_blank", "noopener,noreferrer");
+    const message = buildMessage(form, track, paymentRef.trim(), receipt.name);
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
+      `Paid Service Request — ${DISCOVERY_TRACKS[track].label} — Ref ${paymentRef.trim()}`,
+    )}&body=${encodeURIComponent(message)}`;
+    setSubmittedMessage(message);
     try {
       window.localStorage.removeItem(DRAFT_STORAGE_KEY);
     } catch {
@@ -173,6 +190,7 @@ export function ServiceRequestForm() {
     }
     setStep("done");
   }
+
 
   const inputCls =
     "w-full rounded-md border border-text/20 bg-bg px-3 py-2.5 text-sm text-text placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
@@ -264,15 +282,31 @@ export function ServiceRequestForm() {
               className="mt-10 rounded-xl border border-accent/50 bg-accent/15 p-6 sm:p-8"
             >
               <p className="font-display text-xl font-bold text-text">
-                Payment received — request submitted
+                Request submitted — payment under manual review
               </p>
               <p className="mt-3 text-sm leading-relaxed text-text/90">
-                Your paid request for <strong>{t?.label}</strong> has been submitted with your
-                payment reference <strong>{paymentRef}</strong>. Project review begins now, and you
+                Your request for <strong>{t?.label}</strong> has been sent with your Flutterwave
+                payment reference <strong>{paymentRef}</strong> and receipt{" "}
+                <strong>{receipt?.name}</strong>. Your payment will be{" "}
+                <strong>verified manually</strong>. Once verified, project review begins and you
                 will receive a written proposal by email. The {t?.fee} Project Discovery Fee is
                 non-refundable and credited toward your final professional service fee if you
                 proceed.
               </p>
+              <p className="mt-3 text-sm leading-relaxed text-text/90">
+                Remember to attach your receipt to the email that opened. If it did not open, you
+                can{" "}
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(submittedMessage)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-accent underline-offset-2 hover:underline"
+                >
+                  send the same details on WhatsApp
+                </a>
+                .
+              </p>
+
             </div>
           </FadeIn>
         ) : (
@@ -463,9 +497,11 @@ export function ServiceRequestForm() {
                     {t.label} — {t.fee} USD
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-text/90">
-                    Your requirements are saved in this browser and have not been sent. Complete
-                    payment to submit your request. The fee is non-refundable and credited toward
-                    your final professional service fee if you proceed.
+                    Your requirements are saved in this browser and have not been sent. Pay the fee
+                    on Flutterwave, then enter your payment reference and upload your receipt to
+                    submit. Payments are <strong>verified manually</strong>. The fee is
+                    non-refundable and credited toward your final professional service fee if you
+                    proceed.
                   </p>
 
                   {paymentReady ? (
@@ -480,7 +516,7 @@ export function ServiceRequestForm() {
                       </a>
                       <div className="mt-5">
                         <label htmlFor="sr-payref" className={labelCls}>
-                          Payment reference *
+                          Flutterwave payment reference *
                         </label>
                         <input
                           id="sr-payref"
@@ -491,17 +527,34 @@ export function ServiceRequestForm() {
                           className={`mt-2 ${inputCls}`}
                           placeholder="From your payment receipt"
                         />
-                        {refError && <p className={errCls}>{refError}</p>}
                       </div>
+                      <div className="mt-4">
+                        <label htmlFor="sr-receipt" className={labelCls}>
+                          Payment receipt *
+                        </label>
+                        <input
+                          id="sr-receipt"
+                          type="file"
+                          accept="image/*,application/pdf"
+                          onChange={(e) => setReceipt(e.target.files?.[0] ?? null)}
+                          className={`mt-2 ${inputCls} file:mr-3 file:rounded file:border-0 file:bg-accent file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-text`}
+                        />
+                        <p className="mt-1 text-xs text-muted">
+                          Attach the receipt file to the email or WhatsApp message that opens after
+                          you submit.
+                        </p>
+                      </div>
+                      {refError && <p className={errCls}>{refError}</p>}
                       <button
                         type="button"
                         onClick={onSubmitPaidRequest}
                         className="mt-4 inline-flex items-center justify-center rounded-md border-2 border-accent px-6 py-3 text-sm font-semibold text-text transition-colors hover:bg-accent/20"
                       >
-                        Submit Paid Request
+                        Submit Paid Request for Verification
                       </button>
                     </>
                   ) : (
+
                     <div className="mt-5 rounded-lg border border-[#6B1026]/40 bg-bg p-4">
                       <p className="text-xs font-semibold uppercase tracking-wider text-[#6B1026]">
                         Payment provider not connected
