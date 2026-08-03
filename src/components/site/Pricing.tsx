@@ -41,7 +41,7 @@ type Service = {
   bestFor?: string;
   disclaimer?: string;
   ctaLabel: string;
-  track: "sourcing" | "commodity";
+  track: DiscoveryTrack;
 };
 
 const services: Service[] = [
