@@ -2,10 +2,12 @@ import { FadeIn } from "./FadeIn";
 
 const stats = [
   { value: "5+", label: "Years International Trade Experience" },
+  { value: "68+", label: "Clients Served" },
   { value: "4", label: "Continents — Clients Served" },
   { value: "50+", label: "Verified Suppliers" },
   { value: "10+", label: "Export Commodities" },
 ];
+
 
 const capabilities = [
   "International Supplier Network",
