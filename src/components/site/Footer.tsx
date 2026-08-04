@@ -1,4 +1,5 @@
 import { POLICY_LINKS } from "@/lib/site";
+import { WhatsAppIcon } from "./icons";
 
 const WHATSAPP = "https://wa.me/2347042322970";
 const EMAIL = "aishau6066@gmail.com";
@@ -46,9 +47,7 @@ export function Footer() {
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <SocialLink href={WHATSAPP} label="Message Aisha on WhatsApp" brandClass="hover:border-[#25D366] hover:text-[#25D366]">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.5 3.5A11.5 11.5 0 003.6 18.3L2 22l3.8-1.6A11.5 11.5 0 1020.5 3.5zm-8.5 18a9.5 9.5 0 01-4.8-1.3l-.3-.2-2.2.9.9-2.1-.2-.4A9.5 9.5 0 1112 21.5zm5.4-7.1c-.3-.1-1.7-.8-2-.9s-.5-.2-.6.2-.7.9-.9 1.1-.3.2-.6.1a7.9 7.9 0 01-2.3-1.4 8.6 8.6 0 01-1.6-2c-.2-.3 0-.5.1-.7l.4-.5.3-.5a.5.5 0 000-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-1 2.3 5.3 5.3 0 001.1 2.8 12 12 0 004.6 4 5.4 5.4 0 003.3.7 2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.2-1.3c-.1-.1-.3-.2-.6-.3z" />
-            </svg>
+            <WhatsAppIcon size={18} />
           </SocialLink>
           <SocialLink href={`mailto:${EMAIL}`} label="Email Aisha" brandClass="hover:border-accent hover:text-gold-deep">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
