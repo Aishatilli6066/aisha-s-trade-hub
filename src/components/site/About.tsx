@@ -1,4 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import { FadeIn } from "./FadeIn";
+
 
 const expertise = [
   "Supplier verification",
