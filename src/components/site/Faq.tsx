@@ -50,6 +50,14 @@ export const FAQS = [
     q: "How do I pay, and is my card safe?",
     a: "Payments are made through Flutterwave using the secure link for your chosen service. Card details are entered on Flutterwave's own platform and never touch this website. All that is submitted here is the payment reference and your receipt, used for manual verification.",
   },
+  {
+    q: "What is not included in the consultation?",
+    a: "The consultation does not include supplier sourcing, extensive market research, document preparation, negotiation, costing development or transaction management — those are quoted separately as done-for-you engagements. The three business days of follow-up cover brief clarification of what we discussed; new research or execution work is a separate engagement.",
+  },
+  {
+    q: "What payment terms apply to trade transactions?",
+    a: "For the professional service itself, the discovery fee is paid first and the remaining balance is quoted in your written proposal and paid before kickoff. For the underlying trade transaction with a supplier, TT terms are typically a 50–60% deposit, with the balance paid before shipment, after inspection or against agreed documents, depending on the transaction. For larger or higher-risk deals, an LC at sight is usually the safer structure and I will say so.",
+  },
 ] as const;
 
 export function Faq() {
