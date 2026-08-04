@@ -261,13 +261,14 @@ export function Pricing() {
 
         {/* -------------------------- DONE-FOR-YOU -------------------------- */}
         <FadeIn>
-          <div className="mt-16 flex items-center gap-4">
+          <div id="done-for-you" className="mt-16 flex scroll-mt-24 items-center gap-4">
             <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-gold-deep">
               Done-for-you Services
             </h3>
             <span aria-hidden="true" className="h-px flex-1 bg-text/15" />
           </div>
         </FadeIn>
+
 
         <FadeIn>
           <div className="mt-5">
