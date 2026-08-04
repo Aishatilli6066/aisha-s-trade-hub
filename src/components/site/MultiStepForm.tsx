@@ -59,6 +59,9 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
   const steps = spec.steps;
   const current = steps[step]!;
   const paymentDisabled = !spec.paymentLink;
+  const requiredCount = current.fields.filter((f) => f.required).length;
+  const errorCount = Object.keys(errors).length;
+
 
   // Restore draft (text answers only — files cannot be persisted).
   useEffect(() => {
