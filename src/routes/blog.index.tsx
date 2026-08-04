@@ -99,8 +99,9 @@ function BlogIndex() {
               </h2>
               <p className="mt-2 line-clamp-3 text-sm text-text/70">{p.excerpt || p.description}</p>
               <p className="mt-4 text-xs text-text/50">
-                {p.author} · {formatDate(p.date)}
+                {p.author} · {formatDate(p.date)} · {p.readingMinutes} min read
               </p>
+
             </li>
           ))}
         </ul>

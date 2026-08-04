@@ -1,14 +1,24 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getPostBySlug, getRelatedPosts, formatDate, type Post } from "@/lib/blog";
+import {
+  getPostBySlug,
+  getRelatedPosts,
+  getAdjacentPosts,
+  formatDate,
+  type Post,
+  type TocItem,
+} from "@/lib/blog";
 import { AuthorBio } from "@/components/site/AuthorBio";
 import { SITE_URL, OG_IMAGE } from "@/lib/site";
+
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
     const post = getPostBySlug(params.slug);
     if (!post) throw notFound();
-    return { post, related: getRelatedPosts(post) };
+    const { prev, next } = getAdjacentPosts(post.slug);
+    return { post, related: getRelatedPosts(post), prev, next };
   },
+
   head: ({ loaderData, params }) => {
     if (!loaderData) {
       return {
@@ -78,10 +88,11 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function PostPage() {
-  const { post, related } = Route.useLoaderData();
+  const { post, related, prev, next } = Route.useLoaderData();
+  const toc = post.toc.filter((t: TocItem) => t.level === 2);
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
+    <article className="mx-auto max-w-[46rem] px-5 py-12 sm:px-6 sm:py-20">
       <nav aria-label="Breadcrumb" className="mb-8 text-sm text-text/60">
         <Link to="/" className="hover:text-gold-deep">Home</Link>
         <span className="mx-2">/</span>
@@ -89,11 +100,11 @@ function PostPage() {
       </nav>
 
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-deep">{String(post.category)}</p>
-      <h1 className="mt-3 font-display text-4xl font-bold leading-tight tracking-tight text-text sm:text-5xl">
+      <h1 className="mt-3 font-display text-3xl font-bold leading-[1.15] tracking-tight text-text sm:text-4xl md:text-5xl">
         {post.title}
       </h1>
       <p className="mt-4 text-sm text-text/60">
-        By {post.author} · {formatDate(post.date)}
+        By {post.author} · {formatDate(post.date)} · {post.readingMinutes} min read
       </p>
 
       {post.image && (
@@ -104,12 +115,68 @@ function PostPage() {
         />
       )}
 
+      {toc.length > 3 && (
+        <nav
+          aria-label="Table of contents"
+          className="mt-10 rounded-lg border border-text/10 bg-text/[0.02] p-5 sm:p-6"
+        >
+          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-deep">
+            In this article
+          </h2>
+          <ol className="mt-3 space-y-2 text-sm">
+            {toc.map((t: TocItem, i: number) => (
+              <li key={t.id} className="flex gap-2">
+                <span className="text-text/40 tabular-nums">{i + 1}.</span>
+                <a href={`#${t.id}`} className="text-text/80 hover:text-gold-deep hover:underline">
+                  {t.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+
       <div
         className="prose-blog mt-10"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
 
       <AuthorBio />
+
+      {(prev || next) && (
+        <nav
+          aria-label="More articles"
+          className="mt-12 grid gap-4 border-t border-text/10 pt-8 sm:grid-cols-2"
+        >
+          {prev ? (
+            <Link
+              to="/blog/$slug"
+              params={{ slug: prev.slug }}
+              className="rounded-lg border border-text/10 p-4 transition-colors hover:border-accent/50"
+            >
+              <span className="text-xs uppercase tracking-wider text-text/50">Newer article</span>
+              <span className="mt-1 block font-display text-base font-semibold text-text">
+                {prev.title}
+              </span>
+            </Link>
+          ) : (
+            <span aria-hidden="true" className="hidden sm:block" />
+          )}
+          {next && (
+            <Link
+              to="/blog/$slug"
+              params={{ slug: next.slug }}
+              className="rounded-lg border border-text/10 p-4 transition-colors hover:border-accent/50 sm:text-right"
+            >
+              <span className="text-xs uppercase tracking-wider text-text/50">Older article</span>
+              <span className="mt-1 block font-display text-base font-semibold text-text">
+                {next.title}
+              </span>
+            </Link>
+          )}
+        </nav>
+      )}
+
 
       {related.length > 0 && (
         <aside className="mt-16 border-t border-text/10 pt-10">
