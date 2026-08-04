@@ -3,7 +3,7 @@ import {
   DISCOVERY_PAYMENT_LINKS,
   BUSINESS_PLAN_PAYMENT_LINK,
 } from "@/lib/discovery";
-import { paymentFields, type FormSpec } from "./types";
+import { buildConfirmation, paymentFields, type FormSpec } from "./types";
 
 const INCOTERMS = ["EXW", "FCA", "FOB", "CFR", "CIF", "DAP", "DDP", "Not sure"];
 const YES_NO = ["Yes", "No"];
@@ -29,8 +29,12 @@ const consultation: FormSpec = {
   submitLabel: "Submit Consultation Questionnaire for Verification",
   subject: (v) =>
     `Paid Consultation Questionnaire — ${v["full_name"] || "Client"} — ${v["pay_ref"] || "No reference"}`,
-  confirmation:
-    "Your questionnaire, payment reference and uploaded files have been emailed to Aisha and a confirmation copy has been sent to you. Your payment will be verified manually. After verification, the Cal.com scheduling link for your 60-minute consultation will be sent to you by email or WhatsApp — there is no automatic scheduling link.",
+  confirmation: buildConfirmation({
+    submitted: "consultation questionnaire",
+    review:
+      "nothing is auto-approved and nothing is auto-scheduled, and your session is confirmed only once verification is complete.",
+    next: "After verification you will receive the private scheduling link for your 60-minute session by email or WhatsApp, together with a short pre-session note on how to prepare.",
+  }),
   steps: [
     {
       title: "Client Information",
@@ -258,8 +262,12 @@ const sourcing: FormSpec = {
   submitLabel: "Submit Global Sourcing Request for Verification",
   subject: (v) =>
     `Global Sourcing Discovery Request — ${v["full_name"] || "Client"} — ${v["pay_ref"] || "No reference"}`,
-  confirmation:
-    "Your sourcing requirements, payment reference and uploaded files have been emailed to Aisha and a confirmation copy has been sent to you. Scope review begins only after your payment is verified manually. Once verified, you will receive a tailored written proposal covering scope, timeline and the final fee.",
+  confirmation: buildConfirmation({
+    submitted: "global sourcing requirements",
+    review:
+      "scope review begins only once your $100 Project Discovery Fee is verified.",
+    next: "After verification you will receive a written sourcing proposal covering scope, supplier-verification approach, timeline and the final professional fee, with the discovery fee credited if you proceed.",
+  }),
   steps: [
     {
       title: "Client and Company Information",
@@ -548,8 +556,12 @@ const commodity: FormSpec = {
     `Commodity Buyer Discovery Request — ${v["company"] || v["full_name"] || "Buyer"} — ${
       v["commodity"] || "Commodity"
     } — ${v["pay_ref"] || "No reference"}`,
-  confirmation:
-    "Your commodity requirements, payment reference and uploaded files have been emailed to Aisha and a confirmation copy has been sent to you. Scope and feasibility review begins only after your payment is verified manually. Once verified, you will receive a written proposal or a request for clarification.",
+  confirmation: buildConfirmation({
+    submitted: "commodity buyer requirements",
+    review:
+      "feasibility and scope review begins only once your $150 Project Discovery Fee is verified.",
+    next: "After verification you will receive a written buyer-representation proposal covering scope, sourcing and inspection approach, timeline and the final professional fee — or a short request for clarification where a specification is unclear.",
+  }),
   steps: [
     {
       title: "Buyer and Company Information",
@@ -813,8 +825,12 @@ const businessPlan: FormSpec = {
     `Import & Export Business Plan Request — ${v["full_name"] || "Client"} — ${
       v["pay_ref"] || "No reference"
     }`,
-  confirmation:
-    "Your business plan requirements, payment reference and uploaded files have been emailed to Aisha and a confirmation copy has been sent to you. Scope review begins only after your payment is verified manually. Once verified, you will receive a written proposal showing the final fee, timeline, deliverables and payment balance.",
+  confirmation: buildConfirmation({
+    submitted: "business plan requirements",
+    review:
+      "scope review begins only once your $100 Project Discovery Fee is verified.",
+    next: "After verification you will receive a written proposal covering the plan structure, deliverables, timeline, final fee and the balance payable, with the discovery fee credited if you proceed.",
+  }),
   steps: [
     {
       title: "Client and Business Information",
@@ -823,8 +839,14 @@ const businessPlan: FormSpec = {
         { id: "email", label: "Email", type: "email", required: true },
         { id: "whatsapp", label: "WhatsApp number (with country code)", type: "tel", required: true },
         { id: "country", label: "Country", type: "text", required: true },
-        { id: "business_name", label: "Business name", type: "text" },
-        { id: "proposed_name", label: "Registered or proposed business name", type: "text" },
+        {
+          id: "business_name",
+          label: "Registered or proposed business name",
+          type: "text",
+          required: true,
+          help: "If the business is not registered yet, give the name you intend to use.",
+        },
+
         { id: "reg_no", label: "Company registration number", type: "text" },
         { id: "website", label: "Website", type: "url" },
         { id: "industry", label: "Industry", type: "text" },

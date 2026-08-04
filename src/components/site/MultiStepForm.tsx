@@ -59,6 +59,9 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
   const steps = spec.steps;
   const current = steps[step]!;
   const paymentDisabled = !spec.paymentLink;
+  const requiredCount = current.fields.filter((f) => f.required).length;
+  const errorCount = Object.keys(errors).length;
+
 
   // Restore draft (text answers only — files cannot be persisted).
   useEffect(() => {
@@ -293,11 +296,12 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
 
   return (
     <div ref={topRef} className="scroll-mt-24">
-      {/* Flow overview */}
-      <ol className="flex flex-wrap items-center gap-x-2 gap-y-2 text-[11px] font-semibold uppercase tracking-wider text-text/70">
+      {/* Flow overview — scrolls sideways on small screens instead of wrapping into a wall of chips */}
+      <ol className="-mx-4 flex snap-x items-center gap-x-2 gap-y-2 overflow-x-auto px-4 pb-1 text-[11px] font-semibold uppercase tracking-wider text-text/70 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
         {spec.flow.map((f, i) => (
-          <li key={f} className="flex items-center gap-2">
+          <li key={f} className="flex shrink-0 snap-start items-center gap-2">
             <span className="rounded-full border border-text/15 bg-surface px-3 py-1.5">{f}</span>
+
             {i < spec.flow.length - 1 && (
               <span aria-hidden="true" className="text-gold-deep">
                 →
@@ -351,6 +355,33 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
         {current.description && (
           <p className="mt-2 text-sm leading-relaxed text-text/80">{current.description}</p>
         )}
+
+        {requiredCount > 0 && (
+          <p className="mt-3 text-xs leading-relaxed text-muted">
+            <span aria-hidden="true" className="font-semibold text-[#B00020]">
+              *
+            </span>{" "}
+            marks a required answer — {requiredCount} on this step. Everything marked “optional” can
+            be left blank.
+          </p>
+        )}
+
+        {errorCount > 0 && (
+          <div
+            role="alert"
+            className="mt-4 rounded-lg border-2 border-[#B00020] bg-[#B00020]/5 p-4 text-sm leading-relaxed text-text"
+          >
+            <p className="font-semibold text-[#B00020]">
+              {errorCount === 1
+                ? "1 answer still needs your attention"
+                : `${errorCount} answers still need your attention`}
+            </p>
+            <p className="mt-1.5">
+              The fields below are highlighted in red. Complete them to continue.
+            </p>
+          </div>
+        )}
+
 
         {current.examples && (
           <div className="mt-4 rounded-lg border border-text/15 bg-bg p-4">
@@ -575,14 +606,40 @@ function Field({
 }) {
   const [fileMsg, setFileMsg] = useState<string | null>(null);
   const id = `f-${field.id}`;
+  const errorId = `${id}-error`;
+  const helpId = `${id}-help`;
   const isReceipt = field.fileKind === "receipt";
+
+  const describedBy =
+    [field.help ? helpId : null, error ? errorId : null].filter(Boolean).join(" ") || undefined;
+
+  const aria = {
+    "aria-required": field.required ? (true as const) : undefined,
+    "aria-invalid": error ? (true as const) : undefined,
+    "aria-describedby": describedBy,
+    autoComplete: autoCompleteFor(field),
+  };
+
+  const inputCls = error ? `${inputBase} border-[#B00020] focus:border-[#B00020] focus:ring-[#B00020]/25` : inputBase;
+
+  const marker = field.required ? (
+    <>
+      <span aria-hidden="true" className="ml-1 font-semibold text-[#B00020]">
+        *
+      </span>
+      <span className="sr-only"> (required)</span>
+    </>
+  ) : (
+    <span className="ml-1 font-normal text-muted">(optional)</span>
+  );
 
   const label = (
     <label htmlFor={id} className="block text-sm font-medium text-text">
       {field.label}
-      {field.required && <span className="ml-1 text-gold-deep">*</span>}
+      {marker}
     </label>
   );
+
 
   function handleFiles(list: FileList | null) {
     const arr = Array.from(list ?? []);
@@ -612,12 +669,13 @@ function Field({
         <input
           id={id}
           type={field.type === "url" ? "text" : field.type}
-          inputMode={field.type === "tel" ? "tel" : undefined}
+          inputMode={field.type === "tel" ? "tel" : field.type === "email" ? "email" : undefined}
           value={typeof value === "string" ? value : ""}
           placeholder={field.placeholder}
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
-          className={inputBase}
+          className={inputCls}
+          {...aria}
         />
       )}
 
@@ -629,7 +687,8 @@ function Field({
           placeholder={field.placeholder}
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
-          className={inputBase}
+          className={inputCls}
+          {...aria}
         />
       )}
 
@@ -639,7 +698,8 @@ function Field({
           value={typeof value === "string" ? value : ""}
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
-          className={inputBase}
+          className={inputCls}
+          {...aria}
         >
           <option value="">Select…</option>
           {field.options?.map((o) => (
@@ -651,11 +711,12 @@ function Field({
       )}
 
       {field.type === "checkboxes" && (
-        <fieldset>
+        <fieldset aria-describedby={describedBy}>
           <legend className="text-sm font-medium text-text">
             {field.label}
-            {field.required && <span className="ml-1 text-gold-deep">*</span>}
+            {marker}
           </legend>
+
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {field.options?.map((o) => {
               const selected = asArray(value).includes(o);
@@ -703,10 +764,13 @@ function Field({
             multiple={!isReceipt}
             accept={isReceipt ? RECEIPT_ACCEPT : DOCS_ACCEPT}
             disabled={disabled}
+            aria-required={field.required ? true : undefined}
+            aria-invalid={error || fileMsg ? true : undefined}
+            aria-describedby={`${helpId}${error ? ` ${errorId}` : ""}`}
             onChange={(e) => handleFiles(e.target.files)}
             className="mt-2 block w-full text-sm text-text/85 file:mr-3 file:min-h-11 file:rounded-md file:border-0 file:bg-accent file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-text"
           />
-          <p className="mt-1.5 text-xs text-muted">
+          <p id={helpId} className="mt-1.5 text-xs text-muted">
             {field.help ??
               `PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG or WebP. Maximum ${MAX_DOCS} files, 10 MB each.`}
           </p>
@@ -717,14 +781,52 @@ function Field({
               ))}
             </ul>
           )}
-          {fileMsg && <p className="mt-1.5 text-sm font-medium text-[#B00020]">{fileMsg}</p>}
+          {fileMsg && (
+            <p role="alert" className="mt-1.5 text-sm font-medium text-[#B00020]">
+              {fileMsg}
+            </p>
+          )}
         </>
       )}
 
       {field.help && field.type !== "files" && (
-        <p className="mt-1.5 text-xs text-muted">{field.help}</p>
+        <p id={helpId} className="mt-1.5 text-xs text-muted">
+          {field.help}
+        </p>
       )}
-      {error && <p className="mt-1.5 text-sm font-medium text-[#B00020]">{error}</p>}
+      {error && (
+        <p id={errorId} className="mt-1.5 text-sm font-medium text-[#B00020]">
+          {error}
+        </p>
+      )}
     </div>
+
   );
+}
+
+/** Mobile-friendly autofill hints so common fields fill from the keyboard bar. */
+function autoCompleteFor(field: FieldSpec): string | undefined {
+  switch (field.id) {
+    case "full_name":
+      return "name";
+    case "email":
+    case "pay_email":
+      return "email";
+    case "whatsapp":
+    case "phone":
+      return "tel";
+    case "company":
+    case "company_name":
+      return "organization";
+    case "role":
+    case "job_title":
+      return "organization-title";
+    case "country":
+      return "country-name";
+    case "website":
+    case "company_website":
+      return "url";
+    default:
+      return field.type === "textarea" || field.type === "select" ? undefined : "off";
+  }
 }
