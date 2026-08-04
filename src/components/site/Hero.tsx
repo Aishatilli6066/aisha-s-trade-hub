@@ -71,17 +71,18 @@ export function Hero() {
 
             <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap md:justify-start">
               <a
-                href="#pricing"
+                href="#advisory"
                 className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 Book a Strategy Consultation
               </a>
               <a
-                href="#pricing"
+                href="#done-for-you"
                 className="inline-flex items-center justify-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 Submit a Service Request
               </a>
+
             </div>
 
             <div className="mt-6 text-sm">

@@ -1,4 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import { FadeIn } from "./FadeIn";
+
 
 const expertise = [
   "Supplier verification",
@@ -68,6 +70,21 @@ export function About() {
               </li>
             ))}
           </ul>
+
+          <div className="mt-10 border-t border-text/10 pt-6">
+            <p className="text-sm leading-relaxed text-text/85">
+              Explore practical insights on sourcing, export transactions, supplier verification and
+              international trade.
+            </p>
+            <Link
+              to="/blog"
+              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-gold-deep underline-offset-4 hover:underline"
+            >
+              Read Trade Insights
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
         </FadeIn>
       </div>
     </section>

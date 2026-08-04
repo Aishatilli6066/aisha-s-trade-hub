@@ -16,8 +16,9 @@ export const FAQS = [
   },
   {
     q: "What happens after I submit a form and pay?",
-    a: "Payments are verified manually, normally within one business day. For consultations, a private scheduling link is sent to you by email or WhatsApp once payment is confirmed. For done-for-you services, scope and feasibility review begins and your written proposal follows. There is no automatic verification and no public booking link, so submitting a form alone does not confirm a booking.",
+    a: "Payments are verified manually, normally within one business day. For consultations, a private scheduling link is sent to you by email or WhatsApp once payment is confirmed, and the session itself is held as a scheduled private video call. Consultations are delivered through a scheduled private video session; project communication, document exchange and post-consultation clarification are handled in writing by email or WhatsApp. For done-for-you services, scope and feasibility review begins and your written proposal follows. There is no automatic verification and no public booking link, so submitting a form alone does not confirm a booking.",
   },
+
   {
     q: "Are the fees refundable?",
     a: "Fees become non-refundable once review or preparation has begun, because that is what the fee pays for. If payment has been received but no work has started, a refund request is considered in good faith. Duplicate payments are refunded. Full detail is in the Payment, Refund, Rescheduling and Cancellation Policy.",

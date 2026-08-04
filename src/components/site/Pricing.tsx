@@ -188,13 +188,14 @@ export function Pricing() {
 
         {/* ------------------------------ ADVISORY ------------------------- */}
         <FadeIn>
-          <div className="mt-12 flex items-center gap-4">
+          <div id="advisory" className="mt-12 flex scroll-mt-24 items-center gap-4">
             <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-gold-deep">
               Advisory
             </h3>
             <span aria-hidden="true" className="h-px flex-1 bg-text/15" />
           </div>
         </FadeIn>
+
 
         <FadeIn>
           <article className="mt-6 grid min-w-0 gap-8 rounded-2xl border-2 border-accent/50 bg-surface p-6 shadow-md sm:p-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:p-10">
@@ -214,6 +215,12 @@ export function Pricing() {
                 export strategy, supplier verification, pricing, logistics or market entry. You get
                 clear answers and a written next-step plan.
               </p>
+              <p className="mt-3 text-sm leading-relaxed text-text/75">
+                Consultations are delivered through a scheduled private video session. Project
+                communication, document exchange and post-consultation clarification are handled in
+                writing by email or WhatsApp.
+              </p>
+
 
               <div className="mt-6 min-w-0">
                 <Stepper steps={CONSULTATION_FLOW} />
@@ -254,13 +261,14 @@ export function Pricing() {
 
         {/* -------------------------- DONE-FOR-YOU -------------------------- */}
         <FadeIn>
-          <div className="mt-16 flex items-center gap-4">
+          <div id="done-for-you" className="mt-16 flex scroll-mt-24 items-center gap-4">
             <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-gold-deep">
               Done-for-you Services
             </h3>
             <span aria-hidden="true" className="h-px flex-1 bg-text/15" />
           </div>
         </FadeIn>
+
 
         <FadeIn>
           <div className="mt-5">
