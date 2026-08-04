@@ -293,11 +293,12 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
 
   return (
     <div ref={topRef} className="scroll-mt-24">
-      {/* Flow overview */}
-      <ol className="flex flex-wrap items-center gap-x-2 gap-y-2 text-[11px] font-semibold uppercase tracking-wider text-text/70">
+      {/* Flow overview — scrolls sideways on small screens instead of wrapping into a wall of chips */}
+      <ol className="-mx-4 flex snap-x items-center gap-x-2 gap-y-2 overflow-x-auto px-4 pb-1 text-[11px] font-semibold uppercase tracking-wider text-text/70 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
         {spec.flow.map((f, i) => (
-          <li key={f} className="flex items-center gap-2">
+          <li key={f} className="flex shrink-0 snap-start items-center gap-2">
             <span className="rounded-full border border-text/15 bg-surface px-3 py-1.5">{f}</span>
+
             {i < spec.flow.length - 1 && (
               <span aria-hidden="true" className="text-gold-deep">
                 →
