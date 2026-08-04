@@ -11,7 +11,6 @@ const links = [
   { href: "/#work", label: "Work" },
   { href: "/blog", label: "Blog" },
   { href: "/#faq", label: "FAQ" },
-  { href: "/#service-request", label: "Request" },
 ];
 
 export function Nav() {

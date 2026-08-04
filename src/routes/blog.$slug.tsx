@@ -210,7 +210,7 @@ function PostPage() {
         </p>
         <Link
           to="/"
-          hash="service-request"
+          hash="pricing"
           className="mt-4 inline-block rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-bg"
         >
           Request a proposal
