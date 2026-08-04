@@ -17,6 +17,7 @@ import { Route as PaymentPolicyRouteImport } from './routes/payment-policy'
 import { Route as ConsultationRouteImport } from './routes/consultation'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as RequestServiceRouteImport } from './routes/request.$service'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiPublicSubmitRequestRouteImport } from './routes/api/public/submit-request'
@@ -61,6 +62,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogRoute,
+} as any)
 const RequestServiceRoute = RequestServiceRouteImport.update({
   id: '/request/$service',
   path: '/request/$service',
@@ -88,11 +94,11 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/request/$service': typeof RequestServiceRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/public/submit-request': typeof ApiPublicSubmitRequestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/blog': typeof BlogRouteWithChildren
   '/consultation': typeof ConsultationRoute
   '/payment-policy': typeof PaymentPolicyRoute
   '/privacy': typeof PrivacyRoute
@@ -101,6 +107,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/request/$service': typeof RequestServiceRoute
+  '/blog': typeof BlogIndexRoute
   '/api/public/submit-request': typeof ApiPublicSubmitRequestRoute
 }
 export interface FileRoutesById {
@@ -115,6 +122,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/request/$service': typeof RequestServiceRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/public/submit-request': typeof ApiPublicSubmitRequestRoute
 }
 export interface FileRouteTypes {
@@ -130,11 +138,11 @@ export interface FileRouteTypes {
     | '/terms'
     | '/blog/$slug'
     | '/request/$service'
+    | '/blog/'
     | '/api/public/submit-request'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/blog'
     | '/consultation'
     | '/payment-policy'
     | '/privacy'
@@ -143,6 +151,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/blog/$slug'
     | '/request/$service'
+    | '/blog'
     | '/api/public/submit-request'
   id:
     | '__root__'
@@ -156,6 +165,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/blog/$slug'
     | '/request/$service'
+    | '/blog/'
     | '/api/public/submit-request'
   fileRoutesById: FileRoutesById
 }
@@ -230,6 +240,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
     '/request/$service': {
       id: '/request/$service'
       path: '/request/$service'
@@ -256,10 +273,12 @@ declare module '@tanstack/react-router' {
 
 interface BlogRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 const BlogRouteChildren: BlogRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
