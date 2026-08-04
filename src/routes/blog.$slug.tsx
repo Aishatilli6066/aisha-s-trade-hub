@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getPostBySlug, getRelatedPosts, formatDate, type Post } from "@/lib/blog";
 import { AuthorBio } from "@/components/site/AuthorBio";
+import { SITE_URL, OG_IMAGE } from "@/lib/site";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
