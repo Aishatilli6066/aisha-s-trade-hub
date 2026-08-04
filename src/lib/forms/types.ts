@@ -88,3 +88,24 @@ export function paymentFields(): FieldSpec[] {
     },
   ];
 }
+
+/**
+ * Builds a confirmation message with the same shape on every form so the
+ * post-submission promise reads consistently across all four services.
+ * 1) what was delivered, 2) what happens during manual verification,
+ * 3) what the client receives next.
+ */
+export function buildConfirmation(parts: {
+  /** What the client submitted, e.g. "consultation questionnaire". */
+  submitted: string;
+  /** What Aisha does after manual payment verification. */
+  review: string;
+  /** What the client receives next, and how. */
+  next: string;
+}): string {
+  return [
+    `Your ${parts.submitted}, payment reference and uploaded files have been emailed to Aisha, and a confirmation copy has been sent to you.`,
+    `Your payment is verified manually — ${parts.review}`,
+    parts.next,
+  ].join(" ");
+}
