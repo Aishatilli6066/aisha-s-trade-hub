@@ -38,6 +38,8 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [restored, setRestored] = useState(false);
+  const [draftMsg, setDraftMsg] = useState<string | null>(null);
+  const [autosave, setAutosave] = useState(true);
   const topRef = useRef<HTMLDivElement>(null);
 
   const steps = spec.steps;
@@ -62,12 +64,38 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
   }, [spec.id, steps.length]);
 
   useEffect(() => {
+    if (!autosave) return;
     try {
       window.localStorage.setItem(draftKey(spec.id), JSON.stringify({ values, step }));
     } catch {
       /* storage unavailable */
     }
-  }, [values, step, spec.id]);
+  }, [values, step, spec.id, autosave]);
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(draftKey(spec.id), JSON.stringify({ values, step }));
+      setAutosave(true);
+      setDraftMsg("Draft saved on this device. Payment reference is kept; the receipt file must be re-selected.");
+    } catch {
+      setDraftMsg("Could not save the draft — browser storage is unavailable.");
+    }
+  }
+
+  function clearDraft() {
+    const ok = window.confirm(
+      "Clear the saved draft from this device? Your current answers stay on screen — only the stored copy is removed.",
+    );
+    if (!ok) return;
+    try {
+      window.localStorage.removeItem(draftKey(spec.id));
+    } catch {
+      /* ignore */
+    }
+    setAutosave(false);
+    setRestored(false);
+    setDraftMsg("Saved draft cleared. Nothing on this form was erased — press “Save draft” to store it again.");
+  }
 
   function setValue(id: string, v: string | string[]) {
     setValues((prev) => ({ ...prev, [id]: v }));
