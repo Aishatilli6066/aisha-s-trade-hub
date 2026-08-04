@@ -383,31 +383,54 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
               <p className="mt-3 text-sm font-medium text-[#B00020]">{errors["__consent"]}</p>
             )}
             <div className="mt-6 rounded-lg border border-text/15 bg-bg p-4 text-sm leading-relaxed text-text/85">
-              Submitting opens your email app with every answer pre-filled.{" "}
+              Submitting sends your answers{" "}
               <strong className="font-semibold">
-                Your receipt and supporting documents are not sent automatically
+                and your uploaded receipt and documents as real attachments
               </strong>{" "}
-              — attach the files listed in the email before you send it.
+              straight to Aisha. You do not need to open an email app — a confirmation copy is
+              emailed to you automatically.
             </div>
           </fieldset>
+        )}
+
+        {sendError && (
+          <div
+            role="alert"
+            className="mt-6 rounded-lg border-2 border-[#B00020] bg-[#B00020]/5 p-4 text-sm leading-relaxed text-text"
+          >
+            <p className="font-semibold text-[#B00020]">Submission failed</p>
+            <p className="mt-1.5">{sendError}</p>
+            <p className="mt-1.5 text-xs text-muted">
+              Your answers are still on this page and saved on this device. Uploaded files are still
+              selected — press Retry to send again.
+            </p>
+          </div>
         )}
 
         <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
           <button
             type="button"
             onClick={() => go(-1)}
-            disabled={step === 0}
+            disabled={step === 0 || sending}
             className="inline-flex min-h-12 w-full items-center justify-center rounded-md border border-text/20 px-6 py-3 text-sm font-semibold text-text transition-colors hover:border-accent disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
           >
             Back
           </button>
           <button
             type="submit"
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 sm:w-auto"
+            disabled={sending}
+            className="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            {step === steps.length - 1 ? spec.submitLabel : "Next"}
+            {step === steps.length - 1
+              ? sending
+                ? "Sending…"
+                : sendError
+                  ? "Retry submission"
+                  : spec.submitLabel
+              : "Next"}
           </button>
         </div>
+
 
         <div className="mt-6 border-t border-text/10 pt-5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
