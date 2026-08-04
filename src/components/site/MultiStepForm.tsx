@@ -575,14 +575,38 @@ function Field({
 }) {
   const [fileMsg, setFileMsg] = useState<string | null>(null);
   const id = `f-${field.id}`;
+  const errorId = `${id}-error`;
+  const helpId = `${id}-help`;
   const isReceipt = field.fileKind === "receipt";
+
+  const describedBy =
+    [field.help ? helpId : null, error ? errorId : null].filter(Boolean).join(" ") || undefined;
+
+  const aria = {
+    "aria-required": field.required ? (true as const) : undefined,
+    "aria-invalid": error ? (true as const) : undefined,
+    "aria-describedby": describedBy,
+    autoComplete: autoCompleteFor(field),
+  };
+
+  const marker = field.required ? (
+    <>
+      <span aria-hidden="true" className="ml-1 font-semibold text-[#B00020]">
+        *
+      </span>
+      <span className="sr-only"> (required)</span>
+    </>
+  ) : (
+    <span className="ml-1 font-normal text-muted">(optional)</span>
+  );
 
   const label = (
     <label htmlFor={id} className="block text-sm font-medium text-text">
       {field.label}
-      {field.required && <span className="ml-1 text-gold-deep">*</span>}
+      {marker}
     </label>
   );
+
 
   function handleFiles(list: FileList | null) {
     const arr = Array.from(list ?? []);
