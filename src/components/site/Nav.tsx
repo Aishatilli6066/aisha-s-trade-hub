@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import logo from "@/assets/asman-prime-hub-logo.png";
+import { WhatsAppIcon } from "./icons";
 
 const WHATSAPP = "https://wa.me/2347042322970";
 
@@ -61,8 +62,9 @@ export function Nav() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
+            <WhatsAppIcon size={16} />
             WhatsApp
           </a>
         </div>
@@ -108,8 +110,9 @@ export function Nav() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="mt-2 inline-flex w-full items-center justify-center rounded-md bg-accent px-4 py-3 text-sm font-semibold text-text"
+                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md bg-accent px-4 py-3 text-sm font-semibold text-text"
               >
+                <WhatsAppIcon size={16} />
                 WhatsApp
               </a>
             </li>
