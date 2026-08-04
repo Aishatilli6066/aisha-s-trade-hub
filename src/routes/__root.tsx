@@ -77,11 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Aisha Usman — International Trade Consultant | Kano, Nigeria" },
+      { title: "Aisha Usman | International Trade Consultant & Global Sourcing Specialist" },
       {
         name: "description",
         content:
-          "International Trade Consultant and Global Sourcing Specialist based in Kano, Nigeria. Supplier verification, commodity export, landed cost analysis, OEM coordination, and import/export business consulting across Asia, Africa, the Middle East, and Europe.",
+          "International Trade Consultant helping businesses with global sourcing, supplier verification, procurement, import/export strategy, and international trade advisory.",
       },
       {
         name: "keywords",
@@ -89,14 +89,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "international trade consultant Nigeria, global sourcing specialist, supplier verification, import export consultant, sesame export Nigeria, commodity export consultant, trade business plan, Kano Nigeria trade consultant",
       },
       { name: "author", content: "Aisha Usman" },
-      { property: "og:title", content: "Aisha Usman — International Trade Consultant" },
-      {
-        property: "og:description",
-        content:
-          "Global sourcing, supplier verification, commodity export, and import/export business consulting from Kano, Nigeria.",
-      },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Aisha Usman — International Trade Consulting" },
+      { property: "og:site_name", content: "Aisha Usman" },
       { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "geo.region", content: "NG-KN" },
