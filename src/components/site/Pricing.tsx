@@ -123,7 +123,7 @@ function Check() {
 
 function Stepper({ steps }: { steps: string[] }) {
   return (
-    <ol className="-mx-4 flex snap-x items-center gap-2 overflow-x-auto px-4 pb-1 text-[11px] font-semibold uppercase tracking-wider text-text/75 sm:mx-0 sm:flex-wrap sm:px-0">
+    <ol className="flex w-full min-w-0 snap-x items-center gap-2 overflow-x-auto pb-1 text-[11px] font-semibold uppercase tracking-wider text-text/75 sm:flex-wrap">
       {steps.map((step, i) => (
         <li key={step} className="flex shrink-0 items-center gap-2">
           <span className="whitespace-nowrap rounded-full border border-text/15 bg-bg px-3 py-1.5">
@@ -197,8 +197,8 @@ export function Pricing() {
         </FadeIn>
 
         <FadeIn>
-          <article className="mt-6 grid gap-8 rounded-2xl border-2 border-accent/50 bg-surface p-6 shadow-md sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:p-10">
-            <div>
+          <article className="mt-6 grid min-w-0 gap-8 rounded-2xl border-2 border-accent/50 bg-surface p-6 shadow-md sm:p-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:p-10">
+            <div className="min-w-0">
               <h4 className="font-display text-2xl font-bold text-text sm:text-3xl">
                 International Trade Strategy Consultation
               </h4>
@@ -215,7 +215,7 @@ export function Pricing() {
                 clear answers and a written next-step plan.
               </p>
 
-              <div className="mt-6">
+              <div className="mt-6 min-w-0">
                 <Stepper steps={CONSULTATION_FLOW} />
               </div>
 
