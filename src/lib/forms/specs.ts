@@ -839,8 +839,14 @@ const businessPlan: FormSpec = {
         { id: "email", label: "Email", type: "email", required: true },
         { id: "whatsapp", label: "WhatsApp number (with country code)", type: "tel", required: true },
         { id: "country", label: "Country", type: "text", required: true },
-        { id: "business_name", label: "Business name", type: "text" },
-        { id: "proposed_name", label: "Registered or proposed business name", type: "text" },
+        {
+          id: "business_name",
+          label: "Registered or proposed business name",
+          type: "text",
+          required: true,
+          help: "If the business is not registered yet, give the name you intend to use.",
+        },
+
         { id: "reg_no", label: "Company registration number", type: "text" },
         { id: "website", label: "Website", type: "url" },
         { id: "industry", label: "Industry", type: "text" },
