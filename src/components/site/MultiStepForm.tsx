@@ -37,6 +37,9 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
   const [consents, setConsents] = useState<boolean[]>(() => CONSENTS.map(() => false));
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
+  const [clientEmailSent, setClientEmailSent] = useState(true);
   const [restored, setRestored] = useState(false);
   const [draftMsg, setDraftMsg] = useState<string | null>(null);
   const [autosave, setAutosave] = useState(true);
