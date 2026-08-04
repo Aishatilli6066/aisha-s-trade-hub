@@ -33,7 +33,7 @@ export function ProofStrip() {
           </h2>
         </FadeIn>
 
-        <dl className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
+        <dl className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
           {stats.map((s) => (
             <FadeIn key={s.label}>
               <div className="rounded-lg border border-accent/30 bg-bg p-5 text-center">
