@@ -30,7 +30,7 @@ const consultation: FormSpec = {
   subject: (v) =>
     `Paid Consultation Questionnaire — ${v["full_name"] || "Client"} — ${v["pay_ref"] || "No reference"}`,
   confirmation:
-    "Your questionnaire and payment evidence have been prepared for submission. Please ensure your receipt and selected supporting documents are attached to the email before sending. Your payment will be verified manually. After verification, the Cal.com scheduling link for your 60-minute consultation will be sent by email or WhatsApp.",
+    "Your questionnaire, payment reference and uploaded files have been emailed to Aisha and a confirmation copy has been sent to you. Your payment will be verified manually. After verification, the Cal.com scheduling link for your 60-minute consultation will be sent to you by email or WhatsApp — there is no automatic scheduling link.",
   steps: [
     {
       title: "Client Information",
@@ -259,7 +259,7 @@ const sourcing: FormSpec = {
   subject: (v) =>
     `Global Sourcing Discovery Request — ${v["full_name"] || "Client"} — ${v["pay_ref"] || "No reference"}`,
   confirmation:
-    "Your sourcing requirements and payment evidence have been prepared for submission. Attach your receipt and selected documents to the email before sending. Payment will be verified manually before project assessment begins. After verification, you will receive a tailored written proposal.",
+    "Your sourcing requirements, payment reference and uploaded files have been emailed to Aisha and a confirmation copy has been sent to you. Scope review begins only after your payment is verified manually. Once verified, you will receive a tailored written proposal covering scope, timeline and the final fee.",
   steps: [
     {
       title: "Client and Company Information",
@@ -549,7 +549,7 @@ const commodity: FormSpec = {
       v["commodity"] || "Commodity"
     } — ${v["pay_ref"] || "No reference"}`,
   confirmation:
-    "Your commodity requirements and payment evidence have been prepared for submission. Attach the receipt and supporting documents before sending the email. Payment will be verified manually before feasibility review begins. After verification, you will receive a written proposal or a request for clarification.",
+    "Your commodity requirements, payment reference and uploaded files have been emailed to Aisha and a confirmation copy has been sent to you. Scope and feasibility review begins only after your payment is verified manually. Once verified, you will receive a written proposal or a request for clarification.",
   steps: [
     {
       title: "Buyer and Company Information",
@@ -814,7 +814,7 @@ const businessPlan: FormSpec = {
       v["pay_ref"] || "No reference"
     }`,
   confirmation:
-    "Your business plan requirements and payment evidence have been prepared for submission. Attach your receipt and supporting documents before sending the email. Payment will be verified manually before scope review begins. After verification, you will receive a written proposal showing the final fee, timeline, deliverables and payment balance.",
+    "Your business plan requirements, payment reference and uploaded files have been emailed to Aisha and a confirmation copy has been sent to you. Scope review begins only after your payment is verified manually. Once verified, you will receive a written proposal showing the final fee, timeline, deliverables and payment balance.",
   steps: [
     {
       title: "Client and Business Information",
