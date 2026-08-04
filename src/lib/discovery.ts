@@ -44,11 +44,9 @@ export function selectTrack(track: DiscoveryTrack) {
 // ============================================================================
 export const CONSULTATION_PAYMENT_LINK = "https://flutterwave.com/pay/dpfjpkic7pmw";
 
-// NOTE: the Import & Export Business Plan service has NO dedicated Flutterwave
-// link yet. Leave this empty string until the real link is supplied — never
-// reuse the Global Sourcing link. Replacing this one constant activates the
-// payment button on the Business Plan form.
-export const BUSINESS_PLAN_PAYMENT_LINK = "";
+// Dedicated Flutterwave link for the Import & Export Business Plan service.
+// Never reuse the Global Sourcing link here.
+export const BUSINESS_PLAN_PAYMENT_LINK = "https://flutterwave.com/pay/vxbmaha2nvyr";
 
 export const DISCOVERY_PAYMENT_LINKS: Record<DiscoveryTrack, string> = {
   sourcing: "https://flutterwave.com/pay/wkqkjka4juf2",
