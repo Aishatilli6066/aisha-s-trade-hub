@@ -11,14 +11,14 @@ export function Upwork() {
     >
       <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 sm:py-24">
         <FadeIn>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
             Upwork
           </p>
           <h2
             id="upwork-title"
             className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl"
           >
-            Prefer Working Through <span className="text-accent">Upwork?</span>
+            Prefer Working Through <span className="text-gold-deep">Upwork?</span>
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-text/85 sm:text-lg">
             Businesses and entrepreneurs who prefer platform-based engagements can hire me

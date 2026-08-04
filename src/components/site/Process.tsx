@@ -33,7 +33,7 @@ export function Process() {
     <section id="process" aria-labelledby="process-title" className="bg-surface border-b border-text/10">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
             Engagement Process
           </p>
           <h2 id="process-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
@@ -44,7 +44,7 @@ export function Process() {
           {steps.map((s) => (
             <li key={s.n}>
               <FadeIn>
-                <div className="font-display text-sm tracking-widest text-accent">{s.n}</div>
+                <div className="font-display text-sm tracking-widest text-gold-deep">{s.n}</div>
                 <h3 className="mt-3 font-display text-lg font-semibold text-text">{s.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-text/80">{s.desc}</p>
               </FadeIn>

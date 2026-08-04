@@ -48,7 +48,7 @@ export function WhyWorkWithMe() {
     <section id="why" aria-labelledby="why-title" className="bg-bg border-b border-text/10">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
             Advisor Value
           </p>
           <h2 id="why-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
@@ -59,7 +59,7 @@ export function WhyWorkWithMe() {
           {points.map((p) => (
             <FadeIn key={p.title}>
               <div className="h-full rounded-lg border border-text/15 bg-surface p-6 transition-colors hover:border-accent/40">
-                <h3 className="font-display text-base font-semibold text-accent">{p.title}</h3>
+                <h3 className="font-display text-base font-semibold text-gold-deep">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-text/80">{p.description}</p>
               </div>
             </FadeIn>

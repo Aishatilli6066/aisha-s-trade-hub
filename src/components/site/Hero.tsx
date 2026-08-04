@@ -77,7 +77,7 @@ export function Hero() {
               </a>
               <a
                 href="#service-request"
-                className="inline-flex items-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="inline-flex items-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 Submit a Service Request
               </a>
