@@ -215,6 +215,12 @@ export function Pricing() {
                 export strategy, supplier verification, pricing, logistics or market entry. You get
                 clear answers and a written next-step plan.
               </p>
+              <p className="mt-3 text-sm leading-relaxed text-text/75">
+                Consultations are delivered through a scheduled private video session. Project
+                communication, document exchange and post-consultation clarification are handled in
+                writing by email or WhatsApp.
+              </p>
+
 
               <div className="mt-6 min-w-0">
                 <Stepper steps={CONSULTATION_FLOW} />
