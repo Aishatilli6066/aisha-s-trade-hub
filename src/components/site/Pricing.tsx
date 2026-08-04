@@ -1,11 +1,6 @@
+import { useState } from "react";
 import { FadeIn } from "./FadeIn";
-import {
-  CONSULTATION_STEPS,
-  DONE_FOR_YOU_STEPS,
-  CONSULTATION_PAYMENT_LINK,
-  type DiscoveryTrack,
-} from "@/lib/discovery";
-
+import { CONSULTATION_PAYMENT_LINK, type DiscoveryTrack } from "@/lib/discovery";
 
 // ============================================================================
 // PAYMENTS — FLUTTERWAVE, MANUAL VERIFICATION
@@ -25,29 +20,39 @@ const TRACK_ROUTES: Record<DiscoveryTrack, string> = {
   businessplan: "/request/business-plan",
 };
 
-const FEE_NOTE =
-  "Final professional fee depends on product complexity, supplier location, quantity, verification requirements and project scope.";
+const CONSULTATION_FLOW = ["Pay", "Questionnaire", "Verification", "Session scheduled"];
 
-const PROCESS_STEPS = DONE_FOR_YOU_STEPS;
+const DFY_FLOW = [
+  "Complete Requirements",
+  "Pay Discovery Fee",
+  "Review",
+  "Proposal",
+  "Kickoff",
+];
 
-const DISCOVERY_COVERS =
-  "The Project Discovery Fee covers initial project review, feasibility assessment, scope definition, risk identification, and preparation of a tailored written proposal.";
+const consultationIncludes = [
+  "60-minute private strategy session",
+  "Review of submitted information and documents",
+  "Written recommendations and next-step action plan",
+  "Three business days of brief clarification support",
+  "Secure scheduling link after payment verification",
+];
 
-const DISCOVERY_EXCLUDES =
-  "It does not include supplier sourcing, market research, negotiations, document preparation, logistics coordination, or transaction execution.";
+const CONSULTATION_EXCLUSIONS =
+  "The consultation does not include supplier sourcing, extensive market research, document preparation, negotiation, costing development or transaction management — these are quoted separately. Follow-up support covers brief clarification of what we discussed; new research or execution work is billed as a separate engagement.";
 
+const DISCOVERY_NOTE =
+  "The Project Discovery Fee covers initial review, feasibility assessment, scope definition, risk identification and preparation of a tailored written proposal. It does not include project execution. If you proceed, the proposal states the remaining professional fee and payment terms.";
 
-
+const DISCOVERY_EXCLUSIONS =
+  "It does not include supplier sourcing, market research, negotiations, document preparation, logistics coordination or transaction execution, and it excludes the cost of goods, freight, inspections, customs duties, taxes, certifications and laboratory testing. Payment terms for trade transactions are confirmed in the proposal — TT: typically 50–60% deposit, with the balance paid before shipment, after inspection or against agreed documents, depending on the transaction. For larger or higher-risk deals an LC at sight may be recommended instead.";
 
 type Service = {
   title: string;
   price: string;
   discoveryFee: string;
-  discoveryIntro: string;
   description: string;
   includes: string[];
-  bestFor?: string;
-  disclaimer?: string;
   ctaLabel: string;
   track: DiscoveryTrack;
 };
@@ -55,94 +60,47 @@ type Service = {
 const services: Service[] = [
   {
     title: "Global Sourcing and Procurement",
-    price: "Starting from $500",
+    price: "From $500",
     discoveryFee: "$100",
-    discoveryIntro:
-      "You complete your project requirements, then pay the non-refundable $100 Project Discovery Fee. Your request is submitted only after payment succeeds. The $100 is credited toward your final professional service fee if you proceed with the engagement.",
-
     description:
-      "A comprehensive sourcing and procurement engagement for businesses ready to purchase products internationally — covering product requirements, specifications, quality standards, budget, destination market and timeline before work begins.",
+      "Product sourcing, supplier identification and verification, quotation comparison, price negotiation and procurement coordination for businesses buying internationally.",
     includes: [
-      "Product sourcing",
-      "Supplier identification",
-      "Supplier verification",
-      "Supplier quotation comparison",
-      "Price negotiation",
-      "Factory communication",
-      "Procurement coordination",
-      "Ongoing sourcing support",
+      "Supplier identification and verification",
+      "Quotation comparison and price negotiation",
+      "Factory communication and procurement coordination",
     ],
-    bestFor:
-      "Businesses requiring hands-on support for sourcing, procurement, and manufacturing coordination.",
-    disclaimer:
-      "This professional service fee covers sourcing and procurement support only. It does not include the cost of goods, shipping, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
     ctaLabel: "Complete Requirements — Sourcing",
     track: "sourcing",
   },
   {
     title: "Agricultural Commodity Buyer Representation",
-    price: "Starting from $750",
+    price: "From $750",
     discoveryFee: "$150",
-    discoveryIntro:
-      "You complete your commodity requirements, then pay the non-refundable $150 Project Discovery Fee. Your request is submitted only after payment succeeds. The $150 is credited toward your final professional service fee if you proceed with the engagement.",
-
     description:
-      "End-to-end buyer representation for international companies sourcing agricultural commodities from Nigeria. I act as your sourcing partner throughout procurement — ensuring credible suppliers, competitive pricing, and compliance with your quality, documentation and logistics requirements.",
+      "End-to-end buyer representation for international companies sourcing Nigerian agricultural commodities — credible suppliers, verified quality, competitive pricing and export-ready documentation.",
     includes: [
-      "Dedicated buyer representation",
-      "End-to-end agricultural commodity sourcing",
-      "Supplier identification, screening, and verification",
-      "Quality assessment and compliance verification",
-      "Commercial price negotiation",
-      "Export documentation and compliance guidance",
-      "Logistics and shipment coordination",
-      "Procurement management through export readiness",
-      "Ongoing transaction support and communication",
+      "Supplier screening, verification and quality checks",
+      "Commercial negotiation and export compliance guidance",
+      "Logistics coordination through export readiness",
     ],
-    bestFor:
-      "Importers, distributors, manufacturers, wholesalers, and procurement teams sourcing Nigerian agricultural commodities — sesame seeds, hibiscus flowers, dry ginger, gum arabic, cashew kernels, coconut shell charcoal, soybeans, shea products, and other export-ready commodities.",
-    disclaimer:
-      "This professional service fee covers buyer representation and sourcing support only. It does not include the cost of goods, freight, inspections, customs duties, taxes, certifications, laboratory testing, or any other third-party expenses.",
     ctaLabel: "Complete Requirements — Commodity",
     track: "commodity",
   },
   {
     title: "Import & Export Business Plan Development",
-    price: "Starting from $500",
+    price: "From $500",
     discoveryFee: "$100",
-    discoveryIntro:
-      "You complete your business plan requirements, then pay the non-refundable $100 Project Discovery Fee and submit your Flutterwave payment reference and receipt. Payment is verified manually before project review begins. The $100 is credited toward your final professional service fee if you proceed with the engagement.",
     description:
-      "A structured, investor-ready import and export business plan built around your target products, markets and capital position — covering market selection, sourcing and supply strategy, costing, compliance requirements, logistics model and financial projections.",
+      "An investor-ready import/export plan built around your target products, markets and capital position — including costing, compliance and financial projections.",
     includes: [
-      "Import/export business model definition",
-      "Target market and product selection analysis",
-      "Sourcing and supply chain strategy",
-      "Costing, pricing and landed cost modelling",
-      "Regulatory, licensing and compliance requirements",
-      "Logistics and shipping approach",
-      "Financial projections and capital requirements",
-      "Implementation roadmap and next steps",
+      "Market, product and sourcing strategy",
+      "Landed cost, pricing and financial projections",
+      "Compliance requirements and implementation roadmap",
     ],
-    bestFor:
-      "Entrepreneurs, startups and established businesses formalising an import or export operation, or preparing a plan for funding, licensing or internal approval.",
-    disclaimer:
-      "This professional service fee covers business plan development only. It does not include company registration, licensing fees, the cost of goods, shipping, inspections, customs duties, taxes, certifications, or any other third-party expenses.",
     ctaLabel: "Complete Requirements — Business Plan",
     track: "businessplan",
   },
 ];
-
-
-const consultationIncludes = [
-  "Consultation questionnaire completed after payment, before verification",
-  "Review of the information and documents you submit in the questionnaire",
-  "60-minute private video strategy session, scheduled after manual payment verification",
-  "Written recommendations and next-step action plan",
-  "Three business days of limited WhatsApp follow-up for clarification",
-];
-
-
 
 function Check() {
   return (
@@ -163,28 +121,74 @@ function Check() {
   );
 }
 
+function Stepper({ steps }: { steps: string[] }) {
+  return (
+    <ol className="-mx-4 flex snap-x items-center gap-2 overflow-x-auto px-4 pb-1 text-[11px] font-semibold uppercase tracking-wider text-text/75 sm:mx-0 sm:flex-wrap sm:px-0">
+      {steps.map((step, i) => (
+        <li key={step} className="flex shrink-0 items-center gap-2">
+          <span className="whitespace-nowrap rounded-full border border-text/15 bg-bg px-3 py-1.5">
+            {step}
+          </span>
+          {i < steps.length - 1 && (
+            <span aria-hidden="true" className="text-gold-deep">
+              →
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function Details({ summary, children }: { summary: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="mt-4">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-deep outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        {summary}
+        <span aria-hidden="true" className={open ? "rotate-45 transition-transform" : "transition-transform"}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+        </span>
+      </button>
+      {open && <p className="mt-2 text-xs italic leading-relaxed text-muted">{children}</p>}
+    </div>
+  );
+}
+
 export function Pricing() {
   return (
     <section id="pricing" aria-labelledby="pricing-title" className="border-b border-text/10 bg-bg">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
-            Engagements
+            Services &amp; Engagement Options
           </p>
           <h2 id="pricing-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            Work With Me
+            Work With Aisha
           </h2>
-          <p className="mt-4 max-w-3xl text-base text-text/80 sm:text-lg">
-            Advisory is booked and paid directly. Done-for-you services are scoped first, then
-            quoted in a written proposal before any payment is made.
-          </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 sm:gap-6">
+            <p className="text-sm leading-relaxed text-text/85 sm:text-base">
+              <span className="font-semibold text-text">Advisory</span> — a standalone 60-minute
+              session for expert direction, problem-solving or a second opinion.
+            </p>
+            <p className="text-sm leading-relaxed text-text/85 sm:text-base">
+              <span className="font-semibold text-text">Done-for-you services</span> — project
+              engagements where I execute the work. These are scoped through a discovery fee and
+              quoted in a written proposal before kickoff.
+            </p>
+          </div>
         </FadeIn>
 
-        {/* ---------------------------------------------------------------- */}
-        {/* ADVISORY                                                          */}
-        {/* ---------------------------------------------------------------- */}
+        {/* ------------------------------ ADVISORY ------------------------- */}
         <FadeIn>
-          <div className="mt-14 flex items-center gap-4">
+          <div className="mt-12 flex items-center gap-4">
             <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-gold-deep">
               Advisory
             </h3>
@@ -193,7 +197,7 @@ export function Pricing() {
         </FadeIn>
 
         <FadeIn>
-          <article className="mt-6 grid gap-8 rounded-2xl border-2 border-accent/50 bg-surface p-8 shadow-md lg:grid-cols-[1.1fr_1fr] lg:p-10">
+          <article className="mt-6 grid gap-8 rounded-2xl border-2 border-accent/50 bg-surface p-6 shadow-md sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:p-10">
             <div>
               <h4 className="font-display text-2xl font-bold text-text sm:text-3xl">
                 International Trade Strategy Consultation
@@ -205,35 +209,17 @@ export function Pricing() {
               <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gold-deep">
                 60-minute private video session
               </p>
-              <p className="mt-5 text-sm leading-relaxed text-text/85 sm:text-base">
-                A private advisory engagement for businesses requiring expert direction on sourcing,
-                importation, export strategy, supplier verification, pricing, logistics, payment
-                terms or market entry.
+              <p className="mt-4 text-sm leading-relaxed text-text/85 sm:text-base">
+                Private advisory for businesses needing expert direction on sourcing, importation,
+                export strategy, supplier verification, pricing, logistics or market entry. You get
+                clear answers and a written next-step plan.
               </p>
 
-              <ol className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-wider text-text/75">
-                {CONSULTATION_STEPS.map((step, i) => (
-                  <li key={step} className="flex items-center gap-3">
-                    <span className="rounded-full border border-text/15 bg-bg px-4 py-2">
-                      {step}
-                    </span>
-                    {i < CONSULTATION_STEPS.length - 1 && (
-                      <span aria-hidden="true" className="text-gold-deep">
-                        →
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ol>
+              <div className="mt-6">
+                <Stepper steps={CONSULTATION_FLOW} />
+              </div>
 
-              <p className="mt-4 text-sm leading-relaxed text-text/85">
-                You pay the $250 fee first through Flutterwave. You then complete the consultation
-                questionnaire on this site, enter your Flutterwave payment reference and upload your
-                receipt. Payments are verified manually — once verified, the Cal.com scheduling link
-                for your 60-minute session is sent to you by email or WhatsApp.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={CONSULTATION_PAYMENT_LINK}
                   target="_blank"
@@ -244,17 +230,11 @@ export function Pricing() {
                 </a>
                 <a
                   href="/consultation"
-                  className="inline-flex w-full items-center justify-center rounded-md border border-text/20 px-6 py-3 text-sm font-semibold text-text transition-colors hover:border-accent sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-md px-2 py-3 text-sm font-semibold text-gold-deep underline-offset-4 hover:underline sm:w-auto"
                 >
-                  Already Paid — Complete Questionnaire
+                  Already paid? Complete questionnaire
                 </a>
               </div>
-              <p className="mt-2 text-xs text-muted">
-                Pay → Questionnaire → Payment reference &amp; receipt → Manual verification →
-                Scheduling link sent
-              </p>
-
-
             </div>
 
             <div>
@@ -267,94 +247,52 @@ export function Pricing() {
                   </li>
                 ))}
               </ul>
-
-              <div className="mt-6 rounded-lg border border-accent/40 bg-accent/10 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider text-text">
-                  Follow-up support
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-text/90">
-                  Includes three business days of WhatsApp follow-up for brief clarification on
-                  recommendations discussed during the consultation. New research, document
-                  preparation, supplier sourcing, costing, negotiation or transaction management is
-                  billed separately.
-                </p>
-              </div>
-
-              <p className="mt-4 text-xs italic leading-relaxed text-muted">
-                This consultation does not include supplier sourcing, extensive market research,
-                document preparation, negotiation, costing development or transaction management.
-                These services are quoted separately.
-              </p>
+              <Details summary="What is not included">{CONSULTATION_EXCLUSIONS}</Details>
             </div>
           </article>
         </FadeIn>
 
-        {/* ---------------------------------------------------------------- */}
-        {/* DONE-FOR-YOU SERVICES                                             */}
-        {/* ---------------------------------------------------------------- */}
+        {/* -------------------------- DONE-FOR-YOU -------------------------- */}
         <FadeIn>
-          <div className="mt-20 flex items-center gap-4">
+          <div className="mt-16 flex items-center gap-4">
             <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-gold-deep">
-              Done-For-You Services
+              Done-for-you Services
             </h3>
             <span aria-hidden="true" className="h-px flex-1 bg-text/15" />
           </div>
         </FadeIn>
 
         <FadeIn>
-          <ol className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-wider text-text/75">
-            {PROCESS_STEPS.map((step, i) => (
-              <li key={step} className="flex items-center gap-3">
-                <span className="rounded-full border border-text/15 bg-surface px-4 py-2">
-                  {step}
-                </span>
-                {i < PROCESS_STEPS.length - 1 && (
-                  <span aria-hidden="true" className="text-gold-deep">
-                    →
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </FadeIn>
-
-        <FadeIn>
-          <div className="mt-6 rounded-xl border border-text/15 bg-surface p-6">
-            <p className="text-xs font-semibold uppercase tracking-wider text-gold-deep">
-              What the Project Discovery Fee covers
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-text/85">{DISCOVERY_COVERS}</p>
-            <p className="mt-3 text-sm italic leading-relaxed text-muted">{DISCOVERY_EXCLUDES}</p>
+          <div className="mt-5">
+            <Stepper steps={DFY_FLOW} />
           </div>
         </FadeIn>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <FadeIn>
+          <div className="mt-5 rounded-xl border border-text/15 bg-surface p-5">
+            <p className="text-sm leading-relaxed text-text/85">{DISCOVERY_NOTE}</p>
+            <Details summary="What the discovery fee does not cover">
+              {DISCOVERY_EXCLUSIONS}
+            </Details>
+          </div>
+        </FadeIn>
+
+        <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {services.map((s) => (
             <FadeIn key={s.title}>
-              <article className="flex h-full flex-col rounded-2xl border border-text/15 bg-surface p-8 shadow-sm">
+              <article className="flex h-full flex-col rounded-2xl border border-text/15 bg-surface p-6 shadow-sm sm:p-8">
                 <h4 className="font-display text-xl font-bold text-text sm:text-2xl">{s.title}</h4>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-muted">
-                  Professional service fee
-                </p>
-                <p className="mt-1 font-display text-3xl font-bold text-text sm:text-4xl">
+                <p className="mt-3 font-display text-3xl font-bold text-text">
                   {s.price}
-                  <span className="ml-1 text-base font-medium text-muted">USD</span>
+                  <span className="ml-1 text-sm font-medium text-muted">USD</span>
                 </p>
-
-                <div className="mt-4 rounded-lg border border-accent/40 bg-accent/10 p-4">
-                  <p className="font-display text-lg font-bold text-text">
-                    Project Discovery Fee: {s.discoveryFee}
-                    <span className="ml-1 text-xs font-medium text-muted">USD</span>
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-text/90">{s.discoveryIntro}</p>
-                </div>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gold-deep">
+                  Project Discovery Fee {s.discoveryFee} — credited to your final fee
+                </p>
 
                 <p className="mt-4 text-sm leading-relaxed text-text/85">{s.description}</p>
 
-                <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-text">
-                  Includes
-                </p>
-                <ul className="mt-3 space-y-2 text-sm text-text/85">
+                <ul className="mt-4 space-y-2 text-sm text-text/85">
                   {s.includes.map((i) => (
                     <li key={i} className="flex items-start gap-2">
                       <Check />
@@ -363,35 +301,24 @@ export function Pricing() {
                   ))}
                 </ul>
 
-                {s.bestFor && (
-                  <>
-                    <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-text">
-                      Best For
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-text/85">{s.bestFor}</p>
-                  </>
-                )}
-
-                <div className="mt-auto">
+                <div className="mt-auto pt-6">
                   <a
                     href={TRACK_ROUTES[s.track]}
-                    className="mt-8 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
+                    className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
                   >
                     {s.ctaLabel}
                   </a>
-                  <p className="mt-4 text-xs leading-relaxed text-text/70">{FEE_NOTE}</p>
-                  {s.disclaimer && (
-                    <p className="mt-3 text-xs italic leading-relaxed text-muted">{s.disclaimer}</p>
-                  )}
+                  <p className="mt-3 text-xs leading-relaxed text-text/70">
+                    Final fee depends on scope and is confirmed in your written proposal.
+                  </p>
                 </div>
               </article>
             </FadeIn>
           ))}
         </div>
 
-
         <FadeIn>
-          <p className="mt-10 text-sm text-muted">
+          <p className="mt-8 text-sm text-muted">
             Need something tailored?{" "}
             <a
               href="/request/global-sourcing"
