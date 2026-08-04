@@ -4,4 +4,4 @@ Disallow: /consultation
 Disallow: /request/
 Disallow: /api/
 
-Sitemap: https://aishausman.com/sitemap.xml
+Sitemap: https://www.aishausman.com/sitemap.xml

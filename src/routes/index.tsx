@@ -17,32 +17,30 @@ import { SITE_URL, OG_IMAGE } from "@/lib/site";
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
 
-const TITLE = "Aisha Usman — International Trade Consultant | Global Sourcing Specialist";
+const TITLE = "Aisha Usman | International Trade Consultant & Global Sourcing Specialist";
 const DESCRIPTION =
-  "Aisha Usman — International Trade Consultant, Global Sourcing Specialist, and Export Strategist helping businesses source products, verify suppliers, reduce procurement risk, and structure export opportunities across Asia, Africa, the Middle East, and Europe.";
-const OG_DESCRIPTION =
-  "Trusted advisor for importers, exporters, manufacturers, and procurement teams entering international markets.";
+  "International Trade Consultant helping businesses with global sourcing, supplier verification, procurement, import/export strategy, and international trade advisory.";
+const IMAGE_ALT =
+  "Aisha Usman, International Trade Consultant and Global Sourcing Specialist.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Aisha Usman — International Trade Consultant" },
-      { property: "og:description", content: OG_DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { property: "og:url", content: `${SITE_URL}/` },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      {
-        property: "og:image:alt",
-        content: "Aisha Usman — International Trade & Global Sourcing Consultant",
-      },
+      { property: "og:image:alt", content: IMAGE_ALT },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Aisha Usman — International Trade Consultant" },
-      { name: "twitter:description", content: OG_DESCRIPTION },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: OG_IMAGE },
+      { name: "twitter:image:alt", content: IMAGE_ALT },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/` }],
     scripts: [
