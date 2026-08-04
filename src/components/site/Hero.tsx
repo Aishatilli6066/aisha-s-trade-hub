@@ -32,11 +32,11 @@ export function Hero() {
       </svg>
 
       <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
-        <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:justify-between lg:gap-16">
-          <figure className="order-1 w-full max-w-[14rem] shrink-0 sm:max-w-[16rem] md:order-2 md:max-w-[18rem] lg:max-w-[20rem]">
+        <div className="flex flex-col items-center gap-8 sm:gap-10 md:flex-row md:items-center md:justify-between lg:gap-16">
+          <figure className="order-1 mx-auto w-40 shrink-0 sm:w-56 md:order-2 md:mx-0 md:w-72 lg:w-80">
             <div className="overflow-hidden rounded-full border-2 border-accent/40 shadow-2xl shadow-black/30">
               <img
-                src={aishaPhoto.url}
+                src={aishaPhoto}
                 alt="Aisha Usman, Founder of ASMAN Prime Hub"
                 className="aspect-square h-full w-full object-cover"
                 style={{ objectPosition: "50% 22%" }}
@@ -47,19 +47,19 @@ export function Hero() {
             </div>
           </figure>
 
-          <div className="order-2 flex-1 md:order-1">
-            <p className="font-display text-2xl font-bold tracking-tight text-text sm:text-3xl">
+          <div className="order-2 min-w-0 flex-1 text-center md:order-1 md:text-left">
+            <p className="font-display text-xl font-bold tracking-tight text-text sm:text-3xl">
               Aisha Usman
             </p>
-            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
+            <p className="mt-2 text-[0.7rem] font-semibold uppercase leading-relaxed tracking-[0.15em] text-gold-deep sm:text-xs sm:tracking-[0.2em]">
               International Trade Consultant <span className="text-text/40">|</span> Global Sourcing Specialist <span className="text-text/40">|</span> Export Strategist
             </p>
 
-            <h1 className="mt-6 font-display text-4xl font-bold leading-[1.08] text-text sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 font-display text-[1.75rem] font-bold leading-[1.15] text-text sm:mt-6 sm:text-5xl lg:text-6xl">
               Helping Businesses Source, Trade and Expand Across International Markets
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-text/85 sm:text-lg">
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-text/85 sm:mt-6 sm:text-lg">
               I help importers, exporters and growing businesses verify suppliers, control
               procurement risk, structure commodity transactions and execute international trade
               opportunities with greater confidence.
@@ -69,16 +69,16 @@ export function Hero() {
               Based in Kano, Nigeria. Advising clients across Asia · Africa · Middle East · Europe.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap md:justify-start">
               <a
                 href="#pricing"
-                className="inline-flex items-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 Book a Strategy Consultation
               </a>
               <a
                 href="#service-request"
-                className="inline-flex items-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="inline-flex items-center justify-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 Submit a Service Request
               </a>
@@ -91,7 +91,7 @@ export function Hero() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-text/70 transition-colors hover:text-text"
               >
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
+                <WhatsAppIcon size={16} className="text-[#25D366]" />
                 Connect on WhatsApp
               </a>
             </div>
@@ -99,6 +99,7 @@ export function Hero() {
 
 
         </div>
+
       </div>
     </section>
   );

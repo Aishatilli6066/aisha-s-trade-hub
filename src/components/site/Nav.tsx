@@ -33,7 +33,7 @@ export function Nav() {
           className="flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
         >
           <img
-            src={logo.url}
+            src={logo}
             alt=""
             width={36}
             height={36}
