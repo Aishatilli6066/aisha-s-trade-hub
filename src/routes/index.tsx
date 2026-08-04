@@ -9,7 +9,7 @@ import { CaseStudies } from "@/components/site/CaseStudies";
 import { About } from "@/components/site/About";
 import { WhyWorkWithMe } from "@/components/site/WhyWorkWithMe";
 import { WhoIWorkWith } from "@/components/site/WhoIWorkWith";
-import { ServiceRequestForm } from "@/components/site/ServiceRequestForm";
+import { ServiceRequestChooser } from "@/components/site/ServiceRequestChooser";
 import { Upwork } from "@/components/site/Upwork";
 
 import { Footer } from "@/components/site/Footer";
@@ -57,7 +57,7 @@ function Index() {
         <Process />
         <Pricing />
         <About />
-        <ServiceRequestForm />
+        <ServiceRequestChooser />
         <Upwork />
       </main>
       <Footer />

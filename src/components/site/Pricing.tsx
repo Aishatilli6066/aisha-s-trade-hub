@@ -1,6 +1,5 @@
 import { FadeIn } from "./FadeIn";
 import {
-  selectTrack,
   CONSULTATION_STEPS,
   DONE_FOR_YOU_STEPS,
   CONSULTATION_PAYMENT_LINK,
@@ -18,6 +17,13 @@ import {
 // scheduling link for the consultation is sent by email/WhatsApp only after
 // the payment has been verified manually.
 // ============================================================================
+
+/** Each done-for-you service has its own dedicated multi-step request form. */
+const TRACK_ROUTES: Record<DiscoveryTrack, string> = {
+  sourcing: "/request/global-sourcing",
+  commodity: "/request/commodity-buyer-representation",
+  businessplan: "/request/business-plan",
+};
 
 const FEE_NOTE =
   "Final professional fee depends on product complexity, supplier location, quantity, verification requirements and project scope.";
@@ -368,8 +374,7 @@ export function Pricing() {
 
                 <div className="mt-auto">
                   <a
-                    href="#service-request"
-                    onClick={() => selectTrack(s.track)}
+                    href={TRACK_ROUTES[s.track]}
                     className="mt-8 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
                   >
                     {s.ctaLabel}
@@ -389,7 +394,7 @@ export function Pricing() {
           <p className="mt-10 text-sm text-muted">
             Need something tailored?{" "}
             <a
-              href="#service-request"
+              href="/request/global-sourcing"
               className="font-semibold text-accent underline-offset-2 hover:underline"
             >
               Request a written proposal
