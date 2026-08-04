@@ -30,12 +30,12 @@ export function Nav() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <a
           href="#top"
-          aria-label="ASMAN Prime Hub — Home"
+          aria-label="Aisha Usman — Home"
           className="flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
         >
           <img
             src={logo}
-            alt=""
+            alt="Aisha Usman — International Trade Consultant"
             width={36}
             height={36}
             className="h-9 w-9 object-contain"

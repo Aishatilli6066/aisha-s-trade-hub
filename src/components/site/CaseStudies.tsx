@@ -7,7 +7,7 @@ const cases = [
     action:
       "Identified and vetted overseas manufacturers, coordinated technical specifications, negotiated commercial terms, and managed the supplier selection process.",
     outcome:
-      "A suitable manufacturer was secured at approximately 50% below the client\u2019s initial sourcing estimate, while meeting the required technical specifications.",
+      "A suitable manufacturer was secured at a material reduction against the client\u2019s initial sourcing estimate, while meeting the required technical specifications.",
   },
   {
     title: "Private Label Product Development",
@@ -23,7 +23,7 @@ const cases = [
     action:
       "Sourced and verified Nigerian suppliers and structured pricing and logistics terms.",
     outcome:
-      "Qualified Nigerian supply options were identified at pricing below several comparable market quotations, with logistics and commercial terms structured for the buyer\u2019s review.",
+      "Qualified Nigerian supply options were identified at competitive pricing against the comparable market quotations reviewed, with logistics and commercial terms structured for the buyer\u2019s review.",
   },
   {
     title: "Structuring a 300 MT Sesame Export Opportunity",
