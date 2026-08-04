@@ -191,12 +191,18 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
     return (
       <div className="rounded-2xl border-2 border-accent/50 bg-surface p-6 sm:p-10">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-          Prepared for submission
+          Not sent yet — action needed
         </p>
         <h2 className="mt-3 font-display text-2xl font-bold text-text sm:text-3xl">
-          Attach your files, then send the email
+          Attach your files, then press Send in your email app
         </h2>
+        <p className="mt-4 rounded-md border border-accent/40 bg-accent/10 px-4 py-3 text-sm font-medium leading-relaxed text-text">
+          Nothing has been emailed automatically. Your email app has opened with a draft addressed
+          to {CONTACT_EMAIL} — the request only reaches Aisha once you attach your files and press
+          Send there.
+        </p>
         <p className="mt-4 text-sm leading-relaxed text-text/85 sm:text-base">{spec.confirmation}</p>
+
         {allSelectedFiles.length > 0 && (
           <div className="mt-6 rounded-lg border border-accent/40 bg-accent/10 p-4">
             <p className="text-xs font-semibold uppercase tracking-wider text-text">
