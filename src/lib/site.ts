@@ -2,7 +2,7 @@
  * Canonical public origin for the site. Used for canonical links, og:url,
  * sitemap.xml, robots.txt and JSON-LD @id values.
  */
-export const SITE_URL = "https://aishausman.com";
+export const SITE_URL = "https://www.aishausman.com";
 
 /** Absolute 1200x630 social preview image (served from /public). */
 export const OG_IMAGE = `${SITE_URL}/og-cover.jpg`;
