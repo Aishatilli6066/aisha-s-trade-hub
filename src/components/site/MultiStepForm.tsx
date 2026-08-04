@@ -353,6 +353,33 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
           <p className="mt-2 text-sm leading-relaxed text-text/80">{current.description}</p>
         )}
 
+        {requiredCount > 0 && (
+          <p className="mt-3 text-xs leading-relaxed text-muted">
+            <span aria-hidden="true" className="font-semibold text-[#B00020]">
+              *
+            </span>{" "}
+            marks a required answer — {requiredCount} on this step. Everything marked “optional” can
+            be left blank.
+          </p>
+        )}
+
+        {errorCount > 0 && (
+          <div
+            role="alert"
+            className="mt-4 rounded-lg border-2 border-[#B00020] bg-[#B00020]/5 p-4 text-sm leading-relaxed text-text"
+          >
+            <p className="font-semibold text-[#B00020]">
+              {errorCount === 1
+                ? "1 answer still needs your attention"
+                : `${errorCount} answers still need your attention`}
+            </p>
+            <p className="mt-1.5">
+              The fields below are highlighted in red. Complete them to continue.
+            </p>
+          </div>
+        )}
+
+
         {current.examples && (
           <div className="mt-4 rounded-lg border border-text/15 bg-bg p-4">
             <p className="text-xs font-semibold uppercase tracking-wider text-text">
