@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/asman-prime-hub-logo.png.asset.json";
+import logo from "@/assets/asman-prime-hub-logo.png";
 
 const WHATSAPP = "https://wa.me/2347042322970";
 

@@ -1,4 +1,5 @@
-import aishaPhoto from "@/assets/aisha-usman.png.asset.json";
+import aishaPhoto from "@/assets/aisha-usman.jpg";
+import { WhatsAppIcon } from "./icons";
 
 const WHATSAPP = "https://wa.me/2347042322970";
 
