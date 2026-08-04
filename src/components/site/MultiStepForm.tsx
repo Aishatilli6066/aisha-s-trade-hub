@@ -636,12 +636,13 @@ function Field({
         <input
           id={id}
           type={field.type === "url" ? "text" : field.type}
-          inputMode={field.type === "tel" ? "tel" : undefined}
+          inputMode={field.type === "tel" ? "tel" : field.type === "email" ? "email" : undefined}
           value={typeof value === "string" ? value : ""}
           placeholder={field.placeholder}
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
           className={inputBase}
+          {...aria}
         />
       )}
 
@@ -654,6 +655,7 @@ function Field({
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
           className={inputBase}
+          {...aria}
         />
       )}
 
@@ -664,6 +666,7 @@ function Field({
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
           className={inputBase}
+          {...aria}
         >
           <option value="">Select…</option>
           {field.options?.map((o) => (
@@ -675,11 +678,12 @@ function Field({
       )}
 
       {field.type === "checkboxes" && (
-        <fieldset>
+        <fieldset aria-describedby={describedBy}>
           <legend className="text-sm font-medium text-text">
             {field.label}
-            {field.required && <span className="ml-1 text-gold-deep">*</span>}
+            {marker}
           </legend>
+
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {field.options?.map((o) => {
               const selected = asArray(value).includes(o);
