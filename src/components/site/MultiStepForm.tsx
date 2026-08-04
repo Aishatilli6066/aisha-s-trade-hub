@@ -620,6 +620,8 @@ function Field({
     autoComplete: autoCompleteFor(field),
   };
 
+  const inputCls = error ? `${inputBase} border-[#B00020] focus:border-[#B00020] focus:ring-[#B00020]/25` : inputBase;
+
   const marker = field.required ? (
     <>
       <span aria-hidden="true" className="ml-1 font-semibold text-[#B00020]">
@@ -672,7 +674,7 @@ function Field({
           placeholder={field.placeholder}
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
-          className={inputBase}
+          className={inputCls}
           {...aria}
         />
       )}
@@ -685,7 +687,7 @@ function Field({
           placeholder={field.placeholder}
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
-          className={inputBase}
+          className={inputCls}
           {...aria}
         />
       )}
@@ -696,7 +698,7 @@ function Field({
           value={typeof value === "string" ? value : ""}
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
-          className={inputBase}
+          className={inputCls}
           {...aria}
         >
           <option value="">Select…</option>
