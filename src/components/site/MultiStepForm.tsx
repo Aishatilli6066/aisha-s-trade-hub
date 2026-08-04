@@ -137,52 +137,85 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
     topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const emailBody = useMemo(() => {
-    const lines: string[] = [];
-    lines.push(spec.title.toUpperCase());
-    lines.push("Submitted from aishausman.com — manual payment verification requested.");
-    lines.push("");
-    for (const s of steps) {
-      if (s.kind === "consent") continue;
-      lines.push(`--- ${s.title.toUpperCase()} ---`);
-      for (const f of s.fields) {
-        if (f.type === "files") {
-          const list = files[f.id]?.map((x) => `• ${x.name} (${Math.round(x.size / 1024)} KB)`) ?? [];
-          lines.push(`${f.label}:`);
-          lines.push(list.length ? list.join("\n") : "— none selected —");
-          continue;
-        }
-        const v = values[f.id];
-        const text = Array.isArray(v) ? v.join(", ") : (v ?? "");
-        if (!String(text).trim()) continue;
-        lines.push(`${f.label}: ${text}`);
-      }
-      lines.push("");
-    }
-    lines.push("--- CONSENT ---");
-    CONSENTS.forEach((c, i) => lines.push(`${consents[i] ? "[x]" : "[ ]"} ${c}`));
-    lines.push("");
-    lines.push("NOTE: files listed above are attached manually by the client to this email.");
-    return lines.join("\n");
-  }, [steps, values, files, consents, spec.title]);
+  const payload = useMemo(() => {
+    const sections = steps
+      .filter((s) => s.kind !== "consent")
+      .map((s) => ({
+        title: s.title,
+        items: s.fields
+          .filter((f) => f.type !== "files")
+          .map((f) => {
+            const v = values[f.id];
+            const text = Array.isArray(v) ? v.join(", ") : (v ?? "");
+            return { label: f.label, value: String(text).trim() };
+          })
+          .filter((i) => i.value.length > 0),
+      }))
+      .filter((s) => s.items.length > 0);
 
-  const subject = spec.subject(values);
-  const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-    subject,
-  )}&body=${encodeURIComponent(emailBody)}`;
+    const get = (id: string) => {
+      const v = values[id];
+      return Array.isArray(v) ? v.join(", ") : String(v ?? "");
+    };
+
+    return {
+      formId: spec.id,
+      title: spec.title,
+      subject: spec.subject(values),
+      clientName: get("full_name"),
+      clientEmail: get("email"),
+      whatsapp: get("whatsapp"),
+      company: get("company"),
+      payEmail: get("pay_email"),
+      payDate: get("pay_date"),
+      payRef: get("pay_ref"),
+      clientMessage: spec.confirmation,
+      sections,
+      consents: CONSENTS.filter((_, i) => consents[i]),
+    };
+  }, [steps, values, consents, spec]);
+
+  const subject = payload.subject;
   const whatsapp = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `${subject}\n\n${emailBody.slice(0, 1200)}`,
+    `${subject}\n\nI have submitted the ${spec.title} form on the website.`,
   )}`;
 
-  function submit() {
+  async function submit() {
     if (!validateStep()) return;
-    setSubmitted(true);
+    setSending(true);
+    setSendError(null);
     try {
-      window.localStorage.removeItem(draftKey(spec.id));
-    } catch {
-      /* ignore */
+      const body = new FormData();
+      body.append("payload", JSON.stringify(payload));
+      for (const f of steps.flatMap((s) => s.fields)) {
+        if (f.type !== "files") continue;
+        const key = f.fileKind === "receipt" ? "receipt" : "documents";
+        for (const file of files[f.id] ?? []) body.append(key, file);
+      }
+      const res = await fetch("/api/public/submit-request", { method: "POST", body });
+      const json = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; clientEmailSent?: boolean };
+      if (!res.ok || !json.ok) {
+        throw new Error(
+          json.error ?? "We could not deliver your submission. Your answers are safe — please retry.",
+        );
+      }
+      setClientEmailSent(json.clientEmailSent !== false);
+      setSubmitted(true);
+      try {
+        window.localStorage.removeItem(draftKey(spec.id));
+      } catch {
+        /* ignore */
+      }
+    } catch (err) {
+      // Draft stays in localStorage so nothing is lost on failure.
+      setSendError(
+        err instanceof Error
+          ? err.message
+          : "We could not deliver your submission. Your answers are safe — please retry.",
+      );
+    } finally {
+      setSending(false);
     }
-    window.location.href = mailto;
   }
 
   const allSelectedFiles = Object.values(files).flat();
@@ -191,22 +224,24 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
     return (
       <div className="rounded-2xl border-2 border-accent/50 bg-surface p-6 sm:p-10">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-          Not sent yet — action needed
+          Submission received
         </p>
         <h2 className="mt-3 font-display text-2xl font-bold text-text sm:text-3xl">
-          Attach your files, then press Send in your email app
+          Your request has been sent to Aisha
         </h2>
         <p className="mt-4 rounded-md border border-accent/40 bg-accent/10 px-4 py-3 text-sm font-medium leading-relaxed text-text">
-          Nothing has been emailed automatically. Your email app has opened with a draft addressed
-          to {CONTACT_EMAIL} — the request only reaches Aisha once you attach your files and press
-          Send there.
+          Your answers, payment reference and uploaded files were delivered directly to{" "}
+          {CONTACT_EMAIL}. You do not need to send anything by email yourself.
+          {clientEmailSent
+            ? " A confirmation email has also been sent to you."
+            : " We could not send your confirmation copy — this does not affect your submission, which was received successfully."}
         </p>
         <p className="mt-4 text-sm leading-relaxed text-text/85 sm:text-base">{spec.confirmation}</p>
 
         {allSelectedFiles.length > 0 && (
           <div className="mt-6 rounded-lg border border-accent/40 bg-accent/10 p-4">
             <p className="text-xs font-semibold uppercase tracking-wider text-text">
-              Attach these files before sending
+              Files attached to your submission
             </p>
             <ul className="mt-2 space-y-1 text-sm text-text/90">
               {allSelectedFiles.map((f) => (
@@ -217,27 +252,22 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
         )}
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
-            href={mailto}
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 sm:w-auto"
-          >
-            Re-open the email
-          </a>
-          <a
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-12 w-full items-center justify-center rounded-md border border-text/20 px-6 py-3 text-sm font-semibold text-text transition-colors hover:border-accent sm:w-auto"
           >
-            Fallback: send via WhatsApp
+            Message on WhatsApp
           </a>
         </div>
         <p className="mt-4 text-xs leading-relaxed text-muted">
-          Email is the primary channel. WhatsApp is a fallback only — files must still be attached
-          manually there. Your payment will be verified manually before the next stage begins.
+          Your payment is verified manually before the next stage begins. Nothing is auto-approved
+          and nothing is auto-scheduled.
         </p>
       </div>
     );
   }
+
 
   return (
     <div ref={topRef} className="scroll-mt-24">
