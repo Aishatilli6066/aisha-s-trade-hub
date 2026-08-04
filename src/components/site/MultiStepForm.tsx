@@ -731,10 +731,13 @@ function Field({
             multiple={!isReceipt}
             accept={isReceipt ? RECEIPT_ACCEPT : DOCS_ACCEPT}
             disabled={disabled}
+            aria-required={field.required ? true : undefined}
+            aria-invalid={error || fileMsg ? true : undefined}
+            aria-describedby={`${helpId}${error ? ` ${errorId}` : ""}`}
             onChange={(e) => handleFiles(e.target.files)}
             className="mt-2 block w-full text-sm text-text/85 file:mr-3 file:min-h-11 file:rounded-md file:border-0 file:bg-accent file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-text"
           />
-          <p className="mt-1.5 text-xs text-muted">
+          <p id={helpId} className="mt-1.5 text-xs text-muted">
             {field.help ??
               `PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG or WebP. Maximum ${MAX_DOCS} files, 10 MB each.`}
           </p>
@@ -745,14 +748,25 @@ function Field({
               ))}
             </ul>
           )}
-          {fileMsg && <p className="mt-1.5 text-sm font-medium text-[#B00020]">{fileMsg}</p>}
+          {fileMsg && (
+            <p role="alert" className="mt-1.5 text-sm font-medium text-[#B00020]">
+              {fileMsg}
+            </p>
+          )}
         </>
       )}
 
       {field.help && field.type !== "files" && (
-        <p className="mt-1.5 text-xs text-muted">{field.help}</p>
+        <p id={helpId} className="mt-1.5 text-xs text-muted">
+          {field.help}
+        </p>
       )}
-      {error && <p className="mt-1.5 text-sm font-medium text-[#B00020]">{error}</p>}
+      {error && (
+        <p id={errorId} className="mt-1.5 text-sm font-medium text-[#B00020]">
+          {error}
+        </p>
+      )}
     </div>
+
   );
 }
