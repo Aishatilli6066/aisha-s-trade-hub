@@ -43,6 +43,9 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
   const [restored, setRestored] = useState(false);
   const [draftMsg, setDraftMsg] = useState<string | null>(null);
   const [autosave, setAutosave] = useState(true);
+  /** Anti-spam: hidden field bots fill in, plus a form-fill speed check. */
+  const [honeypot, setHoneypot] = useState("");
+  const startedAt = useRef<number>(Date.now());
   const topRef = useRef<HTMLDivElement>(null);
 
   const steps = spec.steps;
@@ -189,7 +192,15 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
     setSendError(null);
     try {
       const body = new FormData();
-      body.append("payload", JSON.stringify(payload));
+      body.append(
+        "payload",
+        JSON.stringify({
+          ...payload,
+          website: honeypot,
+          elapsedMs: Date.now() - startedAt.current,
+        }),
+      );
+
       for (const f of steps.flatMap((s) => s.fields)) {
         if (f.type !== "files") continue;
         const key = f.fileKind === "receipt" ? "receipt" : "documents";
@@ -226,7 +237,7 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
   if (submitted) {
     return (
       <div className="rounded-2xl border-2 border-accent/50 bg-surface p-6 sm:p-10">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
           Submission received
         </p>
         <h2 className="mt-3 font-display text-2xl font-bold text-text sm:text-3xl">
@@ -280,7 +291,7 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
           <li key={f} className="flex items-center gap-2">
             <span className="rounded-full border border-text/15 bg-surface px-3 py-1.5">{f}</span>
             {i < spec.flow.length - 1 && (
-              <span aria-hidden="true" className="text-accent">
+              <span aria-hidden="true" className="text-gold-deep">
                 →
               </span>
             )}
@@ -291,7 +302,7 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
       {/* Progress */}
       <div className="mt-8">
         <div className="flex items-baseline justify-between gap-3">
-          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+          <p className="text-xs font-semibold uppercase tracking-wider text-gold-deep">
             Step {step + 1} of {steps.length}
           </p>
           <p className="text-xs text-muted">
@@ -344,6 +355,22 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
 
         {current.kind === "payment" && <PaymentBlock spec={spec} />}
 
+        {/* Honeypot — hidden from humans and assistive tech; only bots complete it. */}
+        <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
+          <label htmlFor={`website-${spec.id}`}>Website (leave blank)</label>
+          <input
+            id={`website-${spec.id}`}
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+          />
+        </div>
+
+
+
         <div className="mt-6 grid gap-5">
           {current.fields.map((f) => (
             <Field
@@ -390,6 +417,21 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
               straight to Aisha. You do not need to open an email app — a confirmation copy is
               emailed to you automatically.
             </div>
+            <p className="mt-3 text-xs leading-relaxed text-muted">
+              By submitting you accept the{" "}
+              <a href="/terms" target="_blank" rel="noopener noreferrer" className="font-semibold text-gold-deep underline underline-offset-2">
+                Terms of Service
+              </a>
+              , the{" "}
+              <a href="/payment-policy" target="_blank" rel="noopener noreferrer" className="font-semibold text-gold-deep underline underline-offset-2">
+                Payment &amp; Refund Policy
+              </a>{" "}
+              and the{" "}
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="font-semibold text-gold-deep underline underline-offset-2">
+                Privacy Policy
+              </a>
+              .
+            </p>
           </fieldset>
         )}
 
@@ -530,7 +572,7 @@ function Field({
   const label = (
     <label htmlFor={id} className="block text-sm font-medium text-text">
       {field.label}
-      {field.required && <span className="ml-1 text-accent">*</span>}
+      {field.required && <span className="ml-1 text-gold-deep">*</span>}
     </label>
   );
 
@@ -603,7 +645,7 @@ function Field({
         <fieldset>
           <legend className="text-sm font-medium text-text">
             {field.label}
-            {field.required && <span className="ml-1 text-accent">*</span>}
+            {field.required && <span className="ml-1 text-gold-deep">*</span>}
           </legend>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {field.options?.map((o) => {

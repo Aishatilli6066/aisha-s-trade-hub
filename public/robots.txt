@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /consultation
+Disallow: /request/
+Disallow: /api/
+
+Sitemap: https://aishausman.com/sitemap.xml

@@ -96,7 +96,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Global sourcing, supplier verification, commodity export, and import/export business consulting from Kano, Nigeria.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:site_name", content: "Aisha Usman — International Trade Consulting" },
+      { property: "og:locale", content: "en_US" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "geo.region", content: "NG-KN" },
       { name: "geo.placename", content: "Kano, Nigeria" },
       { name: "ICBM", content: "12.0022, 8.5920" },
@@ -107,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "icon",
         type: "image/svg+xml",
         href:
-          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A0A0F'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%23C8963E'%3EAU%3C/text%3E%3C/svg%3E",
+          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%236B1026'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%23D4AF37'%3EAU%3C/text%3E%3C/svg%3E",
       },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -124,7 +126,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@graph": [
             {
               "@type": "Person",
-              "@id": "https://asmanprimehub.com/#aisha-usman",
+              "@id": "https://aishausman.com/#aisha-usman",
               name: "Aisha Usman",
               jobTitle: "International Trade Consultant & Global Sourcing Specialist",
               email: "mailto:aishau6066@gmail.com",
@@ -133,7 +135,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 addressLocality: "Kano",
                 addressCountry: "NG",
               },
-              worksFor: { "@id": "https://asmanprimehub.com/#organization" },
+              worksFor: { "@id": "https://aishausman.com/#organization" },
               sameAs: [
                 "https://www.upwork.com/freelancers/~01fa3cf6e886a40e02",
               ],
@@ -149,9 +151,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             },
             {
               "@type": "Organization",
-              "@id": "https://asmanprimehub.com/#organization",
+              "@id": "https://aishausman.com/#organization",
               name: "ASMAN Prime Hub",
-              founder: { "@id": "https://asmanprimehub.com/#aisha-usman" },
+              founder: { "@id": "https://aishausman.com/#aisha-usman" },
               email: "mailto:aishau6066@gmail.com",
               address: {
                 "@type": "PostalAddress",
@@ -162,9 +164,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             },
             {
               "@type": "ProfessionalService",
-              "@id": "https://asmanprimehub.com/#service",
+              "@id": "https://aishausman.com/#service",
               name: "ASMAN Prime Hub — International Trade Consulting",
-              provider: { "@id": "https://asmanprimehub.com/#organization" },
+              provider: { "@id": "https://aishausman.com/#organization" },
               description:
                 "International trade consulting and global sourcing — supplier verification, commodity export, OEM/ODM coordination, private label development, and import/export business strategy.",
               areaServed: ["Africa", "Asia", "Middle East", "Europe"],

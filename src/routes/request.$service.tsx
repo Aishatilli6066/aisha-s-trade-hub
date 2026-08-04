@@ -10,6 +10,11 @@ export const SERVICE_SLUGS: Record<string, FormKey> = {
 };
 
 export const Route = createFileRoute("/request/$service")({
+  // Runs during SSR so an unknown slug returns a real HTTP 404, not a 200 shell.
+  loader: ({ params }) => {
+    if (!SERVICE_SLUGS[params.service]) throw notFound();
+    return null;
+  },
   head: ({ params }) => {
     const key = SERVICE_SLUGS[params.service];
     const spec = key ? FORM_SPECS[key] : undefined;
@@ -48,7 +53,7 @@ function MissingService() {
       <h1 className="font-display text-3xl font-bold text-text">Service not found</h1>
       <p className="mt-4 text-text/80">
         Choose a service from the{" "}
-        <a href="/#pricing" className="font-semibold text-accent hover:underline">
+        <a href="/#pricing" className="font-semibold text-gold-deep hover:underline">
           engagements section
         </a>
         .

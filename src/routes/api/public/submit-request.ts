@@ -8,6 +8,12 @@ import {
   toBase64Url,
   type Attachment,
 } from "@/lib/email/mime.server";
+import {
+  MIN_FILL_MS,
+  checkRateLimit,
+  clientIp,
+  isDuplicate,
+} from "@/lib/abuse-guard.server";
 
 const OWNER_EMAIL = "aishau6066@gmail.com";
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
@@ -36,6 +42,10 @@ const payloadSchema = z.object({
     )
     .max(30),
   consents: z.array(z.string().max(400)).max(10),
+  /** Honeypot — must stay empty; only bots fill hidden fields. */
+  website: z.string().max(200).optional().default(""),
+  /** Milliseconds between form render and submit. */
+  elapsedMs: z.number().int().nonnegative().optional().default(0),
 });
 
 function jsonError(status: number, message: string) {
@@ -86,12 +96,18 @@ export const Route = createFileRoute("/api/public/submit-request")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        // ---- Rate limiting (per connection, best effort) -----------------
+        const ip = clientIp(request);
+        const limited = checkRateLimit(ip);
+        if (limited) return jsonError(429, limited);
+
         const gatewayKey = process.env["LOVABLE_API_KEY"];
         const connectionKey = process.env["GOOGLE_MAIL_API_KEY"];
         if (!gatewayKey || !connectionKey) {
           console.error("submit-request: email credentials are not configured");
           return jsonError(500, "Email service is not configured. Please contact us on WhatsApp.");
         }
+
 
         let form: FormData;
         try {
@@ -107,6 +123,34 @@ export const Route = createFileRoute("/api/public/submit-request")({
           return jsonError(400, "Some answers were rejected by the server. Please review the form.");
         }
         const data = parsed.data;
+
+        // ---- Honeypot: silently accept, never deliver --------------------
+        if (data.website.trim() !== "") {
+          console.warn("submit-request: honeypot triggered", { ip, formId: data.formId });
+          return new Response(JSON.stringify({ ok: true, clientEmailSent: true }), {
+            status: 200,
+            headers: { "Content-Type": "application/json" },
+          });
+        }
+
+        // ---- Speed check: no human fills a multi-step form this fast -----
+        if (data.elapsedMs > 0 && data.elapsedMs < MIN_FILL_MS) {
+          return jsonError(
+            400,
+            "That submission arrived unusually fast. Please review your answers and submit again.",
+          );
+        }
+
+        // ---- Duplicate guard ---------------------------------------------
+        const dedupeKey = `${data.formId}|${data.clientEmail.toLowerCase()}|${data.payRef.trim().toLowerCase()}`;
+        if (data.payRef.trim() && isDuplicate(dedupeKey)) {
+          return jsonError(
+            409,
+            "This submission has already been received with the same payment reference. Please check your email, or message +234 704 232 2970 on WhatsApp.",
+          );
+        }
+
+
 
         // ---- Files -------------------------------------------------------
         const attachments: Attachment[] = [];

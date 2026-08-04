@@ -9,6 +9,7 @@ const links = [
   { href: "/#about", label: "About" },
   { href: "/#work", label: "Work" },
   { href: "/blog", label: "Blog" },
+  { href: "/#faq", label: "FAQ" },
   { href: "/#service-request", label: "Request" },
 ];
 
@@ -46,7 +47,7 @@ export function Nav() {
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="text-text/80 transition-colors hover:text-accent focus-visible:text-accent outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+                  className="text-text/80 transition-colors hover:text-gold-deep focus-visible:text-gold-deep outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
                 >
                   {l.label}
                 </a>
@@ -95,7 +96,7 @@ export function Nav() {
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded px-2 py-3 text-base text-text/90 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="block rounded px-2 py-3 text-base text-text/90 hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   {l.label}
                 </a>

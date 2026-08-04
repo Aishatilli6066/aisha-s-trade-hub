@@ -10,7 +10,7 @@ export function FormPage({ spec }: { spec: FormSpec }) {
       <Nav />
       <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
         <FadeIn>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
             {spec.eyebrow}
           </p>
           <h1 className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">

@@ -9,8 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PaymentPolicyRouteImport } from './routes/payment-policy'
 import { Route as ConsultationRouteImport } from './routes/consultation'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
@@ -18,6 +21,11 @@ import { Route as RequestServiceRouteImport } from './routes/request.$service'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiPublicSubmitRequestRouteImport } from './routes/api/public/submit-request'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -26,6 +34,16 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const RssDotxmlRoute = RssDotxmlRouteImport.update({
   id: '/rss.xml',
   path: '/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaymentPolicyRoute = PaymentPolicyRouteImport.update({
+  id: '/payment-policy',
+  path: '/payment-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConsultationRoute = ConsultationRouteImport.update({
@@ -63,8 +81,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
   '/consultation': typeof ConsultationRoute
+  '/payment-policy': typeof PaymentPolicyRoute
+  '/privacy': typeof PrivacyRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/request/$service': typeof RequestServiceRoute
   '/api/public/submit-request': typeof ApiPublicSubmitRequestRoute
@@ -73,8 +94,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
   '/consultation': typeof ConsultationRoute
+  '/payment-policy': typeof PaymentPolicyRoute
+  '/privacy': typeof PrivacyRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/request/$service': typeof RequestServiceRoute
   '/api/public/submit-request': typeof ApiPublicSubmitRequestRoute
@@ -84,8 +108,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
   '/consultation': typeof ConsultationRoute
+  '/payment-policy': typeof PaymentPolicyRoute
+  '/privacy': typeof PrivacyRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/request/$service': typeof RequestServiceRoute
   '/api/public/submit-request': typeof ApiPublicSubmitRequestRoute
@@ -96,8 +123,11 @@ export interface FileRouteTypes {
     | '/'
     | '/blog'
     | '/consultation'
+    | '/payment-policy'
+    | '/privacy'
     | '/rss.xml'
     | '/sitemap.xml'
+    | '/terms'
     | '/blog/$slug'
     | '/request/$service'
     | '/api/public/submit-request'
@@ -106,8 +136,11 @@ export interface FileRouteTypes {
     | '/'
     | '/blog'
     | '/consultation'
+    | '/payment-policy'
+    | '/privacy'
     | '/rss.xml'
     | '/sitemap.xml'
+    | '/terms'
     | '/blog/$slug'
     | '/request/$service'
     | '/api/public/submit-request'
@@ -116,8 +149,11 @@ export interface FileRouteTypes {
     | '/'
     | '/blog'
     | '/consultation'
+    | '/payment-policy'
+    | '/privacy'
     | '/rss.xml'
     | '/sitemap.xml'
+    | '/terms'
     | '/blog/$slug'
     | '/request/$service'
     | '/api/public/submit-request'
@@ -127,14 +163,24 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRouteWithChildren
   ConsultationRoute: typeof ConsultationRoute
+  PaymentPolicyRoute: typeof PaymentPolicyRoute
+  PrivacyRoute: typeof PrivacyRoute
   RssDotxmlRoute: typeof RssDotxmlRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsRoute: typeof TermsRoute
   RequestServiceRoute: typeof RequestServiceRoute
   ApiPublicSubmitRequestRoute: typeof ApiPublicSubmitRequestRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -147,6 +193,20 @@ declare module '@tanstack/react-router' {
       path: '/rss.xml'
       fullPath: '/rss.xml'
       preLoaderRoute: typeof RssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/payment-policy': {
+      id: '/payment-policy'
+      path: '/payment-policy'
+      fullPath: '/payment-policy'
+      preLoaderRoute: typeof PaymentPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/consultation': {
@@ -208,21 +268,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
   ConsultationRoute: ConsultationRoute,
+  PaymentPolicyRoute: PaymentPolicyRoute,
+  PrivacyRoute: PrivacyRoute,
   RssDotxmlRoute: RssDotxmlRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsRoute: TermsRoute,
   RequestServiceRoute: RequestServiceRoute,
   ApiPublicSubmitRequestRoute: ApiPublicSubmitRequestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

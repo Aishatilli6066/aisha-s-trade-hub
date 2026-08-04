@@ -155,7 +155,7 @@ function Check() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="mt-0.5 shrink-0 text-accent"
+      className="mt-0.5 shrink-0 text-gold-deep"
       aria-hidden="true"
     >
       <path d="M5 12l5 5L20 7" />
@@ -168,7 +168,7 @@ export function Pricing() {
     <section id="pricing" aria-labelledby="pricing-title" className="border-b border-text/10 bg-bg">
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
             Engagements
           </p>
           <h2 id="pricing-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
@@ -185,7 +185,7 @@ export function Pricing() {
         {/* ---------------------------------------------------------------- */}
         <FadeIn>
           <div className="mt-14 flex items-center gap-4">
-            <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-accent">
+            <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-gold-deep">
               Advisory
             </h3>
             <span aria-hidden="true" className="h-px flex-1 bg-text/15" />
@@ -202,7 +202,7 @@ export function Pricing() {
                 $250
                 <span className="ml-1 text-base font-medium text-muted">USD</span>
               </p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gold-deep">
                 60-minute private video session
               </p>
               <p className="mt-5 text-sm leading-relaxed text-text/85 sm:text-base">
@@ -218,7 +218,7 @@ export function Pricing() {
                       {step}
                     </span>
                     {i < CONSULTATION_STEPS.length - 1 && (
-                      <span aria-hidden="true" className="text-accent">
+                      <span aria-hidden="true" className="text-gold-deep">
                         →
                       </span>
                     )}
@@ -294,7 +294,7 @@ export function Pricing() {
         {/* ---------------------------------------------------------------- */}
         <FadeIn>
           <div className="mt-20 flex items-center gap-4">
-            <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-accent">
+            <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-gold-deep">
               Done-For-You Services
             </h3>
             <span aria-hidden="true" className="h-px flex-1 bg-text/15" />
@@ -309,7 +309,7 @@ export function Pricing() {
                   {step}
                 </span>
                 {i < PROCESS_STEPS.length - 1 && (
-                  <span aria-hidden="true" className="text-accent">
+                  <span aria-hidden="true" className="text-gold-deep">
                     →
                   </span>
                 )}
@@ -320,7 +320,7 @@ export function Pricing() {
 
         <FadeIn>
           <div className="mt-6 rounded-xl border border-text/15 bg-surface p-6">
-            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+            <p className="text-xs font-semibold uppercase tracking-wider text-gold-deep">
               What the Project Discovery Fee covers
             </p>
             <p className="mt-2 text-sm leading-relaxed text-text/85">{DISCOVERY_COVERS}</p>
@@ -395,7 +395,7 @@ export function Pricing() {
             Need something tailored?{" "}
             <a
               href="/request/global-sourcing"
-              className="font-semibold text-accent underline-offset-2 hover:underline"
+              className="font-semibold text-gold-deep underline-offset-2 hover:underline"
             >
               Request a written proposal
             </a>

@@ -18,7 +18,7 @@ export function WhoIWorkWith() {
     <section id="clients" aria-labelledby="clients-title" className="border-b border-text/10">
       <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-24">
         <FadeIn>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Clientele</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">Clientele</p>
           <h2 id="clients-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
             Who I Work With
           </h2>

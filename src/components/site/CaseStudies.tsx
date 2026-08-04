@@ -56,7 +56,7 @@ export function CaseStudies() {
     <section id="work" aria-labelledby="work-title" className="border-b border-text/10">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeIn>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
             Selected Engagements
           </p>
           <h2 id="work-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">

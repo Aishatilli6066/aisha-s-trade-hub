@@ -21,7 +21,7 @@ export function ServiceRequestChooser() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <FadeIn>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
             Start a project
           </p>
           <h2
@@ -45,7 +45,7 @@ export function ServiceRequestChooser() {
               <FadeIn key={track}>
                 <article className="flex h-full flex-col rounded-2xl border border-text/15 bg-surface p-7 shadow-sm">
                   <h3 className="font-display text-xl font-bold text-text">{t.label}</h3>
-                  <p className="mt-3 text-sm font-semibold text-accent">
+                  <p className="mt-3 text-sm font-semibold text-gold-deep">
                     Project Discovery Fee: {t.fee} USD
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-text/85">{t.blurb}</p>
@@ -75,7 +75,7 @@ export function ServiceRequestChooser() {
             Looking for the $250 advisory session instead?{" "}
             <a
               href="/consultation"
-              className="font-semibold text-accent underline-offset-2 hover:underline"
+              className="font-semibold text-gold-deep underline-offset-2 hover:underline"
             >
               Open the consultation questionnaire
             </a>
