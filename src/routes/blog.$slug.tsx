@@ -9,8 +9,18 @@ export const Route = createFileRoute("/blog/$slug")({
     return { post, related: getRelatedPosts(post) };
   },
   head: ({ loaderData, params }) => {
-    if (!loaderData) return {};
+    if (!loaderData) {
+      return {
+        meta: [{ title: "Article not found — Aisha Usman" }, { name: "robots", content: "noindex" }],
+      };
+    }
     const { post } = loaderData;
+    const url = `${SITE_URL}/blog/${params.slug}`;
+    const image = post.image
+      ? post.image.startsWith("http")
+        ? post.image
+        : `${SITE_URL}${post.image.startsWith("/") ? "" : "/"}${post.image}`
+      : OG_IMAGE;
     return {
       meta: [
         { title: `${post.seoTitle || post.title} — Aisha Usman` },
@@ -22,24 +32,30 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: post.seoTitle || post.title },
         { property: "og:description", content: post.metaDescription || post.description },
         { property: "og:type", content: "article" },
-        { property: "og:url", content: `/blog/${params.slug}` },
-        ...(post.image ? [{ property: "og:image", content: post.image }] : []),
-        { name: "twitter:card", content: post.image ? "summary_large_image" : "summary" },
+        { property: "og:url", content: url },
+        { property: "og:image", content: image },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: image },
       ],
-      links: [{ rel: "canonical", href: `/blog/${params.slug}` }],
+      links: [{ rel: "canonical", href: url }],
       scripts: [
         {
           type: "application/ld+json",
           children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
+            "@id": `${url}#article`,
             headline: post.title,
             description: post.metaDescription || post.description,
-            author: { "@type": "Person", name: post.author },
+            author: { "@type": "Person", name: post.author, "@id": `${SITE_URL}/#aisha-usman` },
+            publisher: { "@id": `${SITE_URL}/#organization` },
             datePublished: post.date,
+            dateModified: post.date,
             articleSection: post.category,
-            image: post.image ? [post.image] : undefined,
-            mainEntityOfPage: `/blog/${params.slug}`,
+            image: [image],
+            inLanguage: "en",
+            url,
+            mainEntityOfPage: { "@type": "WebPage", "@id": url },
           }),
         },
       ],
