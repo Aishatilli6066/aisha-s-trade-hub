@@ -25,8 +25,16 @@ function asArray(v: string | string[] | undefined): string[] {
   return Array.isArray(v) ? v : [];
 }
 
-function fileError(f: File) {
+/** Client-side mirror of the server's file guards: size and extension. */
+function fileError(f: File, accept: string) {
   if (f.size > MAX_FILE_BYTES) return `${f.name} is larger than 10 MB.`;
+  if (f.size === 0) return `${f.name} is empty — please select a different file.`;
+  const allowed = accept.split(",").map((e) => e.trim().toLowerCase());
+  const dot = f.name.lastIndexOf(".");
+  const ext = dot > -1 ? f.name.slice(dot).toLowerCase() : "";
+  if (!ext || !allowed.includes(ext)) {
+    return `${f.name} is not an accepted file type. Allowed: ${allowed.join(", ")}.`;
+  }
   return null;
 }
 
