@@ -590,7 +590,8 @@ function Field({
       setFileMsg(`Select at most ${MAX_DOCS} files.`);
       return;
     }
-    const bad = arr.map(fileError).find(Boolean);
+    const accept = isReceipt ? RECEIPT_ACCEPT : DOCS_ACCEPT;
+    const bad = arr.map((f) => fileError(f, accept)).find(Boolean);
     if (bad) {
       setFileMsg(bad);
       return;
