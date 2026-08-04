@@ -770,3 +770,30 @@ function Field({
 
   );
 }
+
+/** Mobile-friendly autofill hints so common fields fill from the keyboard bar. */
+function autoCompleteFor(field: FieldSpec): string | undefined {
+  switch (field.id) {
+    case "full_name":
+      return "name";
+    case "email":
+    case "pay_email":
+      return "email";
+    case "whatsapp":
+    case "phone":
+      return "tel";
+    case "company":
+    case "company_name":
+      return "organization";
+    case "role":
+    case "job_title":
+      return "organization-title";
+    case "country":
+      return "country-name";
+    case "website":
+    case "company_website":
+      return "url";
+    default:
+      return field.type === "textarea" || field.type === "select" ? undefined : "off";
+  }
+}
