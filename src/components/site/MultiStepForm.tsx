@@ -369,12 +369,41 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
             {step === steps.length - 1 ? spec.submitLabel : "Next"}
           </button>
         </div>
+
+        <div className="mt-6 border-t border-text/10 pt-5">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <button
+              type="button"
+              onClick={saveDraft}
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-accent px-5 py-2.5 text-sm font-semibold text-text transition-colors hover:bg-accent/10 sm:w-auto"
+            >
+              Save draft
+            </button>
+            <button
+              type="button"
+              onClick={clearDraft}
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-text/20 px-5 py-2.5 text-sm font-semibold text-text/80 transition-colors hover:border-[#B00020] hover:text-[#B00020] sm:w-auto"
+            >
+              Clear saved draft
+            </button>
+            <p className="text-xs text-muted sm:ml-1">
+              {autosave ? "Auto-saving on this device." : "Auto-save paused until you save again."}
+            </p>
+          </div>
+          {draftMsg && (
+            <p className="mt-3 rounded-md border border-accent/40 bg-accent/10 px-3 py-2 text-xs leading-relaxed text-text/90">
+              {draftMsg}
+            </p>
+          )}
+        </div>
       </form>
 
       <p className="mt-4 text-xs leading-relaxed text-muted">
         {SECURITY_WARNING} Your answers are saved in this browser only so you do not lose progress
-        when you open Flutterwave.
+        when you open Flutterwave. Drafts never include your uploaded receipt or documents — those
+        must be re-selected if you close the page.
       </p>
+
     </div>
   );
 }
