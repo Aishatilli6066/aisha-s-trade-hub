@@ -187,4 +187,29 @@
 .prose-blog code { background: color-mix(in oklab, var(--color-text) 8%, transparent); padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.92em; }
 .prose-blog pre { background: color-mix(in oklab, var(--color-text) 6%, transparent); padding: 1rem; border-radius: 8px; overflow-x: auto; }
 .prose-blog pre code { background: transparent; padding: 0; }
-.prose-blog hr { border: 0; border-top: 1px solid color-mix(in oklab, var(--color-text) 15%, transparent); margin: 2em 0; }
+.prose-blog hr { border: 0; border-top: 1px solid color-mix(in oklab, var(--color-text) 15%, transparent); margin: 2.4em 0; }
+
+/* Long-form readability + anchored headings */
+.prose-blog { max-width: 68ch; }
+.prose-blog h2, .prose-blog h3 { scroll-margin-top: 6rem; }
+.prose-blog h2 { padding-top: 0.2em; border-top: 1px solid color-mix(in oklab, var(--color-text) 10%, transparent); }
+.prose-blog h2:first-child { border-top: 0; margin-top: 0; }
+.prose-blog > p:first-of-type { font-size: 1.15rem; line-height: 1.7; color: color-mix(in oklab, var(--color-text) 88%, transparent); }
+
+/* Tables inside articles */
+.prose-blog table { width: 100%; border-collapse: collapse; margin: 1.6em 0; font-size: 0.95rem; display: block; overflow-x: auto; }
+.prose-blog thead th { text-align: left; font-weight: 700; border-bottom: 2px solid color-mix(in oklab, var(--color-accent) 55%, transparent); padding: 0.6rem 0.75rem; white-space: nowrap; }
+.prose-blog td { padding: 0.55rem 0.75rem; border-bottom: 1px solid color-mix(in oklab, var(--color-text) 10%, transparent); vertical-align: top; }
+.prose-blog tbody tr:nth-child(even) { background: color-mix(in oklab, var(--color-text) 3%, transparent); }
+
+/* Checklist items */
+.prose-blog li input[type="checkbox"] { margin-right: 0.5rem; accent-color: var(--color-accent); }
+.prose-blog ul:has(input[type="checkbox"]) { list-style: none; padding-left: 0; }
+.prose-blog ul:has(input[type="checkbox"]) li { margin: 0.5em 0; }
+
+@media (max-width: 640px) {
+  .prose-blog { font-size: 1.0625rem; line-height: 1.8; }
+  .prose-blog h2 { font-size: 1.4rem; margin-top: 1.8em; }
+  .prose-blog h3 { font-size: 1.15rem; }
+}
+
