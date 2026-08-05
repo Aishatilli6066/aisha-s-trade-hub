@@ -4,7 +4,7 @@ import { SITE_URL, OG_IMAGE } from "@/lib/site";
 
 const TITLE = "Privacy Policy — Aisha Usman Trade Consulting";
 const DESC =
-  "How Aisha Usman collects, uses, stores and protects the information and documents submitted through consultation and service request forms.";
+  "How Aisha Usman collects, uses, stores and protects the information and documents submitted through the advisory questionnaire and service request forms.";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -30,7 +30,7 @@ function PrivacyPage() {
       eyebrow="Legal"
       title="Privacy Policy"
       updated="4 August 2026"
-      intro="This policy explains what information this website collects, why it is collected, and how it is handled. It applies to the consultation questionnaire, all service request forms, and any direct contact by email or WhatsApp."
+      intro="This policy explains what information this website collects, why it is collected, and how it is handled. It applies to the advisory questionnaire, all service request forms, and any direct contact by email or WhatsApp."
     >
       <Section heading="1. Who is responsible for your information">
         <p>
@@ -67,7 +67,7 @@ function PrivacyPage() {
             "To identify you and respond to your enquiry.",
             "To understand your trade requirements well enough to assess feasibility and prepare advice or a written proposal.",
             "To verify your payment manually against the reference and receipt you supply.",
-            "To deliver the service you requested — the consultation session, a scope review, or a written proposal.",
+            "To deliver the service you requested — the written advisory assessment, a scope review, or a written proposal.",
             "To keep a reasonable record of the engagement for accounting and reference purposes.",
           ]}
         />
@@ -130,7 +130,6 @@ function PrivacyPage() {
             "Flutterwave — processes your payment on its own platform under its own privacy terms.",
             "Google (Gmail) — carries and stores the notification and confirmation emails.",
             "The website's hosting provider — serves the pages and processes form submissions in transit.",
-            "Cal.com — used to schedule a consultation session only after your payment has been verified, when a private scheduling link is sent to you.",
           ]}
         />
       </Section>

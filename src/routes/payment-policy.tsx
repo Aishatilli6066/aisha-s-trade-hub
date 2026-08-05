@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage, Section, List } from "@/components/site/LegalPage";
 import { SITE_URL, OG_IMAGE } from "@/lib/site";
 
-const TITLE = "Payment, Refund & Rescheduling Policy — Aisha Usman";
+const TITLE = "Payment, Refund & Cancellation Policy — Aisha Usman";
 const DESC =
-  "Consultation and project discovery fees, how discovery fees are credited, refund treatment, rescheduling rules and manual payment verification.";
+  "Advisory and project discovery fees, how discovery fees are credited, refund treatment and manual payment verification.";
 
 export const Route = createFileRoute("/payment-policy")({
   head: () => ({
@@ -28,14 +28,14 @@ function PaymentPolicyPage() {
   return (
     <LegalPage
       eyebrow="Legal"
-      title="Payment, Refund, Rescheduling and Cancellation Policy"
+      title="Payment, Refund and Cancellation Policy"
       updated="4 August 2026"
       intro="This policy explains what each fee covers, when it is charged, how discovery fees are credited toward final project fees, and how payments are verified. It forms part of the Terms of Service."
     >
       <Section heading="1. Fees at a glance">
         <List
           items={[
-            "International Trade Strategy Consultation — $250 USD. Paid before the questionnaire is completed and before any session is scheduled.",
+            "International Trade Strategy Advisory — $250 USD. Paid before the advisory questionnaire is completed and before any review begins.",
             "Global Sourcing & Procurement — $100 USD Project Discovery Fee, paid at the payment step of the request form before final submission.",
             "Agricultural Commodity Buyer Representation — $150 USD Project Discovery Fee, paid at the payment step of the request form before final submission.",
             "Import & Export Business Plan Development — $100 USD Project Discovery Fee, paid at the payment step of the request form before final submission.",
@@ -47,20 +47,20 @@ function PaymentPolicyPage() {
         </p>
       </Section>
 
-      <Section heading="2. The $250 consultation">
+      <Section heading="2. The $250 advisory">
         <p>
-          The consultation fee is paid first. Only after payment do you complete the consultation
+          The advisory fee is paid first. Only after payment do you complete the advisory
           questionnaire and submit your Flutterwave reference and receipt. This ordering exists
-          because preparation begins with the questionnaire review: the session is not a sales call,
-          and the time is reserved and prepared for in advance.
+          because the work begins with the questionnaire and document review, which is what the fee
+          pays for.
         </p>
         <p>The fee covers:</p>
         <List
           items={[
             "Review of your completed questionnaire and any documents you upload.",
-            "A 60-minute private video strategy session.",
-            "A written action summary following the session.",
-            "Three business days of limited clarification support on what was discussed.",
+            "A written strategic assessment with personalized recommendations, risk observations and a next-step action plan.",
+            "Voice-note explanations where useful.",
+            "Three business days of limited clarification support on the recommendations provided.",
           ]}
         />
       </Section>
@@ -92,7 +92,7 @@ function PaymentPolicyPage() {
         <List
           items={[
             "Discovery fees are generally non-refundable once assessment and review of your submission has begun, because the fee pays for that review.",
-            "The consultation fee becomes non-refundable once preparation has begun — that is, once your questionnaire and documents have been reviewed, or once the session has taken place.",
+            "The advisory fee becomes non-refundable once review has begun — that is, once your questionnaire and documents have been reviewed, or once the written assessment has been delivered.",
             "Where payment has been received but no review, preparation or work has started, a refund request will be considered in good faith. Contact the consultant before work begins.",
             "Where a duplicate payment is made in error and confirmed, the duplicate amount is refunded.",
             "Where the consultant is unable to deliver the service at all, the corresponding fee is refunded.",
@@ -106,34 +106,32 @@ function PaymentPolicyPage() {
         </p>
       </Section>
 
-      <Section heading="6. Rescheduling and cancellation of a consultation">
+      <Section heading="6. Advisory scope and response boundaries">
         <List
           items={[
-            "A scheduled consultation may be rescheduled once at no charge, with at least 24 hours' notice before the session start time.",
-            "Requests with less than 24 hours' notice are accommodated where reasonably possible; if the time cannot be reused, the session is treated as delivered.",
-            "If you do not attend and give no notice, the session is treated as delivered and the fee is not refunded. A written summary based on your questionnaire is still provided.",
-            "If the consultant needs to reschedule, you will be offered a new time at no cost, or a full refund if no suitable time can be agreed.",
-            "Additional reschedules beyond the first may be declined or re-quoted.",
+            "The advisory is limited to the submitted matter and clarification of the recommendations provided.",
+            "It does not include supplier sourcing, extensive market research, document preparation, quotation development, negotiation, costing, logistics coordination or transaction management. These services are quoted separately.",
+            "Advisory responses are provided during business hours within agreed response windows. This service does not provide continuous or unlimited live-chat access.",
+            "Clarification support runs for three business days from delivery of the written assessment.",
           ]}
         />
       </Section>
 
-      <Section heading="7. Manual verification — no automatic scheduling">
+      <Section heading="7. Manual verification">
         <p>
           Every payment on this website is verified by hand. There is no automatic payment
-          verification and there is no public scheduling link. After you submit your Flutterwave
-          reference and receipt, the payment is checked against the provider record. Only after that
-          check:
+          verification. After you submit your Flutterwave reference and receipt, the payment is
+          checked against the provider record. Only after that check:
         </p>
         <List
           items={[
-            "For consultations — a private Cal.com scheduling link is sent to you by email or WhatsApp.",
+            "For the advisory — your submission and documents are reviewed and your written strategic assessment is prepared and delivered by email or WhatsApp.",
             "For done-for-you services — scope and feasibility review begins, followed by your written proposal.",
           ]}
         />
         <p>
           Verification is normally completed within one business day. Submitting a form, on its own,
-          does not confirm a booking or start a project.
+          does not confirm an engagement or start a project.
         </p>
       </Section>
 
