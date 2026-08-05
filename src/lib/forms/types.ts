@@ -53,7 +53,7 @@ export type FormSpec = {
 export const CONSENTS = [
   "I confirm that the information provided is accurate.",
   "I understand that payment will be verified manually before work begins.",
-  "I understand that the consultation or discovery fee does not guarantee a transaction, supplier, buyer, funding or financial outcome.",
+  "I understand that the advisory or discovery fee does not guarantee a transaction, supplier, buyer, funding or financial outcome.",
   "I consent to the use of my information and uploaded documents solely for assessing and delivering the requested service.",
 ];
 
@@ -96,7 +96,7 @@ export function paymentFields(): FieldSpec[] {
  * 3) what the client receives next.
  */
 export function buildConfirmation(parts: {
-  /** What the client submitted, e.g. "consultation questionnaire". */
+  /** What the client submitted, e.g. "advisory questionnaire". */
   submitted: string;
   /** What Aisha does after manual payment verification. */
   review: string;
