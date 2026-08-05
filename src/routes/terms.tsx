@@ -120,8 +120,8 @@ function TermsPage() {
           >
             Payment, Refund and Cancellation Policy
           </a>
-          , which forms part of these terms. Payments are verified manually. No session is scheduled
-          and no project work begins before verification.
+          , which forms part of these terms. Payments are verified manually. No advisory review and
+          no project work begins before verification.
         </p>
       </Section>
 
