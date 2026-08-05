@@ -70,12 +70,12 @@ const consultation: FormSpec = {
       ],
     },
     {
-      title: "Consultation Focus",
-      description: "What would you like to discuss during the consultation? Select all that apply.",
+      title: "Advisory Focus",
+      description: "What would you like the advisory to address? Select all that apply.",
       fields: [
         {
           id: "focus",
-          label: "Consultation focus",
+          label: "Advisory focus",
           type: "checkboxes",
           required: true,
           other: true,
@@ -106,7 +106,7 @@ const consultation: FormSpec = {
       fields: [
         {
           id: "objective",
-          label: "What do you want to achieve from this consultation?",
+          label: "What do you want to achieve from this advisory?",
           type: "textarea",
           required: true,
         },
@@ -118,7 +118,7 @@ const consultation: FormSpec = {
         },
         {
           id: "value",
-          label: "What result would make this consultation valuable to you?",
+          label: "What result would make this advisory valuable to you?",
           type: "textarea",
           required: true,
         },
