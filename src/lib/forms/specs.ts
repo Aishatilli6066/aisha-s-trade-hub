@@ -11,29 +11,29 @@ const YES_NO = ["Yes", "No"];
 const consultation: FormSpec = {
   id: "consultation",
   eyebrow: "Advisory — $250 USD",
-  title: "International Trade Strategy Consultation",
+  title: "International Trade Strategy Advisory",
   intro:
-    "Pay the $250 fee, complete this questionnaire, then enter your Flutterwave reference and attach your receipt. Payment is verified manually — the Cal.com scheduling link for your 60-minute session is sent by email or WhatsApp only after verification.",
+    "Pay the $250 fee, complete this advisory questionnaire, then enter your Flutterwave reference and attach your receipt. Payment is verified manually — once verified, your submission and documents are reviewed and your written strategic assessment is delivered by email or WhatsApp.",
   flow: [
     "Pay $250",
     "Complete Questionnaire",
     "Reference & Receipt",
-    "Submit Securely",
     "Manual Verification",
-    "Scheduling Link Sent",
+    "Advisory Review",
+    "Strategy Delivered",
   ],
   paymentLink: CONSULTATION_PAYMENT_LINK,
   paymentLabel: "Pay $250 Securely",
   paymentNote:
-    "Payment is verified manually. Your consultation is not confirmed until verification is completed.",
-  submitLabel: "Submit Consultation Questionnaire for Verification",
+    "Payment is verified manually. Your advisory is not confirmed until verification is completed.",
+  submitLabel: "Submit Advisory Questionnaire for Verification",
   subject: (v) =>
-    `Paid Consultation Questionnaire — ${v["full_name"] || "Client"} — ${v["pay_ref"] || "No reference"}`,
+    `Paid Advisory Questionnaire — ${v["full_name"] || "Client"} — ${v["pay_ref"] || "No reference"}`,
   confirmation: buildConfirmation({
-    submitted: "consultation questionnaire",
+    submitted: "advisory questionnaire",
     review:
-      "nothing is auto-approved and nothing is auto-scheduled, and your session is confirmed only once verification is complete.",
-    next: "After verification you will receive the private scheduling link for your 60-minute session by email or WhatsApp, together with a short pre-session note on how to prepare.",
+      "nothing is auto-approved, and your advisory is confirmed only once verification is complete.",
+    next: "After verification your submission and documents are reviewed, and your written strategic assessment, recommendations, risk observations and next-step action plan are delivered by email or WhatsApp — with voice-note explanations where useful. You then have three business days of limited clarification support.",
   }),
   steps: [
     {
@@ -191,7 +191,7 @@ const consultation: FormSpec = {
       ],
     },
     {
-      title: "Questions for the Session",
+      title: "Questions for the Advisory",
       fields: [
         {
           id: "q1",
@@ -203,7 +203,7 @@ const consultation: FormSpec = {
         { id: "q3", label: "Question 3", type: "textarea" },
         {
           id: "immediate_decisions",
-          label: "Are there any specific decisions you want to make immediately after the session?",
+          label: "Are there any specific decisions you want to make once you receive the advisory?",
           type: "textarea",
         },
         {
