@@ -50,7 +50,7 @@ export function About() {
             </p>
             <p className="mt-3 text-base leading-relaxed text-text/85">
               The Aisha Usman name represents advisory, personal expertise, and thought leadership —
-              strategy sessions, independent judgment, and published insight. ASMAN Prime Hub Global
+              strategy advisory, independent judgment, and published insight. ASMAN Prime Hub Global
               Services Limited handles corporate execution: sourcing, exports, logistics, and buyer
               representation delivered under a registered company structure.
             </p>

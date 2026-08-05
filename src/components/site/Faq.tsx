@@ -4,11 +4,11 @@ import { FadeIn } from "./FadeIn";
 export const FAQS = [
   {
     q: "How do I know which service I need?",
-    a: "If you need direction — market choice, product viability, pricing structure, supplier strategy or how to start — book the International Trade Strategy Consultation. If you already know what you want and need it executed, start with the Project Discovery Fee for Global Sourcing, Agricultural Commodity Buyer Representation or Import & Export Business Plan Development. If you are unsure, message me on WhatsApp and I will point you to the right one before you pay anything.",
+    a: "If you need direction — market choice, product viability, pricing structure, supplier strategy or how to start — start the International Trade Strategy Advisory. If you already know what you want and need it executed, start with the Project Discovery Fee for Global Sourcing, Agricultural Commodity Buyer Representation or Import & Export Business Plan Development. If you are unsure, message me on WhatsApp and I will point you to the right one before you pay anything.",
   },
   {
-    q: "Why do I pay before the consultation instead of after?",
-    a: "Because preparation starts before we meet. Your questionnaire and documents are reviewed in advance so the session opens with substance rather than discovery questions. Paying first also reserves the time slot. This is a working session, not a sales call.",
+    q: "Why do I pay before the advisory instead of after?",
+    a: "Because the fee pays for the review itself. Your questionnaire and documents are read in full before any recommendation is written, so what you receive is a considered strategic assessment rather than a general conversation. This is working time, not a sales call.",
   },
   {
     q: "What is a Project Discovery Fee and is it an extra charge?",
@@ -16,16 +16,16 @@ export const FAQS = [
   },
   {
     q: "What happens after I submit a form and pay?",
-    a: "Payments are verified manually, normally within one business day. For consultations, a private scheduling link is sent to you by email or WhatsApp once payment is confirmed, and the session itself is held as a scheduled private video call. Consultations are delivered through a scheduled private video session; project communication, document exchange and post-consultation clarification are handled in writing by email or WhatsApp. For done-for-you services, scope and feasibility review begins and your written proposal follows. There is no automatic verification and no public booking link, so submitting a form alone does not confirm a booking.",
+    a: "Payments are verified manually, normally within one business day. For the advisory, your submission and documents are then reviewed and you receive a written strategic assessment with recommendations, risk observations and a next-step action plan — with voice-note explanations where useful — delivered by email or WhatsApp, followed by three business days of limited clarification support. For done-for-you services, scope and feasibility review begins and your written proposal follows. There is no automatic verification, so submitting a form alone does not confirm an engagement.",
   },
 
   {
     q: "Are the fees refundable?",
-    a: "Fees become non-refundable once review or preparation has begun, because that is what the fee pays for. If payment has been received but no work has started, a refund request is considered in good faith. Duplicate payments are refunded. Full detail is in the Payment, Refund, Rescheduling and Cancellation Policy.",
+    a: "Fees become non-refundable once review or preparation has begun, because that is what the fee pays for. If payment has been received but no work has started, a refund request is considered in good faith. Duplicate payments are refunded. Full detail is in the Payment, Refund and Cancellation Policy.",
   },
   {
-    q: "Can I reschedule my consultation?",
-    a: "Yes — once at no charge, with at least 24 hours' notice. Shorter notice is accommodated where the time can be reused. A no-show without notice is treated as delivered, though you still receive a written summary based on your questionnaire.",
+    q: "How quickly do I receive the advisory, and how is support handled?",
+    a: "Once payment is verified and your questionnaire is complete, the written strategic assessment is normally delivered within a few business days. Advisory responses are provided during business hours within agreed response windows. This service does not provide continuous or unlimited live-chat access.",
   },
   {
     q: "Do you guarantee that a supplier will be found or a deal will close?",
@@ -45,15 +45,15 @@ export const FAQS = [
   },
   {
     q: "Which countries and clients do you work with?",
-    a: "Clients across Africa, Asia, the Middle East and Europe — importers, exporters, manufacturers, procurement teams, e-commerce brands and entrepreneurs building private-label lines. Sessions are held by video, and project communication runs over email and WhatsApp.",
+    a: "Clients across Africa, Asia, the Middle East and Europe — importers, exporters, manufacturers, procurement teams, e-commerce brands and entrepreneurs building private-label lines. Advisory delivery and project communication run over email and WhatsApp.",
   },
   {
     q: "How do I pay, and is my card safe?",
     a: "Payments are made through Flutterwave using the secure link for your chosen service. Card details are entered on Flutterwave's own platform and never touch this website. All that is submitted here is the payment reference and your receipt, used for manual verification.",
   },
   {
-    q: "What is not included in the consultation?",
-    a: "The consultation does not include supplier sourcing, extensive market research, document preparation, negotiation, costing development or transaction management — those are quoted separately as done-for-you engagements. The three business days of follow-up cover brief clarification of what we discussed; new research or execution work is a separate engagement.",
+    q: "What is not included in the advisory?",
+    a: "The advisory is limited to the submitted matter and clarification of the recommendations provided. It does not include supplier sourcing, extensive market research, document preparation, quotation development, negotiation, costing, logistics coordination or transaction management. These services are quoted separately. The three business days of support cover brief clarification only; new research or execution work is a separate engagement.",
   },
   {
     q: "What payment terms apply to trade transactions?",
@@ -69,7 +69,7 @@ export function Faq() {
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
-            Before you book
+            Before you start
           </p>
           <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-text sm:text-4xl">
             Frequently Asked Questions

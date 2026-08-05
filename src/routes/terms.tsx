@@ -30,12 +30,12 @@ function TermsPage() {
       eyebrow="Legal"
       title="Terms of Service"
       updated="4 August 2026"
-      intro="These terms apply when you book a consultation, submit a service request, or engage Aisha Usman for advisory or done-for-you trade work. Submitting a form on this website means you accept them."
+      intro="These terms apply when you start an advisory engagement, submit a service request, or engage Aisha Usman for advisory or done-for-you trade work. Submitting a form on this website means you accept them."
     >
       <Section heading="1. Nature of the service">
         <p>
           Aisha Usman provides professional advisory and trade support services: strategy
-          consultations, supplier research and verification, sourcing and procurement coordination,
+          trade strategy advisory, supplier research and verification, sourcing and procurement coordination,
           agricultural commodity buyer representation, and import and export business plan
           development. The service is advisory and coordinative in nature. It is not legal advice,
           tax advice, financial or investment advice, customs brokerage, or a regulated financial
@@ -86,8 +86,9 @@ function TermsPage() {
 
       <Section heading="4. Scope of work">
         <p>
-          Each engagement has a defined scope. For consultations, the scope is the questionnaire
-          review, the 60-minute session and the written action summary. For done-for-you services,
+          Each engagement has a defined scope. For the advisory, the scope is the questionnaire and
+          document review, the written strategic assessment and three business days of limited
+          clarification support. For done-for-you services,
           the scope is set out in the written proposal issued after your discovery fee has been
           verified.
         </p>
@@ -112,15 +113,15 @@ function TermsPage() {
 
       <Section heading="5. Fees and payment">
         <p>
-          Fees, discovery fees, refund treatment, rescheduling and verification are set out in the{" "}
+          Fees, discovery fees, refund treatment and verification are set out in the{" "}
           <a
             href="/payment-policy"
             className="font-semibold text-gold-deep underline-offset-2 hover:underline"
           >
-            Payment, Refund, Rescheduling and Cancellation Policy
+            Payment, Refund and Cancellation Policy
           </a>
-          , which forms part of these terms. Payments are verified manually. No session is scheduled
-          and no project work begins before verification.
+          , which forms part of these terms. Payments are verified manually. No advisory review and
+          no project work begins before verification.
         </p>
       </Section>
 

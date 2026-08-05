@@ -38,7 +38,7 @@ export function selectTrack(track: DiscoveryTrack) {
 // FLUTTERWAVE PAYMENT LINKS — LIVE
 // ----------------------------------------------------------------------------
 // Payments are verified MANUALLY. There is no automatic verification and no
-// automatic scheduling anywhere in this flow. After paying, the client returns
+// automatic scheduling anywhere in this flow, and no live call. After paying, the client returns
 // to the site, enters the Flutterwave payment reference and uploads the
 // receipt, and the request is reviewed by hand.
 // ============================================================================
@@ -68,7 +68,8 @@ export const CONSULTATION_STEPS = [
   "Complete Questionnaire",
   "Submit Payment Reference & Receipt",
   "Manual Verification",
-  "Scheduling Link Sent",
+  "Advisory Review",
+  "Strategy Delivered",
 ];
 
 export const DONE_FOR_YOU_STEPS = [

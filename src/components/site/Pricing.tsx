@@ -8,9 +8,9 @@ import { CONSULTATION_PAYMENT_LINK, type DiscoveryTrack } from "@/lib/discovery"
 // Every payment on this site is verified BY HAND. After paying through the
 // Flutterwave link, the client completes the relevant form on the site,
 // enters the Flutterwave payment reference and uploads the receipt.
-// Nothing is auto-verified and nothing is auto-scheduled: the Cal.com
-// scheduling link for the consultation is sent by email/WhatsApp only after
-// the payment has been verified manually.
+// Nothing is auto-verified: the advisory review begins only after the payment
+// has been verified manually. There is no scheduling tool and no live call in
+// this flow — the advisory is delivered in writing.
 // ============================================================================
 
 /** Each done-for-you service has its own dedicated multi-step request form. */
@@ -20,7 +20,14 @@ const TRACK_ROUTES: Record<DiscoveryTrack, string> = {
   businessplan: "/request/business-plan",
 };
 
-const CONSULTATION_FLOW = ["Pay", "Questionnaire", "Verification", "Session scheduled"];
+const CONSULTATION_FLOW = [
+  "Pay",
+  "Questionnaire",
+  "Verification",
+  "Advisory Review",
+  "Strategy Delivered",
+  "Clarification Support",
+];
 
 const DFY_FLOW = [
   "Complete Requirements",
@@ -31,15 +38,16 @@ const DFY_FLOW = [
 ];
 
 const consultationIncludes = [
-  "60-minute private strategy session",
-  "Review of submitted information and documents",
-  "Written recommendations and next-step action plan",
-  "Three business days of brief clarification support",
-  "Secure scheduling link after payment verification",
+  "Pre-advisory questionnaire",
+  "Review of relevant information and documents",
+  "Written strategic assessment",
+  "Personalized recommendations and action plan",
+  "Voice-note explanations where useful",
+  "Three business days of limited clarification support",
 ];
 
 const CONSULTATION_EXCLUSIONS =
-  "The consultation does not include supplier sourcing, extensive market research, document preparation, negotiation, costing development or transaction management — these are quoted separately. Follow-up support covers brief clarification of what we discussed; new research or execution work is billed as a separate engagement.";
+  "The advisory is limited to the submitted matter and clarification of the recommendations provided. It does not include supplier sourcing, extensive market research, document preparation, quotation development, negotiation, costing, logistics coordination or transaction management. These services are quoted separately. Advisory responses are provided during business hours within agreed response windows. This service does not provide continuous or unlimited live-chat access.";
 
 const DISCOVERY_NOTE =
   "The Project Discovery Fee covers initial review, feasibility assessment, scope definition, risk identification and preparation of a tailored written proposal. It does not include project execution. If you proceed, the proposal states the remaining professional fee and payment terms.";
@@ -175,8 +183,8 @@ export function Pricing() {
           </h2>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 sm:gap-6">
             <p className="text-sm leading-relaxed text-text/85 sm:text-base">
-              <span className="font-semibold text-text">Advisory</span> — a standalone 60-minute
-              session for expert direction, problem-solving or a second opinion.
+              <span className="font-semibold text-text">Advisory</span> — a structured written
+              advisory engagement for expert direction, problem-solving or a second opinion.
             </p>
             <p className="text-sm leading-relaxed text-text/85 sm:text-base">
               <span className="font-semibold text-text">Done-for-you services</span> — project
@@ -201,24 +209,25 @@ export function Pricing() {
           <article className="mt-6 grid min-w-0 gap-8 rounded-2xl border-2 border-accent/50 bg-surface p-6 shadow-md sm:p-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:p-10">
             <div className="min-w-0">
               <h4 className="font-display text-2xl font-bold text-text sm:text-3xl">
-                International Trade Strategy Consultation
+                International Trade Strategy Advisory
               </h4>
               <p className="mt-4 font-display text-5xl font-bold text-text">
                 $250
                 <span className="ml-1 text-base font-medium text-muted">USD</span>
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gold-deep">
-                60-minute private video session
+                Structured asynchronous advisory engagement
               </p>
               <p className="mt-4 text-sm leading-relaxed text-text/85 sm:text-base">
-                Private advisory for businesses needing expert direction on sourcing, importation,
-                export strategy, supplier verification, pricing, logistics or market entry. You get
-                clear answers and a written next-step plan.
+                A focused advisory engagement for clients who need expert direction on sourcing,
+                importation, export strategy, supplier verification, pricing, logistics, payment
+                terms or market entry.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-text/75">
-                Consultations are delivered through a scheduled private video session. Project
-                communication, document exchange and post-consultation clarification are handled in
-                writing by email or WhatsApp.
+                After payment is verified, I review your questionnaire and documents and deliver a
+                written strategic assessment with recommendations, risk observations and a
+                next-step action plan — with voice-note explanations where useful. Everything is
+                handled in writing by email or WhatsApp.
               </p>
 
 
@@ -239,7 +248,7 @@ export function Pricing() {
                   href="/consultation"
                   className="inline-flex w-full items-center justify-center rounded-md px-2 py-3 text-sm font-semibold text-gold-deep underline-offset-4 hover:underline sm:w-auto"
                 >
-                  Already paid? Complete questionnaire
+                  Already paid? Complete the advisory questionnaire
                 </a>
               </div>
             </div>

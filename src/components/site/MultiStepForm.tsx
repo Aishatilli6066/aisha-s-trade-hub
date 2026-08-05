@@ -286,8 +286,7 @@ export function MultiStepForm({ spec }: { spec: FormSpec }) {
           </a>
         </div>
         <p className="mt-4 text-xs leading-relaxed text-muted">
-          Your payment is verified manually before the next stage begins. Nothing is auto-approved
-          and nothing is auto-scheduled.
+          Your payment is verified manually before the next stage begins. Nothing is auto-approved.
         </p>
       </div>
     );
@@ -581,7 +580,7 @@ function PaymentBlock({ spec }: { spec: FormSpec }) {
         </>
       )}
       <p className="mt-3 text-xs leading-relaxed text-muted">
-        Payment is verified manually. Nothing is auto-approved and nothing is auto-scheduled.
+        Payment is verified manually. Nothing is auto-approved.
       </p>
     </div>
   );

@@ -74,7 +74,7 @@ export function Hero() {
                 href="#advisory"
                 className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
-                Book a Strategy Consultation
+                Start a Strategy Advisory
               </a>
               <a
                 href="#done-for-you"
