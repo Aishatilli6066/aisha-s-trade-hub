@@ -8,9 +8,9 @@ import { CONSULTATION_PAYMENT_LINK, type DiscoveryTrack } from "@/lib/discovery"
 // Every payment on this site is verified BY HAND. After paying through the
 // Flutterwave link, the client completes the relevant form on the site,
 // enters the Flutterwave payment reference and uploads the receipt.
-// Nothing is auto-verified and nothing is auto-scheduled: the Cal.com
-// scheduling link for the consultation is sent by email/WhatsApp only after
-// the payment has been verified manually.
+// Nothing is auto-verified: the advisory review begins only after the payment
+// has been verified manually. There is no scheduling tool and no live call in
+// this flow — the advisory is delivered in writing.
 // ============================================================================
 
 /** Each done-for-you service has its own dedicated multi-step request form. */
@@ -20,7 +20,14 @@ const TRACK_ROUTES: Record<DiscoveryTrack, string> = {
   businessplan: "/request/business-plan",
 };
 
-const CONSULTATION_FLOW = ["Pay", "Questionnaire", "Verification", "Session scheduled"];
+const CONSULTATION_FLOW = [
+  "Pay",
+  "Questionnaire",
+  "Verification",
+  "Advisory Review",
+  "Strategy Delivered",
+  "Clarification Support",
+];
 
 const DFY_FLOW = [
   "Complete Requirements",
@@ -31,15 +38,16 @@ const DFY_FLOW = [
 ];
 
 const consultationIncludes = [
-  "60-minute private strategy session",
-  "Review of submitted information and documents",
-  "Written recommendations and next-step action plan",
-  "Three business days of brief clarification support",
-  "Secure scheduling link after payment verification",
+  "Pre-advisory questionnaire",
+  "Review of relevant information and documents",
+  "Written strategic assessment",
+  "Personalized recommendations and action plan",
+  "Voice-note explanations where useful",
+  "Three business days of limited clarification support",
 ];
 
 const CONSULTATION_EXCLUSIONS =
-  "The consultation does not include supplier sourcing, extensive market research, document preparation, negotiation, costing development or transaction management — these are quoted separately. Follow-up support covers brief clarification of what we discussed; new research or execution work is billed as a separate engagement.";
+  "The advisory is limited to the submitted matter and clarification of the recommendations provided. It does not include supplier sourcing, extensive market research, document preparation, quotation development, negotiation, costing, logistics coordination or transaction management. These services are quoted separately. Advisory responses are provided during business hours within agreed response windows. This service does not provide continuous or unlimited live-chat access.";
 
 const DISCOVERY_NOTE =
   "The Project Discovery Fee covers initial review, feasibility assessment, scope definition, risk identification and preparation of a tailored written proposal. It does not include project execution. If you proceed, the proposal states the remaining professional fee and payment terms.";
