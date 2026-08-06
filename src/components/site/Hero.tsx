@@ -69,20 +69,19 @@ export function Hero() {
               Based in Kano, Nigeria. Advising clients across Asia · Africa · Middle East · Europe.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap md:justify-start">
+            <div className="mt-8 flex flex-col items-center gap-4 sm:mt-10 md:items-start">
               <a
                 href="#advisory"
-                className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
               >
                 Start a Strategy Advisory
               </a>
               <a
                 href="#done-for-you"
-                className="inline-flex items-center justify-center rounded-md border border-accent/60 px-6 py-3 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="text-sm font-medium text-gold-deep underline underline-offset-4 transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
-                Submit a Service Request
+                Need execution instead? Explore done-for-you services →
               </a>
-
             </div>
 
             <div className="mt-6 text-sm">

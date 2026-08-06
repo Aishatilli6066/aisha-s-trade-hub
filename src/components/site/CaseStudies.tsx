@@ -7,7 +7,7 @@ const cases = [
     action:
       "Identified and vetted overseas manufacturers, coordinated technical specifications, negotiated commercial terms, and managed the supplier selection process.",
     outcome:
-      "A suitable manufacturer was secured at a material reduction against the client\u2019s initial sourcing estimate, while meeting the required technical specifications.",
+      "An overseas manufacturer was selected against the required technical specifications, with negotiated commercial terms below the client\u2019s initial sourcing estimate.",
   },
   {
     title: "Private Label Product Development",
@@ -15,7 +15,7 @@ const cases = [
     action:
       "Sourced and evaluated private-label manufacturers, structured packaging options, and developed a launch roadmap.",
     outcome:
-      "A suitable manufacturing partner, packaging direction, and practical concept-to-market roadmap were established, giving the client a clearer basis for production and commercial launch.",
+      "A manufacturing shortlist, packaging direction and concept-to-market roadmap were delivered, giving the client a defined basis for production planning and launch.",
   },
   {
     title: "Agro-Commodity Sourcing for Egypt Herbal Buyer",
@@ -23,7 +23,7 @@ const cases = [
     action:
       "Sourced and verified Nigerian suppliers and structured pricing and logistics terms.",
     outcome:
-      "Qualified Nigerian supply options were identified at competitive pricing against the comparable market quotations reviewed, with logistics and commercial terms structured for the buyer\u2019s review.",
+      "Verified Nigerian supply options, pricing comparisons and logistics terms were delivered for the buyer\u2019s commercial evaluation.",
   },
   {
     title: "Structuring a 300 MT Sesame Export Opportunity",
@@ -31,7 +31,7 @@ const cases = [
     action:
       "Structured a 300MT export opportunity, drafted MoU documentation, and coordinated transaction preparation.",
     outcome:
-      "The opportunity progressed from an initial buyer inquiry to documented commercial discussions, including transaction structuring and MoU preparation.",
+      "The 300 MT opportunity advanced from buyer inquiry to structured commercial discussions and draft MoU preparation. This engagement is presented as transaction preparation, not a completed shipment.",
   },
   {
     title: "CFR Export Offer to India",

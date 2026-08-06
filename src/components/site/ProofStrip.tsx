@@ -3,7 +3,7 @@ import { FadeIn } from "./FadeIn";
 const stats = [
   { value: "5+", label: "Years International Trade Experience" },
   { value: "4", label: "Continents — Clients Served" },
-  { value: "50+", label: "Verified Suppliers" },
+  { value: "Verified", label: "International Supplier Network" },
   { value: "10+", label: "Export Commodities" },
 ];
 
