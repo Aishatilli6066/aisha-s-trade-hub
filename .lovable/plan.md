@@ -1,70 +1,68 @@
-# Full Site Audit — Aisha Usman Trade Consulting
+# Audit & Update Plan — aishausman.com
 
-No code was changed. Everything below is verified against the running preview and the current source.
+Read-only audit. Nothing changed. Findings verified against current source.
 
-Preview: https://id-preview--fd6b4182-dfe4-4773-b2f7-16d272d7f603.lovable.app
+## 1. Urgent fixes
 
-## Executive summary
+1. **Wrong WhatsApp number in 8 places.** Every link and display still uses `2347042322970`. Correct number is `+2347084443626`. Occurrences: `src/lib/discovery.ts` (`WHATSAPP_NUMBER`), `Hero.tsx`, `Nav.tsx`, `Footer.tsx`, `MobileCta.tsx`, `Contact.tsx` (link + display), `LegalPage.tsx`, `src/lib/abuse-guard.server.ts`, `src/routes/api/public/submit-request.ts` (2 messages, incl. the client confirmation email), `src/lib/forms/specs.ts` (placeholder). Fix by pointing every one at a single exported constant instead of local copies.
+2. **Pricing does not match the stated offer architecture.** Site shows Global Sourcing "From $500 / $100 discovery", Buyer Representation "From $750 / $150 discovery", Business Plan "From $500 / $100 discovery". Current positioning is $500 Global Sourcing/OEM coordination and $750 Buyer Representation as the service prices. Decide whether $500/$750 are fixed prices or floors, and whether the discovery-fee layer stays; then align `Pricing.tsx`, `discovery.ts`, `Faq.tsx` and the four Flutterwave links (the live links are $250/$100/$150/$100 — if prices change, the links must change too, otherwise clients pay the wrong amount).
+3. **Unsupported statistics in the proof strip.** `5+ Years International Trade Experience`, `4 Continents — Clients Served`, `10+ Export Commodities`. None are verifiable by a visitor. Either confirm each with Aisha and keep, or replace with capability statements (the "Verified — International Supplier Network" tile is the safer pattern already in place).
+4. **Advisory description drift.** Current offer is document/brief review + written action plan + **3-day WhatsApp follow-up**. The site says "three business days of limited clarification support" and "delivered by email or WhatsApp" — close, but it should name WhatsApp as the follow-up channel explicitly and state that calls happen only when necessary.
+5. **CAC/NEPC framing.** No misleading personal-licence claim exists today in components (good). When registration is mentioned anywhere, it must be attributed to ASMAN Prime Hub Global Services Limited, never to Aisha personally, and never described as accreditation to advise.
 
-The site is in good shape structurally. All 11 tested routes return 200, the four service forms are genuinely distinct, the email workflow is real (server-side, real attachments, correct Reply-To, separate client confirmation, success only after owner delivery, retry preserves data), and all four Flutterwave links are unique and correctly mapped. No mailto submission wording remains anywhere.
+## 2. Structural and copy updates
 
-The weaknesses are not technical plumbing — they are trust, legal, contrast and discoverability gaps: there is no privacy policy, no terms/refund page, no FAQ, no contact section on the homepage, no robots.txt, a sitemap with no domain, gold-on-white text that fails contrast, and no spam/rate protection on a public endpoint that sends email and accepts 18 MB of files.
+6. **Founder authority is thin above the fold.** Hero states what she does, not why she is credible. Add one factual credibility line (Founder, ASMAN Prime Hub Global Services Limited — CAC & NEPC registered; based in Kano, advising across Asia, Africa, Middle East, Europe).
+7. **Section overload in the middle.** `WhoIWorkWith` (4 cards) + `WhyWorkWithMe` (10 cards) + `Process` (5 cards) run back to back. Compress to two sections; move "why" points into the About narrative.
+8. **`Contact.tsx` is dead code** — 211 lines, mailto-based, not rendered anywhere the audit could confirm as reachable in the current order. Either render a real contact block (email, WhatsApp, response window, "written communication preferred; calls when necessary") or delete it.
+9. **Communication preference is not stated anywhere.** Add a short line on the pricing and form pages: work is delivered in writing over email/WhatsApp; calls are arranged only when a matter genuinely needs one.
+10. **Case-study claims.** Keep the softened outcome wording; add the basis of any comparison ("against quotations collected in <period>") or drop the comparison entirely. Merge the two near-duplicate sesame/CFR studies.
+11. **Aisha vs ASMAN Prime Hub.** The About box and the FAQ both explain the split well; the nav still uses the ASMAN logo as the site mark with an Aisha alt text. Use a personal wordmark in the nav and keep the company logo inside the About block.
+12. **No testimonials, logos or numbers should be invented** to fill the credibility gap. Use named, real transaction summaries only.
 
-## Verified working (leave alone)
+## 3. Suggested page architecture
 
-- Routes: `/`, `/consultation`, `/request/global-sourcing`, `/request/commodity-buyer-representation`, `/request/business-plan`, `/blog`, `/blog/$slug`, `/sitemap.xml`, `/rss.xml` all return 200.
-- Four distinct forms in `src/lib/forms/specs.ts` — consultation 8 steps, sourcing 7, commodity 7, business plan 6, each with service-specific questions (Incoterms and session questions for consultation; tech specs, branding, MOQ for sourcing; commodity grades and logistics for commodity; funding and market plan for business plan). No copy-paste questionnaire.
-- Email workflow in `src/routes/api/public/submit-request.ts`: owner mail to `aishau6066@gmail.com`, `Reply-To` = client, real MIME attachments, client confirmation is non-fatal, 502 + Retry on owner failure, draft preserved. Live send verified end to end (HTTP 200 with attachment).
-- Payment links, all unique, in `src/lib/discovery.ts`: consultation `dpfjpkic7pmw`, sourcing `wkqkjka4juf2`, commodity `mhyg1mc9xzr0`, business plan `vxbmaha2nvyr`. No automatic Flutterwave verification and no automatic Cal.com redirect anywhere in the codebase.
-- Form UX: progress bar with `role="progressbar"`, Back/Next, per-field errors, localStorage restore, manual Save/Clear draft, 4 consent checkboxes gating submit, 44px+ tap targets, skip link on the homepage, single `<main>`, no layout overflow on a 390px viewport.
+```text
+/                     Founder authority + offer overview + conversion path
+/services             All four services, one page, deep detail
+/advisory             $250 Strategy Advisory — its own indexable page
+/about                Founder story, ASMAN Prime Hub relationship, expertise
+/case-studies         Moved off the homepage, one page
+/blog, /blog/$slug    Unchanged (7 posts)
+/consultation         Advisory questionnaire (noindex)
+/request/$service     Three done-for-you forms (noindex)
+/privacy /terms /payment-policy   Unchanged
+/contact              Written channels + response window
+```
+Rationale: the homepage currently carries 12 sections and every service; splitting `/advisory` and `/services` out gives each offer its own title, description and search entry, and shortens the homepage to a real conversion path.
 
-## Critical — fix now
+## 4. Exact new homepage message hierarchy
 
-1. **No privacy policy, terms, or refund/cancellation page.** The forms collect names, emails, WhatsApp numbers, company data, supplier documents and payment receipts, and the consent checkbox references data use — with nothing to link to. This is the biggest trust and legal gap on the site. Needs `/privacy`, `/terms` (incl. non-refundable discovery fee, rescheduling, advisory-outcome disclaimer, document confidentiality and retention) and links in the footer and on every form.
-2. **Public email endpoint has no abuse protection.** `src/routes/api/public/submit-request.ts` is unauthenticated, sends two emails per call and accepts up to 18 MB. Anyone can script it into a mail-flood or fill the inbox. Needs at minimum a honeypot field + minimum time-on-form check, a simple per-IP throttle, and a duplicate-submission guard (the same reference submitted twice currently sends twice).
-3. **`/robots.txt` returns 404** — there is no `public/` directory at all. Crawlers get the SPA 404 shell.
-4. **`sitemap.xml` emits relative URLs.** `BASE_URL = ""` in `src/routes/sitemap[.]xml.ts`, so every `<loc>` is `/blog/...`. Sitemaps require absolute URLs; the file is currently invalid to search engines.
-5. **Gold text on white fails WCAG contrast.** `--color-accent: #D4AF37` on `#FFFFFF` is roughly 1.9:1. It is used for every section eyebrow, the "Submit a Service Request" hero button, form step labels and required asterisks. `--color-gold-deep: #A8851C` already exists and is used in exactly one place — it should carry all gold-on-white text.
+1. **Eyebrow:** Founder, ASMAN Prime Hub Global Services Limited
+2. **H1:** Helping Businesses Source, Trade and Expand Across International Markets
+3. **Sub:** International Trade Consultant and Global Sourcing Specialist. I help importers, exporters and growing businesses verify suppliers, control procurement risk and structure international transactions.
+4. **Credibility line:** Based in Kano, Nigeria. Working with clients across Asia, Africa, the Middle East and Europe. Execution delivered through ASMAN Prime Hub Global Services Limited (CAC and NEPC registered).
+5. **Primary CTA:** Start a Strategy Advisory — $250
+6. **Quiet secondary link:** Need execution instead? Explore done-for-you services →
+7. **Below fold order:** Capabilities → Case studies → Services (4, with prices) → How I work → Pricing → About → Insights → FAQ → Contact
+8. **Standing note near CTAs:** Written advisory over email and WhatsApp. Calls only when a matter requires one.
 
-## High impact
+## 5. Technical, SEO and accessibility fixes
 
-6. **No contact section on the homepage.** `Contact.tsx` (211 lines, mailto-based) is dead code and is not rendered by `src/routes/index.tsx`. There is no email, phone, location or response-time promise anywhere except tiny footer icons. Add a real contact block with response time, or delete the dead component.
-7. **No FAQ.** The three highest-friction questions — why a fee before work, what a discovery fee buys, what happens if no supplier is found — are answered nowhere on the page. This is the cheapest conversion win available.
-8. **Sequencing contradiction between pricing and the forms.** `Pricing.tsx` says "Your request is submitted only after payment succeeds" and the consultation flow chip says "Pay $250" first, but in all four forms the payment step is the second-to-last step. Pick one order and make the pricing copy, flow chips and step order agree.
-9. **Case studies claim numbers with no verification framing.** "approximately 50% below the client's initial sourcing estimate" and "below several comparable market quotations" are unsupported and read as sales copy. Either add the basis (compared against what, when) or soften. Two of the five (sesame 300 MT, CFR India) are near-duplicates and could merge, leaving four stronger studies.
-10. **The Aisha / ASMAN Prime Hub relationship is still ambiguous.** The nav logo is ASMAN Prime Hub with `alt=""`, the hero photo caption says "Founder of ASMAN Prime Hub", the JSON-LD uses `asmanprimehub.com` IDs, and the site is otherwise first person. A one-line statement near the top plus a consistent logo alt would settle it.
-11. **Consultation form is very long.** Step 4 alone has 18 optional fields (product, port, packaging, specs, certs, Incoterm, payment method…). For a $250 advisory call this is heavy. Recommend conditional display driven by the "Consultation Focus" answer, or explicitly marking that step "optional — skip anything not relevant".
-12. **No `og:image` on any route and `twitter:card: summary` only.** Shared links render as bare text. A single branded 1200×630 image would fix every route.
+13. `public/robots.txt` disallows `/consultation` and `/request/` and points at `https://www.aishausman.com/sitemap.xml` — correct; keep in sync if routes are added.
+14. Sitemap covers `/`, `/blog`, 3 legal pages and 7 posts. New routes from section 3 must be added, and the noindex form routes kept out.
+15. Blog posts have no `Article` JSON-LD (author, datePublished, image) — add per-post; also add `BreadcrumbList` on post pages.
+16. Homepage carries only `FAQPage` JSON-LD; `Person`, `Organization` and `Service` live in `__root.tsx`. Add `Service` entries with `offers`/price for each of the four services once prices are settled, and add `sameAs` for the real social profiles.
+17. Only the homepage has `og:image`. Give `/blog/$slug` a per-post absolute `og:image` (the featured image) and add `og:image` to any new route.
+18. `/request/<invalid>` returns HTTP 200 with a not-found panel plus a console error — should return a true 404 status.
+19. Client-side upload validation checks size but not extension; a `.exe` only fails server-side after an 18 MB round trip.
+20. Duplicate React key warning on the business-plan multi-file list when two uploads share a filename.
+21. Gold-on-white contrast: `--color-gold-deep` is used correctly in the components read, but `--color-accent` (#D4AF37) still backs the primary button with dark text — verify 4.5:1 on any accent-on-white **text** that remains.
+22. Hero photo is a large eager-loaded raster at up to 400px — ship a WebP.
+23. Nav logo alt says "Aisha Usman — International Trade Consultant" while the image is the ASMAN mark; make image and alt agree (ties to item 11).
 
-## Medium priority
+## Decisions needed before implementation
 
-13. `/request/bogus` returns HTTP 200, renders the not-found panel, and logs a React error to the console. It should return a real 404 status.
-14. Nav logo `alt=""` treats the brand mark as decorative; screen readers get nothing but the `aria-label` on the wrapper. Give the image a real alt.
-15. The homepage `og:url` and canonical are `/` (relative). Search guidance for this project expects the absolute `https://kanos-trade-hub.lovable.app`. Same for the JSON-LD `@id` values, which point at a different domain.
-16. Client-side file validation checks size but not extension — only the server rejects a `.exe`. The user gets a round-trip failure instead of an instant message.
-17. Consultation and request routes are `noindex,follow` (correct) but are not excluded from the sitemap logic by name — they happen to be absent. Worth an explicit comment so a future edit does not add them.
-18. `email` and `whatsapp` are collected on all four forms, and `company` twice on some. Not wrong, but the duplicate "Payment date / reference / email" block could be shortened with better inline help.
-19. Blog posts have no `Article` JSON-LD or author/date schema, and no internal links from the homepage to relevant posts — the blog is currently isolated from the conversion path.
-20. `Process.tsx`, `WhyWorkWithMe.tsx` and `WhoIWorkWith.tsx` cover overlapping ground (10 "why" cards, 5 process cards, 4 audience cards in sequence). Card fatigue in the middle of the page; consider compressing to two sections.
-
-## Nice to have
-
-21. Deliverables and timelines are not stated per service ("what you get and when") — a short bullet list per pricing card would reduce pre-payment questions.
-22. No visible response-time promise ("replies within 24 hours on business days").
-23. Success screen offers WhatsApp only; a "back to homepage" link would help.
-24. Hero photo is a PNG loaded eagerly at up to 400px — a WebP would cut the largest asset on the page.
-25. Draft restore message only shows on step 0; if a user returns mid-form they get no notice.
-26. Blog has 7 posts but no category filter surfaced from the homepage, and no newsletter or follow-up CTA at the end of a post.
-
-## Change now vs leave alone
-
-**Change now:** privacy/terms/refund pages, endpoint abuse protection, robots.txt, absolute sitemap URLs, gold contrast token swap, FAQ, contact block, pricing/flow sequencing wording.
-
-**Leave alone:** the email pipeline, the four form specs, the payment link map, draft handling, manual-verification wording, and the overall page order. These are correct and working, and editing them risks regression for no gain.
-
-## Technical notes
-
-- Files most implicated: `src/styles.css` (contrast token), `src/routes/sitemap[.]xml.ts` (BASE_URL), `src/routes/api/public/submit-request.ts` (abuse protection, dedupe), `src/routes/index.tsx` (contact/FAQ sections), `src/components/site/Pricing.tsx` (sequencing copy), `src/components/site/CaseStudies.tsx` (claim framing), `src/components/site/Nav.tsx` (logo alt), `src/routes/__root.tsx` (og:image, absolute canonical, JSON-LD IDs), `src/components/site/Contact.tsx` (dead code).
-- Production build and typecheck currently pass; the only console errors observed are the intentional 404 for the missing robots.txt and the not-found throw on an invalid service slug.
-
-Tell me which of these you want implemented and I will do them in priority order.
+- Are $500 and $750 fixed prices or "from" floors, and does the discovery-fee stage remain?
+- Which of the three proof statistics can be substantiated?
+- Keep the multi-page architecture in section 3, or keep everything on the homepage?
