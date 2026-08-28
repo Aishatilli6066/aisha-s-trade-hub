@@ -1,7 +1,6 @@
 import { FadeIn } from "./FadeIn";
 
-const WHATSAPP = "https://wa.me/2347084443626";
-const WHATSAPP_DISPLAY = "+234 708 444 3626";
+import { WHATSAPP_URL as WHATSAPP, WHATSAPP_DISPLAY } from "@/lib/discovery";
 const EMAIL = "aishau6066@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/liaisha-usman-consultant";
 

@@ -1,7 +1,7 @@
 import { POLICY_LINKS } from "@/lib/site";
 import { WhatsAppIcon } from "./icons";
 
-const WHATSAPP = "https://wa.me/2347084443626";
+import { WHATSAPP_URL as WHATSAPP } from "@/lib/discovery";
 const EMAIL = "aishau6066@gmail.com";
 const FACEBOOK = "https://www.facebook.com/share/1bDmXqM44K/";
 const LINKEDIN = "https://www.linkedin.com/in/liaisha-usman-consultant";

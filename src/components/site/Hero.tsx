@@ -1,7 +1,7 @@
 import aishaPhoto from "@/assets/aisha-usman.jpg";
 import { WhatsAppIcon } from "./icons";
 
-const WHATSAPP = "https://wa.me/2347084443626";
+import { WHATSAPP_URL as WHATSAPP } from "@/lib/discovery";
 
 export function Hero() {
   return (
