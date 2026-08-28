@@ -108,20 +108,9 @@ export function Services() {
                   </h4>
                   <CheckList items={p.who} tone="yes" />
                 </div>
-
-                <div className="mt-7">
-                  <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-text/60">
-                    What's included
-                  </h4>
-                  <CheckList items={p.included} tone="yes" />
-                </div>
-
-                <div className="mt-7">
-                  <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-text/60">
-                    What's not included
-                  </h4>
-                  <CheckList items={p.notIncluded} tone="no" />
-                </div>
+                <p className="mt-5 text-xs text-text/60">
+                  Full inclusions and exclusions are listed under each engagement below.
+                </p>
 
                 <div className="mt-8 border-t border-text/10 pt-6">
                   <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-text/60">
