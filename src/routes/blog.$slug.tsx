@@ -132,14 +132,23 @@ function ServiceLinks({ category }: { category: string }) {
       <ul className="mt-3 space-y-2 text-sm">
         {links.map((l) => (
           <li key={l.label}>
-            <Link
-              to={l.to as any}
-              {...(l.hash ? { hash: l.hash } : {})}
-              {...(l.service ? { params: { service: l.service } } : {})}
-              className="text-text/85 underline decoration-accent/50 underline-offset-4 hover:text-gold-deep"
-            >
-              {l.label}
-            </Link>
+            {l.service ? (
+              <Link
+                to="/request/$service"
+                params={{ service: l.service }}
+                className="text-text/85 underline decoration-accent/50 underline-offset-4 hover:text-gold-deep"
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <Link
+                to="/"
+                hash={l.hash}
+                className="text-text/85 underline decoration-accent/50 underline-offset-4 hover:text-gold-deep"
+              >
+                {l.label}
+              </Link>
+            )}
           </li>
         ))}
       </ul>
