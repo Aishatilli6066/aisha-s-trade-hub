@@ -106,19 +106,6 @@ export function Hero() {
               Not sure which you need? Message me first — I will point you to the right one before
               you pay anything.
             </p>
-
-
-            <div className="mt-6 text-sm">
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-text/70 transition-colors hover:text-text"
-              >
-                <WhatsAppIcon size={16} className="text-[#25D366]" />
-                Connect on WhatsApp
-              </a>
-            </div>
           </div>
 
 
