@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import logo from "@/assets/asman-prime-hub-logo.png";
 import { WhatsAppIcon } from "./icons";
 
-const WHATSAPP = "https://wa.me/2347042322970";
+const WHATSAPP = "https://wa.me/2347084443626";
 
 const links = [
   { href: "/#services", label: "Services" },

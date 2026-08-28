@@ -1,6 +1,6 @@
 import { WhatsAppIcon } from "./icons";
 
-const WHATSAPP = "https://wa.me/2347042322970";
+const WHATSAPP = "https://wa.me/2347084443626";
 
 export function MobileCta() {
   return (

@@ -146,7 +146,7 @@ export const Route = createFileRoute("/api/public/submit-request")({
         if (data.payRef.trim() && isDuplicate(dedupeKey)) {
           return jsonError(
             409,
-            "This submission has already been received with the same payment reference. Please check your email, or message +234 704 232 2970 on WhatsApp.",
+            "This submission has already been received with the same payment reference. Please check your email, or message +234 708 444 3626 on WhatsApp.",
           );
         }
 
@@ -250,7 +250,7 @@ export const Route = createFileRoute("/api/public/submit-request")({
               `• Files received: ${attachments.length ? attachments.map((a) => a.filename).join(", ") : "none"}`,
               `• Submitted: ${submittedAt}`,
               "",
-              "If anything is missing, reply to this email or message +234 704 232 2970 on WhatsApp.",
+              "If anything is missing, reply to this email or message +234 708 444 3626 on WhatsApp.",
               "",
               "Aisha Usman",
               "International Trade & Sourcing Consultant",
