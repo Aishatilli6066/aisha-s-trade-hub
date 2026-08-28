@@ -26,33 +26,21 @@ export function About() {
           </p>
 
           <p className="mt-8 text-base leading-relaxed text-text/85 sm:text-lg">
-            I work with businesses when the stakes are real: capital is on the line, suppliers are
-            unverified, paperwork is unforgiving, and the wrong decision is expensive. My role is to
-            reduce that risk — bringing independent verification, commercial judgment, and practical
-            trade execution to importers, exporters, manufacturers, and procurement teams operating
-            across borders.
-          </p>
-
-          <p className="mt-6 text-base leading-relaxed text-text/85 sm:text-lg">
-            Based in Kano, Nigeria, I advise businesses across Asia, Africa, the Middle East, and
-            Europe. My work is grounded in live transactions: commodity exports, OEM and
-            private-label manufacturing, custom machinery procurement, and the supplier verification
-            that holds it all together.
+            I work with businesses when the stakes are real: capital on the line, unverified
+            suppliers, unforgiving paperwork. My role is to reduce that risk with independent
+            verification, commercial judgment and practical execution — grounded in live
+            transactions across commodity exports, OEM and private-label manufacturing, and custom
+            machinery procurement.
           </p>
 
           <div className="mt-8 rounded-xl border border-accent/30 bg-bg p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
               Aisha Usman &amp; ASMAN Prime Hub
             </p>
-            <p className="mt-3 text-base leading-relaxed text-text/90">
-              Aisha Usman is the founder and lead trade strategist at ASMAN Prime Hub Global
-              Services Limited.
-            </p>
             <p className="mt-3 text-base leading-relaxed text-text/85">
-              The Aisha Usman name represents advisory, personal expertise, and thought leadership —
-              strategy advisory, independent judgment, and published insight. ASMAN Prime Hub Global
-              Services Limited handles corporate execution: sourcing, exports, logistics, and buyer
-              representation delivered under a registered company structure.
+              You work with me directly for strategy, advisory and judgment. Corporate execution —
+              sourcing, exports, logistics, buyer representation — is delivered through ASMAN Prime
+              Hub Global Services Limited, the registered company I founded.
             </p>
           </div>
 
