@@ -8,9 +8,10 @@ const DESC =
   "Articles on global sourcing, supplier verification, commodity export, trade documentation, importation, OEM/ODM manufacturing, and private label development.";
 
 export const Route = createFileRoute("/blog/")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    category: typeof search["category"] === "string" ? (search["category"] as string) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { category?: string } => {
+    const c = search["category"];
+    return typeof c === "string" && c ? { category: c } : {};
+  },
   head: () => ({
     meta: [
       { title: TITLE },

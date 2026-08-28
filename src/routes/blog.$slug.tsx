@@ -88,6 +88,74 @@ export const Route = createFileRoute("/blog/$slug")({
   component: PostPage,
 });
 
+const SERVICE_LINKS: Record<string, { label: string; to: string; hash?: string; service?: string }[]> = {
+  "Global Sourcing": [
+    { label: "Global Sourcing & Procurement — request a proposal", to: "/request/$service", service: "global-sourcing" },
+    { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
+  ],
+  "Supplier Verification": [
+    { label: "Supplier identification & verification", to: "/request/$service", service: "global-sourcing" },
+    { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
+  ],
+  "Commodity Export": [
+    { label: "Agricultural Commodity Buyer Representation", to: "/request/$service", service: "commodity-buyer-representation" },
+    { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
+  ],
+  "Trade Documentation": [
+    { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
+    { label: "Import & Export Business Plan Development", to: "/request/$service", service: "business-plan" },
+  ],
+  Importation: [
+    { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
+    { label: "Global Sourcing & Procurement", to: "/request/$service", service: "global-sourcing" },
+  ],
+  "OEM / ODM Manufacturing": [
+    { label: "OEM/ODM & private-label sourcing", to: "/request/$service", service: "global-sourcing" },
+    { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
+  ],
+  "Private Label Development": [
+    { label: "Private-label product development sourcing", to: "/request/$service", service: "global-sourcing" },
+    { label: "Import & Export Business Plan Development", to: "/request/$service", service: "business-plan" },
+  ],
+};
+
+function ServiceLinks({ category }: { category: string }) {
+  const links = SERVICE_LINKS[category] ?? [
+    { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
+    { label: "Done-for-you services", to: "/", hash: "done-for-you" },
+  ];
+  return (
+    <aside className="mt-12 rounded-lg border border-text/10 bg-text/[0.02] p-5 sm:p-6">
+      <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-deep">
+        Related services
+      </h2>
+      <ul className="mt-3 space-y-2 text-sm">
+        {links.map((l) => (
+          <li key={l.label}>
+            {l.service ? (
+              <Link
+                to="/request/$service"
+                params={{ service: l.service }}
+                className="text-text/85 underline decoration-accent/50 underline-offset-4 hover:text-gold-deep"
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <Link
+                to="/"
+                hash={l.hash}
+                className="text-text/85 underline decoration-accent/50 underline-offset-4 hover:text-gold-deep"
+              >
+                {l.label}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
+}
+
 function PostPage() {
   const { post, related, prev, next } = Route.useLoaderData();
   const toc = post.toc.filter((t: TocItem) => t.level === 2);
@@ -100,7 +168,13 @@ function PostPage() {
         <Link to="/blog" className="hover:text-gold-deep">Blog</Link>
       </nav>
 
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-deep">{String(post.category)}</p>
+      <Link
+        to="/blog"
+        search={{ category: String(post.category) }}
+        className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-deep hover:underline"
+      >
+        {String(post.category)}
+      </Link>
       <h1 className="mt-3 font-display text-3xl font-bold leading-[1.15] tracking-tight text-text sm:text-4xl md:text-5xl">
         {post.title}
       </h1>
@@ -141,6 +215,8 @@ function PostPage() {
         className="prose-blog mt-10"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
+
+      <ServiceLinks category={String(post.category)} />
 
       <AuthorBio />
 
