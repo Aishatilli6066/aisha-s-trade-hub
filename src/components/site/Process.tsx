@@ -28,6 +28,33 @@ const steps = [
   },
 ];
 
+const principles = [
+  {
+    title: "Independent Verification",
+    description: "Suppliers and buyers are vetted on credentials, status, and trade history before any commitment.",
+  },
+  {
+    title: "Risk Reduction First",
+    description: "Structured due diligence surfaces red flags and protects capital before contracts are signed.",
+  },
+  {
+    title: "Documentation Advisory",
+    description: "Practical guidance on Form M, NXP, NAQS, phytosanitary, packing lists, and shipping paperwork.",
+  },
+  {
+    title: "CAC & NEPC Compliant",
+    description: "Execution runs through ASMAN Prime Hub Global Services Limited, registered with the CAC and NEPC.",
+  },
+  {
+    title: "Transparent Communication",
+    description: "Clear scope, honest recommendations, and direct updates — no hidden markups, no runaround.",
+  },
+  {
+    title: "Practical Trade Execution",
+    description: "Decision-grade advice from someone who has structured live transactions, not theory.",
+  },
+];
+
 export function Process() {
   return (
     <section id="process" aria-labelledby="process-title" className="bg-surface border-b border-text/10">
@@ -51,6 +78,21 @@ export function Process() {
             </li>
           ))}
         </ol>
+        <FadeIn>
+          <h3 className="mt-20 font-display text-2xl font-bold text-text sm:text-3xl">
+            Why Clients Work With Me
+          </h3>
+        </FadeIn>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {principles.map((p) => (
+            <FadeIn key={p.title}>
+              <div className="h-full rounded-lg border border-text/15 bg-bg p-6 transition-colors hover:border-accent/40">
+                <h4 className="font-display text-base font-semibold text-gold-deep">{p.title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-text/80">{p.description}</p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );
