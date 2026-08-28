@@ -30,7 +30,40 @@ const SocialLink = ({ href, label, brandClass, children }: SocialProps) => (
 export function Footer() {
   return (
     <footer className="border-t border-accent pb-20 md:pb-0">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
+        <div className="grid gap-8 sm:grid-cols-2">
+          <div>
+            <p className="font-display text-lg font-bold text-text">Aisha Usman</p>
+            <p className="mt-1 text-sm text-text/80">
+              International Trade Consultant | Global Sourcing Specialist | Export Strategist
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              Based in Kano, Nigeria. Working internationally. Advisory is delivered personally by
+              Aisha Usman; corporate sourcing and trade execution are handled through ASMAN Prime
+              Hub Global Services Limited.
+            </p>
+          </div>
+          <nav aria-label="Site" className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm sm:justify-items-end">
+            {[
+              { href: "/#services", label: "Services" },
+              { href: "/#pricing", label: "Pricing" },
+              { href: "/blog", label: "Blog" },
+              { href: "/#faq", label: "FAQ" },
+              { href: "/#contact", label: "Contact" },
+              { href: `mailto:${EMAIL}`, label: "Email" },
+            ].map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                className="text-text/80 underline-offset-2 transition-colors hover:text-gold-deep hover:underline"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+      <div className="mx-auto mt-8 flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-text/10 px-4 py-8 sm:flex-row sm:px-6">
         <div className="text-center sm:text-left">
           <p className="text-sm text-muted">© 2026 Aisha Usman. All rights reserved.</p>
           <nav aria-label="Legal" className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 sm:justify-start">
@@ -45,6 +78,7 @@ export function Footer() {
             ))}
           </nav>
         </div>
+
         <div className="flex flex-wrap items-center justify-center gap-3">
           <SocialLink href={WHATSAPP} label="Message Aisha on WhatsApp" brandClass="hover:border-[#25D366] hover:text-[#25D366]">
             <WhatsAppIcon size={18} />
