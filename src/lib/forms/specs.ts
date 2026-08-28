@@ -46,7 +46,7 @@ const consultation: FormSpec = {
           label: "WhatsApp number (with country code)",
           type: "tel",
           required: true,
-          placeholder: "+234 708 444 3626",
+          placeholder: "+234 704 232 2970",
         },
         { id: "country", label: "Country of residence", type: "text", required: true },
         { id: "company", label: "Company or business name", type: "text" },

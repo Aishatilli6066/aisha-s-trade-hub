@@ -41,7 +41,7 @@ export function checkRateLimit(ip: string): string | null {
   }
   hit.count += 1;
   if (hit.count > MAX_PER_WINDOW) {
-    return "Too many submissions from this connection. Please wait a few minutes, or message +234 708 444 3626 on WhatsApp.";
+    return "Too many submissions from this connection. Please wait a few minutes, or message +234 704 232 2970 on WhatsApp.";
   }
   return null;
 }
