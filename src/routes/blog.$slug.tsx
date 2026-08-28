@@ -9,6 +9,7 @@ import {
 } from "@/lib/blog";
 import { AuthorBio } from "@/components/site/AuthorBio";
 import { SITE_URL, OG_IMAGE } from "@/lib/site";
+import { WHATSAPP_URL } from "@/lib/discovery";
 
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -110,7 +111,7 @@ function PostPage() {
       {post.image && (
         <img
           src={post.image}
-          alt=""
+          alt={post.title}
           className="mt-8 aspect-video w-full rounded-lg object-cover"
         />
       )}
@@ -203,19 +204,41 @@ function PostPage() {
         </aside>
       )}
 
-      <div className="mt-16 rounded-lg border border-text/10 bg-text/[0.02] p-6 text-center">
-        <h2 className="font-display text-xl font-semibold text-text">Have a sourcing or export project?</h2>
-        <p className="mt-2 text-sm text-text/70">
-          Engagements begin from USD 250. Custom proposals for larger transactions.
+      <div className="mt-16 rounded-lg border border-accent/40 bg-text/[0.02] p-6 sm:p-8">
+        <h2 className="font-display text-xl font-semibold text-text sm:text-2xl">
+          Planning a sourcing, import or export transaction?
+        </h2>
+        <p className="mt-3 text-sm leading-relaxed text-text/80">
+          If you need a structured review before committing capital, you can request a paid
+          advisory or a project discovery review. Strategy advisory starts at USD 250; done-for-you
+          projects begin with a discovery fee and a written proposal.
         </p>
-        <Link
-          to="/"
-          hash="pricing"
-          className="mt-4 inline-block rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-bg"
-        >
-          Request a proposal
-        </Link>
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Link
+            to="/"
+            hash="advisory"
+            className="inline-flex items-center justify-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-text"
+          >
+            Start Strategy Advisory
+          </Link>
+          <Link
+            to="/"
+            hash="done-for-you"
+            className="inline-flex items-center justify-center rounded-md border-2 border-accent px-5 py-2.5 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent hover:text-text"
+          >
+            Request a Written Proposal
+          </Link>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-md border border-text/20 px-5 py-2.5 text-sm font-semibold text-text transition-colors hover:border-[#25D366] hover:text-[#25D366]"
+          >
+            Message on WhatsApp
+          </a>
+        </div>
       </div>
+
     </article>
   );
 }

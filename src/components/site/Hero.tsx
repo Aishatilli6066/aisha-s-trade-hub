@@ -37,7 +37,7 @@ export function Hero() {
             <div className="overflow-hidden rounded-full border-2 border-accent/40 shadow-2xl shadow-black/30">
               <img
                 src={aishaPhoto}
-                alt="Aisha Usman, international trade consultant and global sourcing specialist, founder of ASMAN Prime Hub"
+                alt="Aisha Usman, Founder of ASMAN Prime Hub"
                 className="aspect-square h-full w-full object-cover"
                 style={{ objectPosition: "50% 22%" }}
                 width={400}
@@ -45,63 +45,75 @@ export function Hero() {
                 loading="eager"
               />
             </div>
-            <figcaption className="mt-3 text-center text-xs leading-relaxed text-muted md:text-left">
-              Aisha Usman — Founder &amp; Lead Trade Strategist, ASMAN Prime Hub Global Services
-              Limited
-            </figcaption>
           </figure>
 
           <div className="order-2 min-w-0 flex-1 text-center md:order-1 md:text-left">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
-              ASMAN Prime Hub Global Services Limited
+              Founder, ASMAN Prime Hub Global Services Limited
+            </p>
+            <p className="mt-2 font-display text-xl font-bold tracking-tight text-text sm:text-3xl">
+              Aisha Usman
+            </p>
+            <p className="mt-2 text-[0.7rem] font-semibold uppercase leading-relaxed tracking-[0.15em] text-gold-deep sm:text-xs sm:tracking-[0.2em]">
+              International Trade Consultant <span className="text-text/40">|</span> Global Sourcing Specialist <span className="text-text/40">|</span> Export Strategist
             </p>
 
-            <h1 className="mt-4 font-display text-[1.75rem] font-bold leading-[1.15] text-text sm:mt-5 sm:text-5xl lg:text-6xl">
-              Global Sourcing, Import Coordination &amp; Export Support for Businesses
+            <h1 className="mt-5 font-display text-[1.75rem] font-bold leading-[1.15] text-text sm:mt-6 sm:text-5xl lg:text-6xl">
+              Helping Businesses Source, Verify, Trade and Expand Across International Markets
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-text/85 sm:mt-6 sm:text-lg">
-              ASMAN Prime Hub helps businesses source products, verify suppliers, coordinate
-              procurement, manage import and export processes, and access international trade
-              opportunities with structure, transparency and commercial discipline.
+              I help importers, exporters, manufacturers, procurement teams, commodity buyers and
+              growing businesses reduce trade risk through supplier verification, sourcing strategy,
+              export structuring, landed-cost analysis and import/export business planning.
             </p>
 
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-text/80">
-              We work with importers, exporters, manufacturers, distributors, agribusinesses,
-              procurement teams and SMEs across international markets — a global sourcing and trade
-              partner registered in Nigeria with the CAC and NEPC, and a direct gateway to Nigerian
-              and African agro commodities.
+            <p className="mt-4 text-sm text-muted">
+              Based in Nigeria. Working with clients and trade opportunities across Africa, Asia,
+              the Middle East and Europe. Corporate sourcing and execution are delivered through
+              ASMAN Prime Hub Global Services Limited, a CAC and NEPC registered company.
             </p>
 
-            <div className="mt-8 flex flex-col items-center gap-4 sm:mt-10 sm:flex-row sm:flex-wrap md:items-start md:justify-start">
+            <p className="mt-2 text-sm text-muted">
+              Written advisory over email and WhatsApp. Calls only when a matter requires one.
+            </p>
+
+            <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap md:items-start md:justify-start">
               <a
                 href="#advisory"
                 className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
               >
-                Book Consultation
+                Start a Strategy Advisory
               </a>
               <a
-                href="#services"
+                href="#done-for-you"
                 className="inline-flex w-full items-center justify-center rounded-md border-2 border-accent px-6 py-3 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
               >
-                Explore Services
+                Request a Written Proposal
               </a>
-            </div>
-
-            <div className="mt-6 text-sm">
               <a
                 href={WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-text/70 transition-colors hover:text-text"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-text/20 px-6 py-3 text-sm font-semibold text-text transition-colors hover:border-[#25D366] hover:text-[#25D366] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
               >
                 <WhatsAppIcon size={16} className="text-[#25D366]" />
-                Connect on WhatsApp
+                Message on WhatsApp
               </a>
             </div>
+
+            <p className="mt-4 text-xs text-muted">
+              Not sure which you need? Message me first — I will point you to the right one before
+              you pay anything.
+            </p>
           </div>
+
+
         </div>
+
       </div>
     </section>
   );
 }
+
+
