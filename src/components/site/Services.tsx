@@ -5,8 +5,6 @@ type Path = {
   title: string;
   summary: string;
   who: string[];
-  included: string[];
-  notIncluded: string[];
   start: { label: string; href: string };
   startNote: string;
 };
@@ -16,26 +14,11 @@ const paths: Path[] = [
     eyebrow: "Path 1 — Advisory",
     title: "International Trade Strategy Advisory",
     summary:
-      "A structured written assessment of your sourcing, import or export plan before you commit capital. You send the full picture; I return a considered strategic opinion, the risks I can see, and the sequence I would follow.",
+      "A structured written assessment of your sourcing, import or export plan before you commit capital — the risks I can see and the sequence I would follow.",
     who: [
-      "You are deciding whether a product, supplier or market is worth pursuing",
-      "You have quotes or a supplier in hand and want an independent read before paying",
-      "You are entering a new import or export market and need the route mapped",
-      "You want senior judgement, not execution or introductions",
-    ],
-    included: [
-      "Review of your submitted brief, quotes, specifications and documents",
-      "Written strategic assessment with clear recommendations",
-      "Risk observations across supplier, pricing, payment and documentation",
-      "A next-step action plan in the order I would run it",
-      "Voice-note explanations where written detail is not enough",
-      "Three business days of limited clarification support after delivery",
-    ],
-    notIncluded: [
-      "Supplier identification, negotiation or factory coordination",
-      "Buyer or seller introductions from my network",
-      "Ongoing project management or transaction handling",
-      "Legal, tax, customs-broking or financial-advice services",
+      "Deciding whether a product, supplier or market is worth pursuing",
+      "Want an independent read on quotes or a supplier before paying",
+      "Entering a new import or export market and need the route mapped",
     ],
     start: { label: "Start a Strategy Advisory", href: "#advisory" },
     startNote: "$250 USD · pay first, then complete the advisory questionnaire.",
@@ -44,26 +27,11 @@ const paths: Path[] = [
     eyebrow: "Path 2 — Done-for-you",
     title: "Sourcing, Procurement & Buyer Representation",
     summary:
-      "Hands-on execution where I run the process for you — identifying and verifying suppliers, coordinating manufacturing or commodity supply, and holding the commercial detail together until the transaction is structured.",
+      "Hands-on execution: I identify and verify suppliers, coordinate manufacturing or commodity supply, and hold the commercial detail together until the transaction is structured.",
     who: [
-      "You have decided to move and need the work carried out, not advised on",
+      "The decision is made and you need the work carried out",
       "You need suppliers or manufacturers found, screened and verified",
-      "You are buying agricultural commodities and need representation on the ground",
-      "You need OEM/ODM, private-label or custom machinery procurement coordinated",
-    ],
-    included: [
-      "Supplier and manufacturer identification against your written specification",
-      "Independent verification, due diligence and factory assessment support",
-      "Quotation collection, comparison and landed-cost breakdown",
-      "Sample, inspection and quality-checkpoint coordination",
-      "Commercial terms, Incoterms and payment-structure guidance",
-      "Documentation and export-readiness support through the transaction",
-    ],
-    notIncluded: [
-      "Guaranteed pricing, guaranteed volumes or guaranteed supplier acceptance",
-      "Freight forwarding, customs clearance or insurance as a licensed provider",
-      "Financing, escrow or holding client funds",
-      "Work commenced before the discovery fee is verified",
+      "You are buying commodities and need representation on the ground",
     ],
     start: { label: "Request a Written Proposal", href: "#done-for-you" },
     startNote:
