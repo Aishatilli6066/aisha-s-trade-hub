@@ -62,7 +62,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-dvh bg-bg font-sans text-text antialiased">
+    <div className="min-h-dvh bg-bg pb-[calc(3.5rem+env(safe-area-inset-bottom))] font-sans text-text antialiased md:pb-0">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[60] focus:rounded focus:bg-accent focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-bg"
