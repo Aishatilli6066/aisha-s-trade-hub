@@ -88,34 +88,34 @@ export const Route = createFileRoute("/blog/$slug")({
   component: PostPage,
 });
 
-const SERVICE_LINKS: Record<string, { label: string; to: string; hash?: string }[]> = {
+const SERVICE_LINKS: Record<string, { label: string; to: string; hash?: string; service?: string }[]> = {
   "Global Sourcing": [
-    { label: "Global Sourcing & Procurement — request a proposal", to: "/request/global-sourcing" },
+    { label: "Global Sourcing & Procurement — request a proposal", to: "/request/$service", service: "global-sourcing" },
     { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
   ],
   "Supplier Verification": [
-    { label: "Supplier identification & verification", to: "/request/global-sourcing" },
+    { label: "Supplier identification & verification", to: "/request/$service", service: "global-sourcing" },
     { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
   ],
   "Commodity Export": [
-    { label: "Agricultural Commodity Buyer Representation", to: "/request/commodity-buyer-representation" },
+    { label: "Agricultural Commodity Buyer Representation", to: "/request/$service", service: "commodity-buyer-representation" },
     { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
   ],
   "Trade Documentation": [
     { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
-    { label: "Import & Export Business Plan Development", to: "/request/business-plan" },
+    { label: "Import & Export Business Plan Development", to: "/request/$service", service: "business-plan" },
   ],
   Importation: [
     { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
-    { label: "Global Sourcing & Procurement", to: "/request/global-sourcing" },
+    { label: "Global Sourcing & Procurement", to: "/request/$service", service: "global-sourcing" },
   ],
   "OEM / ODM Manufacturing": [
-    { label: "OEM/ODM & private-label sourcing", to: "/request/global-sourcing" },
+    { label: "OEM/ODM & private-label sourcing", to: "/request/$service", service: "global-sourcing" },
     { label: "International Trade Strategy Advisory", to: "/", hash: "advisory" },
   ],
   "Private Label Development": [
-    { label: "Private-label product development sourcing", to: "/request/global-sourcing" },
-    { label: "Import & Export Business Plan Development", to: "/request/business-plan" },
+    { label: "Private-label product development sourcing", to: "/request/$service", service: "global-sourcing" },
+    { label: "Import & Export Business Plan Development", to: "/request/$service", service: "business-plan" },
   ],
 };
 
@@ -133,8 +133,9 @@ function ServiceLinks({ category }: { category: string }) {
         {links.map((l) => (
           <li key={l.label}>
             <Link
-              to={l.to}
+              to={l.to as any}
               {...(l.hash ? { hash: l.hash } : {})}
+              {...(l.service ? { params: { service: l.service } } : {})}
               className="text-text/85 underline decoration-accent/50 underline-offset-4 hover:text-gold-deep"
             >
               {l.label}
