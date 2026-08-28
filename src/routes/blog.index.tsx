@@ -8,6 +8,9 @@ const DESC =
   "Articles on global sourcing, supplier verification, commodity export, trade documentation, importation, OEM/ODM manufacturing, and private label development.";
 
 export const Route = createFileRoute("/blog/")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    category: typeof search["category"] === "string" ? (search["category"] as string) : undefined,
+  }),
   head: () => ({
     meta: [
       { title: TITLE },
@@ -30,7 +33,10 @@ export const Route = createFileRoute("/blog/")({
 
 function BlogIndex() {
   const posts = useMemo(() => getAllPosts(), []);
-  const [active, setActive] = useState<string>("All");
+  const { category } = Route.useSearch();
+  const [active, setActive] = useState<string>(
+    category && (BLOG_CATEGORIES as string[]).includes(category) ? category : "All",
+  );
 
   const filtered = active === "All" ? posts : posts.filter((p) => p.category === active);
 
