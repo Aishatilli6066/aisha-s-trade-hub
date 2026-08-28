@@ -9,6 +9,7 @@ import {
 } from "@/lib/blog";
 import { AuthorBio } from "@/components/site/AuthorBio";
 import { SITE_URL, OG_IMAGE } from "@/lib/site";
+import { WHATSAPP_URL } from "@/lib/discovery";
 
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -110,7 +111,7 @@ function PostPage() {
       {post.image && (
         <img
           src={post.image}
-          alt=""
+          alt={post.title}
           className="mt-8 aspect-video w-full rounded-lg object-cover"
         />
       )}
