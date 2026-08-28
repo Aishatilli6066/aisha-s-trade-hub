@@ -58,7 +58,7 @@ export function Hero() {
               International Trade Consultant <span className="text-text/40">|</span> Global Sourcing Specialist <span className="text-text/40">|</span> Export Strategist
             </p>
 
-            <h1 className="mt-5 font-display text-[1.75rem] font-bold leading-[1.15] text-text sm:mt-6 sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 font-display text-[1.6rem] font-bold leading-[1.18] text-text sm:mt-6 sm:text-5xl lg:text-6xl">
               Helping Businesses Source, Verify, Trade and Expand Across International Markets
             </h1>
 
