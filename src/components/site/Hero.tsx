@@ -48,7 +48,10 @@ export function Hero() {
           </figure>
 
           <div className="order-2 min-w-0 flex-1 text-center md:order-1 md:text-left">
-            <p className="font-display text-xl font-bold tracking-tight text-text sm:text-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
+              Founder, ASMAN Prime Hub Global Services Limited
+            </p>
+            <p className="mt-2 font-display text-xl font-bold tracking-tight text-text sm:text-3xl">
               Aisha Usman
             </p>
             <p className="mt-2 text-[0.7rem] font-semibold uppercase leading-relaxed tracking-[0.15em] text-gold-deep sm:text-xs sm:tracking-[0.2em]">
@@ -67,7 +70,14 @@ export function Hero() {
 
             <p className="mt-4 text-sm text-muted">
               Based in Kano, Nigeria. Advising clients across Asia · Africa · Middle East · Europe.
+              Execution is delivered through ASMAN Prime Hub Global Services Limited, a CAC and
+              NEPC registered company.
             </p>
+
+            <p className="mt-2 text-sm text-muted">
+              Written advisory over email and WhatsApp. Calls only when a matter requires one.
+            </p>
+
 
             <div className="mt-8 flex flex-col items-center gap-4 sm:mt-10 md:items-start">
               <a
