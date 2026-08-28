@@ -34,7 +34,7 @@ export function Nav() {
         >
           <img
             src={logo}
-            alt="Aisha Usman — International Trade Consultant"
+            alt="ASMAN Prime Hub Global Services Limited"
             width={36}
             height={36}
             className="h-9 w-9 object-contain"

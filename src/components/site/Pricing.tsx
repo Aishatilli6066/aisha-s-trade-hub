@@ -43,7 +43,7 @@ const consultationIncludes = [
   "Written strategic assessment",
   "Personalized recommendations and action plan",
   "Voice-note explanations where useful",
-  "Three business days of limited clarification support",
+  "Three business days of limited clarification support over WhatsApp or email",
 ];
 
 const CONSULTATION_EXCLUSIONS =
