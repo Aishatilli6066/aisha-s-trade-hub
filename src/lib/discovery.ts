@@ -85,4 +85,8 @@ export const DONE_FOR_YOU_STEPS = [
 
 // Where completed questionnaires and paid requests are sent.
 export const CONTACT_EMAIL = "aishau6066@gmail.com";
-export const WHATSAPP_NUMBER = "2347042322970";
+export const WHATSAPP_NUMBER = "2347084443626";
+
+/** Display form and click-to-chat URL — use these everywhere instead of literals. */
+export const WHATSAPP_DISPLAY = "+234 708 444 3626";
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;

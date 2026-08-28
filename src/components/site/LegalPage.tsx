@@ -38,7 +38,7 @@ export function LegalPage({
             >
               aishau6066@gmail.com
             </a>{" "}
-            or message +234 704 232 2970 on WhatsApp. Responses are typically sent within one
+            or message +234 708 444 3626 on WhatsApp. Responses are typically sent within one
             business day.
           </p>
         </div>

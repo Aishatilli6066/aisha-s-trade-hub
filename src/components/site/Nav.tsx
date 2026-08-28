@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import logo from "@/assets/asman-prime-hub-logo.png";
 import { WhatsAppIcon } from "./icons";
 
-const WHATSAPP = "https://wa.me/2347042322970";
+import { WHATSAPP_URL as WHATSAPP } from "@/lib/discovery";
 
 const links = [
   { href: "/#services", label: "Services" },
@@ -34,7 +34,7 @@ export function Nav() {
         >
           <img
             src={logo}
-            alt="Aisha Usman — International Trade Consultant"
+            alt="ASMAN Prime Hub Global Services Limited"
             width={36}
             height={36}
             className="h-9 w-9 object-contain"

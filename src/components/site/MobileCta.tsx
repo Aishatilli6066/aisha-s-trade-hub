@@ -1,6 +1,6 @@
 import { WhatsAppIcon } from "./icons";
 
-const WHATSAPP = "https://wa.me/2347042322970";
+import { WHATSAPP_URL as WHATSAPP } from "@/lib/discovery";
 
 export function MobileCta() {
   return (
