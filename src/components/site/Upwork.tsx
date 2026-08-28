@@ -21,11 +21,8 @@ export function Upwork() {
             Prefer Working Through <span className="text-gold-deep">Upwork?</span>
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-text/85 sm:text-lg">
-            Businesses and entrepreneurs who prefer platform-based engagements can hire me
-            directly through Upwork for trade consulting, supplier sourcing, supplier
-            verification, import/export business planning, OEM/ODM manufacturing projects,
-            private label product development, commodity exports, and custom-made machinery
-            sourcing.
+            Prefer a platform-based engagement? You can hire me directly on Upwork for trade
+            consulting, sourcing, supplier verification and export support.
           </p>
           <a
             href={UPWORK_URL}

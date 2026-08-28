@@ -31,7 +31,7 @@ const cases = [
     action:
       "Structured a 300MT export opportunity, drafted MoU documentation, and coordinated transaction preparation.",
     outcome:
-      "The 300 MT opportunity advanced from buyer inquiry to structured commercial discussions and draft MoU preparation. This engagement is presented as transaction preparation, not a completed shipment.",
+      "Advanced from buyer inquiry to structured commercial discussions and draft MoU preparation — presented as transaction preparation, not a completed shipment.",
   },
   {
     title: "CFR Export Offer to India",
@@ -63,7 +63,7 @@ export function CaseStudies() {
             Selected Trade and Sourcing Engagements
           </h2>
           <p className="mt-4 text-base text-text/80 sm:text-lg">
-            Real assignments demonstrating how I research, structure, negotiate, and support international trade opportunities.
+            Real assignments — how I research, structure and support trade opportunities.
           </p>
         </FadeIn>
 

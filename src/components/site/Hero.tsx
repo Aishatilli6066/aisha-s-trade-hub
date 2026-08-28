@@ -63,19 +63,14 @@ export function Hero() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-text/85 sm:mt-6 sm:text-lg">
-              I help importers, exporters, manufacturers, procurement teams, commodity buyers and
-              growing businesses reduce trade risk through supplier verification, sourcing strategy,
-              export structuring, landed-cost analysis and import/export business planning.
+              I help importers, exporters, manufacturers and procurement teams reduce trade risk
+              through supplier verification, sourcing strategy and export structuring.
             </p>
 
             <p className="mt-4 text-sm text-muted">
-              Based in Nigeria. Working with clients and trade opportunities across Africa, Asia,
-              the Middle East and Europe. Corporate sourcing and execution are delivered through
-              ASMAN Prime Hub Global Services Limited, a CAC and NEPC registered company.
-            </p>
-
-            <p className="mt-2 text-sm text-muted">
-              Written advisory over email and WhatsApp. Calls only when a matter requires one.
+              Based in Nigeria, working across Africa, Asia, the Middle East and Europe — execution
+              through ASMAN Prime Hub Global Services Limited (CAC &amp; NEPC registered). Advisory
+              in writing over email and WhatsApp.
             </p>
 
             <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap md:items-start md:justify-start">
