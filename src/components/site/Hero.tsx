@@ -31,9 +31,9 @@ export function Hero() {
         <circle cx="980" cy="220" r="2.5" fill="#D4AF37" />
       </svg>
 
-      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
-        <div className="flex flex-col items-center gap-8 sm:gap-10 md:flex-row md:items-center md:justify-between lg:gap-16">
-          <figure className="order-1 mx-auto w-40 shrink-0 sm:w-56 md:order-2 md:mx-0 md:w-72 lg:w-80">
+      <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-24 lg:py-28">
+        <div className="flex flex-col items-center gap-6 sm:gap-10 md:flex-row md:items-center md:justify-between lg:gap-16">
+          <figure className="order-1 mx-auto w-32 shrink-0 sm:w-56 md:order-2 md:mx-0 md:w-72 lg:w-80">
             <div className="overflow-hidden rounded-full border-2 border-accent/40 shadow-2xl shadow-black/30">
               <img
                 src={aishaPhoto}
