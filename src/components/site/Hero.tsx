@@ -59,27 +59,26 @@ export function Hero() {
             </p>
 
             <h1 className="mt-5 font-display text-[1.75rem] font-bold leading-[1.15] text-text sm:mt-6 sm:text-5xl lg:text-6xl">
-              Helping Businesses Source, Trade and Expand Across International Markets
+              Helping Businesses Source, Verify, Trade and Expand Across International Markets
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-text/85 sm:mt-6 sm:text-lg">
-              I help importers, exporters and growing businesses verify suppliers, control
-              procurement risk, structure commodity transactions and execute international trade
-              opportunities with greater confidence.
+              I help importers, exporters, manufacturers, procurement teams, commodity buyers and
+              growing businesses reduce trade risk through supplier verification, sourcing strategy,
+              export structuring, landed-cost analysis and import/export business planning.
             </p>
 
             <p className="mt-4 text-sm text-muted">
-              Based in Kano, Nigeria. Advising clients across Asia · Africa · Middle East · Europe.
-              Execution is delivered through ASMAN Prime Hub Global Services Limited, a CAC and
-              NEPC registered company.
+              Based in Nigeria. Working with clients and trade opportunities across Africa, Asia,
+              the Middle East and Europe. Corporate sourcing and execution are delivered through
+              ASMAN Prime Hub Global Services Limited, a CAC and NEPC registered company.
             </p>
 
             <p className="mt-2 text-sm text-muted">
               Written advisory over email and WhatsApp. Calls only when a matter requires one.
             </p>
 
-
-            <div className="mt-8 flex flex-col items-center gap-4 sm:mt-10 md:items-start">
+            <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap md:items-start md:justify-start">
               <a
                 href="#advisory"
                 className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
@@ -88,11 +87,26 @@ export function Hero() {
               </a>
               <a
                 href="#done-for-you"
-                className="text-sm font-medium text-gold-deep underline underline-offset-4 transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="inline-flex w-full items-center justify-center rounded-md border-2 border-accent px-6 py-3 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
               >
-                Need execution instead? Explore done-for-you services →
+                Request a Written Proposal
+              </a>
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-text/20 px-6 py-3 text-sm font-semibold text-text transition-colors hover:border-[#25D366] hover:text-[#25D366] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
+              >
+                <WhatsAppIcon size={16} className="text-[#25D366]" />
+                Message on WhatsApp
               </a>
             </div>
+
+            <p className="mt-4 text-xs text-muted">
+              Not sure which you need? Message me first — I will point you to the right one before
+              you pay anything.
+            </p>
+
 
             <div className="mt-6 text-sm">
               <a
