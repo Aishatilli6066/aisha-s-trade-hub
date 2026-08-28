@@ -49,13 +49,7 @@ export function Hero() {
 
           <div className="order-2 min-w-0 flex-1 text-center md:order-1 md:text-left">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
-              Founder, ASMAN Prime Hub Global Services Limited
-            </p>
-            <p className="mt-2 font-display text-xl font-bold tracking-tight text-text sm:text-3xl">
-              Aisha Usman
-            </p>
-            <p className="mt-2 text-[0.7rem] font-semibold uppercase leading-relaxed tracking-[0.15em] text-gold-deep sm:text-xs sm:tracking-[0.2em]">
-              International Trade Consultant <span className="text-text/40">|</span> Global Sourcing Specialist <span className="text-text/40">|</span> Export Strategist
+              Aisha Usman — International Trade Consultant
             </p>
 
             <h1 className="mt-4 font-display text-[1.6rem] font-bold leading-[1.18] text-text sm:mt-6 sm:text-5xl lg:text-6xl">
@@ -63,14 +57,8 @@ export function Hero() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-text/85 sm:mt-6 sm:text-lg">
-              I help importers, exporters, manufacturers and procurement teams reduce trade risk
-              through supplier verification, sourcing strategy and export structuring.
-            </p>
-
-            <p className="mt-4 text-sm text-muted">
-              Based in Nigeria, working across Africa, Asia, the Middle East and Europe — execution
-              through ASMAN Prime Hub Global Services Limited (CAC &amp; NEPC registered). Advisory
-              in writing over email and WhatsApp.
+              Supplier verification, sourcing strategy and export structuring — based in Nigeria,
+              working across Africa, Asia, the Middle East and Europe.
             </p>
 
             <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap md:items-start md:justify-start">
@@ -96,11 +84,6 @@ export function Hero() {
                 Message on WhatsApp
               </a>
             </div>
-
-            <p className="mt-4 text-xs text-muted">
-              Not sure which you need? Message me first — I will point you to the right one before
-              you pay anything.
-            </p>
           </div>
 
 
