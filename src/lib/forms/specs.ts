@@ -8,6 +8,70 @@ import { buildConfirmation, paymentFields, type FormSpec } from "./types";
 const INCOTERMS = ["EXW", "FCA", "FOB", "CFR", "CIF", "DAP", "DDP", "Not sure"];
 const YES_NO = ["Yes", "No"];
 
+const qualificationStep = () => ({
+  title: "Project Readiness",
+  description:
+    "These answers help me size the engagement accurately and prepare a realistic written proposal.",
+  fields: [
+    {
+      id: "decision_authority",
+      label: "Are you the final decision-maker for this project?",
+      type: "select" as const,
+      required: true,
+      options: ["Yes, I decide", "I decide with a partner or board", "I recommend to someone else"],
+    },
+    {
+      id: "other_stakeholders",
+      label: "Who else needs to approve or be involved?",
+      type: "text" as const,
+    },
+    {
+      id: "budget_confirmed",
+      label: "Is budget already approved and available for this project?",
+      type: "select" as const,
+      required: true,
+      options: ["Yes, funds are ready", "Approved in principle", "Still being determined"],
+    },
+    {
+      id: "start_date",
+      label: "Target start date",
+      type: "text" as const,
+      required: true,
+      placeholder: "e.g. within 2 weeks, or a specific date",
+    },
+    {
+      id: "decision_timeline",
+      label: "When do you expect to make a final decision?",
+      type: "select" as const,
+      required: true,
+      options: ["This week", "Within 2 weeks", "Within a month", "1-3 months", "Exploring only"],
+    },
+    {
+      id: "engagement_preference",
+      label: "How would you prefer to work together?",
+      type: "select" as const,
+      options: [
+        "One-off project",
+        "Ongoing / repeat sourcing",
+        "Long-term representation",
+        "Not sure yet",
+      ],
+    },
+    {
+      id: "referral_source",
+      label: "How did you hear about me?",
+      type: "select" as const,
+      other: true,
+      options: ["Google search", "LinkedIn", "Upwork", "Referral", "Blog article", "Social media"],
+    },
+    {
+      id: "anything_else",
+      label: "Anything else I should know before preparing your proposal?",
+      type: "textarea" as const,
+    },
+  ],
+});
+
 const consultation: FormSpec = {
   id: "consultation",
   eyebrow: "Advisory — $250 USD",
@@ -527,6 +591,7 @@ const sourcing: FormSpec = {
         { id: "link_other", label: "Other relevant URL", type: "url" },
       ],
     },
+    qualificationStep(),
     { title: "Discovery Fee Payment", kind: "payment", fields: paymentFields() },
     { title: "Consent and Submit", kind: "consent", fields: [] },
   ],
@@ -794,6 +859,7 @@ const commodity: FormSpec = {
         { id: "documents", label: "Select supporting documents", type: "files", fileKind: "documents" },
       ],
     },
+    qualificationStep(),
     { title: "Discovery Fee Payment", kind: "payment", fields: paymentFields() },
     { title: "Consent and Submit", kind: "consent", fields: [] },
   ],
@@ -1067,6 +1133,7 @@ const businessPlan: FormSpec = {
         { id: "link_drive", label: "Google Drive / Dropbox link", type: "url" },
       ],
     },
+    qualificationStep(),
     { title: "Discovery Fee Payment", kind: "payment", fields: paymentFields() },
     { title: "Consent and Submit", kind: "consent", fields: [] },
   ],
