@@ -1,7 +1,4 @@
 import aishaPhoto from "@/assets/aisha-usman.jpg";
-import { WhatsAppIcon } from "./icons";
-
-import { WHATSAPP_URL as WHATSAPP } from "@/lib/discovery";
 
 export function Hero() {
   return (
@@ -73,15 +70,6 @@ export function Hero() {
                 className="inline-flex w-full items-center justify-center rounded-md border-2 border-accent px-6 py-3 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
               >
                 Request a Written Proposal
-              </a>
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-text/20 px-6 py-3 text-sm font-semibold text-text transition-colors hover:border-[#25D366] hover:text-[#25D366] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
-              >
-                <WhatsAppIcon size={16} className="text-[#25D366]" />
-                Message on WhatsApp
               </a>
             </div>
           </div>
