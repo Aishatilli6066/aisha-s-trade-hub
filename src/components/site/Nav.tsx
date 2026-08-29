@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/asman-prime-hub-logo.png";
 import { WhatsAppIcon } from "./icons";
 
 import { WHATSAPP_URL as WHATSAPP } from "@/lib/discovery";
@@ -8,7 +7,7 @@ const links = [
   { href: "/#services", label: "Services" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/#about", label: "About" },
-  { href: "/#work", label: "Work" },
+  { href: "/#work", label: "Case Studies" },
   { href: "/blog", label: "Blog" },
   { href: "/#faq", label: "FAQ" },
 ];
@@ -32,13 +31,9 @@ export function Nav() {
           aria-label="Aisha Usman — Home"
           className="flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
         >
-          <img
-            src={logo}
-            alt="ASMAN Prime Hub Global Services Limited"
-            width={36}
-            height={36}
-            className="h-9 w-9 object-contain"
-          />
+          <span className="font-display text-lg font-bold tracking-tight text-text">
+            Aisha Usman
+          </span>
         </a>
 
         <nav aria-label="Primary" className="hidden md:block">

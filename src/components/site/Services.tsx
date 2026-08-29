@@ -39,16 +39,6 @@ const paths: Path[] = [
   },
 ];
 
-const supporting = [
-  "Landed Cost Analysis",
-  "OEM/ODM Coordination",
-  "Trade Documentation Support",
-  "Import & Export Consulting",
-  "Private Label Development",
-  "Custom Machinery Procurement",
-  "Business Plan Development",
-];
-
 function CheckList({ items, tone }: { items: string[]; tone: "yes" | "no" }) {
   return (
     <ul className="mt-3 space-y-2">
@@ -129,23 +119,6 @@ export function Services() {
           ))}
         </div>
 
-        <FadeIn>
-          <div className="mt-12 rounded-xl border border-text/10 bg-bg p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
-              Supporting Expertise
-            </p>
-            <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {supporting.map((s) => (
-                <li key={s} className="flex items-start gap-2 text-sm text-text/85">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-gold-deep" aria-hidden="true">
-                    <path d="M5 12l5 5L20 7" />
-                  </svg>
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </FadeIn>
       </div>
     </section>
   );
