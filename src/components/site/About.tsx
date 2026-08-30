@@ -19,18 +19,19 @@ export function About() {
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">About</p>
           <h2 id="about-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            Why Businesses Work With Me
+            Experience You Are Buying to Avoid an Expensive Mistake
           </h2>
           <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-text/70">
             International Trade Consultant · Global Sourcing Specialist · Export Strategist
           </p>
 
           <p className="mt-8 text-base leading-relaxed text-text/85 sm:text-lg">
-            I work with businesses when the stakes are real: capital on the line, unverified
-            suppliers, unforgiving paperwork. My role is to reduce that risk with independent
-            verification, commercial judgment and practical execution — grounded in live
-            transactions across commodity exports, OEM and private-label manufacturing, and custom
-            machinery procurement.
+            Businesses come to me when the stakes are real: capital on the line, an unverified
+            supplier, paperwork that does not forgive mistakes. Because I have structured live
+            transactions across agricultural commodity exports, OEM and private-label
+            manufacturing and custom machinery procurement, I know where these deals usually fail
+            — and what it costs to find out too late. What you get is independent
+            verification, honest commercial judgement and a clear read on whether to proceed.
           </p>
 
           <div className="mt-8 rounded-xl border border-accent/30 bg-bg p-6">
