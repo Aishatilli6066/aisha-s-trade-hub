@@ -50,12 +50,14 @@ export function Hero() {
             </p>
 
             <h1 className="mt-4 font-display text-[1.6rem] font-bold leading-[1.18] text-text sm:mt-6 sm:text-5xl lg:text-6xl">
-              Helping Businesses Source, Verify, Trade and Expand Across International Markets
+              Know Whether the Deal Is Worth It — Before You Commit Your Capital
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-text/85 sm:mt-6 sm:text-lg">
-              Supplier verification, sourcing strategy and export structuring — based in Nigeria,
-              working across Africa, Asia, the Middle East and Europe.
+              Independent assessment of your import or export opportunity — product and market
+              viability, true landed cost, supplier risk and compliance — then execution through
+              global sourcing, supplier verification and agricultural commodity export. Based in
+              Nigeria, working across Africa, Asia, the Middle East and Europe.
             </p>
 
             <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap md:items-start md:justify-start">
@@ -63,13 +65,13 @@ export function Hero() {
                 href="#advisory"
                 className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
               >
-                Start a Strategy Advisory
+                Evaluate My Opportunity — $250
               </a>
               <a
                 href="#done-for-you"
                 className="inline-flex w-full items-center justify-center rounded-md border-2 border-accent px-6 py-3 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
               >
-                Request a Written Proposal
+                I've Decided — Scope My Project
               </a>
             </div>
           </div>
