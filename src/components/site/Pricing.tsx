@@ -71,7 +71,7 @@ const services: Service[] = [
     price: "From $500",
     discoveryFee: "$100",
     description:
-      "I run your sourcing process end to end: turning your requirement into a written specification, finding manufacturers who can actually meet it, verifying them independently, and pressure-testing every quotation on true landed cost rather than unit price. You get a shortlist you can defend to your board, not a list of contacts scraped from a directory.",
+      "The outcome is the right product from the right supplier at a landed cost that still leaves you a margin. I turn your requirement into a written specification, find manufacturers who can genuinely meet it, verify them independently before any payment, and pressure-test every quotation on true landed cost rather than unit price — so supplier risk is controlled and the shortlist is one you can defend to a board or lender.",
     includes: [
       "Written product specification built from your requirement",
       "Supplier and manufacturer identification across relevant markets",
@@ -89,7 +89,7 @@ const services: Service[] = [
     price: "From $750",
     discoveryFee: "$150",
     description:
-      "I act as your representative on the ground for agricultural commodity purchases — sesame, ginger, hibiscus, moringa, groundnuts and related crops. That means screening sellers before money moves, holding quality to the specification you signed off, and keeping the documentation set correct so the shipment is not stopped at either end.",
+      "Buy Nigerian agricultural commodities — sesame, ginger, hibiscus, moringa, groundnuts and related crops — without exposing your capital to unverified sellers, off-spec cargo or documentation failures. I represent you on the ground: sellers screened before money moves, quality held to the specification you signed off, and export paperwork checked so the shipment is not stopped at either end.",
     includes: [
       "Seller screening, verification and background checks",
       "Specification agreement and quality-parameter sign-off",
@@ -107,7 +107,7 @@ const services: Service[] = [
     price: "From $500",
     discoveryFee: "$100",
     description:
-      "A working import/export plan built around your actual products, target markets and capital position — costed with real landed-cost assumptions rather than optimistic margins. Written to stand up to a lender, an investor or a licensing authority, and structured so you can execute from it.",
+      "A decision-ready commercial model, not a document you file away. Built on your actual products, target markets and capital position and costed with real landed-cost assumptions rather than optimistic margins — so you can see where the margin is, what compliance will cost, and whether the numbers justify proceeding. Written to stand up to a lender, investor or licensing authority, and structured so you can execute from it.",
     includes: [
       "Product, market and sourcing strategy with rationale",
       "Landed-cost model, pricing and margin analysis",
@@ -195,13 +195,14 @@ export function Pricing() {
           </h2>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 sm:gap-6">
             <p className="text-sm leading-relaxed text-text/85 sm:text-base">
-              <span className="font-semibold text-text">Advisory</span> — a structured written
-              advisory engagement for expert direction, problem-solving or a second opinion.
+              <span className="font-semibold text-text">Advisory</span> — evaluate the
+              opportunity before you commit capital, or get a second opinion when the decision is
+              already on the table.
             </p>
             <p className="text-sm leading-relaxed text-text/85 sm:text-base">
-              <span className="font-semibold text-text">Done-for-you services</span> — project
-              engagements where I execute the work. These are scoped through a discovery fee and
-              quoted in a written proposal before kickoff.
+              <span className="font-semibold text-text">Done-for-you services</span> — the
+              decision is made and I carry out the work. Scoped through a paid discovery stage and
+              quoted in a written proposal before anything starts.
             </p>
           </div>
         </FadeIn>
@@ -221,7 +222,7 @@ export function Pricing() {
           <article className="mt-6 grid min-w-0 gap-8 rounded-2xl border-2 border-accent/50 bg-surface p-6 shadow-md sm:p-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:p-10">
             <div className="min-w-0">
               <h4 className="font-display text-2xl font-bold text-text sm:text-3xl">
-                International Trade Strategy Advisory
+                Evaluate the Opportunity Before You Commit Capital
               </h4>
               <p className="mt-4 font-display text-5xl font-bold text-text">
                 $250
@@ -231,15 +232,16 @@ export function Pricing() {
                 Structured asynchronous advisory engagement
               </p>
               <p className="mt-4 text-sm leading-relaxed text-text/85 sm:text-base">
-                A focused advisory engagement for clients who need expert direction on sourcing,
-                importation, export strategy, supplier verification, pricing, logistics, payment
-                terms or market entry.
+                A structured assessment of your proposed import or export opportunity — product
+                and market viability, compliance requirements, cost structure, commercial
+                soundness, key risks and the execution sequence I would follow — so the next
+                commitment you make is an informed one.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-text/75">
-                After payment is verified, I review your questionnaire and documents and deliver a
-                written strategic assessment with recommendations, risk observations and a
-                next-step action plan — with voice-note explanations where useful. Everything is
-                handled in writing by email or WhatsApp.
+                International Trade Strategy Advisory — $250 USD. After payment is verified I
+                review your questionnaire and documents and deliver a written strategic assessment
+                with recommendations, risk observations and a next-step action plan, with
+                voice-note explanations where useful, by email or WhatsApp.
               </p>
 
 
@@ -348,7 +350,7 @@ export function Pricing() {
 
         <FadeIn>
           <p className="mt-8 text-sm text-muted">
-            Need something tailored?{" "}
+            Not sure execution is the right next step yet? Start with the advisory, or{" "}
             <a
               href="/request/global-sourcing"
               className="font-semibold text-gold-deep underline-offset-2 hover:underline"
