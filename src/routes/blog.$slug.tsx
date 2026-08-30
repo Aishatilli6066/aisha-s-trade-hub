@@ -295,14 +295,14 @@ function PostPage() {
             hash="advisory"
             className="inline-flex items-center justify-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-text"
           >
-            Start Strategy Advisory
+            Evaluate My Opportunity
           </Link>
           <Link
             to="/"
             hash="done-for-you"
             className="inline-flex items-center justify-center rounded-md border-2 border-accent px-5 py-2.5 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent hover:text-text"
           >
-            Request a Written Proposal
+            Scope My Project
           </Link>
           <a
             href={WHATSAPP_URL}
