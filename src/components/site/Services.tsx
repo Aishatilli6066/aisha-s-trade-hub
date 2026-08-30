@@ -74,11 +74,12 @@ export function Services() {
             Advisory Services
           </p>
           <h2 id="services-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            Two ways to work with me
+            Decide first. Then execute properly.
           </h2>
           <p className="mt-4 max-w-3xl text-base text-text/80 sm:text-lg">
-            Advisory when you need judgement before committing capital. Done-for-you when the
-            decision is made and the work has to be carried out properly.
+            Most trade losses come from committing capital to the wrong product, supplier or
+            market — or from a landed cost nobody modelled honestly. Advisory protects the
+            decision. Done-for-you protects the execution.
           </p>
         </FadeIn>
 
