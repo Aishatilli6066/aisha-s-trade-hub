@@ -12,7 +12,7 @@ export function MobileCta() {
       style={{ minHeight: 48, paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
     >
       <WhatsAppIcon size={18} />
-      <span>Message me on WhatsApp</span>
+      <span>Ask before you pay — WhatsApp</span>
     </a>
   );
 }

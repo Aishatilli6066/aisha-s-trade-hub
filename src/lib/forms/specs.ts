@@ -77,7 +77,7 @@ const consultation: FormSpec = {
   eyebrow: "Advisory — $250 USD",
   title: "International Trade Strategy Advisory",
   intro:
-    "Pay the $250 fee, complete this advisory questionnaire, then enter your Flutterwave reference and attach your receipt. Payment is verified manually — once verified, your submission and documents are reviewed and your written strategic assessment is delivered by email or WhatsApp.",
+    "Get a structured read on your opportunity before you commit capital. Pay the $250 fee, complete this questionnaire, then enter your Flutterwave reference and attach your receipt. Payment is verified manually — once verified, your submission and documents are reviewed and your written strategic assessment, risk observations and next-step plan are delivered by email or WhatsApp.",
   flow: [
     "Pay $250",
     "Complete Questionnaire",
@@ -309,7 +309,7 @@ const sourcing: FormSpec = {
   eyebrow: "Done-For-You — $100 Project Discovery Fee",
   title: "Global Sourcing & Procurement",
   intro:
-    "Complete your sourcing requirements, pay the $100 Project Discovery Fee, then enter your Flutterwave reference and attach your receipt. Payment is verified manually before project review begins.",
+    "The more precise your requirement, the more accurately I can target the right supplier at a workable landed cost. Complete your sourcing requirements, pay the $100 Project Discovery Fee, then enter your Flutterwave reference and attach your receipt. Payment is verified manually before project review begins.",
   flow: [
     "Complete Requirements",
     "Pay $100 Discovery Fee",
@@ -602,7 +602,7 @@ const commodity: FormSpec = {
   eyebrow: "Done-For-You — $150 Project Discovery Fee",
   title: "Agricultural Commodity Buyer Representation",
   intro:
-    "Complete your commodity requirements, pay the $150 Project Discovery Fee, then enter your Flutterwave reference and attach your receipt. Payment is verified manually before feasibility review begins.",
+    "Specification, quantity and destination drive everything that protects your capital later — seller screening, inspection and documentation. Complete your commodity requirements, pay the $150 Project Discovery Fee, then enter your Flutterwave reference and attach your receipt. Payment is verified manually before feasibility review begins.",
   flow: [
     "Complete Commodity Requirements",
     "Pay $150 Discovery Fee",
@@ -870,7 +870,7 @@ const businessPlan: FormSpec = {
   eyebrow: "Done-For-You — $100 Project Discovery Fee",
   title: "Import & Export Business Plan Development",
   intro:
-    "Complete your business plan requirements, pay the $100 Project Discovery Fee, then enter your Flutterwave reference and attach your receipt. Payment is verified manually before scope review begins.",
+    "A plan is only useful if it is grounded in your real capital, costs and target market. Complete your business plan requirements, pay the $100 Project Discovery Fee, then enter your Flutterwave reference and attach your receipt. Payment is verified manually before scope review begins.",
   flow: [
     "Complete Questionnaire",
     "Pay $100 Discovery Fee",

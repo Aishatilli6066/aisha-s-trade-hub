@@ -98,7 +98,7 @@ export function Contact() {
           <div className="mt-8 rounded-xl border border-accent/40 bg-bg p-6 sm:flex sm:items-center sm:justify-between sm:gap-6">
             <div>
               <h3 className="font-display text-lg font-bold text-text">
-                Ready to start instead of ask?
+                Know what you need? Start there.
               </h3>
               <p className="mt-1 text-sm leading-relaxed text-text/80">
                 Choose a service, complete the form for it, and pay through the secure Flutterwave
@@ -109,7 +109,7 @@ export function Contact() {
               href="#pricing"
               className="mt-4 inline-flex shrink-0 items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:mt-0"
             >
-              View services & pricing
+              See engagements & pricing
             </a>
           </div>
         </FadeIn>

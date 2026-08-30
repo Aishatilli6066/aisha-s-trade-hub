@@ -12,28 +12,28 @@ type Path = {
 const paths: Path[] = [
   {
     eyebrow: "Path 1 — Advisory",
-    title: "International Trade Strategy Advisory",
+    title: "Evaluate the Opportunity Before You Commit Capital",
     summary:
-      "A structured written assessment of your sourcing, import or export plan before you commit capital — the risks I can see and the sequence I would follow.",
+      "A structured written assessment of your proposed import or export opportunity — product and market viability, compliance requirements, cost structure, commercial soundness, key risks and execution strategy — so you can make an informed decision instead of an expensive assumption.",
     who: [
-      "Deciding whether a product, supplier or market is worth pursuing",
-      "Want an independent read on quotes or a supplier before paying",
-      "Entering a new import or export market and need the route mapped",
+      "You are deciding whether a product, supplier or market justifies the spend",
+      "You want an independent read on a quotation or supplier before money moves",
+      "You are entering a new import or export market and need the route mapped",
     ],
-    start: { label: "Start a Strategy Advisory", href: "#advisory" },
+    start: { label: "Evaluate My Opportunity", href: "#advisory" },
     startNote: "$250 USD · pay first, then complete the advisory questionnaire.",
   },
   {
     eyebrow: "Path 2 — Done-for-you",
-    title: "Sourcing, Procurement & Buyer Representation",
+    title: "Execute the Decision Without Carrying the Risk Alone",
     summary:
-      "Hands-on execution: I identify and verify suppliers, coordinate manufacturing or commodity supply, and hold the commercial detail together until the transaction is structured.",
+      "Once the decision is made, I run the work: the right supplier at a commercially viable landed cost, verified before payment, with quality, documentation and counterparty risk controlled through to shipment.",
     who: [
-      "The decision is made and you need the work carried out",
-      "You need suppliers or manufacturers found, screened and verified",
+      "The decision is made and the work has to be carried out properly",
+      "You need suppliers or manufacturers found, screened and independently verified",
       "You are buying commodities and need representation on the ground",
     ],
-    start: { label: "Request a Written Proposal", href: "#done-for-you" },
+    start: { label: "Scope My Project", href: "#done-for-you" },
     startNote:
       "Begins with a paid project discovery, credited toward the final engagement fee.",
   },
@@ -74,11 +74,12 @@ export function Services() {
             Advisory Services
           </p>
           <h2 id="services-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            Two ways to work with me
+            Decide first. Then execute properly.
           </h2>
           <p className="mt-4 max-w-3xl text-base text-text/80 sm:text-lg">
-            Advisory when you need judgement before committing capital. Done-for-you when the
-            decision is made and the work has to be carried out properly.
+            Most trade losses come from committing capital to the wrong product, supplier or
+            market — or from a landed cost nobody modelled honestly. Advisory protects the
+            decision. Done-for-you protects the execution.
           </p>
         </FadeIn>
 
