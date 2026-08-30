@@ -28,7 +28,7 @@ export function ProofStrip() {
             Track Record
           </p>
           <h2 className="mt-3 font-display text-2xl font-bold text-text sm:text-4xl">
-            Trade &amp; Procurement Expertise Across Global Markets
+            Experience That Keeps Your Capital Out of the Wrong Deal
           </h2>
         </FadeIn>
 

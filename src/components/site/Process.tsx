@@ -3,28 +3,28 @@ import { FadeIn } from "./FadeIn";
 const steps = [
   {
     n: "01",
-    title: "Discovery & Opportunity Assessment",
-    desc: "Understand your trade objective, product, target market, and constraints to define a realistic engagement scope.",
+    title: "Decide What Is Actually Worth Pursuing",
+    desc: "Your objective, product, target market and constraints are reviewed so the engagement is scoped around a realistic commercial opportunity, not a hopeful one.",
   },
   {
     n: "02",
-    title: "Supplier Search & Verification",
-    desc: "Identify qualified suppliers or buyers and conduct independent verification before any commercial commitment.",
+    title: "Know Who You Are Dealing With",
+    desc: "Qualified suppliers or buyers are identified and independently verified, so counterparty risk is understood before any commitment or payment.",
   },
   {
     n: "03",
-    title: "Commercial Evaluation & Negotiation",
-    desc: "Evaluate pricing, terms, Incoterms, and total landed cost — then negotiate to protect margins and reduce risk.",
+    title: "Protect the Margin",
+    desc: "Pricing, Incoterms and total landed cost are compared properly, then negotiated — so the number you commit to is the number that still works.",
   },
   {
     n: "04",
-    title: "Trade Structuring & Documentation",
-    desc: "Structure the transaction and coordinate the required trade and compliance documentation.",
+    title: "Remove Compliance and Payment Surprises",
+    desc: "The transaction is structured and the required trade and compliance documentation coordinated, reducing the risk of a shipment being delayed or rejected.",
   },
   {
     n: "05",
-    title: "Execution & Delivery Support",
-    desc: "Stay engaged through production, shipment, and delivery to keep the transaction on track.",
+    title: "Keep the Transaction on Track",
+    desc: "I stay engaged through production, shipment and delivery so problems surface early, while they are still fixable.",
   },
 ];
 
@@ -64,7 +64,7 @@ export function Process() {
             Engagement Process
           </p>
           <h2 id="process-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            How I Work
+            How I Protect Your Capital
           </h2>
         </FadeIn>
         <ol className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-5">

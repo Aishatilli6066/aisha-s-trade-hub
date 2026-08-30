@@ -81,7 +81,7 @@ const services: Service[] = [
       "Sample, inspection and quality-checkpoint coordination",
       "Ongoing factory communication through order placement",
     ],
-    ctaLabel: "Complete Requirements — Sourcing",
+    ctaLabel: "Scope My Sourcing Project",
     track: "sourcing",
   },
   {
@@ -99,7 +99,7 @@ const services: Service[] = [
       "Export documentation and compliance checks before shipment",
       "Progress reporting through to export readiness",
     ],
-    ctaLabel: "Complete Requirements — Commodity",
+    ctaLabel: "Scope My Commodity Purchase",
     track: "commodity",
   },
   {
@@ -117,7 +117,7 @@ const services: Service[] = [
       "Operations, logistics and payment-terms structure",
       "Phased implementation roadmap with milestones",
     ],
-    ctaLabel: "Complete Requirements — Business Plan",
+    ctaLabel: "Scope My Business Plan",
     track: "businessplan",
   },
 ];
@@ -256,7 +256,7 @@ export function Pricing() {
                   rel="noopener noreferrer"
                   className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 sm:w-auto"
                 >
-                  Pay $250 Securely
+                  Start My Advisory — Pay $250
                 </a>
                 <a
                   href="/consultation"

@@ -63,7 +63,7 @@ export function CaseStudies() {
             Selected Trade and Sourcing Engagements
           </h2>
           <p className="mt-4 text-base text-text/80 sm:text-lg">
-            Real assignments — how I research, structure and support trade opportunities.
+            Real assignments and what the client was left with — verified options, defensible numbers and a decision they could act on.
           </p>
         </FadeIn>
 
