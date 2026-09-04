@@ -109,8 +109,10 @@ export function Faq() {
                   </h3>
                   <div
                     id={`faq-panel-${i}`}
-                    hidden={!isOpen}
-                    className="pb-6 pr-8 text-sm leading-relaxed text-text/85 sm:text-base"
+                    aria-hidden={!isOpen}
+                    className={`overflow-hidden pr-8 text-sm leading-relaxed text-text/85 transition-[max-height,opacity] duration-300 sm:text-base ${
+                      isOpen ? "max-h-[1000px] pb-6 opacity-100" : "max-h-0 opacity-0"
+                    }`}
                   >
                     {item.a}
                   </div>

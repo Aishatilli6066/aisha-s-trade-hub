@@ -177,7 +177,14 @@ function Details({ summary, children }: { summary: string; children: React.React
           </svg>
         </span>
       </button>
-      {open && <p className="mt-2 text-xs italic leading-relaxed text-muted">{children}</p>}
+      <p
+        aria-hidden={!open}
+        className={`mt-2 overflow-hidden text-xs italic leading-relaxed text-muted transition-[max-height,opacity] duration-300 ${
+          open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        {children}
+      </p>
     </div>
   );
 }

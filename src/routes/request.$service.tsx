@@ -1,6 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { FormPage } from "@/components/site/FormPage";
 import { FORM_SPECS, type FormKey } from "@/lib/forms/specs";
+import { SITE_URL } from "@/lib/site";
 
 /** URL slug → dedicated form. Each service renders its own questions. */
 export const SERVICE_SLUGS: Record<string, FormKey> = {
@@ -32,8 +33,8 @@ export const Route = createFileRoute("/request/$service")({
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary" },
-        { name: "robots", content: "noindex,follow" },
       ],
+      links: [{ rel: "canonical", href: `${SITE_URL}/request/${params.service}` }],
     };
   },
   component: ServiceRequestPage,

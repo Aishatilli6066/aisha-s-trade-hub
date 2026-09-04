@@ -3,7 +3,7 @@ import { FadeIn } from "./FadeIn";
 const stats: { value: string; label: string; badge?: boolean }[] = [
   { value: "5+", label: "Years International Trade Experience" },
   { value: "4", label: "Continents — Clients Served" },
-  { value: "Verified", label: "International Supplier Network", badge: true },
+  { value: "50+", label: "International Supplier Network" },
   { value: "10+", label: "Export Commodities" },
 ];
 
