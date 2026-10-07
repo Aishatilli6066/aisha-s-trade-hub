@@ -15,7 +15,7 @@ import {
   isDuplicate,
 } from "@/lib/abuse-guard.server";
 
-const OWNER_EMAIL = "aishau6066@gmail.com";
+const OWNER_EMAIL = "aishausmantrade@gmail.com";
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
 const MAX_DOCS = 10;
 /** Combined raw size guard — base64 inflates ~33%, Gmail caps around 35 MB. */
