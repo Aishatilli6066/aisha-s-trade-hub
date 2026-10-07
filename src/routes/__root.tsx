@@ -123,7 +123,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               "@id": "https://www.aishausman.com/#aisha-usman",
               name: "Aisha Usman",
               jobTitle: "International Trade Consultant & Global Sourcing Specialist",
-              email: "mailto:aishau6066@gmail.com",
+              email: "mailto:aishausmantrade@gmail.com",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Kano",
@@ -148,7 +148,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               "@id": "https://www.aishausman.com/#organization",
               name: "ASMAN Prime Hub",
               founder: { "@id": "https://www.aishausman.com/#aisha-usman" },
-              email: "mailto:aishau6066@gmail.com",
+              email: "mailto:aishausmantrade@gmail.com",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Kano",
