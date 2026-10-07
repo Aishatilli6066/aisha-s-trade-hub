@@ -91,7 +91,7 @@ function PrivacyPage() {
         <p>
           When you submit a form, your answers and uploaded files are transmitted over an encrypted
           connection from this website to a server-side process, which sends them as an email with
-          attachments to the consultant's business inbox at aishau6066@gmail.com. A confirmation
+          attachments to the consultant's business inbox at aishausmantrade@gmail.com. A confirmation
           copy of your submission summary is emailed to the address you provided. Email is a
           practical business channel but is not an end-to-end encrypted medium, and you should
           consider that before uploading highly sensitive material.
