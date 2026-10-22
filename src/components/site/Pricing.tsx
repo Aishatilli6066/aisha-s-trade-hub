@@ -21,29 +21,29 @@ const TRACK_ROUTES: Record<DiscoveryTrack, string> = {
 };
 
 const CONSULTATION_FLOW = [
-  "Pay",
-  "Questionnaire",
-  "Verification",
-  "Advisory Review",
-  "Strategy Delivered",
-  "Clarification Support",
+  "1. Pay $250",
+  "2. Questionnaire",
+  "3. Manual Verification",
+  "4. Advisory Review",
+  "5. Written Assessment",
+  "6. Clarification Support",
 ];
 
 const DFY_FLOW = [
-  "Complete Requirements",
-  "Pay Discovery Fee",
-  "Review",
-  "Proposal",
-  "Kickoff",
+  "1. Submit Brief",
+  "2. Pay Discovery Fee",
+  "3. Feasibility Review",
+  "4. Written Proposal",
+  "5. Project Kickoff",
 ];
 
 const consultationIncludes = [
-  "Pre-advisory questionnaire",
-  "Review of relevant information and documents",
-  "Written strategic assessment",
-  "Personalized recommendations and action plan",
-  "Voice-note explanations where useful",
-  "Three business days of limited clarification support over WhatsApp or email",
+  "Pre-advisory questionnaire review",
+  "Detailed audit of submitted quotations, specs, and documents",
+  "Written strategic assessment and clear go/no-go recommendations",
+  "Personalized risk observations and execution roadmap",
+  "Voice-note explanations where complex nuances require elaboration",
+  "Three business days of clarification support over WhatsApp or email",
 ];
 
 const CONSULTATION_EXCLUSIONS =
@@ -71,7 +71,7 @@ const services: Service[] = [
     price: "From $500",
     discoveryFee: "$100",
     description:
-      "The outcome is the right product from the right supplier at a landed cost that still leaves you a margin. I turn your requirement into a written specification, find manufacturers who can genuinely meet it, verify them independently before any payment, and pressure-test every quotation on true landed cost rather than unit price — so supplier risk is controlled and the shortlist is one you can defend to a board or lender.",
+      "Secure the right product from the right supplier at a landed cost that protects your margin. I turn your requirements into written technical specifications, identify and independently verify capable manufacturers, and pressure-test quotations on total landed cost rather than misleading factory gate prices.",
     includes: [
       "Written product specification built from your requirement",
       "Supplier and manufacturer identification across relevant markets",
@@ -89,7 +89,7 @@ const services: Service[] = [
     price: "From $750",
     discoveryFee: "$150",
     description:
-      "Buy Nigerian agricultural commodities — sesame, ginger, hibiscus, moringa, groundnuts and related crops — without exposing your capital to unverified sellers, off-spec cargo or documentation failures. I represent you on the ground: sellers screened before money moves, quality held to the specification you signed off, and export paperwork checked so the shipment is not stopped at either end.",
+      "Procure Nigerian agricultural commodities — sesame, ginger, hibiscus, moringa, groundnuts, and related crops — without exposing capital to unverified aggregators or non-compliant paperwork. I represent you on the ground with rigorous quality enforcement and documentation checks.",
     includes: [
       "Seller screening, verification and background checks",
       "Specification agreement and quality-parameter sign-off",
@@ -107,7 +107,7 @@ const services: Service[] = [
     price: "From $500",
     discoveryFee: "$100",
     description:
-      "A decision-ready commercial model, not a document you file away. Built on your actual products, target markets and capital position and costed with real landed-cost assumptions rather than optimistic margins — so you can see where the margin is, what compliance will cost, and whether the numbers justify proceeding. Written to stand up to a lender, investor or licensing authority, and structured so you can execute from it.",
+      "A decision-ready commercial blueprint modeled on real trade economics rather than theoretical assumptions. Costed with realistic landed-cost estimates, regulatory compliance requirements, and defensible financial projections built to satisfy partners, boards, and lenders.",
     includes: [
       "Product, market and sourcing strategy with rationale",
       "Landed-cost model, pricing and margin analysis",
@@ -125,12 +125,12 @@ const services: Service[] = [
 function Check() {
   return (
     <svg
-      width="18"
-      height="18"
+      width="16"
+      height="16"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="2.2"
       strokeLinecap="round"
       strokeLinejoin="round"
       className="mt-0.5 shrink-0 text-gold-deep"
@@ -143,14 +143,14 @@ function Check() {
 
 function Stepper({ steps }: { steps: string[] }) {
   return (
-    <ol className="flex w-full min-w-0 snap-x items-center gap-2 overflow-x-auto pb-1 text-[11px] font-semibold uppercase tracking-wider text-text/75 sm:flex-wrap">
+    <ol className="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold text-text/80">
       {steps.map((step, i) => (
-        <li key={step} className="flex shrink-0 items-center gap-2">
-          <span className="whitespace-nowrap rounded-full border border-text/15 bg-bg px-3 py-1.5">
+        <li key={step} className="flex items-center gap-1.5">
+          <span className="rounded-md border border-text/15 bg-bg px-2.5 py-1 text-text">
             {step}
           </span>
           {i < steps.length - 1 && (
-            <span aria-hidden="true" className="text-gold-deep">
+            <span aria-hidden="true" className="text-gold-deep font-bold">
               →
             </span>
           )}
@@ -168,11 +168,22 @@ function Details({ summary, children }: { summary: string; children: React.React
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-deep outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-gold-deep outline-none hover:underline focus-visible:ring-2 focus-visible:ring-accent"
       >
         {summary}
-        <span aria-hidden="true" className={open ? "rotate-45 transition-transform" : "transition-transform"}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+        <span
+          aria-hidden="true"
+          className={open ? "rotate-45 transition-transform" : "transition-transform"}
+        >
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          >
             <path d="M12 5v14M5 12h14" />
           </svg>
         </span>
@@ -195,21 +206,23 @@ export function Pricing() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
-            Services &amp; Engagement Options
+            Transparent Pricing &amp; Engagement Options
           </p>
-          <h2 id="pricing-title" className="mt-3 font-display text-3xl font-bold text-text sm:text-5xl">
-            Work With Aisha
+          <h2
+            id="pricing-title"
+            className="mt-2 font-display text-2xl font-bold text-text sm:text-4xl"
+          >
+            Choose Your Level of Engagement
           </h2>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 sm:gap-6">
-            <p className="text-sm leading-relaxed text-text/85 sm:text-base">
-              <span className="font-semibold text-text">Advisory</span> — evaluate the
-              opportunity before you commit capital, or get a second opinion when the decision is
-              already on the table.
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 sm:gap-6">
+            <p className="text-sm leading-relaxed text-text/85">
+              <span className="font-semibold text-text">Advisory</span> — evaluate your opportunity,
+              vet quotes, and test landed costs before risking significant capital.
             </p>
-            <p className="text-sm leading-relaxed text-text/85 sm:text-base">
-              <span className="font-semibold text-text">Done-for-you services</span> — the
-              decision is made and I carry out the work. Scoped through a paid discovery stage and
-              quoted in a written proposal before anything starts.
+            <p className="text-sm leading-relaxed text-text/85">
+              <span className="font-semibold text-text">Done-for-you</span> — the decision is made
+              and I lead execution on the ground. Scoped through a paid discovery stage and credited
+              to your project fee.
             </p>
           </div>
         </FadeIn>
@@ -217,46 +230,45 @@ export function Pricing() {
         {/* ------------------------------ ADVISORY ------------------------- */}
         <FadeIn>
           <div id="advisory" className="mt-12 flex scroll-mt-24 items-center gap-4">
-            <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-gold-deep">
-              Advisory
+            <h3 className="font-display text-xs font-bold uppercase tracking-[0.25em] text-gold-deep">
+              Advisory Track
             </h3>
             <span aria-hidden="true" className="h-px flex-1 bg-text/15" />
           </div>
         </FadeIn>
 
-
         <FadeIn>
-          <article className="mt-6 grid min-w-0 gap-8 rounded-2xl border-2 border-accent/50 bg-surface p-6 shadow-md sm:p-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:p-10">
+          <article className="mt-6 grid min-w-0 gap-8 rounded-2xl border-2 border-accent/50 bg-surface p-6 shadow-sm sm:p-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:p-10">
             <div className="min-w-0">
-              <h4 className="font-display text-2xl font-bold text-text sm:text-3xl">
-                Evaluate the Opportunity Before You Commit Capital
+              <div className="inline-block rounded bg-bg px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-gold-deep border border-accent/30">
+                Decision Assessment
+              </div>
+              <h4 className="mt-3 font-display text-2xl font-bold text-text sm:text-3xl">
+                International Trade Strategy Advisory
               </h4>
-              <p className="mt-4 font-display text-5xl font-bold text-text">
+              <p className="mt-3 font-display text-4xl font-bold text-text sm:text-5xl">
                 $250
                 <span className="ml-1 text-base font-medium text-muted">USD</span>
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gold-deep">
-                Structured asynchronous advisory engagement
+                Structured asynchronous advisory review
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-text/85 sm:text-base">
-                A structured assessment of your proposed import or export opportunity — product
-                and market viability, compliance requirements, cost structure, commercial
-                soundness, key risks and the execution sequence I would follow — so the next
-                commitment you make is an informed one.
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-text/75">
-                International Trade Strategy Advisory — $250 USD. After payment is verified I
-                review your questionnaire and documents and deliver a written strategic assessment
-                with recommendations, risk observations and a next-step action plan, with
-                voice-note explanations where useful, by email or WhatsApp.
+              <p className="mt-4 text-sm leading-relaxed text-text/85">
+                A structured assessment of your import or export opportunity — product viability,
+                compliance requirements, landed-cost structure, and counterparty risks. After your
+                payment is verified manually, I review your questionnaire and documentation,
+                delivering a written strategic assessment with actionable recommendations and voice
+                notes by email or WhatsApp within agreed business windows.
               </p>
 
-
-              <div className="mt-6 min-w-0">
+              <div className="mt-6">
+                <p className="text-xs font-bold uppercase tracking-wider text-text mb-2">
+                  Engagement Sequence
+                </p>
                 <Stepper steps={CONSULTATION_FLOW} />
               </div>
 
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={CONSULTATION_PAYMENT_LINK}
                   target="_blank"
@@ -267,16 +279,18 @@ export function Pricing() {
                 </a>
                 <a
                   href="/consultation"
-                  className="inline-flex w-full items-center justify-center rounded-md px-2 py-3 text-sm font-semibold text-gold-deep underline-offset-4 hover:underline sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-md px-2 py-3 text-xs font-bold text-gold-deep underline-offset-4 hover:underline sm:w-auto"
                 >
-                  Already paid? Complete the advisory questionnaire
+                  Already paid? Complete the questionnaire
                 </a>
               </div>
             </div>
 
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-text">Includes</p>
-              <ul className="mt-3 space-y-2 text-sm text-text/85">
+            <div className="border-t border-text/10 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+              <p className="text-xs font-bold uppercase tracking-wider text-text">
+                What Is Included
+              </p>
+              <ul className="mt-3 space-y-2 text-xs leading-relaxed text-text/85 sm:text-sm">
                 {consultationIncludes.map((i) => (
                   <li key={i} className="flex items-start gap-2">
                     <Check />
@@ -292,23 +306,20 @@ export function Pricing() {
         {/* -------------------------- DONE-FOR-YOU -------------------------- */}
         <FadeIn>
           <div id="done-for-you" className="mt-16 flex scroll-mt-24 items-center gap-4">
-            <h3 className="font-display text-sm font-bold uppercase tracking-[0.25em] text-gold-deep">
-              Done-for-you Services
+            <h3 className="font-display text-xs font-bold uppercase tracking-[0.25em] text-gold-deep">
+              Done-for-You Execution Services
             </h3>
             <span aria-hidden="true" className="h-px flex-1 bg-text/15" />
           </div>
         </FadeIn>
 
-
         <FadeIn>
-          <div className="mt-5">
+          <div className="mt-6 rounded-xl border border-text/15 bg-surface p-5">
+            <p className="text-xs font-bold uppercase tracking-wider text-text mb-2">
+              Project Execution Process
+            </p>
             <Stepper steps={DFY_FLOW} />
-          </div>
-        </FadeIn>
-
-        <FadeIn>
-          <div className="mt-5 rounded-xl border border-text/15 bg-surface p-5">
-            <p className="text-sm leading-relaxed text-text/85">{DISCOVERY_NOTE}</p>
+            <p className="mt-4 text-xs leading-relaxed text-text/85">{DISCOVERY_NOTE}</p>
             <Details summary="What the discovery fee does not cover">
               {DISCOVERY_EXCLUSIONS}
             </Details>
@@ -318,19 +329,21 @@ export function Pricing() {
         <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {services.map((s) => (
             <FadeIn key={s.title}>
-              <article className="flex h-full flex-col rounded-2xl border border-text/15 bg-surface p-6 shadow-sm sm:p-8">
-                <h4 className="font-display text-xl font-bold text-text sm:text-2xl">{s.title}</h4>
+              <article className="flex h-full flex-col rounded-xl border border-text/15 bg-surface p-6 shadow-sm sm:p-7">
+                <h4 className="font-display text-xl font-bold text-text">{s.title}</h4>
                 <p className="mt-3 font-display text-3xl font-bold text-text">
                   {s.price}
                   <span className="ml-1 text-sm font-medium text-muted">USD</span>
                 </p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gold-deep">
-                  Project Discovery Fee {s.discoveryFee} — credited to your final fee
+                  Project Discovery Fee {s.discoveryFee} — credited to final fee
                 </p>
 
-                <p className="mt-4 text-sm leading-relaxed text-text/85">{s.description}</p>
+                <p className="mt-4 text-xs leading-relaxed text-text/85 sm:text-sm">
+                  {s.description}
+                </p>
 
-                <ul className="mt-4 space-y-2 text-sm text-text/85">
+                <ul className="mt-4 space-y-2 text-xs leading-relaxed text-text/85">
                   {s.includes.map((i) => (
                     <li key={i} className="flex items-start gap-2">
                       <Check />
@@ -342,11 +355,11 @@ export function Pricing() {
                 <div className="mt-auto pt-6">
                   <a
                     href={TRACK_ROUTES[s.track]}
-                    className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
+                    className="inline-flex w-full items-center justify-center rounded-md bg-accent px-5 py-3 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90"
                   >
                     {s.ctaLabel}
                   </a>
-                  <p className="mt-3 text-xs leading-relaxed text-text/70">
+                  <p className="mt-2 text-[11px] leading-relaxed text-muted text-center">
                     Final fee depends on scope and is confirmed in your written proposal.
                   </p>
                 </div>
@@ -356,13 +369,14 @@ export function Pricing() {
         </div>
 
         <FadeIn>
-          <p className="mt-8 text-sm text-muted">
-            Not sure execution is the right next step yet? Start with the advisory, or{" "}
+          <p className="mt-8 text-xs text-muted">
+            Not sure execution is the right next step yet? Start with the $250 advisory assessment,
+            or{" "}
             <a
               href="/request/global-sourcing"
               className="font-semibold text-gold-deep underline-offset-2 hover:underline"
             >
-              Request a written proposal
+              request a written proposal
             </a>
             .
           </p>

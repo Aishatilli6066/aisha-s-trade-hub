@@ -1,8 +1,14 @@
 import aishaPhoto from "@/assets/aisha-usman.jpg";
 
+const keyMetrics = [
+  { value: "5+", label: "Years Experience", detail: "Global Trade & Structuring" },
+  { value: "4", label: "Continents", detail: "Africa, Asia, ME & Europe" },
+  { value: "50+", label: "Supplier Network", detail: "Verified Counterparties" },
+];
+
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden border-b border-text/10">
+    <section id="top" className="relative overflow-hidden border-b border-text/10 bg-bg">
       <svg
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full opacity-60"
@@ -28,60 +34,76 @@ export function Hero() {
         <circle cx="980" cy="220" r="2.5" fill="#D4AF37" />
       </svg>
 
-      <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-24 lg:py-28">
-        <div className="flex flex-col items-center gap-6 sm:gap-10 md:flex-row md:items-center md:justify-between lg:gap-16">
-          <figure className="order-1 mx-auto w-32 shrink-0 sm:w-56 md:order-2 md:mx-0 md:w-72 lg:w-80">
-            <div className="overflow-hidden rounded-full border-2 border-accent/40 shadow-2xl shadow-black/30">
-              <img
-                src={aishaPhoto}
-                alt="Aisha Usman, Founder of ASMAN Prime Hub"
-                className="aspect-square h-full w-full object-cover"
-                style={{ objectPosition: "50% 22%" }}
-                width={400}
-                height={400}
-                loading="eager"
-              />
+      <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20 lg:py-24">
+        <div className="flex flex-col items-center gap-8 sm:gap-12 md:flex-row md:items-center md:justify-between lg:gap-16">
+          <figure className="order-1 mx-auto w-36 shrink-0 sm:w-56 md:order-2 md:mx-0 md:w-72 lg:w-80">
+            <div className="relative">
+              <div className="overflow-hidden rounded-2xl border-2 border-accent/50 bg-surface shadow-xl shadow-text/10">
+                <img
+                  src={aishaPhoto}
+                  alt="Aisha Usman, International Trade Consultant and Founder of ASMAN Prime Hub"
+                  className="aspect-[4/5] h-full w-full object-cover"
+                  style={{ objectPosition: "50% 20%" }}
+                  width={400}
+                  height={500}
+                  loading="eager"
+                />
+              </div>
+              <div className="mt-3 rounded-lg border border-accent/40 bg-surface/90 px-3 py-2 text-center backdrop-blur-sm">
+                <p className="font-display text-xs font-bold text-text">Aisha Usman</p>
+                <p className="text-[11px] font-medium text-gold-deep">
+                  Founder, ASMAN Prime Hub Global Services Ltd
+                </p>
+              </div>
             </div>
           </figure>
 
           <div className="order-2 min-w-0 flex-1 text-center md:order-1 md:text-left">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
-              Aisha Usman — International Trade Consultant
-            </p>
+            <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-gold-deep">
+              <span className="h-1.5 w-1.5 rounded-full bg-gold-deep" />
+              International Trade Advisory &amp; Due Diligence
+            </div>
 
-            <h1 className="mt-4 font-display text-[1.6rem] font-bold leading-[1.18] text-text sm:mt-6 sm:text-5xl lg:text-6xl">
-              Know Whether the Deal Is Worth It — Before You Commit Your Capital
+            <h1 className="mt-4 font-display text-2xl font-bold leading-tight text-text sm:text-4xl lg:text-5xl">
+              Protecting Capital &amp; Structuring Compliant Cross-Border Trade
             </h1>
 
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-text/85 sm:mt-6 sm:text-lg">
-              Independent assessment of your import or export opportunity — product and market
-              viability, true landed cost, supplier risk and compliance — then execution through
-              global sourcing, supplier verification and agricultural commodity export. Based in
-              Nigeria, working across Africa, Asia, the Middle East and Europe.
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-text/85 sm:text-lg">
+              Independent assessment of import and export opportunities — product viability,
+              verified landed cost, supplier screening, and trade documentation. Grounded execution
+              in Nigeria with active corridors across Africa, Asia, the Middle East, and Europe.
             </p>
 
-            <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap md:items-start md:justify-start">
+            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <a
                 href="#advisory"
-                className="inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
+                className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3.5 text-sm font-semibold text-text shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
-                Evaluate My Opportunity — $250
+                Start Advisory Review — $250
               </a>
               <a
                 href="#done-for-you"
-                className="inline-flex w-full items-center justify-center rounded-md border-2 border-accent px-6 py-3 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:w-auto"
+                className="inline-flex items-center justify-center rounded-md border-2 border-accent bg-transparent px-6 py-3.5 text-sm font-semibold text-gold-deep transition-colors hover:bg-accent hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
-                I've Decided — Scope My Project
+                Scope Done-for-You Project
               </a>
             </div>
+
+            {/* Verified Quick Stats Strip */}
+            <div className="mt-10 grid grid-cols-3 gap-2 border-t border-text/10 pt-6 sm:gap-4">
+              {keyMetrics.map((m) => (
+                <div key={m.label} className="rounded-lg bg-surface/70 p-3 text-left">
+                  <div className="font-display text-xl font-bold text-text sm:text-2xl">
+                    {m.value}
+                  </div>
+                  <div className="text-xs font-semibold text-gold-deep">{m.label}</div>
+                  <div className="hidden text-[11px] text-muted sm:block">{m.detail}</div>
+                </div>
+              ))}
+            </div>
           </div>
-
-
         </div>
-
       </div>
     </section>
   );
 }
-
-
