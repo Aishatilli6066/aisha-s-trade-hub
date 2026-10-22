@@ -22,7 +22,7 @@ const cases = [
   },
   {
     title: "Custom-Made Industrial Machine Sourcing",
-    corridor: "Asia ➔ Nigeria",
+    corridor: "Asia ➔ Israel",
     sector: "Custom Procurement",
     need: "Client required a custom-built industrial machine to exact operational specifications unavailable locally.",
     action:
