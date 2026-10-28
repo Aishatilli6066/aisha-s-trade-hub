@@ -12,6 +12,7 @@ export const Route = createFileRoute("/consultation")({
         content:
           "Complete your International Trade Strategy Advisory questionnaire and submit your Flutterwave payment reference and receipt for manual verification.",
       },
+      { name: "robots", content: "noindex,follow" },
       { property: "og:title", content: "Advisory Questionnaire — Aisha Usman" },
       {
         property: "og:description",
