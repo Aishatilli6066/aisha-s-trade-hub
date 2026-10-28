@@ -10,17 +10,11 @@ export const Route = createFileRoute("/sitemap.xml")({
     handlers: {
       GET: async () => {
         const posts = getAllPosts();
+        // Only include pages intended to appear in search results. Consultation
+        // and request forms are conversion endpoints and carry a noindex directive.
         const staticEntries = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/blog", changefreq: "weekly", priority: "0.8" },
-          { path: "/consultation", changefreq: "monthly", priority: "0.7" },
-          { path: "/request/global-sourcing", changefreq: "monthly", priority: "0.7" },
-          {
-            path: "/request/commodity-buyer-representation",
-            changefreq: "monthly",
-            priority: "0.7",
-          },
-          { path: "/request/business-plan", changefreq: "monthly", priority: "0.7" },
           { path: "/privacy", changefreq: "yearly", priority: "0.3" },
           { path: "/terms", changefreq: "yearly", priority: "0.3" },
           { path: "/payment-policy", changefreq: "yearly", priority: "0.3" },
@@ -54,7 +48,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 
         return new Response(xml, {
           headers: {
-            "Content-Type": "application/xml",
+            "Content-Type": "application/xml; charset=utf-8",
             "Cache-Control": "public, max-age=3600",
           },
         });
